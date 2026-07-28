@@ -47,3 +47,29 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Local-only task state and recovery evidence
+.harness-active
+harness-progress.txt
+harness-tasks.json*
+
+# Generated visual QA output and duplicate capture exports
+docs/visual-qa/
+docs/clone-*.png
+docs/comparison-results.json
+docs/CLONE_VERIFICATION_CHECKLIST.md
+docs/FINAL_COMPLETION_REPORT.md
+docs/PROJECT_COMPLETION_SUMMARY.md
+docs/SCREENSHOT_COMPARISON_CHECKLIST.md
+docs/STAGE1_VERIFICATION_RESULTS.md
+docs/VISUAL_QA_REPORT.md
+
+# Private reverse-engineering research; preserve locally, never stage by default
+docs/design-references/*
+!docs/design-references/.gitkeep
+!docs/design-references/comparison.png
+docs/research/mitibm.mit.edu/
+docs/research/starlab/
+
+# StarLab's licensed reference bundle is local-only, not a runtime asset
+/starlab/

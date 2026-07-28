@@ -1,9 +1,17 @@
+import { PageShell } from "@/components/page-shell";
+import { Hero } from "@/components/home/hero";
+import { IntroCopy } from "@/components/home/intro-copy";
+import { Spotlight } from "@/components/home/spotlight";
+import { QuickLinksStrip, SchwarzmanLogo } from "@/components/home/quick-links";
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">
-        Clone target not yet built. Run <code className="font-mono text-foreground">/clone-website</code> to start.
-      </p>
-    </main>
+    <PageShell variant="home">
+      <Hero />
+      <IntroCopy />
+      <Spotlight />
+      <QuickLinksStrip />
+      <SchwarzmanLogo />
+    </PageShell>
   );
 }

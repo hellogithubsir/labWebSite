@@ -1,0 +1,87 @@
+.root {
+  align-items: center;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  min-height: 100svh;
+  overflow: hidden;
+  width: 100%;
+}
+
+.stage {
+  aspect-ratio: 16 / 9;
+  background: #000;
+  height: min(100svh, calc(100vw * 9 / 16));
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  width: min(100vw, calc(100svh * 16 / 9));
+}
+
+.scene {
+  inset: 0;
+  position: absolute;
+}
+
+.wordmarkLayer {
+  align-items: center;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+/*
+ * The parser-time capability probe chooses which complete layer can become
+ * visible. Defaulting to the verified terminal image is conservative: if
+ * scripting is delayed, the user never sees a synthetic f0 while a static
+ * accessibility/fallback route is being resolved.
+ */
+.interactiveWordmark,
+.staticWordmark {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.interactiveWordmark {
+  display: none;
+}
+
+.staticWordmark {
+  opacity: 1;
+  visibility: visible;
+}
+
+.root[data-starlab-presentation="interactive"] .interactiveWordmark {
+  display: flex;
+}
+
+.root[data-starlab-presentation="interactive"] .staticWordmark {
+  /* Keep the first DOM image measurable for shared runtime inspection while
+   * ensuring the interactive path paints only its own frame-controlled mark. */
+  opacity: 0;
+  visibility: hidden;
+}
+
+.root[data-starlab-presentation="static"] .interactiveWordmark {
+  display: none;
+}
+
+/* Static routes must be a real terminal hold, not an invisible WebGL canvas
+ * that happened to render before the fallback decision. */
+.root[data-starlab-presentation="static"] .scene {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene {
+    display: none;
+  }
+}
