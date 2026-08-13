@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>实验室官网｜中文 v3 内容线框预览</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f5f1;
+      --white: #fff;
+      --ink: #17252b;
+      --muted: #58686d;
+      --line: #9aa8aa;
+      --blue: #145b86;
+      --pale: #e6eef1;
+      --red: #963f32;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgb(20 91 134 / 4%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(20 91 134 / 4%) 1px, transparent 1px);
+      background-size: 24px 24px;
+      font: 16px/1.65 "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+      overflow-x: hidden;
+    }
+    button { font: inherit; letter-spacing: 0; }
+    .skip {
+      position: fixed;
+      z-index: 99;
+      top: 8px;
+      left: 8px;
+      padding: 8px 12px;
+      color: #fff;
+      background: #000;
+      transform: translateY(-150%);
+    }
+    .skip:focus { transform: none; }
+    :focus-visible { outline: 3px solid #efbd45; outline-offset: 3px; }
+    .mast {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      color: #fff;
+      background: var(--ink);
+      border-bottom: 3px solid var(--blue);
+    }
+    .mast-in,
+    main { width: min(calc(100% - 32px), var(--max)); margin: auto; }
+    .mast-in { padding-top: 17px; }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 13px;
+    }
+    .brand strong {
+      font: 700 clamp(1.05rem, 2vw, 1.4rem)/1.2 "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+    }
+    .brand span { color: #c8d3d6; font-size: .75rem; }
+    .nav-scroll { overflow-x: auto; }
+    .tabs { display: flex; min-width: max-content; gap: 2px; }
+    .tab {
+      position: relative;
+      min-height: 48px;
+      padding: 10px 15px;
+      border: 0;
+      color: #cbd6d8;
+      background: transparent;
+      cursor: pointer;
+    }
+    .tab:hover { color: #fff; background: #263a42; }
+    .tab[aria-selected="true"] { color: #fff; background: var(--blue); }
+    .tab[aria-selected="true"]::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: #fff;
+    }
+    main { padding: 30px 0 70px; scroll-margin-top: 112px; }
+    .legend {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 28px;
+      padding: 11px 0;
+      border-block: 1px solid #53676d;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    .legend i {
+      display: inline-block;
+      width: 28px;
+      height: 12px;
+      margin-right: 8px;
+      border: 1px dashed var(--blue);
+      background: var(--pale);
+      vertical-align: -2px;
+    }
+    .legend strong { color: var(--red); }
+    .panel[hidden] { display: none; }
+    .pagehead {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 28px;
+      padding-bottom: 17px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .pagehead small {
+      display: block;
+      color: var(--blue);
+      font: 700 .76rem ui-monospace, "Cascadia Mono", monospace;
+    }
+    .pagehead h1 {
+      margin: 0;
+      font: 700 clamp(2rem, 5vw, 4.2rem)/1.06 "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+      letter-spacing: 0;
+    }
+    .pagehead p { max-width: 38ch; margin: 0; color: var(--muted); font-size: .86rem; text-align: right; }
+    .flow { display: grid; gap: 21px; }
+    .block {
+      position: relative;
+      min-width: 0;
+      padding: 19px;
+      border: 1px solid #53676d;
+      border-left: 5px solid var(--blue);
+      background: rgb(255 255 255 / 76%);
+    }
+    .block.quiet { border-left-color: #53676d; }
+    .block.dark { color: #fff; border-color: var(--ink); background: var(--ink); }
+    .top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 13px;
+    }
+    .code,
+    .slot-code {
+      font: 800 .76rem ui-monospace, "Cascadia Mono", monospace;
+    }
+    .code {
+      display: inline-flex;
+      align-items: center;
+      min-height: 27px;
+      padding: 2px 8px;
+      color: #fff;
+      background: var(--blue);
+    }
+    .dark .code { color: var(--ink); background: #fff; }
+    .meta { margin: 0; color: var(--muted); font-size: .74rem; text-align: right; }
+    .dark .meta,
+    .dark .placeholder { color: #cbd5d7; }
+    .block h2,
+    .block h3 {
+      margin: 0;
+      font-family: "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+    .block h2 { font-size: clamp(1.3rem, 2.5vw, 1.9rem); }
+    .block h3 { font-size: 1.04rem; }
+    .working-label { color: var(--red); font: 700 .72rem/1.4 ui-monospace, "Cascadia Mono", monospace; }
+    .dark .working-label { color: #ffd6cb; }
+    .placeholder { margin: 8px 0 0; color: var(--muted); }
+    .placeholder b { color: var(--ink); }
+    .dark .placeholder b { color: #fff; }
+    .home-summary {
+      margin: 14px 0 0;
+      padding: 12px 14px;
+      border-left: 2px solid var(--blue);
+      background: rgb(20 91 134 / 7%);
+      color: var(--muted);
+    }
+    .dark .home-summary {
+      border-left-color: #8fc9e6;
+      background: rgb(255 255 255 / 7%);
+      color: #d4dfe1;
+    }
+    .source-tag {
+      display: inline-block;
+      margin-right: 7px;
+      color: var(--red);
+      font: 800 .72rem ui-monospace, "Cascadia Mono", monospace;
+    }
+    .dark .source-tag { color: #ffd6cb; }
+    .grid { display: grid; gap: 12px; margin-top: 15px; }
+    .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .slot {
+      min-width: 0;
+      min-height: 124px;
+      padding: 13px;
+      border: 1px dashed #53676d;
+      background: #f6f9f9;
+    }
+    .dark .slot { color: var(--ink); }
+    .slot-code { display: block; margin-bottom: 12px; color: var(--blue); }
+    .slot h3 { margin-bottom: 7px; }
+    .slot p { margin: 0; color: var(--muted); font-size: .81rem; }
+    .hint {
+      display: block;
+      margin-top: 11px;
+      padding-top: 7px;
+      border-top: 1px solid var(--line);
+      color: var(--red);
+      font-size: .72rem;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .field-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 18px;
+      margin: 15px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .field-list.one { grid-template-columns: 1fr; }
+    .field-item {
+      min-width: 0;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .82rem;
+      overflow-wrap: anywhere;
+    }
+    .field-item b { display: block; color: var(--ink); font-size: .84rem; }
+    .slot .field-list,
+    .logo .field-list { margin-top: 10px; text-align: left; }
+    .slot .field-item,
+    .logo .field-item { padding: 7px 0; }
+    .logo .field-list { width: 100%; margin-top: 0; }
+    .dark .field-item { color: #cbd5d7; border-color: #52666d; }
+    .dark .field-item b { color: #fff; }
+    .media-box {
+      display: grid;
+      min-height: 180px;
+      place-items: center;
+      padding: 16px;
+      border: 1px dashed #53676d;
+      background: #e8edeb;
+      color: var(--muted);
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+    .dark .media-box { color: #17252b; background: #eef2f0; }
+    .rows {
+      margin: 15px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .rows li {
+      display: grid;
+      grid-template-columns: minmax(8rem, .45fr) 1fr;
+      gap: 13px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .rows b { font-size: .84rem; }
+    .rows span { color: var(--muted); font-size: .8rem; overflow-wrap: anywhere; }
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 15px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .logo {
+      display: grid;
+      min-width: 0;
+      min-height: 160px;
+      align-content: start;
+      gap: 8px;
+      padding: 10px;
+      border: 1px dashed #53676d;
+      background: #fff;
+      color: var(--muted);
+      text-align: center;
+      font-size: .74rem;
+    }
+    .logo .media-box { min-height: 72px; padding: 8px; }
+    .logo img { max-width: 100%; max-height: 56px; object-fit: contain; }
+    .logo b { display: block; color: var(--blue); font-family: ui-monospace, "Cascadia Mono", monospace; }
+    .logo-name { overflow-wrap: anywhere; }
+    .field-item a,
+    .slot a,
+    .placeholder a {
+      color: var(--blue);
+      text-underline-offset: 2px;
+    }
+    .dark .field-item a,
+    .dark .placeholder a { color: #8fc9e6; }
+    .profile-figure { margin: 0; text-align: center; }
+    .profile-photo {
+      display: block;
+      width: min(100%, 260px);
+      height: auto;
+      margin: 0 auto 10px;
+      border: 1px solid #53676d;
+      background: #fff;
+    }
+    .profile-figure figcaption { color: var(--muted); font-size: .76rem; }
+    .detail-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 43px;
+      margin-top: 13px;
+      padding: 8px 17px;
+      border: 1px solid var(--ink);
+      color: #fff;
+      background: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .detail-button::after { content: "\2192"; margin-left: 10px; }
+    .detail-button:hover { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .dark .detail-button { color: var(--ink); border-color: #fff; background: #fff; }
+    .dark .detail-button:hover { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .selection-note {
+      margin: 13px 0 0;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      color: var(--red);
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .blueprint-visual {
+      position: relative;
+      min-height: 230px;
+      background-color: #e8edeb;
+      background-image:
+        linear-gradient(rgb(20 91 134 / 14%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(20 91 134 / 14%) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .blueprint-visual::before,
+    .blueprint-visual::after {
+      content: "";
+      position: absolute;
+      border: 1px solid var(--blue);
+      border-radius: 50%;
+    }
+    .blueprint-visual::before {
+      top: 50%;
+      left: 50%;
+      width: 112px;
+      height: 112px;
+      transform: translate(-72%, -50%);
+    }
+    .blueprint-visual::after {
+      top: 50%;
+      left: 50%;
+      width: 54px;
+      height: 54px;
+      transform: translate(30%, -50%);
+    }
+    .blueprint-visual span { position: relative; z-index: 1; max-width: 22ch; }
+    .print-note { margin-top: 32px; color: var(--muted); font-size: .74rem; text-align: right; }
+
+    @media (max-width: 820px) {
+      .brand { align-items: flex-start; flex-direction: column; gap: 3px; }
+      .pagehead { grid-template-columns: 1fr; }
+      .pagehead p { text-align: left; }
+      .g3,
+      .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .split { grid-template-columns: 1fr; }
+      .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .mast-in,
+      main { width: calc(100% - 20px); }
+      .mast-in { padding-top: 11px; }
+      main { padding-top: 20px; scroll-margin-top: 146px; }
+      .legend { grid-template-columns: 1fr; gap: 4px; }
+      .tab { padding-inline: 12px; }
+      .block { padding: 14px; }
+      .top { align-items: flex-start; flex-direction: column; gap: 5px; }
+      .meta { text-align: left; }
+      .g2,
+      .g3,
+      .g4,
+      .field-list { grid-template-columns: 1fr; }
+      .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .rows li { grid-template-columns: 1fr; gap: 1px; }
+      .placeholder,
+      .field-item,
+      .logo-name { overflow-wrap: anywhere; }
+      .detail-button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      @page { margin: 14mm; }
+      body { color: #000; background: #fff; font-size: 10pt; }
+      .skip,
+      .nav-scroll { display: none !important; }
+      .mast { position: static; color: #000; background: #fff; border-bottom: 2px solid #000; }
+      .mast-in,
+      main { width: 100%; }
+      .mast-in { padding-top: 0; }
+      .brand span { color: #333; }
+      main { padding-top: 7mm; }
+      .legend { margin-bottom: 9mm; }
+      .panel[hidden] { display: block !important; }
+      .panel { margin-bottom: 13mm; }
+      .panel + .panel { padding-top: 7mm; border-top: 3px double #000; }
+      .pagehead h1 { font-size: 28pt; }
+      .block,
+      .slot,
+      .logo,
+      .media-box { break-inside: avoid; background: #fff; }
+      .block.dark,
+      .block.dark h2,
+      .block.dark .meta,
+      .block.dark .placeholder,
+      .block.dark .fake-button {
+        color: #000 !important;
+        background: #fff !important;
+      }
+      .block.dark .placeholder b { color: #000 !important; }
+      .block.dark .code,
+      .code { color: #000; background: #fff; border: 1px solid #000; }
+      .block.dark .field-item,
+      .block.dark .field-item b { color: #000; border-color: #777; }
+      .detail-button { color: #000; background: #fff; border-color: #000; }
+      .print-note { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">跳到主要内容</a>
+  <header class="mast">
+    <div class="mast-in">
+      <div class="brand">
+        <strong>实验室官网｜中文 v3 内容线框预览</strong>
+        <span>v3-contract-2 · 已填充 · 单文件离线 · 7页 · 17个扩展项目 · 8项技术优势 · 打印全部展开</span>
+      </div>
+      <div class="nav-scroll">
+        <nav class="tabs" role="tablist" aria-label="页面预览导航">
+          <button class="tab" id="tab-home" role="tab" aria-selected="true" aria-current="page" aria-controls="panel-home" tabindex="0">首页</button>
+          <button class="tab" id="tab-research" role="tab" aria-selected="false" aria-controls="panel-research" tabindex="-1">研究方向</button>
+          <button class="tab" id="tab-projects" role="tab" aria-selected="false" aria-controls="panel-projects" tabindex="-1">项目</button>
+          <button class="tab" id="tab-advantages" role="tab" aria-selected="false" aria-controls="panel-advantages" tabindex="-1">技术优势</button>
+          <button class="tab" id="tab-partners" role="tab" aria-selected="false" aria-controls="panel-partners" tabindex="-1">合作伙伴</button>
+          <button class="tab" id="tab-team" role="tab" aria-selected="false" aria-controls="panel-team" tabindex="-1">团队</button>
+          <button class="tab" id="tab-contact" role="tab" aria-selected="false" aria-controls="panel-contact" tabindex="-1">联系合作</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" tabindex="-1">
+    <aside class="legend" aria-label="线框图例">
+      <span><i></i>虚线框：素材与重复条目边界</span>
+      <span><strong>红字</strong>：与内容填写包一致的长度提示</span>
+      <span>v3 字段合同：页面编号、字段名与首页引用均为固定结构</span>
+    </aside>
+
+    <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="-1">
+      <header class="pagehead"><div><small>PAGE H</small><h1>首页</h1></div><p>七段式研究蓝图：仅呈现简述、亮点与对应子页引用。</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="H-01">
+          <div class="top"><span class="code">H-01</span><p class="meta">愿景标题 8—20 字；愿景说明 60—120 字</p></div>
+          <h2>愿景 </h2>
+          <div class="split">
+            <ul class="field-list one">
+              <li class="field-item"><b>实验室中文名</b>怡和实验室</li>
+              <li class="field-item"><b>实验室英文名</b><span lang="en">Harmonizing Intelligence Lab (HI Lab)</span></li>
+              <li class="field-item"><b>愿景标题</b>在边缘端连接人类感知与机器智能。</li>
+              <li class="field-item"><b>愿景说明</b>我们致力于融合计算机视觉、多智能体系统和面向硬件高效部署的边缘人工智能，将复杂数据转化为可付诸行动的智能。我们的目标是应对现实世界挑战，为数字健康、工业自动化和智慧公共服务提供高度灵活的人工智能解决方案。</li>
+            </ul>
+            <div class="grid">
+              <div class="media-box blueprint-visual"><span><b>主视觉创意说明</b><br>自然启发式设计：在视觉上将有机叶片结构与电路板纹理交织，象征生物感知与合成智能的融合，并将自然生长与边缘计算技术连接起来。<small class="hint">素材文件、版权与替代文本：待提供</small></span></div>
+              <div class="media-box"><span><b>愿景视觉</b><br>与愿景说明对应的图片或视频<br>素材编号、内容说明、版权与替代文本：待提供</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="block" data-code="H-02">
+          <div class="top"><span class="code">H-02</span></div>
+          <h2>研究方向 </h2>
+          <p class="home-summary"><span class="source-tag">R-01</span>聚焦医学人工智能、端侧视觉与自主编排的交叉领域，为医疗健康、智慧城市和工业领域提供高影响力解决方案。</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-02-01 · R-02</span><h3>HEALTH（数字健康与医学影像分析）</h3><p>面向诊断影像和个性化健康干预的先进人工智能与预测分析。</p></div>
+            <div class="slot"><span class="slot-code">H-02-02 · R-03</span><h3>EDGE-AI（边缘智能与端侧视觉）</h3><p>在资源受限的工业与物联网设备上部署高性能计算机视觉和机器学习模型。</p></div>
+            <div class="slot"><span class="slot-code">H-02-03 · R-04</span><h3>AGENT（多智能体系统与自然语言处理）</h3><p>由大语言模型（LLM）驱动的自主系统编排与多模态人机交互。</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-research">查看研究方向</button>
+        </article>
+
+        <article class="block" data-code="H-03">
+          <div class="top"><span class="code">H-03</span></div>
+          <h2>技术优势 </h2>
+          <p class="home-summary">固定引用 A-01 至 A-03，仅呈现名称与优势。</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-03-01 · A-01</span><h3>预测分析与知识蒸馏</h3><p>即使在噪声较多或资源受限的工业环境中，也能保持极高的预测准确率。该能力已通过 SAS 预测建模师官方认证及成功的 B2B 部署得到验证。</p></div>
+            <div class="slot"><span class="slot-code">H-03-02 · A-02</span><h3>大语言模型与多模态情绪编排</h3><p>赋予人工智能系统深层的“情境感知”和“同理心”，彻底消除传统机器人的机械感，尤其适合民生数字礼宾和个性化健康指导等高接触度场景。</p></div>
+            <div class="slot"><span class="slot-code">H-03-03 · A-03</span><h3>面向硬件优化的边缘视觉检测</h3><p>在完全不依赖云端的情况下实现毫秒级实时视觉感知，解决网络延迟与隐私问题。获得 NVIDIA DLI 认证支持，确保与主流 AIoT 硬件生态顺畅集成。</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-advantages">查看技术优势</button>
+        </article>
+
+        <article class="block" data-code="H-04">
+          <div class="top"><span class="code">H-04</span></div>
+          <h2>项目 </h2>
+          <p class="home-summary"><span class="source-tag">P-01</span>我们管理的科研经费超过 120 万令吉，相关项目覆盖智慧制造、数字健康和国家民生基础设施，为企业客户创造切实的 B2B 与企业价值。</p>
+          <p class="selection-note">已选择三个互不重复的项目编号：P-07-06、P-07-08、P-07-05；标题读取对应项目的“项目名称”，摘要读取“R 结果”。</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-04-01 · P-07-06</span><h3>AI 智能健身助手</h3><p>据原官网材料，用户满意度提升 40.13%，平台订阅用户增长 20.68%；统计口径待核验。</p></div>
+            <div class="slot"><span class="slot-code">H-04-02 · P-07-08</span><h3>AI 人脸识别门禁系统</h3><p>据原官网材料，系统可提升安防管理效率并降低成本，但未提供量化指标；相关识别与集成证据待核验。</p></div>
+            <div class="slot"><span class="slot-code">H-04-03 · P-07-05</span><h3>钉钉 AI 办公助手</h3><p>据原官网材料，员工工作效率提升 30.33%，会议出席率提升 25.67%；统计口径待核验。</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-projects">查看项目详情</button>
+        </article>
+
+        <article class="block quiet" data-code="H-05">
+          <div class="top"><span class="code">H-05</span></div>
+          <h2>合作伙伴 </h2>
+          <p class="home-summary"><span class="source-tag">N-01</span>怡和实验室与全球科技领军企业和一流学术机构保持紧密、活跃的合作，共同推动边缘计算与医学人工智能的研发和部署。</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-05-01 · N-02-01</span><h3>Advantech（研华科技）</h3><p>Logo：待定；允许公开使用：是</p></div>
+            <div class="slot"><span class="slot-code">H-05-02 · N-02-02</span><h3>HILTI 亚洲 IT 服务</h3><p>Logo：待定；允许公开使用：否，仅展示文字名称</p></div>
+            <div class="slot"><span class="slot-code">H-05-03 · N-02-03</span><h3>Tokio Marine &amp; Dynafront</h3><p>Logo：待定；允许公开使用：否，仅展示文字名称</p></div>
+            <div class="slot"><span class="slot-code">H-05-04 · N-02-04</span><h3>厦门大学马来西亚分校</h3><p>Logo：待定；允许公开使用：否，仅展示文字名称</p></div>
+            <div class="slot"><span class="slot-code">H-05-05 · N-02-05</span><h3>利兹贝克特大学</h3><p>Logo：待定；允许公开使用：否，仅展示文字名称</p></div>
+            <div class="slot"><span class="slot-code">H-05-06 · N-02-06</span><h3>Three-Opp (M) Sdn. Bhd.</h3><p>Logo：待定；允许公开使用：否，仅展示文字名称</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-partners">查看合作伙伴</button>
+        </article>
+
+        <article class="block" data-code="H-06">
+          <div class="top"><span class="code">H-06</span></div>
+          <h2>团队 </h2>
+          <p class="home-summary"><span class="source-tag">T-01</span>在周俊杰博士带领下，我们充满活力的研究团队致力于打通复杂人工智能算法与商业落地之间的鸿沟。</p>
+          <div class="grid g4">
+            <div class="slot"><span class="slot-code">H-06-01 · PI · T-02</span><h3>周俊杰 Dr. Chaw Jun Kit</h3><p>课题负责人（PI）/ 高级讲师兼研究员<br>周俊杰博士拥有马来西亚工艺大学（UTM）电气工程博士学位，是 SAS 认证预测建模师和 NVIDIA 深度学习学院（DLI）认证计算机视觉专家。他的工作独特地连接学术界与产业界，管理科研经费超过 120 万令吉，并作为 Advantech 和 HILTI 的活跃技术合作伙伴，专注于制造优化与数字健康解决方案。</p></div>
+            <div class="slot"><span class="slot-code">H-06-02 · T-04-01</span><h3>Zhao Yanfeng</h3><p>博士毕业生 / 核心成员<br>专注于基于深度强化学习的安全增强型全闭环人工胰腺控制器。</p></div>
+            <div class="slot"><span class="slot-code">H-06-03 · T-04-02</span><h3>Cheng Xiang</h3><p>博士毕业生 / 核心成员<br>专注用于高效剩余使用寿命预测与预测性维护的自适应双蒸馏框架。</p></div>
+            <div class="slot"><span class="slot-code">H-06-04 · T-04-03</span><h3>Liu Jianbang</h3><p>博士毕业生 / 核心成员<br>研究多模态对话情绪推理与沉浸式技术行为分析。</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-team">查看团队详情</button>
+        </article>
+
+        <article class="block dark" data-code="H-07">
+          <div class="top"><span class="code">H-07</span></div>
+          <h2>联系合作 </h2>
+          <p class="home-summary"><span class="source-tag">C-01</span>我们积极寻求边缘人工智能研发方面的企业合作、跨学科医学数据合作，以及积极进取的硕士和博士研究生。</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-07-01 · C-03-01</span><h3>产业技术转移（联合研发）</h3><p>适合在自动化、视觉检测或能源效率方面面临具体挑战的企业。</p></div>
+            <div class="slot"><span class="slot-code">H-07-02 · C-03-02</span><h3>联合学术研究与科研基金</h3><p>适合以 Q1 论文和国家级或国际科研基金为目标的大学或研究机构。</p></div>
+            <div class="slot"><span class="slot-code">H-07-03 · C-03-03</span><h3>研究生人才招募</h3><p>适合希望攻读人工智能高阶学位、发表一流论文或进入大型科技企业发展的优秀学生。</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-contact">查看合作方式</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-research" role="tabpanel" aria-labelledby="tab-research" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE R</small><h1>研究方向</h1></div><p>研究什么、方向关系，以及场景与项目如何对应。</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="R-01">
+          <div class="top"><span class="code">R-01</span><p class="meta">首页简述与内页导语分开填写，首页只引用简述</p></div>
+          <h2>核心研究支柱</h2>
+          <div class="split">
+            <ul class="field-list one"><li class="field-item"><b>页面标题｜6—14字</b>核心研究支柱</li><li class="field-item"><b>首页简述｜40—70字</b>聚焦医学人工智能、端侧视觉与自主编排的交叉领域，为医疗健康、智慧城市和工业领域提供高影响力解决方案。</li><li class="field-item"><b>内页导语｜100—180字</b>怡和实验室致力于将前沿机器学习算法转化为企业级应用。我们的研究体系由数字健康（HEALTH）、边缘计算（EDGE-AI）和多智能体系统（AGENT）三大支柱构成。依托这些支柱，我们打通低层数据感知（边缘视觉）、领域知识解析（医疗 / 工业建模）与高层自主决策（大语言模型编排）之间的链路。</li></ul>
+            <div class="media-box">素材区域：研究方向总览图片或视频<br>素材编号、构图重点、版权与替代文本：待提供</div>
+          </div>
+        </article>
+
+        <article class="block" data-code="R-02">
+          <div class="top"><span class="code">R-02</span><p class="meta">固定进入首页 H-02-01｜首页排序 1</p></div>
+          <h2>HEALTH（数字健康与医学影像分析）</h2>
+          <div class="split"><ul class="field-list one"><li class="field-item"><b>名称</b>HEALTH（数字健康与医学影像分析）</li><li class="field-item"><b>一句话定义</b>面向诊断影像和个性化健康干预的先进人工智能与预测分析。</li><li class="field-item"><b>关注问题</b>1. 利用复杂序列数据开展非传染性疾病（NCD）早期预测。2. 高精度跨模态医学影像分割。3. 基于深度强化学习的闭环控制系统（如人工胰腺）。</li><li class="field-item"><b>主要研究内容</b>1. 利用强化学习构建疾病干预模型。2. 开发用于阿尔茨海默病诊断的双分支卷积神经网络架构。3. 面向个性化健康指导的多模态情感与情绪分析。</li><li class="field-item"><b>应用场景</b>1. 医学影像自动分割与临床辅助诊断。2. 居家养老场景下的生理与心理健康监测。3. 糖尿病患者的长期动态风险预测。</li><li class="field-item"><b>代表项目</b>P-07-01、P-07-02、P-07-06</li><li class="field-item"><b>补充</b>需要与临床医院和公共卫生机构严格协作，以开展数据去标识化和验证。</li></ul><div class="media-box">素材区域：HEALTH 方向图片或视频<br>素材编号、内容说明、版权与替代文本：待提供</div></div>
+        </article>
+
+        <article class="block" data-code="R-03">
+          <div class="top"><span class="code">R-03</span><p class="meta">固定进入首页 H-02-02｜首页排序 2</p></div>
+          <h2>EDGE-AI（边缘智能与端侧视觉）</h2>
+          <div class="split"><ul class="field-list one"><li class="field-item"><b>名称</b>EDGE-AI（边缘智能与端侧视觉）</li><li class="field-item"><b>一句话定义</b>在资源受限的工业与物联网设备上部署高性能计算机视觉和机器学习模型。</li><li class="field-item"><b>关注问题</b>1. 不依赖云基础设施的低延迟实时视觉感知。2. 复杂制造与交通环境中的实时目标及缺陷检测。3. 面向嵌入式硬件的神经网络压缩与轻量化。</li><li class="field-item"><b>主要研究内容</b>1. 开发面向真实场景检测的轻量级 Mamba–Transformer 混合架构。2. 研究用于交互式仪表板控制的手势动作零样本学习。</li><li class="field-item"><b>应用场景</b>1. 智慧零售结账系统（如人工智能称重秤）。2. 面向农业 4.0 的自主无人机测绘与图像拼接。3. 水下声呐小目标检测与交通监测。</li><li class="field-item"><b>代表项目</b>P-05、P-07-03、P-07-08、P-07-09</li><li class="field-item"><b>补充</b>获得 NVIDIA DLI 计算机视觉认证支持，可与商用 AIoT 硬件生态顺畅集成。</li></ul><div class="media-box">素材区域：EDGE-AI 方向图片或视频<br>素材编号、内容说明、版权与替代文本：待提供</div></div>
+        </article>
+
+        <article class="block" data-code="R-04">
+          <div class="top"><span class="code">R-04</span><p class="meta">固定进入首页 H-02-03｜首页排序 3</p></div>
+          <h2>AGENT（多智能体系统与自然语言处理）</h2>
+          <div class="split"><ul class="field-list one"><li class="field-item"><b>名称</b>AGENT（多智能体系统与自然语言处理）</li><li class="field-item"><b>一句话定义</b>由大语言模型（LLM）驱动的自主系统编排与多模态人机交互。</li><li class="field-item"><b>关注问题</b>1. 通过 AI-RAG 技术实现市政与智慧旅游服务自动化。2. 利用具备情绪智能的对话式数字人增强数字交互。3. 基于基础模型的大规模专利挖掘与文本分析。</li><li class="field-item"><b>主要研究内容</b>1. 研发面向公共服务的检索增强生成（RAG）流程。2. 探索人机界面中的遗传杂交技术与情绪状态转移模型。3. 将 TRIZ 方法论与 BERT、大语言模型结合，推动可持续产品创新。</li><li class="field-item"><b>应用场景</b>1. 国家级数字礼宾与自动化客户服务系统。2. 面向教育科技与心理咨询的沉浸式多模态平台。3. 面向企业研发部门的趋势自动预测与创意生成。</li><li class="field-item"><b>代表项目</b>P-03、P-04、P-07-04、P-07-05、P-07-10</li><li class="field-item"><b>补充</b>重点关注联邦学习隐私机制以及大语言模型部署的商业适应性。</li></ul><div class="media-box">素材区域：AGENT 方向图片或视频<br>素材编号、内容说明、版权与替代文本：待提供</div></div>
+        </article>
+
+        <article class="block quiet" data-code="R-05">
+          <div class="top"><span class="code">R-05</span><p class="meta">共同问题建议 50—100 字；各自边界建议每个方向 30—60 字；连接方式建议 80—150 字</p></div>
+          <h2>三方向关系</h2>
+          <div class="split"><ul class="field-list one"><li class="field-item"><b>共同问题</b>三大研究支柱协同工作，打通物理环境中海量非结构化数据的感知与数字工作流中实时自主决策执行之间的链路。</li><li class="field-item"><b>各自边界</b>HEALTH：专注生理数据与临床预测建模，不处理通用视觉任务。EDGE-AI：专注硬件受限条件下的高频视觉处理，不处理深层自然语言处理逻辑。AGENT：专注自然语言处理、RAG 知识库和对话式用户界面，不处理原始传感器或硬件集成。</li><li class="field-item"><b>连接方式</b>EDGE-AI 作为感知层，在受限硬件上高速采集环境或物理数据。在生物医学场景中，这些数据会传递给 HEALTH 算法，进行深入的病理或风险分析。最后，AGENT 作为编排层，将边缘模型和健康模型的量化输出整合为面向最终用户的自然语言建议或自动化工作流（如数字礼宾或人工智能健康指导）。</li></ul><div class="media-box">素材区域：三个研究方向关系图或视频<br>待提供：环形工作流示意图。底部为 EDGE-AI（数据采集），左侧为 HEALTH（领域分析），向上循环至顶部的 AGENT（人机交互）。<small class="hint">素材编号、版权与替代文本：待提供</small></div></div>
+        </article>
+
+        <article class="block" data-code="R-06">
+          <div class="top"><span class="code">R-06</span><p class="meta">按“应用场景名称：P 编号”填写，不重复项目正文</p></div>
+          <h2>场景与项目对应</h2>
+          <ul class="field-list">
+            <li class="field-item"><b>HEALTH 对应</b>非传染性疾病早期预测：P-07-01；老年心理健康监测：P-07-02；个性化健身指导：P-07-06。</li>
+            <li class="field-item"><b>EDGE-AI 对应</b>智慧零售生鲜识别：P-05；农业 4.0 无人机测绘：P-07-03；人脸识别门禁：P-07-08；游戏视觉攻略：P-07-09。</li>
+            <li class="field-item"><b>AGENT 对应</b>AI-RAG 数字礼宾：P-03；国家地址系统：P-04；诈骗监测：P-07-04；钉钉办公助手：P-07-05；TikTok 获客与销售：P-07-10。</li>
+            <li class="field-item"><b>补充产业应用</b>AI 艺术图像生成：P-07-07；Merace 游戏平台：P-07-11；保险服务与理赔：P-07-12；社交电商：P-07-13；O2O 活动交友：P-07-14；RiceUp 外卖：P-07-15；营销管理：P-07-16；WMS：P-07-17。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE P</small><h1>项目</h1></div><p>四类能力、全部项目与合作入口。</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="P-01">
+          <div class="top"><span class="code">P-01</span><p class="meta">首页简述与内页导语分开填写，首页只引用简述</p></div>
+          <h2>重点项目与技术转移</h2>
+          <div class="split"><ul class="field-list one"><li class="field-item"><b>页面标题｜6—14字</b>重点项目与技术转移</li><li class="field-item"><b>首页简述｜40—70字</b>我们管理的科研经费超过 120 万令吉，相关项目覆盖智慧制造、数字健康和国家民生基础设施，为企业客户创造切实的 B2B 与企业价值。</li><li class="field-item"><b>内页导语｜100—180字</b>我们的项目实现了从学术突破到工业应用的成功跨越。在国家科研基金与企业联合资助（如 Advantech、HILTI）的支持下，怡和实验室为预测性维护、边缘部署和大语言模型编排提供高度灵活的人工智能系统。这些解决方案直接服务于制造企业、医疗机构和政府决策者。另收录 13 个 KOALA SYNC TECH 原官网展示的公司／团队产业案例，用于呈现能力线索；这些案例不作为个人独立贡献、客户关系或商业指标已核验的证明，所有百分比指标统计口径待核验。</li></ul><div class="media-box">素材区域：项目总览图片或视频<br>素材编号、内容说明、版权与替代文本：待提供</div></div>
+        </article>
+
+        <article class="block quiet" data-code="P-02">
+          <div class="top"><span class="code">P-02</span><p class="meta">4 项能力分类｜与全部项目目录同步</p></div>
+          <h2>四类能力概览</h2>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-02-01</span><h3>人工智能解决方案</h3><p>核心能力：预测分析、医学人工智能、生成式人工智能、RAG、智能体、多模态分析与营销自动化。<br>适用场景：数字健康、公共服务、制造预测和智能营销。<br>典型交付：预测模型、医学人工智能模型、领域知识库、RAG 流程、智能体、数字人和生成式应用。<br>对应项目：P-03、P-06、P-07-01、P-07-02、P-07-04、P-07-05、P-07-06、P-07-07、P-07-10。</p></div>
+            <div class="slot"><span class="slot-code">P-02-02</span><h3>边缘智能</h3><p>核心能力：计算机视觉、模型压缩、端侧推理、AIoT 与软硬件集成。<br>适用场景：智慧零售、农业测绘、门禁安防和游戏视觉。<br>典型交付：轻量级视觉模型、嵌入式推理方案、实时识别系统和物联网硬件集成。<br>对应项目：P-05、P-07-03、P-07-08、P-07-09。</p></div>
+            <div class="slot"><span class="slot-code">P-02-03</span><h3>定制数字产品</h3><p>核心能力：Web、App、行业平台、交易流程、推荐与用户互动。<br>适用场景：保险、电商、社交、餐饮外卖和游戏平台。<br>典型交付：定制 Web / App、行业服务平台、交易与内容流程、推荐和互动模块。<br>对应项目：P-07-11、P-07-12、P-07-13、P-07-14、P-07-15。</p></div>
+            <div class="slot"><span class="slot-code">P-02-04</span><h3>数字化升级</h3><p>核心能力：企业系统、公共数字基础设施、流程自动化、数据运营与系统集成。<br>适用场景：公共治理、营销管理、仓储、库存、订单和物流。<br>典型交付：数字基础设施设计、企业管理系统、自动化工作流、数据分析报表和平台集成。<br>对应项目：P-04、P-07-16、P-07-17。</p></div>
+          </div>
+        </article>
+
+        <article class="block quiet" data-code="P-07">
+          <div class="top"><span class="code">P-07</span><p class="meta">21 个项目条目｜按 4 类能力归档｜保留原项目编号与内容</p></div>
+          <h2>全部项目与产业应用案例</h2>
+          <p class="selection-note">人工智能解决方案（9 项）</p>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-03</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>基于 AI-RAG 的实时数字人一体化数字礼宾系统</li><li class="field-item"><b>S 情境</b>当前的智慧城市与旅游服务缺乏可扩展、低延迟且高度互动的服务触点，市民难以高效获取民生信息。</li><li class="field-item"><b>T 任务</b>开发并部署国家级对话式人工智能数字人，利用检索增强生成（RAG）提供准确的公共服务并提升民生服务能力。</li><li class="field-item"><b>A 行动</b>1. 为民生政策构建领域专用大语言模型知识库。2. 开发支持多语言的实时三维数字人渲染。3. 优化 RAG 数据流程，实现毫秒级响应。</li><li class="field-item"><b>R 结果</b>已成功获得资助，并于 2026—2027 年作为核心民生赋能工具投入实际部署。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-06</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>面向预测性维护的能源消耗预测</li><li class="field-item"><b>S 情境</b>重型制造业依赖事后维护，容易造成设备突发故障、大量能源浪费以及不可预测的停机成本。</li><li class="field-item"><b>T 任务</b>构建数据驱动的深度学习模型，准确预测能耗峰值并提前识别潜在设备故障点。</li><li class="field-item"><b>A 行动</b>1. 采集并清洗工厂现场的高频传感器数据。2. 应用自适应双蒸馏框架优化预测精度。3. 为车间管理人员开发沉浸式可视分析仪表板。</li><li class="field-item"><b>R 结果</b>获得 TS Leo Moggie 杰出讲席基金（6 万令吉）支持，成功优化屋面材料制造工厂的维护计划。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-01</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>基于不平衡序列数据的非传染性疾病早期预测</li><li class="field-item"><b>S 情境</b>非传染性疾病（NCD）潜伏期长，而现有医学数据集高度不平衡，导致传统早期预警模型灵敏度较低。</li><li class="field-item"><b>T 任务</b>开发适用于高度不平衡医学数据的动态数据增强算法，提升疾病早期预测能力。</li><li class="field-item"><b>A 行动</b>1. 提取包含序列结构的临床数据集。2. 设计针对序列特征的动态数据增强算法。3. 通过严格的交叉验证评估早期预警准确率。</li><li class="field-item"><b>R 结果</b>获得青年研究人员激励基金（29,100 令吉）资助，并取得突破性成果，发表于 Q1 / Q4 分区的 SCIE 期刊。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-02</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>面向老年心理健康监测的面部表情识别</li><li class="field-item"><b>S 情境</b>居家养老人群缺乏客观的情绪与心理健康监测工具，难以及时开展心理干预。</li><li class="field-item"><b>T 任务</b>开发非接触式面部情绪识别系统，并与具有同理心的对话智能体集成，实现全天候心理状态评估。</li><li class="field-item"><b>A 行动</b>1. 构建面向老年人表情的专用面部特征数据集。2. 训练模糊多模态 Transformer 模型，分析情绪状态转移。3. 通过对话系统向照护人员实时推送心理预警。</li><li class="field-item"><b>R 结果</b>成功构建情绪状态转移模型，核心成果发表于 <span lang="en">Expert Systems with Applications</span>.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-04</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>融合网络爬取与大语言模型的诈骗监测模型</li><li class="field-item"><b>S 情境</b>网络诈骗快速演变，传统关键词过滤器无法识别多模态内容中的深层虚假信息与欺诈意图。</li><li class="field-item"><b>T 任务</b>融合图像取证与大语言模型，构建全自动诈骗监测与早期预警系统。</li><li class="field-item"><b>A 行动</b>1. 部署网络爬虫，持续采集多模态诈骗样本。2. 融合 ELA-ResNeXt 图像技术与 BERT 语言语义。3. 训练用于检测多模态欺诈信息的联合分类器。</li><li class="field-item"><b>R 结果</b>获得产业基金支持，显著提高复杂网络环境中欺诈信息的检出率。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-05</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>钉钉 AI 办公助手</li><li class="field-item"><b>S 情境</b>据原官网材料，日常任务、日程与会议容易因遗漏或延期影响团队协作效率。</li><li class="field-item"><b>T 任务</b>构建集成于钉钉的 AI 办公助手，集中管理任务、日程和会议提醒。</li><li class="field-item"><b>A 行动</b>1. 接入任务与日程管理。2. 配置会议和事项提醒。3. 以 AI 自动化日常办公任务，并衔接协同工作流。</li><li class="field-item"><b>R 结果</b>据原官网材料，员工工作效率提升 30.33%，会议出席率提升 25.67%；统计口径待核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/solu_ban1.png<br>用途：项目卡片或案例详情主图<br>替代文本：钉钉 AI 办公助手展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.1；公司／团队展示项目，不代表个人独立完成；未提供应用源码、接口或验收材料。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-06</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>AI 智能健身助手</li><li class="field-item"><b>S 情境</b>据原官网材料，不同用户的健康状况与运动习惯存在差异，通用训练计划难以满足个性化需求。</li><li class="field-item"><b>T 任务</b>依据健康数据、身体状况和运动习惯生成个性化健身建议，并辅助设定与跟踪目标。</li><li class="field-item"><b>A 行动</b>1. 汇集用户健康与运动习惯信息。2. 形成用户画像并推荐健身计划。3. 支持目标设定、执行与反馈。</li><li class="field-item"><b>R 结果</b>据原官网材料，用户满意度提升 40.13%，平台订阅用户增长 20.68%；统计口径待核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/solu_ban2.png<br>用途：首页精选项目或案例详情主图<br>替代文本：AI 智能健身助手展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.1；公司／团队展示项目，不代表个人独立完成；未公开数据字段、推荐算法、模型或隐私处理方式。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-07</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>AI 艺术图像生成平台</li><li class="field-item"><b>S 情境</b>据原官网材料，个性化艺术创作存在工具门槛，用户需要更直接的内容生成方式。</li><li class="field-item"><b>T 任务</b>建设支持文本描述与风格选择的艺术图像生成平台，覆盖多种绘画风格与主题。</li><li class="field-item"><b>A 行动</b>1. 提供文本描述和风格选择入口。2. 组织多风格、多主题图像生成流程。3. 支持用户生成内容在平台内展示与互动。</li><li class="field-item"><b>R 结果</b>据原官网材料，用户生成内容增长 50.68%，平台用户参与度提升 35.31%；统计口径待核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/solu_ban3.png<br>用途：项目卡片或案例详情主图<br>替代文本：AI 艺术图像生成平台展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.1；公司／团队展示项目，不代表个人独立完成；未公开模型选型、推理服务、训练方式或内容安全机制。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-10</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>TikTok AI 自动化获客与销售系统</li><li class="field-item"><b>S 情境</b>据原官网材料，短视频评论中的潜在线索发现、跟进与转化效率较低。</li><li class="field-item"><b>T 任务</b>建设从视频与评论采集、AI 线索分析到自动跟进的获客和销售流程。</li><li class="field-item"><b>A 行动</b>1. 收集并下载视频链接、抓取评论。2. 通过 AI 分析评论并识别潜在线索。3. 自动追踪线索并发送预设消息。</li><li class="field-item"><b>R 结果</b>据原官网材料，客户转化率约提升 30%；统计口径、抓取授权、隐私处理与平台规则合规性待核验，TikTok 为目标平台而非已核验客户。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/solu_ban6.png<br>用途：项目卡片或案例详情主图<br>替代文本：TikTok AI 自动化获客与销售系统展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.1；公司／团队展示项目，不代表个人独立完成；未提供业务系统源码或独立验收材料。</li></ul></div>
+          </div>
+
+          <p class="selection-note">边缘智能（4 项）</p>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-05</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>智慧零售：边缘人工智能生鲜识别系统</li><li class="field-item"><b>S 情境</b>传统超市结账高度依赖收银员人工识别生鲜并输入商品代码，容易造成排队拥堵和库存误差。</li><li class="field-item"><b>T 任务</b>将边缘人工智能视觉模型直接集成到零售称重秤中，实现水果和蔬菜的全自动实时识别。</li><li class="field-item"><b>A 行动</b>1. 建立由农业分类学专家验证的高质量图像数据集。2. 为边缘芯片训练并压缩轻量级视觉分类器。3. 将软件与物联网称重硬件无缝集成。</li><li class="field-item"><b>R 结果</b>省去人工录入并显著提升结账速度；核心成果发表于 <span lang="en">IET Image Processing</span>.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-03</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>面向农业 4.0、具备无线充电能力的自主无人机测绘</li><li class="field-item"><b>S 情境</b>大型种植园依赖人工或续航时间短的无人机开展巡检，导致数据采集频率低，精细农业所需的图像拼接质量不佳。</li><li class="field-item"><b>T 任务</b>部署配备无线充电的自主无人机网络，在边缘端自动完成田间图像拼接与摄影测量制图。</li><li class="field-item"><b>A 行动</b>1. 配置自主无人机航线与无线充电站。2. 应用计算机视觉算法实时拼接农业图像。3. 建立云端分析平台，生成精准农业指标。</li><li class="field-item"><b>R 结果</b>获得 128,600 令吉内部经费支持，实现大型种植园的全自动空中巡检与高精度测绘。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-08</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>AI 人脸识别门禁系统</li><li class="field-item"><b>S 情境</b>据原官网材料，身份核验、安防监控和门禁管理存在效率与成本问题。</li><li class="field-item"><b>T 任务</b>以人脸识别完成身份验证和访问控制，服务安防监控与门禁管理场景。</li><li class="field-item"><b>A 行动</b>1. 采集并比对人脸身份信息。2. 将识别结果接入访问控制。3. 联动安防监控和门禁管理流程。</li><li class="field-item"><b>R 结果</b>据原官网材料，系统可提升安防管理效率并降低成本，但未提供量化指标；准确率、误识率、活体检测、响应时间和硬件集成证据待核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/solu_ban4.png<br>用途：首页精选项目或案例详情主图<br>替代文本：AI 人脸识别门禁系统展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.1；公司／团队展示项目，不代表个人独立完成；未提供独立验收材料。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-09</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>GTorque 游戏攻略助手</li><li class="field-item"><b>S 情境</b>据原官网材料，玩家可能难以识别关键场景、任务或推进路径。</li><li class="field-item"><b>T 任务</b>利用图像识别与计算机视觉理解游戏画面，为玩家提供攻略和提示。</li><li class="field-item"><b>A 行动</b>1. 识别游戏中的关键场景与任务。2. 关联对应攻略与提示。3. 在玩家推进过程中提供辅助信息。</li><li class="field-item"><b>R 结果</b>据原官网材料，方案可提升玩家参与度、满意度和产品竞争力，但未提供量化指标；支持游戏、识别延迟和准确率待核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/solu_ban5.png<br>用途：项目卡片或案例详情主图<br>替代文本：GTorque 游戏攻略助手展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.1；公司／团队展示项目，不代表个人独立完成；未公开识别模型或业务系统源码。</li></ul></div>
+          </div>
+
+          <p class="selection-note">定制数字产品（5 项）</p>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-07-11</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>Merace 元宇宙游戏平台</li><li class="field-item"><b>S 情境</b>据原官网材料，项目面向包含区块链、Binance Smart Chain、元宇宙与 DApp 的游戏平台及跨游戏资产场景。</li><li class="field-item"><b>T 任务</b>搭建支持平台货币、游戏角色和道具购买，以及跨游戏资产管理与交易的游戏平台。</li><li class="field-item"><b>A 行动</b>1. 组织平台货币购买与使用流程。2. 支持游戏角色和道具交易。3. 整合多款区块链游戏并管理跨游戏资产。</li><li class="field-item"><b>R 结果</b>据原官网材料，月活跃用户增长 200%，交易量增长 34.48%；统计口径待核验，仓库未提供智能合约、链上地址、钱包集成或安全审计证据。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/what_right1.jpg<br>用途：项目卡片或案例详情主图<br>替代文本：Merace 元宇宙游戏平台展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.2；公司／团队展示项目，不代表个人独立完成；未提供独立验收材料。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-12</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>保险业务智能服务与在线理赔平台</li><li class="field-item"><b>S 情境</b>据原官网材料，保险产品查询、在线投保、咨询客服和在线理赔体验需要提升。</li><li class="field-item"><b>T 任务</b>建设涵盖保险产品信息、在线投保、智能客服、在线咨询和理赔申请的 Web 平台。</li><li class="field-item"><b>A 行动</b>1. 整合保险产品与客户服务信息。2. 建设在线投保、咨询和智能客服流程。3. 接入在线理赔申请与状态处理。</li><li class="field-item"><b>R 结果</b>据原官网材料，在线投保率提升 40.36%、客户满意度提升 30.1%、客服响应速度提升 50%、问题解决率提升 45.43%、日均访问量增长 60.37%、页面停留时长增长 20%、在线理赔申请成功率提升 35.64%；统计口径待核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/what_right2.jpg<br>用途：项目卡片或案例详情主图<br>替代文本：保险业务智能服务与在线理赔平台展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.2；公司／团队展示项目，不代表个人独立完成；源码标题与保险业务正文存在错配，采用正文含义命名。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-13</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>AI 社交电商 App</li><li class="field-item"><b>S 情境</b>据原官网材料，社交电商需要提升用户互动、商品发现和客户转化效率。</li><li class="field-item"><b>T 任务</b>将新零售、社交互动和商品推荐整合为移动端购物体验。</li><li class="field-item"><b>A 行动</b>1. 支持发现和购买商品。2. 提供购物体验分享与好友推荐。3. 结合用户互动开展商品推荐与精准营销。</li><li class="field-item"><b>R 结果</b>据原官网材料，平台用户参与度提升 56.31%，销售增长 27.2%；统计口径及 AI 模型、数据和功能实现待核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/what_right3.jpg<br>用途：项目卡片或案例详情主图<br>替代文本：AI 社交电商 App 展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.2；公司／团队展示项目，不代表个人独立完成；未提供业务系统源码或独立验收材料。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-14</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>O2O 智能匹配与活动交友平台</li><li class="field-item"><b>S 情境</b>据原官网材料，用户需要更高效地匹配兴趣相近的人并参与各类活动。</li><li class="field-item"><b>T 任务</b>通过智能匹配算法与活动管理系统提升匹配、互动和活动参与体验。</li><li class="field-item"><b>A 行动</b>1. 建立用户兴趣与匹配机制。2. 提供活动创建、管理与参与流程。3. 以互动反馈优化匹配和活动体验。</li><li class="field-item"><b>R 结果</b>据原官网材料，用户匹配成功率提升 45.4%，活动参与度提升 30.26%；统计口径待核验。源码将 O2O 展开为 Online-to-Online，与常见释义不一致。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/what_right4.jpg<br>用途：项目卡片或案例详情主图<br>替代文本：O2O 智能匹配与活动交友平台展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.2；公司／团队展示项目，不代表个人独立完成；未提供匹配算法或独立验收材料。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-15</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>RiceUp 本地餐饮外卖平台</li><li class="field-item"><b>S 情境</b>据原官网材料，用户需要方便地发现附近餐饮并完成外卖下单。</li><li class="field-item"><b>T 任务</b>建设聚合附近外卖服务、个性化推荐和用户评价的本地餐饮平台。</li><li class="field-item"><b>A 行动</b>1. 聚合附近餐饮与外卖服务。2. 支持下单、个性化推荐和评价。3. 通过用户反馈改善餐饮发现与复购体验。</li><li class="field-item"><b>R 结果</b>据原官网材料，订单率提升 52.12%、满意度提升 25.34%、活跃用户增长 35.46%、新用户注册增长 40%，周均下单频次由 2 次增至 3 次，好评率达到 90%；统计口径待核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/what_right5.jpg<br>用途：项目卡片或案例详情主图<br>替代文本：RiceUp 本地餐饮外卖平台展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.2；公司／团队展示项目，不代表个人独立完成；90% 为好评率而非增长率。</li></ul></div>
+          </div>
+
+          <p class="selection-note">数字化升级（3 项）</p>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-04</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>国家地址系统（NAS）的技术与运营设计</li><li class="field-item"><b>S 情境</b>为加快数字经济发展，马来西亚亟需统一、智能的地址基础设施，以支持物流、资源配置与政策制定。</li><li class="field-item"><b>T 任务</b>设计国家地址系统的总体架构、基于视觉的人工智能应用场景及治理框架。</li><li class="field-item"><b>A 行动</b>1. 开发地址数据采集应用场景。2. 制定国家地址系统的能力建设方案与培训工具。3. 建立技术与政策合规框架（人工智能赋能机制）。</li><li class="field-item"><b>R 结果</b>获得 Three-Opp (M) Sdn. Bhd. 多项产业基金资助（每项 5 万令吉以上），为马来西亚数字化转型奠定基础。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-16</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>美赞臣营销管理系统</li><li class="field-item"><b>S 情境</b>据原官网材料，人群细分、精准营销、用户参与和营销决策能力需要提升。</li><li class="field-item"><b>T 任务</b>建设融合受众分层、定向触达、互动积分、数据分析与报表的营销管理系统。</li><li class="field-item"><b>A 行动</b>1. 进行个性化受众分层与定向。2. 配置互动积分分配机制。3. 通过综合数据分析与报表识别市场需求和用户偏好。</li><li class="field-item"><b>R 结果</b>据原官网材料，系统可提升用户参与、品牌忠诚度和销售，但未提供量化指标；客户关系尚未由合同或第三方材料核验。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/inf_banner.jpg<br>用途：项目卡片或案例详情主图<br>替代文本：美赞臣营销管理系统展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.3；公司／团队官网展示项目，不代表个人独立完成；未提供独立验收材料。</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-17</span><ul class="field-list one"><li class="field-item"><b>项目名称</b>定制仓库管理系统（WMS）</li><li class="field-item"><b>S 情境</b>据原官网材料，传统人工记录和旧 SaaS 系统使仓储流程低效且容易发生人为错误。</li><li class="field-item"><b>T 任务</b>以定制 WMS 整合库存、订单、物流追踪、实时监控和自动化操作。</li><li class="field-item"><b>A 行动</b>1. 集成库存与订单处理。2. 接入物流追踪和实时数据监控。3. 通过自动化操作减少人工流程和差错。</li><li class="field-item"><b>R 结果</b>据原官网材料，业务流程效率提升 100%；统计定义待核验，不解释为节省一半时间或效率翻倍，第二张轮播也未显示独立客户名。</li><li class="field-item"><b>项目图片</b>../docs/assets/company-website/source/src/images/inf_right.jpg<br>用途：项目卡片或案例详情主图<br>替代文本：定制仓库管理系统展示图<br>版权状态：待确认</li><li class="field-item"><b>资料属性</b>来源：docs/项目与优势.md §4.3；公司／团队展示项目，不代表个人独立完成；未提供业务系统源码或独立验收材料。</li></ul></div>
+          </div>
+        </article>
+
+        <article class="block dark" data-code="P-08">
+          <div class="top"><span class="code">P-08</span><p class="meta">固定合作邀请｜按钮目标 Contact</p></div>
+          <h2>欢迎项目合作</h2>
+          <p class="placeholder">如果您代表希望部署边缘人工智能的企业，或寻求在医学人工智能、智能体系统领域开展联合研发的机构，欢迎了解我们的合作方式。</p>
+          <button class="detail-button" type="button" data-target="tab-contact">查看合作方式</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-advantages" role="tabpanel" aria-labelledby="tab-advantages" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE A</small><h1>技术优势</h1></div><p>共八项技术优势；A-01 至 A-03 固定进入首页，A-04 至 A-08 作为前沿技术储备。</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="A-01">
+          <div class="top"><span class="code">A-01</span><p class="meta">固定进入 H-03-01</p></div>
+          <h2>预测分析与知识蒸馏</h2>
+          <ul class="field-list one"><li class="field-item"><b>名称</b>预测分析与知识蒸馏</li><li class="field-item"><b>方法</b>针对工业和医学数据集中常见的数据稀缺与严重不平衡问题，我们采用自适应双蒸馏框架和动态数据增强，将深度神经网络的复杂推理能力迁移至高度稳健的轻量级模型。</li><li class="field-item"><b>优势</b>即使在噪声较多或资源受限的工业环境中，也能保持极高的预测准确率。该能力已通过 SAS 预测建模师官方认证及成功的 B2B 部署得到验证。</li></ul>
+        </article>
+
+        <article class="block" data-code="A-02">
+          <div class="top"><span class="code">A-02</span><p class="meta">固定进入 H-03-02</p></div>
+          <h2>大语言模型与多模态情绪编排</h2>
+          <ul class="field-list one"><li class="field-item"><b>名称</b>大语言模型与多模态情绪编排</li><li class="field-item"><b>方法</b>通过将检索增强生成（RAG）与本地化行业知识库深度耦合，并创新融合模糊多模态 Transformer 与遗传杂交技术，我们的人工智能不仅能生成文本，还能进行情绪推理与状态转移。</li><li class="field-item"><b>优势</b>赋予人工智能系统深层的“情境感知”和“同理心”，彻底消除传统机器人的机械感，尤其适合民生数字礼宾和个性化健康指导等高接触度场景。</li></ul>
+        </article>
+
+        <article class="block" data-code="A-03">
+          <div class="top"><span class="code">A-03</span><p class="meta">固定进入 H-03-03</p></div>
+          <h2>面向硬件优化的边缘视觉检测</h2>
+          <ul class="field-list one"><li class="field-item"><b>名称</b>面向硬件优化的边缘视觉检测</li><li class="field-item"><b>方法</b>采用轻量级 Mamba–Transformer 混合架构与广义高斯分布算法，对 YOLO 等大型计算机视觉模型进行极限压缩，使其能够直接在称重秤、无人机或水下声呐的嵌入式芯片上执行推理。</li><li class="field-item"><b>优势</b>在完全不依赖云端的情况下实现毫秒级实时视觉感知，解决网络延迟与隐私问题。获得 NVIDIA DLI 认证支持，确保与主流 AIoT 硬件生态顺畅集成。</li></ul>
+        </article>
+
+        <article class="block" data-code="A-04">
+          <div class="top"><span class="code">A-04</span><p class="meta">前沿技术储备｜暂不进入首页 H-03</p></div>
+          <h2>跨模型 Skill 编译与运行治理</h2>
+          <ul class="field-list one"><li class="field-item"><b>名称</b>跨模型 Skill 编译与运行治理</li><li class="field-item"><b>方法</b>将 Skill 视为可编译的自然语言程序，基于模型、Agent 框架与宿主环境的能力画像进行 AOT 适配、依赖绑定、工作流并发和运行时反馈优化，并保留版本回滚能力。</li><li class="field-item"><b>优势</b>减少 Skill 跨模型、跨框架迁移时的重复改写、盲目重试和环境故障，使任务成功率、时延、Token 消耗与失败原因更容易追踪和优化。</li></ul>
+        </article>
+
+        <article class="block" data-code="A-05">
+          <div class="top"><span class="code">A-05</span><p class="meta">前沿技术储备｜暂不进入首页 H-03</p></div>
+          <h2>用户可控的分层 AI 记忆</h2>
+          <ul class="field-list one"><li class="field-item"><b>名称</b>用户可控的分层 AI 记忆</li><li class="field-item"><b>方法</b>将会话工作记忆、结构化长期记忆和主动建议层分离，结合规则路由、显式关联、来源记录、到期复核与删除机制，对记忆的保存、调用和退出进行生命周期管理。</li><li class="field-item"><b>优势</b>在减少用户重复说明的同时，实现来源可查、内容可改、权限可控、到期可忘；长期记忆不可用时仍可降级为普通单次会话。</li></ul>
+        </article>
+
+        <article class="block" data-code="A-06">
+          <div class="top"><span class="code">A-06</span><p class="meta">前沿技术储备｜暂不进入首页 H-03</p></div>
+          <h2>效用—多样性训练数据选择</h2>
+          <ul class="field-list one"><li class="field-item"><b>名称</b>效用—多样性训练数据选择</li><li class="field-item"><b>方法</b>复用监督微调前向传播产生的 logits，以核范数评估样本效用与样本内多样性，再通过低维表示和历史缓冲区识别样本间重复，在线选择更值得参与参数更新的数据。</li><li class="field-item"><b>优势</b>将反向传播优先用于高价值且不重复的样本，在固定训练预算内提高有效更新密度，减少同质数据反复训练造成的算力和时间浪费。</li></ul>
+        </article>
+
+        <article class="block" data-code="A-07">
+          <div class="top"><span class="code">A-07</span><p class="meta">前沿技术储备｜暂不进入首页 H-03</p></div>
+          <h2>设备端 Agent 与硬件协同</h2>
+          <ul class="field-list one"><li class="field-item"><b>名称</b>设备端 Agent 与硬件协同</li><li class="field-item"><b>方法</b>在 ESP32-S3 等资源受限设备上，以事件驱动 Agent Loop 连接传感器、本地结构化记忆与执行器，并通过 MCP Client / Server 对接获得授权的服务和硬件接口。</li><li class="field-item"><b>优势</b>让低风险事件可以更靠近设备现场响应，减少对纯云端链路的依赖，并降低传感器、执行器与智能体平台之间逐项定制接口的成本。</li></ul>
+        </article>
+
+        <article class="block" data-code="A-08">
+          <div class="top"><span class="code">A-08</span><p class="meta">前沿技术储备｜暂不进入首页 H-03</p></div>
+          <h2>可验证反馈驱动的持续学习</h2>
+          <ul class="field-list one"><li class="field-item"><b>名称</b>可验证反馈驱动的持续学习</li><li class="field-item"><b>方法</b>以可验证奖励锚定训练方向，结合 RLSD 的细粒度自蒸馏、NPO 的近未来策略指导以及 CoPD 的多专长协同训练，记录验证器、奖励、模型版本和分项评测结果。</li><li class="field-item"><b>优势</b>提供更密集且更容易被当前模型吸收的学习信号，减少无效更新与专长合并冲突，使模型持续迭代过程更可解释、可评估和可回滚。</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-partners" role="tabpanel" aria-labelledby="tab-partners" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE N</small><h1>合作伙伴</h1></div><p>仅展示一句导语与获准公开的伙伴 Logo 墙。</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="N-01">
+          <div class="top"><span class="code">N-01</span><p class="meta">首页与合作伙伴页使用同一句 30—60 字导语</p></div>
+          <h2>两页共用导语</h2>
+          <ul class="field-list one"><li class="field-item"><b>两页共用导语｜30—60字</b>怡和实验室与全球科技领军企业和一流学术机构保持紧密、活跃的合作，共同推动边缘计算与医学人工智能的研发和部署。</li></ul>
+        </article>
+
+        <article class="block" data-code="N-02">
+          <div class="top"><span class="code">N-02</span><p class="meta">固定 12 个 Logo 槽｜不足12项的槽位填暂无｜每槽四字段</p></div>
+          <h2>Logo墙清单</h2>
+          <ul class="logos" aria-label="伙伴 Logo 字段列表">
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-01</li><li class="field-item"><b>单位名称</b>Advantech（研华科技）</li><li class="field-item"><b>标识文件或位置说明</b>待定（Advantech 标识）</li><li class="field-item"><b>标识是否允许公开使用</b>是</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-02</li><li class="field-item"><b>单位名称</b>HILTI 亚洲 IT 服务</li><li class="field-item"><b>标识文件或位置说明</b>待定（HILTI 标识）</li><li class="field-item"><b>标识是否允许公开使用</b>否</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-03</li><li class="field-item"><b>单位名称</b>Tokio Marine &amp; Dynafront</li><li class="field-item"><b>标识文件或位置说明</b>待定（Tokio Marine 标识）</li><li class="field-item"><b>标识是否允许公开使用</b>否</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-04</li><li class="field-item"><b>单位名称</b>厦门大学马来西亚分校</li><li class="field-item"><b>标识文件或位置说明</b>待定（厦门大学标识）</li><li class="field-item"><b>标识是否允许公开使用</b>否</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-05</li><li class="field-item"><b>单位名称</b>利兹贝克特大学</li><li class="field-item"><b>标识文件或位置说明</b>待定（利兹贝克特大学标识）</li><li class="field-item"><b>标识是否允许公开使用</b>否</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-06</li><li class="field-item"><b>单位名称</b>Three-Opp (M) Sdn. Bhd.</li><li class="field-item"><b>标识文件或位置说明</b>待定（Three-Opp 标识）</li><li class="field-item"><b>标识是否允许公开使用</b>否</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-07</li><li class="field-item"><b>单位名称</b>马来西亚国能大学（UNITEN）</li><li class="field-item"><b>标识文件或位置说明</b>待定（UNITEN 标识）</li><li class="field-item"><b>标识是否允许公开使用</b>是</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-08</li><li class="field-item"><b>单位名称</b>Asia Roofing Industry（亚洲屋面工业）</li><li class="field-item"><b>标识文件或位置说明</b>待定（Asia Roofing 标识）</li><li class="field-item"><b>标识是否允许公开使用</b>否</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-09</li><li class="field-item"><b>单位名称</b>Mobiva</li><li class="field-item"><b>标识文件或位置说明</b>待定（Mobiva 标识）</li><li class="field-item"><b>标识是否允许公开使用</b>是</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-10</li><li class="field-item"><b>单位名称</b>暂无</li><li class="field-item"><b>标识文件或位置说明</b>暂无</li><li class="field-item"><b>标识是否允许公开使用</b>暂无</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-11</li><li class="field-item"><b>单位名称</b>暂无</li><li class="field-item"><b>标识文件或位置说明</b>暂无</li><li class="field-item"><b>标识是否允许公开使用</b>暂无</li></ul></li>
+            <li class="logo"><ul class="field-list one"><li class="field-item"><b>只读编号</b>N-02-12</li><li class="field-item"><b>单位名称</b>暂无</li><li class="field-item"><b>标识文件或位置说明</b>暂无</li><li class="field-item"><b>标识是否允许公开使用</b>暂无</li></ul></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-team" role="tabpanel" aria-labelledby="tab-team" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE T</small><h1>团队</h1></div><p>团队导语、PI、团队构成与9个成员模板/槽位。</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="T-01">
+          <div class="top"><span class="code">T-01</span><p class="meta">首页简述与内页导语分开填写，首页只引用简述</p></div>
+          <h2>研究团队与学术网络</h2>
+          <ul class="field-list one"><li class="field-item"><b>页面标题｜4—12字</b>研究团队与学术网络</li><li class="field-item"><b>首页简述｜40—70字</b>在周俊杰博士带领下，我们充满活力的研究团队致力于打通复杂人工智能算法与商业落地之间的鸿沟。</li><li class="field-item"><b>内页导语｜100—180字</b>怡和实验室汇聚计算机视觉、应用机器学习与人工智能系统设计领域的优秀人才。团队成员重点深耕数字健康、端侧智能和大语言模型编排。通过严谨且注重实践的研发训练，我们的毕业生不仅在一流国际期刊发表成果，也进入领先科技企业和知名学术机构担任重要岗位。</li></ul>
+        </article>
+
+        <article class="block" data-code="T-02">
+          <div class="top"><span class="code">T-02</span><p class="meta">研究兴趣填写 3—6 个关键词；短简介建议 100—180 字；代表项目/成果建议 3—6 项</p></div>
+          <h2>课题负责人（PI）· 周俊杰 Dr. Chaw Jun Kit</h2>
+          <div class="profile-list"><section class="profile-entry" aria-labelledby="profile-chaw"><h3 id="profile-chaw">课题负责人（PI）· 周俊杰 Dr. Chaw Jun Kit</h3><div class="split"><ul class="field-list one"><li class="field-item"><b>姓名 / 职称或角色 / 单位</b>周俊杰 Dr. Chaw Jun Kit<br>课题负责人（PI）/ 高级讲师兼研究员<br>马来西亚国民大学（UKM）视觉信息学研究所（IVI）</li><li class="field-item"><b>研究兴趣 / 短简介</b>机器学习、智能数据分析、边缘人工智能、计算机视觉。<br>周俊杰博士拥有马来西亚工艺大学（UTM）电气工程博士学位，是 SAS 认证预测建模师和 NVIDIA 深度学习学院（DLI）认证计算机视觉专家。他的工作独特地连接学术界与产业界，管理科研经费超过 120 万令吉，并作为 Advantech 和 HILTI 的活跃技术合作伙伴，专注于制造优化与数字健康解决方案。</li><li class="field-item"><b>研究方向</b>R-02 HEALTH、R-03 EDGE-AI、R-04 AGENT</li><li class="field-item"><b>代表项目/成果</b>P-03（数字礼宾，项目负责人）；P-05（智慧零售生鲜识别）；发表 SCIE（Q1 / Q2）及 Scopus 论文 50 余篇。</li><li class="field-item"><b>个人链接</b><a href="https://ukmsarjana.ukm.my/main/lihat_profil/SzAyNDQ3OA==" target="_blank" rel="noopener noreferrer">UKMsarjana 学术主页</a></li><li class="field-item"><b>补充</b>马来西亚工程师委员会专业会员（77508A），并获 HRDCorp 认证培训师资格。</li></ul><div class="media-box"><figure class="profile-figure"><img class="profile-photo" src="data:image/jpeg;base64,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" width="405" height="465" alt="周俊杰博士头像"><figcaption>DOCX 内嵌照片 · 405 × 465 像素<br>版权状态：待确认</figcaption></figure></div></div></section><section class="profile-entry" aria-labelledby="profile-jeff"><h3 id="profile-jeff">王鸿清（Dr. Jeff Wang）</h3><div class="split"><ul class="field-list one"><li class="field-item"><b>姓名 / 职称或角色 / 单位</b>王鸿清 Dr. Jeff Wang<br>首席技术官（CTO）<br>未提供</li><li class="field-item"><b>研究兴趣 / 短简介</b>未提供<br>未提供</li><li class="field-item"><b>研究方向</b>未提供</li><li class="field-item"><b>代表项目/成果</b>未提供</li><li class="field-item"><b>个人链接</b>未提供</li><li class="field-item"><b>补充</b>未提供</li></ul><div class="media-box missing"><span><b>照片</b><br/>未提供</span></div></div></section><section class="profile-entry" aria-labelledby="profile-wendy"><h3 id="profile-wendy">Wendy Leong Pooi Yan · Mobiva 首席执行官</h3><div class="split"><ul class="field-list one"><li class="field-item"><b>姓名 / 职称或角色 / 单位</b>Wendy Leong Pooi Yan<br>Mobiva 首席执行官<br>Mobiva</li><li class="field-item"><b>研究兴趣 / 短简介</b>危机管理人工智能、疫情预测、企业移动化、云端决策支持。<br>Wendy Leong 是企业移动与应急管理平台 Mobiva 的首席执行官，同时在 IVI-Edge Lab 攻读博士学位。她将商业技术领导力与前沿人工智能研究连接起来，重点研究人工智能在疫情预测中的协同作用，以及用于灾害响应的实时、包容性人工智能，并将学术框架转化为可扩展的企业级 B2B 解决方案。</li><li class="field-item"><b>研究方向</b>R-02 HEALTH、R-04 AGENT</li><li class="field-item"><b>代表项目/成果</b>《疫情预测的量子跃迁》（书籍章节，2025）；通过 Mobiva 实现企业集成。</li><li class="field-item"><b>个人链接</b><a href="https://www.linkedin.com/in/wendyleong99/" target="_blank" rel="noopener noreferrer">LinkedIn 主页</a><br><a href="https://mobiva.net/" target="_blank" rel="noopener noreferrer">Mobiva 官方网站</a></li><li class="field-item"><b>补充</b>拥有丰富的企业高管级 B2B 行业经验，推动实验室的商业技术转移与真实灾害管理落地。</li></ul><div class="media-box missing"><span><b>照片</b><br/>待提供</span></div></div></section></div>
+        </article>
+
+        <article class="block quiet" data-code="T-03">
+          <div class="top"><span class="code">T-03</span><p class="meta">只保留实际存在的成员类型</p></div>
+          <h2>团队构成</h2>
+          <ul class="rows"><li><b>博士毕业生</b><span>数量 / 公开方式：3 / 公开<br>补充：作为主要导师已培养 2 名毕业生</span></li><li><b>博士研究生</b><span>数量 / 公开方式：7 / 公开<br>补充：研究重点：深度学习与多模态分析</span></li><li><b>硕士毕业生</b><span>数量 / 公开方式：3 / 公开<br>补充：作为主要导师已培养 3 名毕业生</span></li><li><b>硕士研究生</b><span>数量 / 公开方式：2 / 公开<br>补充：研究重点：应用算法</span></li></ul>
+        </article>
+
+        <article class="block" data-code="T-04">
+          <div class="top"><span class="code">T-04</span><p class="meta">固定9个成员模板/槽位｜每槽三字段</p></div>
+          <h2>成员</h2>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">T-04-01</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Zhao Yanfeng</li><li class="field-item"><b>身份</b>博士毕业生 / 核心成员</li><li class="field-item"><b>一句话简介</b>专注于基于深度强化学习的安全增强型全闭环人工胰腺控制器。</li></ul></div>
+            <div class="slot"><span class="slot-code">T-04-02</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Cheng Xiang</li><li class="field-item"><b>身份</b>博士毕业生 / 核心成员</li><li class="field-item"><b>一句话简介</b>专注用于高效剩余使用寿命预测与预测性维护的自适应双蒸馏框架。</li></ul></div>
+            <div class="slot"><span class="slot-code">T-04-03</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Liu Jianbang</li><li class="field-item"><b>身份</b>博士毕业生 / 核心成员</li><li class="field-item"><b>一句话简介</b>研究多模态对话情绪推理与沉浸式技术行为分析。</li></ul></div>
+            <div class="slot"><span class="slot-code">T-04-04</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Wang Hongqing</li><li class="field-item"><b>身份</b>博士研究生</li><li class="field-item"><b>一句话简介</b>Hybrid-YOLO 架构开发者，专注复杂交通检测与医学影像分割。</li></ul></div>
+            <div class="slot"><span class="slot-code">T-04-05</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Muhammad Aiman Md Zuki</li><li class="field-item"><b>身份</b>博士研究生</li><li class="field-item"><b>一句话简介</b>研究面向个性化、说服式健康指导的多模态情感与情绪分析框架。</li></ul></div>
+            <div class="slot"><span class="slot-code">T-04-06</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Leong Pooi Yan</li><li class="field-item"><b>身份</b>博士研究生</li><li class="field-item"><b>一句话简介</b>探索人工智能在未来疫情预测与自动化危机管理工具中的协同作用。</li></ul></div>
+            <div class="slot"><span class="slot-code">T-04-07</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Zheng Kun</li><li class="field-item"><b>身份</b>硕士毕业生</li><li class="field-item"><b>一句话简介</b>广义高斯分布改进与水下声呐小目标检测的主要研究人员。</li></ul></div>
+            <div class="slot"><span class="slot-code">T-04-08</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Ooi Tze Yaang</li><li class="field-item"><b>身份</b>硕士毕业生</li><li class="field-item"><b>一句话简介</b>开发具有序列结构的动态数据增强方法，用于非传染性疾病早期预测。</li></ul></div>
+            <div class="slot"><span class="slot-code">T-04-09</span><ul class="field-list one"><li class="field-item"><b>姓名</b>Teo Shi Han</li><li class="field-item"><b>身份</b>硕士毕业生</li><li class="field-item"><b>一句话简介</b>开发用于零售称重系统实时生鲜识别的边缘人工智能应用。</li></ul></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE C</small><h1>联系合作</h1></div><p>合作对象、合作形式、学生申请、联系方式与响应范围。</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="C-01">
+          <div class="top"><span class="code">C-01</span><p class="meta">首页简述与内页导语分开填写，首页只引用简述</p></div>
+          <h2>与我们合作</h2>
+          <ul class="field-list one"><li class="field-item"><b>页面标题｜4—12字</b>与我们合作</li><li class="field-item"><b>首页简述｜40—70字</b>我们积极寻求边缘人工智能研发方面的企业合作、跨学科医学数据合作，以及积极进取的硕士和博士研究生。</li><li class="field-item"><b>内页导语｜100—180字</b>怡和实验室兼顾严谨的学术研究与扎实的商业可行性。无论您是寻求预测性维护解决方案的制造企业、希望利用人工智能辅助诊断的临床机构，还是热衷于边缘计算和大语言模型的未来学者，我们都期待与您共同探索合作机会。</li></ul>
+        </article>
+
+        <article class="block" data-code="C-02">
+          <div class="top"><span class="code">C-02</span><p class="meta">只列对象、方向名称与适用边界，可引用已确认的 R/P/A 编号</p></div>
+          <h2>合作对象及方向</h2>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">C-02-01</span><p>合作对象：科技 / 制造企业<br>合作方向 / 关联内容编号：预测性维护与边缘视觉（R-03 / A-03）<br>适用边界或前提：提供 B2B 产业基金和真实硬件测试环境。<br>补充：已有成功部署的可靠实绩。</p></div>
+            <div class="slot"><span class="slot-code">C-02-02</span><p>合作对象：医院与公共卫生机构<br>合作方向 / 关联内容编号：数字健康与疾病建模（R-02 / A-01）<br>适用边界或前提：严格遵守数据隐私与联邦学习协议。<br>补充：我们提供算法研发，不直接提供临床建议。</p></div>
+            <div class="slot"><span class="slot-code">C-02-03</span><p>合作对象：政府与民生服务机构<br>合作方向 / 关联内容编号：AI-RAG 智能体与数字礼宾（R-04 / P-03）<br>适用边界或前提：可访问内部民生知识库或政策 API。<br>补充：可提供多语言支持。</p></div>
+            <div class="slot"><span class="slot-code">C-02-04</span><p>合作对象：意向学生（博士 / 硕士）<br>合作方向 / 关联内容编号：机器学习、计算机视觉、智能体人工智能与大语言模型（LLM）研究（T-01）<br>适用边界或前提：具备扎实的 Python、数学基础和机器学习实践能力。<br>补充：全年接受咨询。</p></div>
+          </div>
+        </article>
+
+        <article class="block quiet" data-code="C-03">
+          <div class="top"><span class="code">C-03</span><p class="meta">固定三项合作形式｜与 H-07-01 至 H-07-03 逐一对应</p></div>
+          <h2>合作形式</h2>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">C-03-01</span><p>合作形式名称：产业技术转移（联合研发）<br>适合对象/场景：在自动化、视觉检测或能源效率方面面临具体挑战的企业。<br>双方预期投入：企业提供资金（如产业基金）和原始数据；实验室交付算法。<br>确认流程：需求评估 → 保密协议 → 技术验证 → 项目启动。<br>补充：由课题负责人直接评估项目可行性。</p></div>
+            <div class="slot"><span class="slot-code">C-03-02</span><p>合作形式名称：联合学术研究与科研基金<br>适合对象/场景：以 Q1 论文和国家级或国际科研基金为目标的大学或研究机构。<br>双方预期投入：共享核心数据、研究人员与计算集群。<br>确认流程：学术方向对齐 → 申请书起草 → 联合提交。<br>补充：非常欢迎跨国与跨学科合作。</p></div>
+            <div class="slot"><span class="slot-code">C-03-03</span><p>合作形式名称：研究生人才招募<br>适合对象/场景：希望攻读人工智能高阶学位、发表一流论文或进入大型科技企业发展的优秀学生。<br>双方预期投入：全职投入研究；实验室提供指导、硬件与论文发表支持。<br>确认流程：提交简历 / 研究计划 → 面试 → 学院正式录取。<br>补充：提供从理论到工程部署的系统化训练。</p></div>
+          </div>
+        </article>
+
+        <article class="block" data-code="C-04">
+          <div class="top"><span class="code">C-04</span><p class="meta">招募信息固定四字段</p></div>
+          <h2>学生申请</h2>
+          <ul class="field-list one"><li class="field-item"><b>招募对象</b>面向计算机科学、电气工程或数据科学背景，且具备高度自驱力的研究型博士与硕士申请人。</li><li class="field-item"><b>方向</b>边缘人工智能视觉部署、大语言模型智能体编排与医学影像分析。</li><li class="field-item"><b>申请方式</b>请将详细简历、成绩单和一页初步研究计划发送至 <a href="mailto:chawjk@ukm.edu.my">chawjk@ukm.edu.my</a>。邮件主题：［博士 / 硕士申请 - 您的姓名］。</li><li class="field-item"><b>当前状态</b>长期开放招募（正式入学时间以 UKM 校历为准）。</li></ul>
+        </article>
+
+        <article class="block" data-code="C-05">
+          <div class="top"><span class="code">C-05</span><p class="meta">只展示获准公开并已确认的联系信息</p></div>
+          <h2>联系方式</h2>
+          <ul class="field-list"><li class="field-item"><b>联系人</b>周俊杰博士（课题负责人）</li><li class="field-item"><b>邮箱</b><a href="mailto:chawjk@ukm.edu.my">chawjk@ukm.edu.my</a></li><li class="field-item"><b>地点</b>马来西亚雪兰莪州万宜 43600，马来西亚国民大学（UKM）视觉信息学研究所（IVI）。</li><li class="field-item"><b>社媒/预约</b><a href="https://ukmsarjana.ukm.my/main/lihat_profil/SzAyNDQ3OA==" target="_blank" rel="noopener noreferrer">访问 UKMsarjana 主页</a></li></ul>
+        </article>
+
+        <article class="block" data-code="C-06">
+          <div class="top"><span class="code">C-06</span><p class="meta">不制作未经确认的联系表单</p></div>
+          <h2>联系准备与响应范围</h2>
+          <ul class="field-list one"><li class="field-item"><b>联系时提供什么</b>企业咨询：请简要说明业务背景、具体技术痛点、数据规模和硬件限制。学术 / 学生咨询：请提供完整的教育背景、过往项目成果及核心技术栈清单。</li><li class="field-item"><b>可响应哪些事项</b>我们回复以下咨询：产业基金匹配、联合学术研究计划、研发咨询与研究生招生。我们不回复以下咨询：缺乏数据支撑、内容模糊的商业概念验证，或一般性的非学术 / 非产业行政咨询。</li><li class="field-item"><b>预计回复说明</b>我们会对所有合作与入学申请进行初步可行性筛选。匹配度较高的咨询通常会在 3–5 个工作日内收到回复；若两周内未收到回复，则表示当前暂无能力承接所提合作。</li></ul>
+        </article>
+
+        <article class="block quiet" data-code="C-07">
+          <div class="top"><span class="code">C-07</span><p class="meta">素材须包含素材编号、用途、版权和替代文本</p></div>
+          <h2>视觉</h2>
+          <div class="grid g2"><div class="media-box">素材区域：联系合作页图片或视频<br>联系页主视觉<br>素材编号、用途、版权与替代文本：待提供</div><div class="media-box">素材区域：补充视觉<br>素材编号、用途、版权与替代文本：待提供</div></div>
+        </article>
+      </div>
+    </section>
+
+    <p class="print-note">打印预览按文档流连续展开全部 7 个页面。</p>
+  </main>
+
+  <script>
+    (() => {
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+      const detailButtons = [...document.querySelectorAll('.detail-button[data-target]')];
+      const main = document.querySelector('main');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const horizontalKeys = new Set(['ArrowLeft', 'ArrowRight', 'Home', 'End']);
+
+      const motionBehavior = () => reducedMotion.matches ? 'auto' : 'smooth';
+
+      function activate(nextTab, focusTab = true) {
+        let activePanel;
+
+        tabs.forEach((tab) => {
+          const selected = tab === nextTab;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          if (selected) tab.setAttribute('aria-current', 'page');
+          else tab.removeAttribute('aria-current');
+        });
+
+        panels.forEach((panel) => {
+          const selected = panel.id === nextTab.getAttribute('aria-controls');
+          panel.hidden = !selected;
+          if (selected) activePanel = panel;
+        });
+
+        if (focusTab) nextTab.focus();
+        main.scrollIntoView({ behavior: motionBehavior(), block: 'start' });
+        return activePanel;
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab, false));
+        tab.addEventListener('keydown', (event) => {
+          if (!horizontalKeys.has(event.key)) return;
+
+          let nextIndex = index;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = tabs.length - 1;
+
+          event.preventDefault();
+          activate(tabs[nextIndex]);
+          tabs[nextIndex].scrollIntoView({ behavior: motionBehavior(), block: 'nearest', inline: 'center' });
+        });
+      });
+
+      detailButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const targetTab = document.getElementById(button.dataset.target);
+          if (!targetTab || targetTab.getAttribute('role') !== 'tab') return;
+          const targetPanel = activate(targetTab, false);
+          targetPanel?.focus({ preventScroll: true });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
