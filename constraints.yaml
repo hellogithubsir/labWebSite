@@ -1,0 +1,144 @@
+schema_version: "3.5.8"
+project:
+  name: "Harmonizing Intelligence Lab website"
+  type: "nextjs-frontend"
+  source_of_truth: "Figma delivery and current src/public implementation"
+
+strictness_profile:
+  level: "L3"
+  chosen_by_user: true
+  anti_drift:
+    duplicate_code:
+      threshold: 3
+      severity: "block"
+      status: "readiness gap: review gate is recorded but not automated"
+    dead_code_unused_exports:
+      threshold: 80
+      severity: "block"
+      status: "readiness gap: dead-code tool is not configured"
+    naming_and_scratch_paths:
+      severity: "block"
+      status: "enforced by local guard and CI"
+  downgraded_controls:
+    - control: "Playwright critical UI validation"
+      reason: "no installed browser test harness is present"
+      replacement: "recorded as a readiness gap"
+    - control: "local pre-commit wiring"
+      reason: "no hook manager is currently present"
+      replacement: "CI and explicit make guard targets"
+
+canonicality:
+  source_dirs:
+    - "src"
+    - "public"
+  archive_reference: "../labWebSite-archive/"
+  forbidden_path_patterns:
+    - "_v[0-9]+"
+    - "_new"
+    - "_old"
+    - "_backup"
+    - "_temp"
+    - "_copy"
+    - "_final"
+    - "_real"
+    - "_improved"
+    - "_refactored"
+    - "_fixed"
+    - "_legacy"
+    - "_deprecated"
+    - "V[0-9]+"
+    - "New$"
+    - "Old$"
+    - "Backup$"
+    - "Temp$"
+    - "Copy$"
+    - "Final$"
+    - "Real$"
+    - "Improved$"
+    - "Refactored$"
+    - "Fixed$"
+    - "Legacy$"
+    - "Deprecated$"
+  forbidden_scratch_directories:
+    - "tmp"
+    - "scratch"
+    - "backup"
+    - "_old"
+    - "deprecated"
+    - "archive"
+    - "wip"
+
+size_limits:
+  max_agents_lines: 320
+  max_file_lines: 800
+  max_function_lines: 80
+  max_pr_diff_lines: 400
+  max_pr_diff_severity: "block"
+
+verification:
+  - surface: "repository"
+    command: "make check"
+    status: "blocked until dependencies are installed and frontend checks pass"
+  - surface: "guardrails"
+    command: "make check-guardrails"
+    status: "available"
+  - surface: "guard self-test"
+    command: "make test-guardrails"
+    status: "available"
+  - surface: "critical UI"
+    route: "/"
+    tool: "Playwright"
+    status: "readiness gap"
+  - surface: "health"
+    route: "/healthz"
+    status: "readiness gap"
+
+critical_paths: []
+
+rehabilitation:
+  active: true
+  phase: "stabilize-harness"
+  baseline_frozen: false
+  command_entrypoint: "make check"
+  runtime_verifier: ""
+  broad_refactor_allowed: false
+  work_unit_protocol: "one focused change, then run the relevant make target and report evidence"
+  owner: "single owner"
+  readiness_gaps:
+    - "dependencies are not installed"
+    - "health route /healthz is not implemented"
+    - "Playwright validation for / is not installed"
+    - "no baseline has been frozen"
+
+refactor:
+  active: false
+  broad_refactor_allowed: false
+  compare_command: ""
+  completion_evidence: []
+
+environments:
+  local: "repository checkout"
+  staging: null
+  production: null
+
+exemptions: []
+
+generated_sections:
+  preserve_unknown_sections: true
+  agents_md:
+    - title: "Code Canonicality"
+    - title: "Project Identity"
+    - title: "Stack & Versions"
+    - title: "Directory Map"
+    - title: "Development Workflow"
+    - title: "Verification Matrix"
+    - title: "Source of Truth & Refactor Contract"
+    - title: "Important Development Notes"
+    - title: "Conventions"
+    - title: "Code Review Self-Check"
+    - title: "Architecture Discipline"
+    - title: "Critical Paths"
+    - title: "Observability"
+    - title: "Agent Operating Rules"
+    - title: "Runtime Lifecycle"
+    - title: "Enforcement Index"
