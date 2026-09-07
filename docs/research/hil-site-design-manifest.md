@@ -1,12 +1,12 @@
 # 七画面设计与素材交付清单
 
-Ticket 001，2026-09-07。七个 FINAL PSD、七个全尺寸 sRGB PNG 齐全；正式媒体共 22 个。此清单用于实现，不是新设计。
+Ticket 001，2026-09-07。七个 FINAL PSD、七个全尺寸 sRGB PNG 齐全；正式媒体以 assets.json 当前逐项索引为准。此清单用于实现，不是新设计。
 
 ## 读取入口
 
 - 原包根目录：`/Users/qingsir/Project/labWebSite/Harmonizing-Intelligence-Lab-V1-Photoshop-Delivery`。以下来源路径均相对此只读目录，worktree 直接按绝对路径读取。
 - [pages.json](../design-references/hil-site/pages.json)：每屏唯一 PSD、PNG、HTML 来源、实际画布及 PSD 组 bbox。bbox 为 `[left,top,right,bottom]`；组名前缀不等于 DOCX 编号。
-- [assets.json](../design-references/hil-site/assets.json)：22 个媒体的来源、正式落库路径、尺寸、PSD 组、内容编号及提取坐标。共享 Logo 和照片只存一份。
+- [assets.json](../design-references/hil-site/assets.json)：当前正式媒体的来源、正式落库路径、尺寸、PSD 组、内容编号及提取坐标。共享 Logo 和照片只存一份。
 - [bilingual-source.json](../design-references/hil-site/bilingual-source.json)：两份 DOCX 的原始段落、表格；locale 为 en/zh-CN，section 保留原始编号标题。它是构建期参考，不接入运行时；表格的说明列不是正文。
 - 英文原文：`docs/reference/实验室官网内容填写包 v4（English·Language-aligned）.docx`；中文原文：`docs/reference/实验室官网内容填写包 v4（中文版·语言统一版）.docx`。设计文字不可读或缺失才按对应编号补用。
 - 最终像素看 `02_Reference_PNG_sRGB/`；状态看 `04_Documentation/INTERACTION_STATES.md`；`05_Source_HTML/website-code-seven-pages/` 仅恢复文案、元素位置和交互。不要照搬独立 HTML 页或其总高度。
@@ -90,6 +90,6 @@ Ticket 001，2026-09-07。七个 FINAL PSD、七个全尺寸 sRGB PNG 齐全；�
 
 已读取全部 04_Documentation 文本/CSV/JSON、七页 HTML，视觉核对七张预览和关系照片；检查实际 PSD/PNG 尺寸、PNG ICC 和 PSD 组。原包报告的 composite delta=0 属交付方证据，未冒称本票重新合成验证。HOME/Research 恢复 COPY 层隐藏，native PSD 仅为编辑补充。
 
-22 个媒体包含 19 个独立文件和 3 张 Research 关系照片。三照片只存在于 FINAL PNG / PSD 的 R-06 APPROVED PIXELS；native research.psd 此处是旧关系图。已按 assets.json 零基矩形无缩放提取，右下坐标不包含，保留照片原圆角白色背景，无正文或标题。整页图、未用帧及旧 native 图不进入 public。
+Ticket 001 历史快照为 22 个媒体（19 个独立文件和 3 张 Research 关系照片）；后续按页面核对补入的局部装饰及替换来源以 assets.json 当前逐项索引为准。三照片只存在于 FINAL PNG / PSD 的 R-06 APPROVED PIXELS；native research.psd 此处是旧关系图。已按 assets.json 零基矩形无缩放提取，右下坐标不包含，保留照片原圆角白色背景，无正文或标题。整页图、未用帧及旧 native 图不进入 public。
 
 独立伙伴 Logo 没有交付，名称墙按 PNG 文字实现；除 PI 外没有成员照片，保持文字卡。本轮已授权媒体用于本地 V1；公开发布权利确认待办是来源事实，不增加本地审批门禁，不执行发布。

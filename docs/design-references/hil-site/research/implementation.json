@@ -1,0 +1,18 @@
+{
+  "ticket": "022",
+  "authority": "02_Reference_PNG_sRGB/02-RESEARCH-DIRECTIONS-V1-FINAL-sRGB.png",
+  "sourceRoot": "/Users/qingsir/Project/labWebSite/Harmonizing-Intelligence-Lab-V1-Photoshop-Delivery",
+  "content": {
+    "R-01": "Header / Overview: final visible heading, lead, section strip and facts; Chinese aligned to bilingual-source.json",
+    "R-02": "FINAL R-03 HEALTH: definition, key questions, research, scenarios and project IDs",
+    "R-03": "FINAL R-04 EDGE-AI: definition, key questions, research, scenarios and project IDs",
+    "R-04": "FINAL R-05 AGENT: definition, key questions, research, scenarios and project IDs",
+    "R-05": "FINAL R-06: three supplied relationship photographs and captions in HEALTH, EDGE-AI, AGENT order",
+    "R-06": "FINAL R-07: scenario names grouped with source project IDs; no additional project screen entries"
+  },
+  "media": "assets.json is the authoritative per-file index; EDGE 500x720 native panel plus circuit lines excludes visual title and uses a localized React caption. Hero final supplied composition clips only the bottom 4px line.",
+  "interaction": "Explore the Pillars focuses and scrolls research-pillars via pointer or keyboard without URL/hash change; reduced motion uses instant scrolling. Relationship cards remain static. Shared footer contact action uses the existing screen callback.",
+  "responsive": "390px/320px: hero text precedes illustration; overview, pillar text and art, relationship photos/captions and mapping entries stack in source order. Natural content height, no truncation.",
+  "visual": "1920px final PNG governs type hierarchy, alternating section colors, artwork and whitespace. Chinese has no supplied PNG and preserves semantic hierarchy with natural wrapping.",
+  "evidence": "/Users/qingsir/Project/labWebSite/docs/labWebsiteV1/missions/labwebsitev1-ps-20260907/missions/evidence/022/browser"
+}

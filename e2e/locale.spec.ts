@@ -50,7 +50,7 @@ for (const width of [1920, 390, 320]) {
         await expect(page.locator("html")).toHaveAttribute("lang", locale);
         await expect(page.getByRole("heading", { level: 1 })).toHaveText(id === "home"
           ? chinese ? "在边缘端连接人类感知与机器智能。" : "Bridging Human Perception and Machine Intelligence at the Edge."
-          : chinese ? chineseLabel : english);
+          : id === "research" ? chinese ? "核心研究支柱" : "Core Research Pillars" : chinese ? chineseLabel : english);
         const logo = page.getByRole("img", { name: /^(?:怡和实验室|Harmonizing Intelligence Lab)$/ });
         await expect(logo).toHaveCount(1);
         await expect(logo).toHaveAttribute("alt", chinese ? "怡和实验室" : "Harmonizing Intelligence Lab");
