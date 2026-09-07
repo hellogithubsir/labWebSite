@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore, type CSSProperties, type KeyboardEvent } from "react";
+import { useEffect, useRef, useSyncExternalStore, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { screenSequence } from "@/lib/hil-site/screen-sequence";
 import type { ScreenId } from "@/types/hil-site";
 import styles from "./ScreenNavigation.module.css";
@@ -21,10 +21,11 @@ interface ScreenNavigationProps {
   menuLabel: string;
   closeMenuLabel: string;
   brandLabel: string;
+  languageControl: ReactNode;
 }
 
 export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuOpenChange,
-  navigationLabel, menuLabel, closeMenuLabel, brandLabel }: ScreenNavigationProps) {
+  navigationLabel, menuLabel, closeMenuLabel, brandLabel, languageControl }: ScreenNavigationProps) {
   const mobile = useSyncExternalStore(subscribeViewport, () => window.matchMedia("(max-width: 980px)").matches, () => false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
@@ -78,6 +79,9 @@ export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuO
         <button ref={menuButton} type="button" className={styles.menuButton}
           aria-expanded={menuOpen} aria-controls="screen-navigation" data-od-id="menu-toggle"
           onClick={() => onMenuOpenChange(!menuOpen)}>{menuOpen ? closeMenuLabel : menuLabel}</button>
+      </div>
+      <div className="fixed top-[10px] right-20 z-[102] min-[981px]:top-5 min-[981px]:right-[calc((6-var(--screen-index))*var(--rail)+32px)]">
+        {languageControl}
       </div>
       <nav id="screen-navigation" aria-label={navigationLabel} inert={mobile && !menuOpen} aria-hidden={mobile && !menuOpen ? true : undefined}
         className={`${styles.menu} ${menuOpen ? styles.open : ""}`} data-od-id="screen-navigation">
