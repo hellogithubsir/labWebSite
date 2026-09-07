@@ -7,7 +7,7 @@
 - 最终对照：原包 `02_Reference_PNG_sRGB/01-HOME-V1-FINAL-sRGB.png`，1920px；上半约 2820px。
 - Hero：原登记 `03_Assets/01-HOME/hero-art.png` 是局部裁切，缺少最终构图左下长尾。已从 `03_Assets/Native_Source_PSD/home.psd` 的 `02 Hero — editable copy and replaceable visual / 主视觉 融合图片图层` 提取原始透明像素，bbox `[222,88,1492,848]`，1270×760，无文字、无重绘。替换唯一正式 `public/images/hil-site/home/hero-art.png`。叶片、圆弧、左下长尾与最终 PNG 对齐，桌面约 1.26 倍缩放、160px 顶部位置和 Hero 底部裁切；移动端自然比例置于文字后。
 - H-02 三纯图标由最终 PNG 原像素提取，矩形 `[326,1586,442,1706]`、`[804,1586,920,1706]`、`[1282,1586,1398,1706]`，各 116×120；不含正文。全局 assets.json 已同步来源。
-- 标题、段落和列表均是 React DOM；没有整页图片、iframe 或运行原 HTML。中文以同编号 DOCX 为准，设计独有标题与短文完成中文对齐。Hero H1 沿用 012 已确认的大小写与中文文案。
+- 标题、段落和列表均是 React DOM；没有整页图片、iframe 或运行原 HTML。中文以同编号 DOCX 为准，设计独有标题与短文完成中文对齐。Hero 英文 H1 以最终 PNG 的 Title Case 为准；桌面分为“Bridging Human Perception / and Machine Intelligence / at the Edge.”三行，移动端自然换行。中文保留既有确认文案。
 - 1920px 按最终图核对 Hero 1080px、价值条、三柱横排、技术行。390px/320px 单列，标题和正文自然增高，按钮换行。无移动原图，未声称像素等同。
 
 ## 验证结果
@@ -21,3 +21,10 @@
 证据根目录：`docs/labWebsiteV1/missions/labwebsitev1-ps-20260907/missions/evidence/020/`（集成仓库，运行时忽略目录）。六组截图位于 `home-home-upper-<locale>-<width>-content-and-responsive-layout/home-<locale>-<width>.png`；每组均带 `trace.zip`。CTA trace 位于 `home-home-upper-primary-CTA-preserves-URL-and-locale/trace.zip`。
 
 本票局部 CSS module 与资产索引修改由编排任务明确扩展 ownership 授权。未修改 README；产品完成状态由最终交付票统一更新。
+
+## 审查修复 R2（F-002、F-003）
+
+- F-002：唯一共享英文标题改为最终 PNG 的 Title Case，桌面使用单 H1 的三行文字，移动端自然换行。同步 smoke/navigation/locale 的精确标题期望，smoke 增加 `exact: true`，保持所有语言、URL、焦点、单 H1 断言。修正前精确标题 smoke 退出 1，明确因正式 Title Case 标题缺失失败。
+- F-003：桌面技术优势说明改为 14px、1.4 行高、440px 最大宽度。按最终 PNG 的相同原尺寸区域核对，A-01 在“or”后自然换为第二行；移动端保留单列 16px、1.5 行高。
+- `npm run test:e2e -- --grep "home upper|root page|locale|site navigation" --trace on` 退出 0，16/16（Home 7 项、smoke 1 项、navigation 4 项、locale 4 项）。生产 build 与所选测试实际执行。
+- R2 日志、六组双语 1920/390/320 Home 截图和全部所选 trace 保存于上述证据根目录的 `fix-r2/`。原图与修后原尺寸区域分别为 `home-title-ref.png` / `home-title-fixed.png`、`home-cap-ref.png` / `home-cap-fixed.png`。本轮仅核对并修正标题与说明正文，其余已认可版式保持不变。

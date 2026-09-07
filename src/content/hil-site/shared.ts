@@ -4,7 +4,7 @@ import type { Localized, SharedContent } from "./types";
 export const sharedContent = {
   en: {
     labels: { home: "Home", research: "Research Directions", projects: "Projects", advantages: "Technology Advantages", partners: "Partners", team: "Team", contact: "Contact" },
-    titles: { home: "Bridging human perception and machine intelligence at the edge.", research: "Research Directions", projects: "Projects", advantages: "Technology Advantages", partners: "Partners", team: "Team", contact: "Contact" },
+    titles: { home: "Bridging Human Perception and Machine Intelligence at the Edge.", research: "Research Directions", projects: "Projects", advantages: "Technology Advantages", partners: "Partners", team: "Team", contact: "Contact" },
     skip: "Skip to content", navigation: "Primary navigation", menu: "Menu", closeMenu: "Close menu",
     brand: "HI LAB", logoAlt: "Harmonizing Intelligence Lab", exploreResearch: "Explore Research", collaborate: "Collaborate",
   },

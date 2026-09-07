@@ -15,7 +15,7 @@ export function HomeHero({ locale, onNavigate }: { locale: Locale; onNavigate: (
         <Image src="/images/hil-site/shared/logo.png" alt={shared.logoAlt} width={1486} height={642} className={styles.logo} priority />
         <ScrollReveal>
           <p className={styles.eyebrow}>{shared.logoAlt}</p>
-          <h1 className={styles.title}>{shared.titles.home}</h1>
+          <h1 className={styles.title}>{locale === "en" ? shared.titles.home.split(/ (?=and Machine|at the Edge)/).map((line, index) => <span className={styles.titleLine} key={line}>{index > 0 ? " " : ""}{line}</span>) : shared.titles.home}</h1>
           <p className={styles.body}>{content.body}</p>
           <div className={styles.actions}>
             <button className={styles.button} onClick={() => onNavigate("research")} data-od-id="home-explore">{shared.exploreResearch}</button>

@@ -49,7 +49,7 @@ for (const width of [1920, 390, 320]) {
         await expect(page.getByRole("main")).toHaveAttribute("data-screen", id);
         await expect(page.locator("html")).toHaveAttribute("lang", locale);
         await expect(page.getByRole("heading", { level: 1 })).toHaveText(id === "home"
-          ? chinese ? "在边缘端连接人类感知与机器智能。" : "Bridging human perception and machine intelligence at the edge."
+          ? chinese ? "在边缘端连接人类感知与机器智能。" : "Bridging Human Perception and Machine Intelligence at the Edge."
           : chinese ? chineseLabel : english);
         await expect(page.getByRole("img")).toHaveAttribute("alt", chinese ? "怡和实验室" : "Harmonizing Intelligence Lab");
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);

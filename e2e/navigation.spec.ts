@@ -5,7 +5,7 @@ test("site navigation initially exposes English Home and seven controls", async 
   await expect(page.getByRole("navigation", { name: "Primary navigation" }).getByRole("button")).toHaveCount(7);
   await expect(page.locator('[aria-current="page"]')).toHaveText("01Home");
   await expect(page.getByRole("main")).toHaveCount(1);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Bridging human perception and machine intelligence at the edge.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Bridging Human Perception and Machine Intelligence at the Edge.");
 });
 
 const screens = [

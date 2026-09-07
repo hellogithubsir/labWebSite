@@ -7,7 +7,8 @@ test("root page responds and shows its primary heading", async ({ page }) => {
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "Bridging human perception and machine intelligence at the edge.",
+      exact: true,
+      name: "Bridging Human Perception and Machine Intelligence at the Edge.",
     }),
   ).toBeVisible();
 });
