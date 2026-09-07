@@ -28,9 +28,11 @@ The following checks are available:
 - make check-guardrails — scans tracked and untracked project paths
 - make check — runs the frontend lint, typecheck and production build checks
 
-The target health route is /healthz and the target critical UI route is /.
-Playwright verification for / remains a readiness gap until a UI test entry
-and browser harness are added. No passing runtime evidence is claimed yet.
+The health route `/healthz` is available and has been verified against the
+production server: `GET /healthz` returns HTTP 200, `application/json`, and the
+exact body `{"status":"ok"}`. The target critical UI route is /. Playwright
+verification for / remains a readiness gap until a UI test entry and browser
+harness are added.
 
 ## Commands
 
@@ -43,8 +45,8 @@ The intended project commands are:
 - npm run build
 - npm run check
 
-The current repository does not yet claim `/healthz` or Playwright UI
-validation as passing evidence.
+The current repository claims passing production runtime evidence for
+`/healthz`; Playwright UI validation remains a readiness gap.
 
 The application currently exposes the root route / as a project shell so the
 approved design can be added without carrying historical routes forward.

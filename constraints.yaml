@@ -93,7 +93,7 @@ verification:
     status: "readiness gap"
   - surface: "health"
     route: "/healthz"
-    status: "readiness gap"
+    status: "available; production build and HTTP response verified"
 
 critical_paths: []
 
@@ -108,7 +108,6 @@ rehabilitation:
   owner: "single owner"
   readiness_gaps:
     - "dependencies are not installed"
-    - "health route /healthz is not implemented"
     - "Playwright validation for / is not installed"
     - "no baseline has been frozen"
 
