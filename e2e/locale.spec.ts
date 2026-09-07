@@ -51,7 +51,9 @@ for (const width of [1920, 390, 320]) {
         await expect(page.getByRole("heading", { level: 1 })).toHaveText(id === "home"
           ? chinese ? "在边缘端连接人类感知与机器智能。" : "Bridging Human Perception and Machine Intelligence at the Edge."
           : chinese ? chineseLabel : english);
-        await expect(page.getByRole("img")).toHaveAttribute("alt", chinese ? "怡和实验室" : "Harmonizing Intelligence Lab");
+        const logo = page.getByRole("img", { name: /^(?:怡和实验室|Harmonizing Intelligence Lab)$/ });
+        await expect(logo).toHaveCount(1);
+        await expect(logo).toHaveAttribute("alt", chinese ? "怡和实验室" : "Harmonizing Intelligence Lab");
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
         await expect(page).toHaveURL("http://127.0.0.1:3000/");
         await page.screenshot({ path: testInfo.outputPath(`shell-${id}-${locale}-${width}.png`), fullPage: true });
