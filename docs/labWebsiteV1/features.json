@@ -713,6 +713,40 @@
       ],
       "origin": "plan",
       "addressesItemId": []
+    },
+    {
+      "dependsOn": [
+        "021"
+      ],
+      "touches": [
+        "e2e/locale.spec.ts"
+      ],
+      "fulfills": [],
+      "expectedBehavior": [
+        "所有七画面在两个Locale及1920/390/320视口验证唯一可访问品牌Logo，按当前Locale检查准确替代文本；不把其他有意义图片当作Logo。",
+        "不使用first()掩盖重复Logo，不删除替代文本、唯一性、Locale保持、刷新、URL或导航断言；不修改产品内容。"
+      ],
+      "addressesItemId": [],
+      "id": "fx-001",
+      "description": "修复正式内容增长后语言回归错误地假定页面只有一张图片的门禁失败",
+      "milestone": "m2-home",
+      "skillName": "diagnosing-bugs",
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "locale",
+            "command": "npm run test:e2e -- --grep \"locale\" --trace on",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "cause": {
+        "kind": "gate",
+        "command": "make check-ui",
+        "milestone": "m2-home"
+      },
+      "origin": "amend"
     }
   ]
 }
