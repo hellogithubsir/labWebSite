@@ -2,7 +2,7 @@
 
 状态：已确认的 redesign 目标架构
 
-范围：当前仓库的官网前端，以及同一 URL 下的 7 个设计画面。当前权威是尚未收到的 Photoshop 分层原稿、全尺寸 sRGB PNG、随附素材/字体/状态说明及其 Ticket 001 清单；Figma 只保留历史 provenance 与恢复访问后的辅助核对用途。
+范围：当前仓库的官网前端，以及同一 URL 下的 7 个设计画面。当前权威是已收到的 Photoshop 分层原稿、全尺寸 sRGB PNG、随附素材/字体/状态说明及其 Ticket 001 清单；Figma 只保留历史 provenance 与恢复访问后的辅助核对用途。
 
 ## Current state
 
@@ -28,7 +28,7 @@ Figma 历史来源中已观察到 HOME 节点 `MASTER / HOME / Exact 1:1 Approve
 | `src/` 当前目录 | 项目是单一官网展示边界，没有复杂业务规则、多入口或后端集成；套用 DDD、Clean Architecture、domain/application/infrastructure 会增加目录和依赖，而不会减少页面复杂度。 | medium |
 | 七张 Figma 图与 URL 的关系 | 七张图不是七条业务路由，而是同一 URL 下的 7 个画面状态。若按路由拆分，翻页动效、当前状态和导航会被迫跨路由协调。 | medium |
 | 归档官网与当前运行时 | 归档内容包含其他项目和旧实现，直接复制会产生第二套页面、文案来源漂移和资源边界污染。 | medium |
-| 当前验证工具链 | 依赖尚未安装，且运行时和 Playwright 验证入口尚未补齐；只能先完成架构和护栏检查，安装依赖后再做前端与视觉证据。 | high |
+| 当前验证工具链 | 健康端点与Playwright基线已经接收；新工作树需安装依赖并重新执行正式验收。 | high |
 
 ## Recommendations
 
@@ -37,7 +37,7 @@ Figma 历史来源中已观察到 HOME 节点 `MASTER / HOME / Exact 1:1 Approve
 目标是把 Ticket 001 确认的 7 个画面实现为一个可运行的 Next.js 单页体验：
 
 - 视觉、文案、布局、响应式状态和交互状态与 Photoshop 交付清单保持一致。
-- 点击导航或子页面入口时，在同一个 URL 内切换画面，并播放设计交付要求的整页翻页式过渡。
+- 点击导航或子页面入口时，在同一个 URL 内切换画面，并播放设计交付要求的250ms ease-out淡入淡出。
 - 每个画面拥有独立的实现文件和局部内容，避免形成七套拷贝或一个数百行条件组件。
 - 只使用本地静态数据和 `public/` 资源，不引入后端、数据库、CMS、账号体系或全局状态管理。
 - 通过桌面、移动端和减少动画三类可观察状态验收。
@@ -55,7 +55,7 @@ Figma 历史来源中已观察到 HOME 节点 `MASTER / HOME / Exact 1:1 Approve
 
 接口：`<HilSiteShell />`，由 `src/app/page.tsx` 调用。
 
-它隐藏页面导航、当前状态、切换方向、过渡锁、画面渲染和可访问性属性。调用方不需要知道七个画面如何组织，也不需要管理动画时序。
+它隐藏页面导航、当前状态、过渡锁、画面渲染和可访问性属性。调用方不需要知道七个画面如何组织，也不需要管理动画时序。
 
 深度：入口极小，但集中承载整个单页体验的编排复杂度；删除它会把当前画面、导航和过渡控制散落回 `page.tsx`。
 
@@ -64,19 +64,17 @@ Figma 历史来源中已观察到 HOME 节点 `MASTER / HOME / Exact 1:1 Approve
 接口：
 
 ```ts
-type ScreenId = string;
-type TransitionDirection = "forward" | "backward";
+type ScreenId = "home" | "research" | "projects" | "advantages" | "partners" | "team" | "contact";
 
 type ScreenSequence = {
   initial: ScreenId;
   ids: readonly ScreenId[];
-  direction(from: ScreenId, to: ScreenId): TransitionDirection;
 };
 ```
 
-它是纯 TypeScript 模块，负责 7 个画面状态的稳定顺序、初始画面和前进/后退判断；不依赖 React、Next.js、DOM 或动画库。
+它是纯 TypeScript 模块，负责 7 个画面状态的稳定顺序、初始画面；不依赖 React、Next.js、DOM 或动画库。
 
-深度：导航组件只需要给它两个 `ScreenId`，不需要各自重复比较索引、处理非法状态或维护方向规则。
+深度：导航组件复用稳定顺序和初始状态。
 
 #### 3. `ScreenRenderer`
 
@@ -94,7 +92,6 @@ type ScreenSequence = {
 <PageTurnTransition
   currentKey={currentScreen}
   nextKey={nextScreen}
-  direction={direction}
   onComplete={commitNextScreen}
 >
   {currentView}
@@ -104,7 +101,7 @@ type ScreenSequence = {
 
 它隐藏当前画面和下一画面的双层渲染、CSS class/data attribute、动画完成提交、过渡期间的点击锁定和 `prefers-reduced-motion` 处理。
 
-深度：七个画面不需要知道翻页如何实现；设计交付改变翻页方向、遮罩、缓动或层叠关系时，只改这一处。
+深度：七个画面不需要知道翻页如何实现；调整淡入淡出时，只改这一处。
 
 #### 5. `ScreenNavigation`
 
@@ -116,7 +113,7 @@ type ScreenSequence = {
 
 每个画面是独立的 React 模块，命名以 Ticket 001 的 Photoshop 画面名称为准。名称未确认前保持本票阻塞，不把临时命名带进正式实现。
 
-画面模块只负责自己的语义 HTML、局部布局和局部资源，不负责全局导航、不负责切换方向、不负责读取 Figma API。
+画面模块只负责自己的语义 HTML、局部布局和局部资源，不负责全局导航、不负责不负责读取 Figma API。
 
 ### Dependency rules
 
@@ -170,10 +167,10 @@ src/
 │   └── useHilScreen.ts              # 仅在状态编排需要 React hook 时存在
 ├── lib/
 │   ├── hil-site/
-│   │   └── screen-sequence.ts       # 纯状态顺序和方向判断
+│   │   └── screen-sequence.ts       # 稳定状态顺序
 │   └── utils.ts
 └── types/
-    └── hil-site.ts                  # ScreenId、方向和共享展示类型
+    └── hil-site.ts                  # ScreenId和共享展示类型
 
 public/
 └── images/
@@ -202,9 +199,7 @@ sequenceDiagram
   R-->>S: initial screen and ordered IDs
   S->>V: render current screen
   U->>S: click a screen navigation item
-  S->>R: resolve direction(current, target)
-  R-->>S: forward or backward
-  S->>T: render current + next with direction
+  S->>T: crossfade current + next (250ms ease-out)
   T-->>S: animationend / reduced-motion completion
   S->>V: commit next as current screen
 ```
@@ -213,7 +208,7 @@ sequenceDiagram
 
 1. 初始进入 `/` 时显示 Ticket 001 指定的首个画面。
 2. 点击当前画面时不触发动画。
-3. 点击其他画面时先计算方向，再同时渲染当前画面和下一画面。
+3. 点击其他画面时同时渲染当前画面和下一画面。
 4. 过渡期间锁定重复点击，避免两个动画互相覆盖。
 5. 动画完成后只保留下一画面，提交 `currentScreen`。
 6. 开启减少动画时直接提交状态，保持内容可访问。
@@ -231,7 +226,7 @@ sequenceDiagram
 这些是收到 Photoshop 原始交付包后由 Ticket 001 确认的事实：
 
 - 7 个画面的源文件或画板、名称、桌面/移动尺寸和连接关系。
-- 翻页动效的方向、时长、缓动、遮罩和层叠状态；设计稿未提供明确值时使用规格中的默认 token。
+- 250ms ease-out淡入淡出已确定；局部交互按spec已批准补充与04_Documentation。
 - 哪些图片/Logo 是随附原始资源，哪些只是整页 PNG 的视觉结果；前者进入 `public/images/hil-site/`，后者只作为比对参照。
 - 依赖安装完成后，先以哪一个页面状态作为视觉实现基线。
 

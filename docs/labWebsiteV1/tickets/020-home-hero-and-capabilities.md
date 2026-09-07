@@ -2,8 +2,8 @@
 Description: 交付 Home 的 Hero、研究方向、技术能力和主要 CTA 双语响应式体验
 Type: AFK
 Milestone: m2-home
-Touches: src/components/hil-site/screens/home/HomeScreen.tsx, src/components/hil-site/screens/home/HomeHero.tsx, src/components/hil-site/screens/home/HomeResearch.tsx, src/content/hil-site/home.ts, public/images/hil-site/home/**, e2e/home.spec.ts, docs/design-references/hil-site/home/**
-Blocked by: 010, 011
+Touches: src/components/hil-site/ScreenRenderer.tsx, src/components/hil-site/screens/home/HomeScreen.tsx, src/components/hil-site/screens/home/HomeHero.tsx, src/components/hil-site/screens/home/HomeResearch.tsx, src/content/hil-site/home.ts, public/images/hil-site/home/**, e2e/home.spec.ts, docs/design-references/hil-site/home/**
+Blocked by: 012
 User stories covered: US-001, US-002, US-004
 
 ### What to build

@@ -86,8 +86,8 @@
 
 ## Observability
 
-- 目标健康检查：/healthz，当前尚未实现。
-- 目标关键 UI 路由：/，当前仅有最小入口；Playwright 验证待依赖安装和测试入口补齐后处理。
+- 健康检查：/healthz，已接收bootstrap端点；002维护正式回归证据。
+- 关键UI路由：/，当前仅有最小入口；已接收Playwright生产服务器基线，003记录干净本地等价验收。
 - 当前本地尚无 node_modules，因此尚未声明前端检查通过。
 - 错误必须通过命令退出码和明确日志暴露；不得用静默降级伪造通过。
 
@@ -122,3 +122,8 @@
 | 重复实现审查 | src/ | review-only | review-only |
 | 未使用导出审查 | src/ | review-only | review-only |
 | 关键路径覆盖率 | e2e/ | review-only until Playwright is available | review-only |
+
+## 本轮授权与编排
+
+- 按docs/labWebsiteV1/spec.md的已批准执行补充与串行票据实施；主任务编排、worker实现、独立可见任务只读审查。
+- 本轮已获本地分支/worktree/commit/审查后ff-only合并授权；不push、不发布。素材包只读，跨worktree按规格绝对路径读取。

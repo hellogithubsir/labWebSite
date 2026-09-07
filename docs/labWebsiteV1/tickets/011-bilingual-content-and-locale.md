@@ -3,7 +3,7 @@ Description: 将两份参考 DOCX 转换为本地双语内容契约并提供全�
 Type: AFK
 Milestone: m1-shell-interaction
 Touches: src/components/hil-site/LocaleControl.tsx, src/components/hil-site/HilSiteShell.tsx, src/content/hil-site/types.ts, src/content/hil-site/shared.ts, src/app/layout.tsx, e2e/locale.spec.ts
-Blocked by: 001, 010
+Blocked by: 010
 User stories covered: US-004, US-005
 
 ### What to build

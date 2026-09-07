@@ -2,8 +2,8 @@
 Description: 交付三大研究支柱、协同关系和项目映射的双语响应式画面
 Type: AFK
 Milestone: m3-content-screens
-Touches: src/components/hil-site/screens/research/**, src/content/hil-site/research.ts, public/images/hil-site/research/**, e2e/research.spec.ts, docs/design-references/hil-site/research/**
-Blocked by: 010, 011
+Touches: src/components/hil-site/ScreenRenderer.tsx, src/components/hil-site/screens/research/**, src/content/hil-site/research.ts, public/images/hil-site/research/**, e2e/research.spec.ts, docs/design-references/hil-site/research/**
+Blocked by: 021
 User stories covered: US-002, US-004, US-005
 
 ### What to build

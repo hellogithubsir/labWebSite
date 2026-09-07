@@ -1,5 +1,5 @@
 {
-  "mission": "labWebsiteV1",
+  "mission": "labwebsitev1-delivery-refresh",
   "generatedBy": "devflow.cjs compile",
   "generatedAt": "2026-09-07",
   "statusNote": "This is the plan and holds no status. Live status is in <spec-dir>/missions/runtime.json (gitignored, written only by devflow). Read it with: devflow.cjs brief --mission-dir <spec-dir>/missions — that answers \"is it done\", read-only. Never edit this file by hand: append with 'devflow.cjs amend --add-feature', and drop work with 'devflow.cjs cancel'.",
@@ -7,7 +7,9 @@
     {
       "id": "001",
       "description": "验收七画面 Photoshop 原始交付并建立状态、正式素材和双语内容编号的唯一可追溯清单",
-      "dependsOn": [],
+      "dependsOn": [
+        "003"
+      ],
       "milestone": "m0-delivery-readiness",
       "touches": [
         "docs/research/hil-site-design-manifest.md",
@@ -31,7 +33,7 @@
       "skillName": "tdd",
       "expectedBehavior": [
         "Home、Research Directions、Projects、Technology Advantages、Partners、Team、Contact 各有唯一正式 Photoshop 源画面和全尺寸 sRGB PNG 对照图。",
-        "每个画面都记录最终画布尺寸、移动稿或推导规则、导航目标、CTA、可操作组件及动效状态；缺失值使用本规格的已确认默认值。",
+        "每个画面都记录最终画布尺寸、移动稿或推导规则、导航目标、CTA、可操作组件及动效状态；缺失值使用本规格的已确认默认值；记录1920px画布和390px/320px推导，七项导航、250ms淡入淡出、两个项目轮播、团队筛选、技术折叠及移动菜单。",
         "每个可见内容区和正式媒体都能追溯到 Photoshop 画面、图层复合或状态以及适用内容编号；正式媒体完成本地落库，整页 PNG 只作视觉对照。"
       ],
       "origin": "plan",
@@ -39,13 +41,12 @@
     },
     {
       "id": "002",
-      "description": "提供不依赖外部服务的官网健康响应并清除对应 readiness gap",
+      "description": "维护已交付健康端点的正式回归测试与可追溯验收记录",
       "dependsOn": [],
       "milestone": "m0-delivery-readiness",
       "touches": [
-        "src/app/healthz/route.ts",
-        "README.md",
-        "constraints.yaml"
+        "e2e/healthz.spec.ts",
+        "docs/design-references/hil-site/release/healthz-evidence.md"
       ],
       "fulfills": [
         "VAL-003"
@@ -55,7 +56,7 @@
         "steps": [
           {
             "id": "check",
-            "command": "npm run build",
+            "command": "npm run test:e2e -- --grep \"health response\"",
             "expectedExit": "zero"
           }
         ]
@@ -64,25 +65,20 @@
       "expectedBehavior": [
         "`GET /healthz` 返回 HTTP 200、JSON Content-Type 和精确响应 `{\"status\":\"ok\"}`。",
         "健康响应不读取 Figma、DOCX、数据库、外部网络或用户输入。",
-        "README 与约束只移除已被实际证据解决的健康端点缺口。"
+        "正式健康回归测试与验收记录已提交且实际运行成功，rehabilitation总状态保持原样。"
       ],
       "origin": "plan",
       "addressesItemId": []
     },
     {
       "id": "003",
-      "description": "建立生产构建上的 `/` 浏览器验收入口并接入现有工程门禁",
-      "dependsOn": [],
+      "description": "接收现有Playwright基线并记录CI配置与干净本地等价验收",
+      "dependsOn": [
+        "002"
+      ],
       "milestone": "m0-delivery-readiness",
       "touches": [
-        "package.json",
-        "package-lock.json",
-        "playwright.config.ts",
-        "e2e/smoke.spec.ts",
-        ".github/workflows/ci.yml",
-        "Makefile",
-        "README.md",
-        "constraints.yaml"
+        "docs/design-references/hil-site/release/browser-baseline-evidence.md"
       ],
       "fulfills": [
         "VAL-004",
@@ -93,7 +89,7 @@
         "steps": [
           {
             "id": "check",
-            "command": "npm run test:e2e",
+            "command": "npm ci",
             "expectedExit": "zero"
           }
         ]
@@ -111,8 +107,7 @@
       "id": "010",
       "description": "交付唯一官网入口、七画面状态序列、共享视觉基础和可访问导航",
       "dependsOn": [
-        "001",
-        "003"
+        "001"
       ],
       "milestone": "m1-shell-interaction",
       "touches": [
@@ -122,6 +117,9 @@
         "src/components/hil-site/HilSiteShell.tsx",
         "src/components/hil-site/ScreenNavigation.tsx",
         "src/components/hil-site/ScreenRenderer.tsx",
+        "src/components/hil-site/ScrollReveal.tsx",
+        "src/components/hil-site/ScrollReveal.module.css",
+        "src/components/hil-site/ScreenNavigation.module.css",
         "src/lib/hil-site/screen-sequence.ts",
         "src/types/hil-site.ts",
         "public/images/hil-site/shared/**",
@@ -146,7 +144,7 @@
       "expectedBehavior": [
         "`/` 初始显示英文 Home、七项导航且只暴露一个当前画面。",
         "点击任一导航项显示唯一对应画面，路径、查询和片段始终保持 `/`。",
-        "左右方向键、Home 和 End 同步更新焦点、当前项和可见画面，当前项具有明确语义。"
+        "左右方向键、Home 和 End 同步更新焦点、当前项和可见画面，当前项具有明确语义；390px/320px菜单可开关，Escape关闭并返回菜单按钮焦点，选择七项中任一项后关闭菜单，隐藏菜单不可聚焦。"
       ],
       "origin": "plan",
       "addressesItemId": []
@@ -155,7 +153,6 @@
       "id": "011",
       "description": "将两份参考 DOCX 转换为本地双语内容契约并提供全站 Locale 控制",
       "dependsOn": [
-        "001",
         "010"
       ],
       "milestone": "m1-shell-interaction",
@@ -193,15 +190,15 @@
     },
     {
       "id": "012",
-      "description": "为单 URL 画面切换增加有方向、可锁定且尊重减少动画的原生过渡",
+      "description": "为单 URL 画面切换增加250ms淡入淡出、可锁定且尊重减少动画的原生过渡",
       "dependsOn": [
-        "010"
+        "011"
       ],
       "milestone": "m1-shell-interaction",
       "touches": [
         "src/components/hil-site/PageTurnTransition.tsx",
         "src/components/hil-site/HilSiteShell.tsx",
-        "src/app/globals.css",
+        "src/components/hil-site/PageTurnTransition.module.css",
         "e2e/transition.spec.ts"
       ],
       "fulfills": [
@@ -221,7 +218,7 @@
       },
       "skillName": "tdd",
       "expectedBehavior": [
-        "前进和后退使用相反方向，动画结束后 DOM 中只保留目标画面。",
+        "前进和后退均使用250ms淡入淡出且无方向滑动，动画结束后 DOM 中只保留目标画面。",
         "动画期间连续触发多个导航请求仍只提交第一次目标，不出现多层可聚焦内容。",
         "reduce 模式下不播放整页位移动画，并在 100ms 内完成可见状态切换。"
       ],
@@ -232,11 +229,11 @@
       "id": "020",
       "description": "交付 Home 的 Hero、研究方向、技术能力和主要 CTA 双语响应式体验",
       "dependsOn": [
-        "010",
-        "011"
+        "012"
       ],
       "milestone": "m2-home",
       "touches": [
+        "src/components/hil-site/ScreenRenderer.tsx",
         "src/components/hil-site/screens/home/HomeScreen.tsx",
         "src/components/hil-site/screens/home/HomeHero.tsx",
         "src/components/hil-site/screens/home/HomeResearch.tsx",
@@ -312,11 +309,11 @@
       "id": "022",
       "description": "交付三大研究支柱、协同关系和项目映射的双语响应式画面",
       "dependsOn": [
-        "010",
-        "011"
+        "021"
       ],
       "milestone": "m3-content-screens",
       "touches": [
+        "src/components/hil-site/ScreenRenderer.tsx",
         "src/components/hil-site/screens/research/**",
         "src/content/hil-site/research.ts",
         "public/images/hil-site/research/**",
@@ -349,17 +346,18 @@
     },
     {
       "id": "023",
-      "description": "交付项目导语、四类能力和可访问筛选入口的双语响应式体验",
+      "description": "交付项目导语、四类能力说明和可访问轮播的双语响应式体验",
       "dependsOn": [
-        "010",
-        "011"
+        "022"
       ],
       "milestone": "m3-content-screens",
       "touches": [
+        "src/components/hil-site/ScreenRenderer.tsx",
         "src/components/hil-site/screens/projects/ProjectsScreen.tsx",
-        "src/components/hil-site/screens/projects/ProjectFilters.tsx",
+        "src/components/hil-site/screens/projects/ProjectCarousel.tsx",
         "src/components/hil-site/screens/projects/ProjectsOverview.tsx",
         "src/content/hil-site/projects.ts",
+        "public/images/hil-site/projects/**",
         "e2e/projects.spec.ts",
         "docs/design-references/hil-site/projects/**"
       ],
@@ -373,7 +371,7 @@
         "steps": [
           {
             "id": "check",
-            "command": "npm run test:e2e -- --grep \"project filters\"",
+            "command": "npm run test:e2e -- --grep \"project carousel\"",
             "expectedExit": "zero"
           }
         ]
@@ -381,8 +379,8 @@
       "skillName": "tdd",
       "expectedBehavior": [
         "两种语言下完整显示 P-01、P-02 的导语、四类能力、适用场景和交付物信息。",
-        "选择筛选项后只显示对应项目集合，当前筛选具有选中语义，键盘和指针结果一致。",
-        "390px 与 320px 下筛选控件可滚动或换行但不遮挡，焦点和项目内容始终可达。"
+        "E-Linus轮播支持前后按钮、ArrowLeft/Right和水平拖动，当前截图、caption、proof labels及进度同步，首尾按钮禁用，时长300–500ms；reduce不平滑滚动。",
+        "390px 与 320px 下轮播按钮、键盘与触摸拖动可操作，媒体无页面级溢出，caption保持可读。"
       ],
       "origin": "plan",
       "addressesItemId": []
@@ -421,7 +419,7 @@
       "skillName": "tdd",
       "expectedBehavior": [
         "两种语言下可浏览设计交付要求的全部项目，标题、类别、摘要、详情和媒体与内容编号一致。",
-        "卡片、Accordion 或其他设计交付指定详情状态可由键盘和指针操作，且任意时刻只暴露正确详情。",
+        "PDM Robot复用023轮播，按钮、左右键、水平拖动均同步当前截图、caption、proof labels和进度；首尾禁用，reduce立即切换。",
         "合作 CTA 切换到 Contact，保持当前 Locale，URL 仍为 `/`。"
       ],
       "origin": "plan",
@@ -431,11 +429,11 @@
       "id": "025",
       "description": "交付八项技术优势及设计交互状态的双语响应式画面",
       "dependsOn": [
-        "010",
-        "011"
+        "024"
       ],
       "milestone": "m3-content-screens",
       "touches": [
+        "src/components/hil-site/ScreenRenderer.tsx",
         "src/components/hil-site/screens/advantages/**",
         "src/content/hil-site/advantages.ts",
         "public/images/hil-site/advantages/**",
@@ -468,11 +466,11 @@
       "id": "026",
       "description": "交付合作介绍与设计 Logo 墙的双语响应式画面",
       "dependsOn": [
-        "010",
-        "011"
+        "025"
       ],
       "milestone": "m3-content-screens",
       "touches": [
+        "src/components/hil-site/ScreenRenderer.tsx",
         "src/components/hil-site/screens/partners/**",
         "src/content/hil-site/partners.ts",
         "public/images/hil-site/partners/**",
@@ -505,11 +503,11 @@
       "id": "027",
       "description": "交付 PI、团队构成和核心成员的双语响应式展示",
       "dependsOn": [
-        "010",
-        "011"
+        "026"
       ],
       "milestone": "m3-content-screens",
       "touches": [
+        "src/components/hil-site/ScreenRenderer.tsx",
         "src/components/hil-site/screens/team/**",
         "src/content/hil-site/team.ts",
         "public/images/hil-site/team/**",
@@ -542,11 +540,11 @@
       "id": "028",
       "description": "交付合作类型、申请说明、联系方式和沟通规范的双语响应式画面",
       "dependsOn": [
-        "010",
-        "011"
+        "027"
       ],
       "milestone": "m3-content-screens",
       "touches": [
+        "src/components/hil-site/ScreenRenderer.tsx",
         "src/components/hil-site/screens/contact/**",
         "src/content/hil-site/contact.ts",
         "e2e/contact.spec.ts",
@@ -580,16 +578,6 @@
       "id": "030",
       "description": "独立核验设计交付、运行时、七画面双语视觉与交互证据并逐条报告 VAL-001 至 VAL-038",
       "dependsOn": [
-        "001",
-        "002",
-        "003",
-        "012",
-        "021",
-        "022",
-        "024",
-        "025",
-        "026",
-        "027",
         "028"
       ],
       "milestone": "m4-release-proof",
@@ -648,7 +636,7 @@
       },
       "skillName": "user-validate-flow",
       "expectedBehavior": [
-        "VAL-001 至 VAL-005 的设计清单、素材、健康响应、浏览器基线和成功 CI 日志均有独立可定位证据。",
+        "VAL-001 至 VAL-005 的设计清单、素材、健康响应、浏览器基线和CI配置与干净本地等价执行日志均有独立可定位证据。",
         "VAL-006 至 VAL-014 的单 URL 导航、键盘、双语、过渡锁和 reduced-motion 行为均由现有 Playwright 证据支撑。",
         "VAL-015 至 VAL-038 的七画面、两种语言、桌面与 390px 证据共 28 组，320px 溢出与各正式交互状态也有可定位结果。"
       ],
@@ -659,8 +647,6 @@
       "id": "031",
       "description": "在全部 V1 证据通过后统一运行发布门禁并同步真实工程状态",
       "dependsOn": [
-        "002",
-        "003",
         "030"
       ],
       "milestone": "m4-release-proof",
@@ -721,7 +707,7 @@
       },
       "skillName": "user-validate-flow",
       "expectedBehavior": [
-        "VAL-039 的命名护栏、护栏自测、Lint、TypeScript、生产构建、`/healthz`、Playwright 和所需 CI 日志均可定位且结果为成功。",
+        "VAL-039 的命名护栏、护栏自测、Lint、TypeScript、生产构建、`/healthz`、Playwright 和CI配置与本地等价执行日志均可定位且结果为成功。",
         "VAL-040 的 rehabilitation 状态、完成时间、证据索引和 README、CONTEXT、AGENTS、约束描述相互一致。",
         "任一证据缺失或失败时报告未证明并保持状态原样，不通过修改证据或状态制造通过。"
       ],

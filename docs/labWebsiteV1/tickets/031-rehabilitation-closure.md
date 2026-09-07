@@ -3,7 +3,7 @@ Description: 在全部 V1 证据通过后统一运行发布门禁并同步真实
 Type: AFK
 Milestone: m4-release-proof
 Touches: Makefile, README.md, CONTEXT.md, constraints.yaml, AGENTS.md, docs/design-references/hil-site/release/evidence-index.md
-Blocked by: 002, 003, 030
+Blocked by: 030
 User stories covered: US-006
 
 ### What to build
@@ -25,5 +25,5 @@ Fulfills: VAL-039, VAL-040
 ### Notes
 
 - 若任一门禁失败，保持 rehabilitation active，报告具体失败并回到对应修复票。
-- 不执行 git commit、push、分支或远端发布。
+- 允许本地worker分支、commit及审查后的ff-only合并；不push、不远端发布。
 - 状态文件只能记录已运行的证据，不使用“预计通过”措辞。

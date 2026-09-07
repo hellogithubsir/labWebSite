@@ -8,7 +8,7 @@ User stories covered: US-006
 ### What to build
 这不是实现票。只读检查 031 生成的发布证据索引、命令日志、README、CONTEXT、AGENTS 和 `constraints.yaml`，确认所有正式门禁确实通过后 rehabilitation 才关闭，且文档没有遗漏仍存在的失败或把未来远端证据写成已通过。逐条报告 VAL-039 与 VAL-040，不修改产品、测试、证据或状态文件。
 ### Acceptance criteria
-- [ ] VAL-039 的命名护栏、护栏自测、Lint、TypeScript、生产构建、`/healthz`、Playwright 和所需 CI 日志均可定位且结果为成功。
+- [ ] VAL-039 的命名护栏、护栏自测、Lint、TypeScript、生产构建、`/healthz`、Playwright 和CI配置与本地等价执行日志均可定位且结果为成功。
 - [ ] VAL-040 的 rehabilitation 状态、完成时间、证据索引和 README、CONTEXT、AGENTS、约束描述相互一致。
 - [ ] 任一证据缺失或失败时报告未证明并保持状态原样，不通过修改证据或状态制造通过。
 ### Validation

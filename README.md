@@ -65,3 +65,9 @@ approved design can be added without carrying historical routes forward.
 - docs/adr/0001-single-url-screen-sequence.md — single URL screen-sequence decision
 - docs/adr/0002-native-css-page-transition.md — native CSS page-transition decision
 - [docs/reference/mitibm-section-navigation/README.md](docs/reference/mitibm-section-navigation/README.md) — MIT‑IBM section-navigation motion reference
+
+## V1 当前交付与执行
+
+Photoshop交付包已收到，保持只读；[V1规格](docs/labWebsiteV1/spec.md)记录来源、250ms淡入淡出、局部交互、串行票据和逐票可见审查。原MIT-IBM参考保留为历史参考，正式动效以交付状态为准。
+
+bootstrap已审查的健康端点和Playwright基线已接收；002/003维护测试或验收记录，不重复产品开发。新session将在修订规格独立审查后启动；目前rehabilitation仍为active，不声明完整官网验收通过。

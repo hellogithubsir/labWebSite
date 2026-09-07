@@ -2,8 +2,8 @@
 Description: 交付 PI、团队构成和核心成员的双语响应式展示
 Type: AFK
 Milestone: m3-content-screens
-Touches: src/components/hil-site/screens/team/**, src/content/hil-site/team.ts, public/images/hil-site/team/**, e2e/team.spec.ts, docs/design-references/hil-site/team/**
-Blocked by: 010, 011
+Touches: src/components/hil-site/ScreenRenderer.tsx, src/components/hil-site/screens/team/**, src/content/hil-site/team.ts, public/images/hil-site/team/**, e2e/team.spec.ts, docs/design-references/hil-site/team/**
+Blocked by: 026
 User stories covered: US-003, US-004
 
 ### What to build
@@ -25,3 +25,5 @@ Fulfills: VAL-034, VAL-035
 
 - 只展示 001 确认的正式成员，不把归档中额外人物重新带回当前实现。
 - 不把团队卡片扩展为账号、个人后台或动态数据源。
+
+- 实现all、graduate、candidate三种成员筛选，默认all；aria-pressed与显示集合同步，保持源顺序，180ms状态变化，reduce立即更新。键盘与指针结果一致；VAL-035证据包含全部筛选和移动可达性。

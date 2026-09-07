@@ -1,18 +1,18 @@
 ## Issue: 012 — 原生整页切换动效
-Description: 为单 URL 画面切换增加有方向、可锁定且尊重减少动画的原生过渡
+Description: 为单 URL 画面切换增加250ms淡入淡出、可锁定且尊重减少动画的原生过渡
 Type: AFK
 Milestone: m1-shell-interaction
-Touches: src/components/hil-site/PageTurnTransition.tsx, src/components/hil-site/HilSiteShell.tsx, src/app/globals.css, e2e/transition.spec.ts
-Blocked by: 010
+Touches: src/components/hil-site/PageTurnTransition.tsx, src/components/hil-site/HilSiteShell.tsx, src/components/hil-site/PageTurnTransition.module.css, e2e/transition.spec.ts
+Blocked by: 011
 User stories covered: US-005
 
 ### What to build
 
-实现当前画面与目标画面的整页过渡，根据稳定顺序区分前进和后退。过渡中锁定新请求，完成事件提交目标；设计交付包未给出参数时使用 600ms。减少动画用户应直接获得目标内容，不播放整页位移。
+实现当前画面与目标画面的整页过渡，前后导航均采用250ms ease-out淡入淡出，无方向滑动。过渡中锁定新请求，完成事件提交目标；时长以交付250ms为准。减少动画用户应直接获得目标内容，不播放整页位移。
 
 ### Acceptance criteria
 
-- [ ] 前进和后退使用相反方向，动画结束后 DOM 中只保留目标画面。
+- [ ] 前进和后退均使用250ms淡入淡出且无方向滑动，动画结束后 DOM 中只保留目标画面。
 - [ ] 动画期间连续触发多个导航请求仍只提交第一次目标，不出现多层可聚焦内容。
 - [ ] reduce 模式下不播放整页位移动画，并在 100ms 内完成可见状态切换。
 

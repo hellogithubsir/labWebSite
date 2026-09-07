@@ -56,10 +56,10 @@
 - FR-008：视觉、布局、交互状态、可见文案和媒体以 Ticket 001 登记的 Photoshop 交付包为准；设计稿文字不可读或缺失时，按内容编号使用参考 DOCX。
 - FR-009：英文内容使用 English Language-aligned 文档，中文内容使用中文版语言统一文档；同一内容编号在两种语言下表达同一信息。
 - FR-010：Photoshop 交付包随附并确认可用于官网的图片和 Logo 视为 V1 可用素材，进入本地正式静态资源后再由运行时使用。
-- FR-011：前进和后退切换反映画面顺序；设计交付包未指定动效时，过渡在 600ms 内完成。
+- FR-011：整页切换采用 250ms ease-out 淡入淡出，无方向滑动。
 - FR-012：过渡期间忽略新的导航请求；完成后只保留目标画面。
-- FR-013：`prefers-reduced-motion: reduce` 下不播放整页位移动画，并在 100ms 内显示目标画面。
-- FR-014：桌面状态对照每个 Photoshop 画面的最终画布尺寸；缺少移动稿时以 390px 视口完成重排，并保证 320px 无横向溢出。
+- FR-013：`prefers-reduced-motion: reduce` 下不播放整页动效、平滑滚动和 reveal 位移，并在 100ms 内显示目标画面。
+- FR-014：桌面1920px状态对照每个Photoshop画面的最终画布尺寸；缺少移动稿时以 390px 视口完成重排，并保证 320px 无横向溢出。
 - FR-015：`GET /healthz` 返回 HTTP 200 和 JSON `{"status":"ok"}`，不依赖外部服务。
 
 ### Acceptance Criteria
@@ -122,7 +122,7 @@
 ### Relevant Context
 
 - 当前 `/` 是最小占位入口，没有历史页面包袱。
-- 当前设计与素材权威：用户稍后提供的七画面分层 PSD/PSB、全尺寸 sRGB PNG 对照图及随附原始素材、字体和状态说明；该交付包尚未收到。
+- 当前设计与素材权威：已收到的 `Harmonizing-Intelligence-Lab-V1-Photoshop-Delivery`；`02_Reference_PNG_sRGB` 是桌面最终视觉，`04_Documentation` 是状态说明，`05_Source_HTML` 仅供语义文案和交互参考。
 - Figma 来源链：https://www.figma.com/design/bsJuR04iJitg8NpxQjNw6U/Harmonizing-Intelligence-Lab---Website-UI--6-Pages-?node-id=0-1&p=f
 - 2026-09-06 已实际验证 Node 26.0.0、依赖树、`make check` 和护栏自测可运行。
 - HOME 已知 Figma 来源节点为 `MASTER / HOME / Exact 1:1 Approved PNG`，节点 ID `63:2`；仅作来源链和恢复访问后的辅助核对。
@@ -149,8 +149,8 @@
 
 ### Technical Direction
 
-- 入口只组合一个官网壳层；壳层负责当前画面、目标画面、Locale、切换方向和过渡锁。
-- 画面顺序与方向判断保持为无 UI 依赖的稳定契约；渲染层维护唯一的 `ScreenId` 到画面映射。
+- 入口只组合一个官网壳层；壳层负责当前画面、目标画面、Locale 和过渡锁。
+- 画面顺序保持为无 UI 依赖的稳定契约；渲染层维护唯一的 `ScreenId` 到画面映射。
 - 七个画面分别拥有局部内容与布局；只有两个以上真实消费者或明确设计系统职责才提升为共享组件。
 - 双语内容按相同业务编号组织，页面只消费当前 Locale 的已解析内容，不读取 DOCX。
 - 媒体由 Ticket 001 从 Photoshop 随附素材中确认并落到本地正式资源；整页 PNG 只作视觉 oracle，不作为最终页面背景。
@@ -163,14 +163,14 @@
 - VAL-002: 设计内容可追溯, Behavior: 每个可见内容区和媒体均映射到 Photoshop 画面或图层状态以及适用的 H/R/P/A/N/T/C 编号，正式素材已按用途落库，Figma 来源信息保留为 provenance, Surface: data, Evidence: 映射表与素材索引。
 - VAL-003: 健康响应, Behavior: GET `/healthz` 返回 200 与 `{"status":"ok"}`, Surface: api, Evidence: curl 响应与退出码。
 - VAL-004: 浏览器基线可执行, Behavior: E2E 命令启动生产应用并确认 `/` 首屏可见, Surface: ui, Evidence: Playwright 日志与 trace。
-- VAL-005: CI 包含关键路径, Behavior: CI 在干净环境安装浏览器依赖并执行 E2E, Surface: cli, Evidence: CI 配置与成功日志。
+- VAL-005: CI 关键路径配置与本地等价执行, Behavior: 核对CI安装项目依赖及Chromium并运行E2E的配置，在干净本地环境执行相同命令成功，不要求远端运行, Surface: cli, Evidence: CI配置与干净本地成功日志。
 - VAL-006: 初始官网壳层, Behavior: `/` 显示英文 Home、七项导航和唯一可见画面, Surface: ui, Evidence: Playwright 断言与截图。
 - VAL-007: 单 URL 画面切换, Behavior: 选择任一导航项只显示对应画面且 URL 不变, Surface: ui, Evidence: Playwright trace。
-- VAL-008: 键盘导航, Behavior: 左右方向键、Home 和 End 同步移动焦点、当前项和画面, Surface: ui, Evidence: Playwright trace。
+- VAL-008: 键盘与移动导航, Behavior: 左右方向键、Home和End同步焦点、当前项和画面；390px与320px菜单按钮切换全部七项导航、Escape关闭且焦点返回按钮、选项激活后关闭并切换画面, Surface: ui, Evidence: Playwright trace。
 - VAL-009: 全站语言切换, Behavior: Locale 切换更新当前画面的全部可见文案和文档语言语义, Surface: ui, Evidence: Playwright 断言与截图。
 - VAL-010: 语言状态边界, Behavior: Locale 跨画面保持且刷新恢复英文 Home, Surface: business-flow, Evidence: Playwright trace。
 - VAL-011: 双语内容完整, Behavior: 七个画面不存在混合语言兜底或缺失内容编号, Surface: ui, Evidence: 双语截图与内容断言。
-- VAL-012: 有方向的整页过渡, Behavior: 前后向切换方向正确并在设计交付时长或默认 600ms 内提交目标, Surface: ui, Evidence: Playwright 视频或 trace。
+- VAL-012: 整页淡入淡出, Behavior: 前后切换均为250ms ease-out淡入淡出且无方向滑动, Surface: ui, Evidence: Playwright 视频或 trace。
 - VAL-013: 过渡输入锁, Behavior: 过渡中重复输入不会产生第二个目标或多个可见画面, Surface: ui, Evidence: Playwright trace。
 - VAL-014: 减少动画, Behavior: reduce 模式不播放整页位移且在 100ms 内显示目标, Surface: ui, Evidence: Playwright trace。
 - VAL-015: Home 上半部桌面视觉, Behavior: Hero、研究方向、技术能力和 CTA 在两种语言下匹配交付结构, Surface: ui, Evidence: 桌面截图。
@@ -183,17 +183,17 @@
 - VAL-022: Research 移动布局, Behavior: 关系信息和项目映射在 390px 与 320px 下保持可读且无横向溢出, Surface: ui, Evidence: 移动截图。
 - VAL-023: Research 交互状态, Behavior: 设计交付指定的关系图或展开状态可由键盘和指针访问, Surface: ui, Evidence: Playwright trace。
 - VAL-024: Projects 概览, Behavior: 导语和四类能力在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
-- VAL-025: Projects 筛选, Behavior: 选择能力筛选仅显示匹配项目并标记当前筛选, Surface: ui, Evidence: Playwright trace。
-- VAL-026: Projects 筛选移动布局, Behavior: 筛选控制在 390px 与 320px 下可操作且不遮挡项目内容, Surface: ui, Evidence: 移动截图。
+- VAL-025: Projects 轮播, Behavior: E-Linus轮播支持前后按钮、左右键和水平拖动，当前截图说明及进度同步更新且首尾按钮禁用, Surface: ui, Evidence: Playwright trace。
+- VAL-026: Projects 轮播移动布局, Behavior: 轮播控制在390px与320px下可操作、触摸拖动可用且无页面级溢出, Surface: ui, Evidence: 移动截图。
 - VAL-027: Projects 目录完整, Behavior: 设计交付要求的全部项目在两种语言下可浏览, Surface: ui, Evidence: 全页截图与项目标题断言。
-- VAL-028: Projects 详情状态, Behavior: 设计交付指定的卡片或折叠状态可操作且只暴露当前详情, Surface: ui, Evidence: Playwright trace。
+- VAL-028: Projects 详情状态, Behavior: PDM Robot轮播支持按钮、左右键和水平拖动，当前说明、进度和边界禁用状态同步, Surface: ui, Evidence: Playwright trace。
 - VAL-029: Projects 合作入口, Behavior: 项目合作 CTA 切换到 Contact 并保持当前 Locale 与 URL, Surface: business-flow, Evidence: Playwright trace。
 - VAL-030: Advantages 内容, Behavior: 八项技术优势在两种语言下按设计交付顺序完整显示, Surface: ui, Evidence: 桌面截图。
-- VAL-031: Advantages 响应与交互, Behavior: 设计交付指定状态可操作且在 390px 与 320px 下无溢出, Surface: ui, Evidence: Playwright trace 与移动截图。
+- VAL-031: Advantages 响应与交互, Behavior: A-04至A-08独立折叠区可用点击、Enter和Space切换，aria-expanded与隐藏内容一致，300ms展开且reduce立即显示，390px与320px无溢出, Surface: ui, Evidence: Playwright trace 与移动截图。
 - VAL-032: Partners 内容, Behavior: 合作介绍和设计交付 Logo 墙在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
 - VAL-033: Partners 媒体响应, Behavior: Logo 在 390px 与 320px 下清晰重排并具有正确替代文本, Surface: ui, Evidence: 移动截图。
 - VAL-034: Team 内容, Behavior: PI、团队构成和核心成员在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
-- VAL-035: Team 媒体响应, Behavior: 成员媒体和信息在 390px 与 320px 下保持关联、可读和可访问, Surface: ui, Evidence: 移动截图。
+- VAL-035: Team 筛选与媒体响应, Behavior: all、graduate、candidate筛选的aria-pressed与可见成员同步，保留源顺序，180ms状态变化，390px与320px媒体关联可读且操作可达, Surface: ui, Evidence: 移动截图。
 - VAL-036: Contact 内容, Behavior: 合作对象、合作形式、学生申请、联系方式和沟通说明在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
 - VAL-037: Contact 操作, Behavior: 邮件及设计交付指定外链使用正确目标并可由键盘激活, Surface: business-flow, Evidence: Playwright trace。
 - VAL-038: Contact 移动布局, Behavior: 390px 与 320px 下联系操作可见、可聚焦且无横向溢出, Surface: ui, Evidence: 移动截图。
@@ -202,7 +202,7 @@
 
 ### Risks / Open Questions
 
-- Photoshop 原始交付包尚未收到；Ticket 001 必须先完成，后续视觉票不得猜测。
+- Photoshop 交付包已收到且保持只读；Ticket 001 必须完成映射后再实施页面。
 - Photoshop 交付包若没有中文画面，中文以同编号内容完成版式适配，但不得改变正式设计的信息层级。
 - 参考 DOCX 中项目图片与伙伴 Logo 的许可字段并非全部已确认；仅使用 Photoshop 交付包随附且确认可用于官网的媒体。
 - 设计交付包未使用的候选内容、图片和历史素材不进入 V1。
@@ -228,4 +228,15 @@ Readiness: Ready
 
 Reason: 产品范围、来源优先级、公共状态、页面顺序、交互、响应式策略、验证接缝、依赖关系和人工门禁均已明确；素材是否到位由 Ticket 001 门禁判断。
 
-Next: 按依赖波次执行 `tickets/`；`001` 未完成前不得实施视觉页面，`030` 通过后执行 `031`，最后由 `032` 独立核验发布状态。
+Next: 按串行依赖执行 `tickets/`；`001` 未完成前不得实施视觉页面，`030` 通过后执行 `031`，最后由 `032` 独立核验发布状态。
+
+## 已批准的执行补充（2026-09-07）
+
+- 素材只读绝对路径：`/Users/qingsir/Project/labWebSite/Harmonizing-Intelligence-Lab-V1-Photoshop-Delivery`。worktree直接读取，不复制整包；运行时只消费按需导入public的资源。PSD/PNG不充当整页运行时背景。
+- 来源冲突按用户已批准公共行为、最终PNG、04_Documentation、05_Source_HTML依次处理。源HTML的六项导航/独立页面链接必须转为七画面单URL；Contact必须可达。Technology源HTML A-04初始展开与文档默认折叠冲突，采用文档的初始全部折叠，PNG仅作静态版式核对。
+- Projects只呈现交付的两个系统E-Linus与PDM Robot及其证据轮播，不增加能力分类筛选或候选项目。长页reveal采用14%交叉阈值、底边-7%、600ms opacity与短位移；reduce立即展示。静态视觉证据须滚动完成reveal后拍摄。
+- 字体使用交付Arial系统字体栈，不添加字体下载；权利状态如实记录为待公开发布确认，本次授权本地实现，不进行公开发布。
+- 002、003原实现已由bootstrap接收；新票只维护正式验收测试与证据记录，不重做端点或安装第二套工具链。保留真实提交及独立验证，不手填completed或伪造收据。
+- 串行顺序：002 → 003 → 001 → 010 → 011 → 012 → 020 → 021 → 022 → 023 → 024 → 025 → 026 → 027 → 028 → 030 → 031 → 032。devflow启用validators、review-gate、max-concurrency=1。
+- 每票收据后合并前创建同工作区侧边栏可见的只读审查任务，命名Review <编号> — <标题>，归入“审查与临时专区”；同票修复复用该审查任务。审查者仅返回结构化问题及指导，由编排记录报告，修复worker执行修改。
+- 旧bootstrap mission保留原contract、收据和进度，接替记录通过devflow log写入；本目录新编译计划仅用于新session。结束另做完整spec审查，全部断言证明后才关闭rehabilitation。

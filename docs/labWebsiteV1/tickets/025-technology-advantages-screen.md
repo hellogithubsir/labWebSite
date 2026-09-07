@@ -2,8 +2,8 @@
 Description: 交付八项技术优势及设计交互状态的双语响应式画面
 Type: AFK
 Milestone: m3-content-screens
-Touches: src/components/hil-site/screens/advantages/**, src/content/hil-site/advantages.ts, public/images/hil-site/advantages/**, e2e/advantages.spec.ts, docs/design-references/hil-site/advantages/**
-Blocked by: 010, 011
+Touches: src/components/hil-site/ScreenRenderer.tsx, src/components/hil-site/screens/advantages/**, src/content/hil-site/advantages.ts, public/images/hil-site/advantages/**, e2e/advantages.spec.ts, docs/design-references/hil-site/advantages/**
+Blocked by: 024
 User stories covered: US-002, US-004, US-005
 
 ### What to build
@@ -25,3 +25,5 @@ Fulfills: VAL-030, VAL-031
 
 - 组件库中的 Hover/Open 示例只有在 001 证明页面使用时才进入运行时。
 - 不新增超出 A-01 至 A-08 的未来能力占位。
+
+- A-04至A-08采用独立Accordion，默认全部折叠（04_Documentation优先于HTML的A-04初始展开），点击/Enter/Space切换，aria-expanded与可见详情一致；300ms展开，reduce立即显示。折叠内容不可聚焦；通过对应正式测试验证所有条目。

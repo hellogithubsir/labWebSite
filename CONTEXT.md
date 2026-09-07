@@ -47,12 +47,12 @@ Harmonizing Intelligence Lab 官网是一个以用户 Photoshop 交付包为当�
 
 ## State Model
 
-当前没有业务状态模型；已登记的工程状态只有 rehabilitation active。正式页面和交互落地后，再补充可执行的用户任务和状态转换。
+公共状态固定为七个ScreenId和en|zh-CN，默认英文Home，单URL且刷新复位；整页250ms淡入淡出。rehabilitation保持active，031在证据齐备后收口。
 
 ## Implicit Dependencies
 
 - Node 和 npm 可执行文件存在；package/config 已从 Git 基线恢复，`node_modules` 当前不存在，`npm ci` 是本地验证前置。
-- Photoshop 原始交付包尚未收到；收到并完成 Ticket 001 清单前不实施视觉页面。
+- Photoshop交付包已收到；路径与来源优先级见docs/labWebsiteV1/spec.md已批准执行补充。001完成清单后实施视觉页面。
 - Figma MCP 当前受 View 席位调用额度限制；该来源不作为运行时依赖或当前开工门禁。
 - CI 需要 GitHub Actions、秘密扫描和 CodeQL 服务；本地不执行远端 CI。
 
@@ -60,4 +60,4 @@ Harmonizing Intelligence Lab 官网是一个以用户 Photoshop 交付包为当�
 
 - 正式画面的尺寸、素材和交互状态待 Photoshop 原始交付包逐页确认。
 - 依赖安装完成后，`make check`、`/healthz` 和 Playwright 关键路径何时具备可执行证据。
-- Playwright 和 /healthz 的实现需等 Next.js 工具链可运行后处理。
+- Playwright与/healthz实现已接收，002/003仅维护正式验收，不重复实现。

@@ -3,7 +3,7 @@ Description: 独立核验设计交付、运行时、七画面双语视觉与交�
 Type: VALIDATION
 Milestone: m4-release-proof
 Touches: None
-Blocked by: 001, 002, 003, 012, 021, 022, 024, 025, 026, 027, 028
+Blocked by: 028
 User stories covered: US-001, US-002, US-003, US-004, US-005
 
 ### What to build
@@ -12,7 +12,7 @@ User stories covered: US-001, US-002, US-003, US-004, US-005
 
 ### Acceptance criteria
 
-- [ ] VAL-001 至 VAL-005 的设计清单、素材、健康响应、浏览器基线和成功 CI 日志均有独立可定位证据。
+- [ ] VAL-001 至 VAL-005 的设计清单、素材、健康响应、浏览器基线和CI配置与干净本地等价执行日志均有独立可定位证据。
 - [ ] VAL-006 至 VAL-014 的单 URL 导航、键盘、双语、过渡锁和 reduced-motion 行为均由现有 Playwright 证据支撑。
 - [ ] VAL-015 至 VAL-038 的七画面、两种语言、桌面与 390px 证据共 28 组，320px 溢出与各正式交互状态也有可定位结果。
 

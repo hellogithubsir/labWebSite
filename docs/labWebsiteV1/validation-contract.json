@@ -1,6 +1,6 @@
 {
   "contract_version": "1",
-  "authority": "machine contract for labWebsiteV1; spec.md Validation Plan is the human-readable view, this JSON is the machine grammar consumed by devflow.cjs validate",
+  "authority": "machine contract for labwebsitev1-delivery-refresh; spec.md Validation Plan is the human-readable view, this JSON is the machine grammar consumed by devflow.cjs validate",
   "assertions": [
     {
       "id": "VAL-001",
@@ -40,11 +40,11 @@
     },
     {
       "id": "VAL-005",
-      "title": "CI 包含关键路径",
-      "behavior": "CI 在干净环境安装浏览器依赖并执行 E2E",
+      "title": "CI 关键路径配置与本地等价执行",
+      "behavior": "核对CI安装项目依赖及Chromium并运行E2E的配置，在干净本地环境执行相同命令成功，不要求远端运行",
       "surface": "cli",
       "tool": "cli",
-      "evidence": "CI 配置与成功日志。",
+      "evidence": "CI配置与干净本地成功日志。",
       "status": "pending"
     },
     {
@@ -67,8 +67,8 @@
     },
     {
       "id": "VAL-008",
-      "title": "键盘导航",
-      "behavior": "左右方向键、Home 和 End 同步移动焦点、当前项和画面",
+      "title": "键盘与移动导航",
+      "behavior": "左右方向键、Home和End同步焦点、当前项和画面；390px与320px菜单按钮切换全部七项导航、Escape关闭且焦点返回按钮、选项激活后关闭并切换画面",
       "surface": "ui",
       "tool": "ui",
       "evidence": "Playwright trace。",
@@ -103,8 +103,8 @@
     },
     {
       "id": "VAL-012",
-      "title": "有方向的整页过渡",
-      "behavior": "前后向切换方向正确并在设计交付时长或默认 600ms 内提交目标",
+      "title": "整页淡入淡出",
+      "behavior": "前后切换均为250ms ease-out淡入淡出且无方向滑动",
       "surface": "ui",
       "tool": "ui",
       "evidence": "Playwright 视频或 trace。",
@@ -220,8 +220,8 @@
     },
     {
       "id": "VAL-025",
-      "title": "Projects 筛选",
-      "behavior": "选择能力筛选仅显示匹配项目并标记当前筛选",
+      "title": "Projects 轮播",
+      "behavior": "E-Linus轮播支持前后按钮、左右键和水平拖动，当前截图说明及进度同步更新且首尾按钮禁用",
       "surface": "ui",
       "tool": "ui",
       "evidence": "Playwright trace。",
@@ -229,8 +229,8 @@
     },
     {
       "id": "VAL-026",
-      "title": "Projects 筛选移动布局",
-      "behavior": "筛选控制在 390px 与 320px 下可操作且不遮挡项目内容",
+      "title": "Projects 轮播移动布局",
+      "behavior": "轮播控制在390px与320px下可操作、触摸拖动可用且无页面级溢出",
       "surface": "ui",
       "tool": "ui",
       "evidence": "移动截图。",
@@ -248,7 +248,7 @@
     {
       "id": "VAL-028",
       "title": "Projects 详情状态",
-      "behavior": "设计交付指定的卡片或折叠状态可操作且只暴露当前详情",
+      "behavior": "PDM Robot轮播支持按钮、左右键和水平拖动，当前说明、进度和边界禁用状态同步",
       "surface": "ui",
       "tool": "ui",
       "evidence": "Playwright trace。",
@@ -275,7 +275,7 @@
     {
       "id": "VAL-031",
       "title": "Advantages 响应与交互",
-      "behavior": "设计交付指定状态可操作且在 390px 与 320px 下无溢出",
+      "behavior": "A-04至A-08独立折叠区可用点击、Enter和Space切换，aria-expanded与隐藏内容一致，300ms展开且reduce立即显示，390px与320px无溢出",
       "surface": "ui",
       "tool": "ui",
       "evidence": "Playwright trace 与移动截图。",
@@ -310,8 +310,8 @@
     },
     {
       "id": "VAL-035",
-      "title": "Team 媒体响应",
-      "behavior": "成员媒体和信息在 390px 与 320px 下保持关联、可读和可访问",
+      "title": "Team 筛选与媒体响应",
+      "behavior": "all、graduate、candidate筛选的aria-pressed与可见成员同步，保留源顺序，180ms状态变化，390px与320px媒体关联可读且操作可达",
       "surface": "ui",
       "tool": "ui",
       "evidence": "移动截图。",

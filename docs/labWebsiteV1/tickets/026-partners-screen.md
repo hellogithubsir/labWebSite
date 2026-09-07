@@ -2,8 +2,8 @@
 Description: 交付合作介绍与设计 Logo 墙的双语响应式画面
 Type: AFK
 Milestone: m3-content-screens
-Touches: src/components/hil-site/screens/partners/**, src/content/hil-site/partners.ts, public/images/hil-site/partners/**, e2e/partners.spec.ts, docs/design-references/hil-site/partners/**
-Blocked by: 010, 011
+Touches: src/components/hil-site/ScreenRenderer.tsx, src/components/hil-site/screens/partners/**, src/content/hil-site/partners.ts, public/images/hil-site/partners/**, e2e/partners.spec.ts, docs/design-references/hil-site/partners/**
+Blocked by: 025
 User stories covered: US-002, US-004
 
 ### What to build

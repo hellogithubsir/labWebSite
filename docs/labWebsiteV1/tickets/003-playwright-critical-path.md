@@ -1,14 +1,14 @@
 ## Issue: 003 — Playwright 关键路径基线
-Description: 建立生产构建上的 `/` 浏览器验收入口并接入现有工程门禁
+Description: 接收现有Playwright基线并记录CI配置与干净本地等价验收
 Type: AFK
 Milestone: m0-delivery-readiness
-Touches: package.json, package-lock.json, playwright.config.ts, e2e/smoke.spec.ts, .github/workflows/ci.yml, Makefile, README.md, constraints.yaml
-Blocked by: None
+Touches: docs/design-references/hil-site/release/browser-baseline-evidence.md
+Blocked by: 002
 User stories covered: US-006
 
 ### What to build
 
-增加项目本地 Playwright 开发依赖、生产服务器配置和首个 `/` 冒烟流程。提供稳定的 `npm run test:e2e` 与 `make check-ui` 入口，并让 CI 在具备浏览器运行条件的独立任务中执行关键路径。
+复用已有Playwright配置、依赖、smoke测试和CI任务。在干净依赖环境执行npm ci、项目Chromium安装及npm run test:e2e，核对CI执行相同入口，提交browser-baseline-evidence.md保存具体配置定位、命令、退出码和原始日志路径。不得重复安装第二套工具链或把未运行的远端CI写成通过。
 
 ### Acceptance criteria
 
@@ -18,8 +18,10 @@ User stories covered: US-006
 
 ### Validation
 Fulfills: VAL-004, VAL-005
+- Verification: npm ci (exit zero)
+- Verification: npx playwright install chromium (exit zero)
 - Verification: npm run test:e2e (exit zero)
-- Command / scenario: 在干净安装后的本地环境和 CI 运行相同冒烟测试。
+- Command / scenario: 核对CI配置，并在干净安装后的本地环境执行等价冒烟测试；本轮不要求远端CI。
 - Evidence expected: Playwright 运行日志和失败时 trace。
 
 ### Notes

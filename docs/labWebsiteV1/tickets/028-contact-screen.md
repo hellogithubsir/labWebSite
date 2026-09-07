@@ -2,8 +2,8 @@
 Description: 交付合作类型、申请说明、联系方式和沟通规范的双语响应式画面
 Type: AFK
 Milestone: m3-content-screens
-Touches: src/components/hil-site/screens/contact/**, src/content/hil-site/contact.ts, e2e/contact.spec.ts, docs/design-references/hil-site/contact/**
-Blocked by: 010, 011
+Touches: src/components/hil-site/ScreenRenderer.tsx, src/components/hil-site/screens/contact/**, src/content/hil-site/contact.ts, e2e/contact.spec.ts, docs/design-references/hil-site/contact/**
+Blocked by: 027
 User stories covered: US-002, US-003, US-004, US-005
 
 ### What to build
