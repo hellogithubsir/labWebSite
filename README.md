@@ -57,3 +57,4 @@ Figma implementation can be added without carrying historical routes forward.
 - docs/architecture/figma-single-url.md — seven Figma screen states under one URL
 - docs/adr/0001-single-url-screen-sequence.md — single URL screen-sequence decision
 - docs/adr/0002-native-css-page-transition.md — native CSS page-transition decision
+- [docs/reference/mitibm-section-navigation/README.md](docs/reference/mitibm-section-navigation/README.md) — MIT‑IBM section-navigation motion reference
