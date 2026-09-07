@@ -20,7 +20,7 @@ test("project carousel buttons synchronize evidence and boundaries", async ({ pa
 });
 
 for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
-  test(`project carousel ${width} ${chinese ? "Chinese" : "English"} keyboard drag and layout`, async ({ browser }, testInfo) => {
+  test(`project catalog and project carousel ${width} ${chinese ? "Chinese" : "English"} keyboard drag and layout`, async ({ browser }, testInfo) => {
     const context = await browser.newContext({ viewport: { width, height: 1080 }, hasTouch: true });
     const page = await context.newPage();
     await page.goto("/");
@@ -67,22 +67,87 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
     await next.click(); await expect(status).toHaveText("2 / 4");
     await previous.press("Enter"); await expect(status).toHaveText("1 / 4");
     for (const button of [previous, next]) { const bounds = (await button.boundingBox())!; expect(bounds.width).toBeGreaterThanOrEqual(44); expect(bounds.height).toBeGreaterThanOrEqual(44); }
+    const pdm = page.getByRole("region", { name: chinese ? "PDM Robot 资产剩余寿命监测" : "PDM Robot Asset RUL Monitor", exact: true });
+    const pdmDrag = pdm.getByRole("group"), pdmStatus = pdm.getByRole("status");
+    const pdmNext = pdm.getByRole("button", { name: chinese ? "下一张 PDM Robot 界面" : "Next PDM Robot screen", exact: true });
+    const pdmPrevious = pdm.getByRole("button", { name: chinese ? "上一张 PDM Robot 界面" : "Previous PDM Robot screen", exact: true });
+    await expect(pdmStatus).toHaveText("2 / 4");
+    await expect(pdmDrag.locator(":scope > div")).toHaveCSS("transition-duration", "0.4s");
+    await pdmPrevious.click();
+    await expect(pdmPrevious).toBeDisabled();
+    const pdmTitles = chinese ? ["维护团队掌握整个资产群的状态。", "让剩余使用寿命的变化清晰可见。", "系统从预警进一步追溯证据。", "让指导与运营情境保持关联。"] : ["A maintenance team sees the whole asset fleet.", "Remaining useful life becomes visible as it changes.", "The system moves from warning to evidence.", "Guidance stays beside the operational context."];
+    const pdmProofs = chinese ? ["虚拟资产状态", "55 秒操作演示", "传感器证据", "工单处理路径"] : ["Virtual asset status", "55-second operational demonstration", "Sensor evidence", "Work order pathway"];
+    for (let i = 0; i < 4; i++) {
+      if (i) await pdmNext.click();
+      await expect(pdmStatus).toHaveText(`${i + 1} / 4`);
+      await expect(pdm.getByRole("heading", { level: 3 })).toHaveText(pdmTitles[i]);
+      await expect(pdm.locator("article:not([aria-hidden=true])")).toContainText(pdmProofs[i]);
+      await expect(pdm.locator("li[aria-current=step]")).toHaveText(new RegExp(`0${i + 1}`));
+      await expect(pdm.getByRole("img")).toHaveCount(1);
+      const img = pdm.getByRole("img");
+      await img.scrollIntoViewIfNeeded();
+      await expect(img).toHaveJSProperty("complete", true);
+      expect(await img.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
+      const bounds = (await img.boundingBox())!;
+      expect(bounds.width / bounds.height).toBeCloseTo(1.5, 1);
+      await expect(status).toHaveText("1 / 4");
+    }
+    await expect(pdmNext).toBeDisabled();
+    await pdmDrag.press("ArrowRight"); await expect(pdmStatus).toHaveText("4 / 4");
+    await pdmDrag.press("ArrowLeft"); await expect(pdmStatus).toHaveText("3 / 4");
+    await pdmDrag.scrollIntoViewIfNeeded();
+    const pdmBox = (await pdmDrag.boundingBox())!;
+    const px = pdmBox.x + pdmBox.width / 2, py = Math.max(100, pdmBox.y + 40);
+    await page.mouse.move(px - 60, py); await page.mouse.down(); await page.mouse.move(px + 60, py, { steps: 8 }); await page.mouse.up();
+    await expect(pdmStatus).toHaveText("2 / 4");
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: px + 60, y: py }] });
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: px - 60, y: py }] });
+    await cdp.send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] });
+    await expect(pdmStatus).toHaveText("3 / 4");
+    await pdmDrag.press("ArrowLeft"); await pdmDrag.press("ArrowLeft"); await pdmDrag.press("ArrowLeft");
+    await expect(pdmStatus).toHaveText("1 / 4"); await expect(pdmPrevious).toBeDisabled();
+    await pdmNext.press("Enter"); await expect(pdmStatus).toHaveText("2 / 4");
+    await next.click(); await expect(status).toHaveText("2 / 4"); await expect(pdmStatus).toHaveText("2 / 4");
+    await previous.click();
+    for (const button of [pdmPrevious, pdmNext]) { const bounds = (await button.boundingBox())!; expect(bounds.width).toBeGreaterThanOrEqual(44); expect(bounds.height).toBeGreaterThanOrEqual(44); }
     for (const reveal of await page.locator("main [data-reveal]").all()) { await reveal.scrollIntoViewIfNeeded(); await expect(reveal).toHaveAttribute("data-reveal", "visible"); }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page).toHaveURL("http://127.0.0.1:3000/");
     await expect.poll(() => drag.locator(":scope > div").evaluate(node => new DOMMatrix(getComputedStyle(node).transform).m41)).toBe(0);
+    await expect.poll(() => pdmDrag.locator(":scope > div").evaluate(node => Math.round(new DOMMatrix(getComputedStyle(node).transform).m41 + node.getBoundingClientRect().width))).toBe(0);
     await page.evaluate(() => { if (document.activeElement instanceof HTMLElement) document.activeElement.blur(); });
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: testInfo.outputPath(`projects-${chinese ? "zh-CN" : "en"}-${width}.png`), fullPage: true });
+    await page.getByRole("button", { name: chinese ? "让智能投入实际运营的项目。" : "Projects that make intelligence operational.", exact: true }).click();
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(chinese ? "联系合作" : "Contact");
+    await expect(page.locator("html")).toHaveAttribute("lang", chinese ? "zh-CN" : "en");
+    await expect(page).toHaveURL("http://127.0.0.1:3000/");
     await context.close();
   });
 }
 
-test("project carousel reduced motion changes immediately", async ({ page }) => {
+test("project catalog and project carousel reduced motion changes immediately", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" }); await page.goto("/");
   await page.getByRole("navigation").getByRole("button", { name: "Projects", exact: true }).click();
   const drag = page.getByRole("group", { name: "E-Linus project screenshots. Drag or use arrow keys." });
   await expect(drag.locator(":scope > div")).toHaveCSS("transition-duration", "0s");
   await drag.press("ArrowRight");
-  await expect(page.getByRole("status")).toHaveText("2 / 4");
+  await expect(page.getByRole("region", { name: "E-Linus Smart Elderly Care", exact: true }).getByRole("status")).toHaveText("2 / 4");
+  const pdm = page.getByRole("region", { name: "PDM Robot Asset RUL Monitor", exact: true });
+  const pdmDrag = pdm.getByRole("group");
+  await expect(pdmDrag.locator(":scope > div")).toHaveCSS("transition-duration", "0s");
+  await pdmDrag.press("ArrowRight");
+  await expect(pdm.getByRole("status")).toHaveText("3 / 4");
+  await expect.poll(() => pdmDrag.locator(":scope > div").evaluate(node => Math.round(new DOMMatrix(getComputedStyle(node).transform).m41 + 2 * node.getBoundingClientRect().width))).toBe(0);
+  await expect(page.getByRole("region", { name: "E-Linus Smart Elderly Care", exact: true }).getByRole("status")).toHaveText("2 / 4");
+});
+
+test("project catalog includes both delivered systems", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("navigation").getByRole("button", { name: "Projects", exact: true }).click();
+  await expect(page.getByRole("region", { name: "E-Linus Smart Elderly Care", exact: true })).toBeVisible();
+  const pdm = page.getByRole("region", { name: "PDM Robot Asset RUL Monitor", exact: true });
+  await expect(pdm).toBeVisible();
+  await expect(pdm.getByRole("status")).toHaveText("2 / 4");
+  await expect(pdm.getByRole("heading", { level: 3 })).toHaveText("Remaining useful life becomes visible as it changes.");
 });
