@@ -18,7 +18,7 @@ Ticket 001，2026-09-07。七个 FINAL PSD、七个全尺寸 sRGB PNG 齐全；�
 
 | 顺序 / ScreenId | 名称 | 画布 | 主要 CTA 和默认状态 |
 | --- | --- | --- | --- |
-| 01 home | 01-HOME-V1-FINAL | 1920×6668 | Explore Research → research；Collaborate → partners（源设计目标）；页脚邮件 |
+| 01 home | 01-HOME-V1-FINAL | 1920×6668 | Explore Research → research；Collaborate → contact（020 公共 CTA 契约；HTML 原链接为 partners，仅保留来源记录）；页脚邮件 |
 | 02 research | 02-RESEARCH-DIRECTIONS-V1-FINAL | 1920×6685 | Explore the Pillars 滚到当前屏支柱区，不写 hash；关系卡和场景映射静态展示 |
 | 03 projects | 03-PROJECTS-V1-FINAL | 1920×4716 | E-Linus 和 PDM Robot 两个独立轮播；合作 CTA → contact，保持语言 |
 | 04 advantages | 04-TECHNOLOGY-ADVANTAGES-V1-FINAL | 1920×3466 | 三核心优势、现场照片、A-04 至 A-08 独立折叠，默认全关闭 |
