@@ -89,7 +89,7 @@
         "steps": [
           {
             "id": "check",
-            "command": "npm ci",
+            "command": "npm ci && npx playwright install chromium && npm run test:e2e",
             "expectedExit": "zero"
           }
         ]

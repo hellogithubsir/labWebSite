@@ -18,9 +18,7 @@ User stories covered: US-006
 
 ### Validation
 Fulfills: VAL-004, VAL-005
-- Verification: npm ci (exit zero)
-- Verification: npx playwright install chromium (exit zero)
-- Verification: npm run test:e2e (exit zero)
+- Verification: npm ci && npx playwright install chromium && npm run test:e2e (exit zero)
 - Command / scenario: 核对CI配置，并在干净安装后的本地环境执行等价冒烟测试；本轮不要求远端CI。
 - Evidence expected: Playwright 运行日志和失败时 trace。
 
