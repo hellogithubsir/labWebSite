@@ -71,7 +71,7 @@ jobs:
             base="$(git rev-list --max-parents=0 HEAD)"
           fi
           max_lines="$(awk '/max_pr_diff_lines:/ {print $2}' constraints.yaml)"
-          changed="$(git diff --numstat "$base" "${{ github.sha }}" | awk '{added += $1; deleted += $2} END {print added + deleted + 0}')"
+          changed="$(git diff --numstat "$base" "${{ github.sha }}" -- . ':(exclude)docs/labWebsiteV1/features.json' ':(exclude)docs/labWebsiteV1/validation-contract.json' | awk '{added += $1; deleted += $2} END {print added + deleted + 0}')"
           if (( changed > max_lines )); then
             echo "diff-size: $changed changed lines exceed limit $max_lines" >&2
             exit 1

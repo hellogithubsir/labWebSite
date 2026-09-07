@@ -74,6 +74,8 @@ size_limits:
   max_function_lines: 80
   max_pr_diff_lines: 400
   max_pr_diff_severity: "block"
+  diff_size_exclusions: ["docs/labWebsiteV1/features.json", "docs/labWebsiteV1/validation-contract.json"]
+  diff_size_exclusion_reason: "deterministic devflow compile outputs; source spec and tickets remain counted"
 
 verification:
   - surface: "repository"

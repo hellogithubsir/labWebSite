@@ -2,7 +2,7 @@
 
 状态：已确认的 redesign 目标架构
 
-范围：当前仓库的官网前端，以及同一 Figma URL 下的 7 个设计画面。
+范围：当前仓库的官网前端，以及同一 URL 下的 7 个设计画面。当前权威是尚未收到的 Photoshop 分层原稿、全尺寸 sRGB PNG、随附素材/字体/状态说明及其 Ticket 001 清单；Figma 只保留历史 provenance 与恢复访问后的辅助核对用途。
 
 ## Current state
 
@@ -17,7 +17,7 @@
 - `make test-guardrails` 与 `make check-guardrails` 已通过；安装依赖后再运行完整 `make check`。
 - 同级归档目录存在历史官网、图片和研究资料，但它们只允许作为参考，不进入当前运行时。
 
-Figma 当前已观察到 HOME 主视觉稿存在名为 `MASTER / HOME / Exact 1:1 Approved PNG` 的整页视觉稿。实现不能假设每个画面都能直接拿到完整的语义文本图层；应把 Figma 截图作为视觉 oracle，把可提取图片/SVG 作为媒体资产，再用语义 HTML 重建文本和交互区域。
+Figma 历史来源中已观察到 HOME 节点 `MASTER / HOME / Exact 1:1 Approved PNG`。正式实现必须等待 Ticket 001 验收 Photoshop 原稿及 PNG；整页 PNG 只作视觉 oracle，随附图片/SVG 才能作为候选媒体，再用语义 HTML 重建文本和交互区域。
 
 ## Findings by lens
 
@@ -34,10 +34,10 @@ Figma 当前已观察到 HOME 主视觉稿存在名为 `MASTER / HOME / Exact 1:
 
 ### Scope & goals
 
-目标是把同一 Figma URL 下的 7 个画面实现为一个可运行的 Next.js 单页体验：
+目标是把 Ticket 001 确认的 7 个画面实现为一个可运行的 Next.js 单页体验：
 
-- 视觉、文案、布局、响应式状态和交互状态与 Figma 保持 1:1 目标一致。
-- 点击导航或子页面入口时，在同一个 URL 内切换画面，并播放 Figma 要求的整页翻页式过渡。
+- 视觉、文案、布局、响应式状态和交互状态与 Photoshop 交付清单保持一致。
+- 点击导航或子页面入口时，在同一个 URL 内切换画面，并播放设计交付要求的整页翻页式过渡。
 - 每个画面拥有独立的实现文件和局部内容，避免形成七套拷贝或一个数百行条件组件。
 - 只使用本地静态数据和 `public/` 资源，不引入后端、数据库、CMS、账号体系或全局状态管理。
 - 通过桌面、移动端和减少动画三类可观察状态验收。
@@ -104,7 +104,7 @@ type ScreenSequence = {
 
 它隐藏当前画面和下一画面的双层渲染、CSS class/data attribute、动画完成提交、过渡期间的点击锁定和 `prefers-reduced-motion` 处理。
 
-深度：七个画面不需要知道翻页如何实现；Figma 改变翻页方向、遮罩、缓动或层叠关系时，只改这一处。
+深度：七个画面不需要知道翻页如何实现；设计交付改变翻页方向、遮罩、缓动或层叠关系时，只改这一处。
 
 #### 5. `ScreenNavigation`
 
@@ -114,7 +114,7 @@ type ScreenSequence = {
 
 #### 6. 七个画面模块
 
-每个画面是独立的 React 模块，命名以 Figma 画面名称为准。若 Figma 节点名称尚未稳定，先使用临时的结构化 `Screen01` 到 `Screen07` 作为内部映射，落地前必须替换为真实语义名称，不能把临时命名带进正式实现。
+每个画面是独立的 React 模块，命名以 Ticket 001 的 Photoshop 画面名称为准。名称未确认前保持本票阻塞，不把临时命名带进正式实现。
 
 画面模块只负责自己的语义 HTML、局部布局和局部资源，不负责全局导航、不负责切换方向、不负责读取 Figma API。
 
@@ -130,7 +130,7 @@ flowchart LR
   Shell --> Renderer[ScreenRenderer]
   Shell --> Transition[PageTurnTransition]
   Renderer --> Screens[Seven screen modules]
-  Screens --> Content[Local Figma content]
+  Screens --> Content[Local design content]
   Screens --> Assets[public assets]
   Navigation --> Types[src/types/hil-site.ts]
   Sequence --> Types
@@ -152,7 +152,7 @@ flowchart LR
 ```text
 src/
 ├── app/
-│   ├── globals.css                  # reset、Figma token、全局响应式基础
+│   ├── globals.css                  # reset、设计 token、全局响应式基础
 │   ├── layout.tsx                   # metadata、viewport、根布局
 │   └── page.tsx                     # 唯一 URL 入口，只渲染 HilSiteShell
 ├── components/
@@ -177,7 +177,7 @@ src/
 
 public/
 └── images/
-    └── hil-site/                    # 从 Figma 导出的正式图片/SVG/字体资源
+    └── hil-site/                    # Ticket 001 确认的正式图片/SVG/字体资源
 
 docs/
 ├── adr/
@@ -185,13 +185,13 @@ docs/
 └── design-references/               # 仅放视觉核对资料，不被运行时读取
 ```
 
-目录中的 `HomeScreen` 和省略号只是结构示意；实现时以 Figma 真实节点名称和页面内容替换，不创建 `_v1`、`_new` 等并行副本。
+目录中的 `HomeScreen` 和省略号只是结构示意；实现时以 Ticket 001 的真实画面名称和页面内容替换，不创建 `_v1`、`_new` 等并行副本。
 
 ### Data flow
 
 ```mermaid
 sequenceDiagram
-  participant F as Figma delivery
+  participant F as Design delivery
   participant R as Screen registry
   participant U as User
   participant S as HilSiteShell
@@ -211,7 +211,7 @@ sequenceDiagram
 
 运行时切换规则：
 
-1. 初始进入 `/` 时显示 Figma 指定的首个画面。
+1. 初始进入 `/` 时显示 Ticket 001 指定的首个画面。
 2. 点击当前画面时不触发动画。
 3. 点击其他画面时先计算方向，再同时渲染当前画面和下一画面。
 4. 过渡期间锁定重复点击，避免两个动画互相覆盖。
@@ -223,16 +223,16 @@ sequenceDiagram
 - 采用单 URL 七画面序列，记录于 [ADR 0001](../adr/0001-single-url-screen-sequence.md)。
 - 采用 React 状态 + 原生 CSS 翻页过渡，记录于 [ADR 0002](../adr/0002-native-css-page-transition.md)。
 - 采用 feature-first 的展示层结构，不引入 DDD、Clean Architecture、后端端口或全局状态管理；这是由“单一官网、单一 URL、纯展示交互”决定的最小结构。
-- Figma 节点、原型状态和导出资源先于代码；没有 Figma 证据的视觉或交互不主动扩展。
-- 实现顺序固定为：安装并验证前端工具链 → 盘点 7 个 Figma 节点 → 导出资源和字体 → 搭建单页壳与过渡 → 实现 7 个画面 → 做响应式和动效验收。
+- Ticket 001 的 Photoshop 画面、状态和正式资源先于视觉代码；没有设计交付证据的视觉或交互不主动扩展。
+- 实现顺序固定为：安装并验证前端工具链 → 验收 Photoshop 原稿/PNG/随附清单 → 完成 Ticket 001 → 搭建单页壳与过渡 → 实现 7 个画面 → 做响应式和动效验收。
 
 ## Open questions
 
-这些不是需要用户再次决策的问题，而是实现阶段必须从 Figma 读取的事实：
+这些是收到 Photoshop 原始交付包后由 Ticket 001 确认的事实：
 
-- 7 个画面的真实节点 ID、名称、桌面/移动尺寸和原型连接关系。
-- 翻页动效的确切方向、时长、缓动、遮罩和层叠状态；若 Figma 未提供明确值，使用单一 CSS token 集中定义，避免每个画面各猜一套。
-- 哪些图片/Logo 是 Figma 原始资源，哪些只是整页 PNG 的视觉结果；前者进入 `public/images/hil-site/`，后者只作为比对参照。
+- 7 个画面的源文件或画板、名称、桌面/移动尺寸和连接关系。
+- 翻页动效的方向、时长、缓动、遮罩和层叠状态；设计稿未提供明确值时使用规格中的默认 token。
+- 哪些图片/Logo 是随附原始资源，哪些只是整页 PNG 的视觉结果；前者进入 `public/images/hil-site/`，后者只作为比对参照。
 - 依赖安装完成后，先以哪一个页面状态作为视觉实现基线。
 
 ## Delivery evidence
@@ -244,4 +244,4 @@ sequenceDiagram
 - `make check`
 - `/` 在桌面和移动视口的 7 个画面截图对照
 - 7 个画面之间的点击切换、键盘操作、动画完成和 `prefers-reduced-motion` 证据
-- 每个截图和交互证据注明对应的 Figma 节点或原型状态
+- 每个截图和交互证据注明对应的 Photoshop 画面或状态，并在适用时附 Figma provenance
