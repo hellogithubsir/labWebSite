@@ -1,0 +1,8 @@
+/* 两段各 125ms，总过渡 250ms；只在完全透明时替换唯一正文。 */
+.out { animation: fade-out 125ms ease-out both; }
+.in { animation: fade-in 125ms ease-out both; }
+@keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .out, .in { animation: none; }
+}
