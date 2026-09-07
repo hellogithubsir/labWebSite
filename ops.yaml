@@ -1,0 +1,10 @@
+# 已确认的本地运行事实，后续 worker 可直接复用。
+node: ".nvmrc 指定 Node 24；新 worktree 先 npm ci。"
+checks: "make check、make test-guardrails、make check-ui 是既有验证入口。"
+browser: "Playwright 自动构建并启动 127.0.0.1:3000 生产服务器；reuseExistingServer=false。"
+evidence: "使用 --trace on --output 指向持久 mission evidence；Next build 会清理 .next。"
+scratch: "临时脚本和干净克隆放仓库外。"
+screenshots: "等待菜单 visibility=hidden、ScrollReveal visible 和相关动画稳定；全页截图前回顶并移走指针。"
+images: "同路径替换图片后，清理自己 worktree 的生成图片缓存再构建。"
+sources: "媒体与双语文案读取 manifest、assets.json、bilingual-source.json，不硬编码素材总数。"
+reuse: "统一品牌 alt 和精确标题断言；复用 SiteFooter、ProjectCarousel 与 ScreenRenderer 接口。"

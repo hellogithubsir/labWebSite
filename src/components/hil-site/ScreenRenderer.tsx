@@ -1,3 +1,4 @@
+import { AdvantagesScreen } from "./screens/advantages/AdvantagesScreen";
 import { ProjectsScreen } from "./screens/projects/ProjectsScreen";
 import { ResearchScreen } from "./screens/research/ResearchScreen";
 import Image from "next/image";
@@ -18,6 +19,7 @@ export function ScreenRenderer({ screen, labels, titles, logoAlt, locale, onNavi
   if (screen === "home") return <main id="site-content" tabIndex={-1} data-screen={screen} data-od-id="current-screen"><HomeScreen locale={locale} onNavigate={onNavigate} /></main>;
   if (screen === "research") return <main id="site-content" tabIndex={-1} data-screen={screen} data-od-id="current-screen"><ResearchScreen locale={locale} onNavigate={onNavigate} /></main>;
   if (screen === "projects") return <main id="site-content" tabIndex={-1} data-screen={screen} data-od-id="current-screen"><ProjectsScreen locale={locale} onNavigate={onNavigate} /></main>;
+  if (screen === "advantages") return <main id="site-content" tabIndex={-1} data-screen={screen} data-od-id="current-screen"><AdvantagesScreen locale={locale} onNavigate={onNavigate} /></main>;
   return (
     <main id="site-content" tabIndex={-1} data-screen={screen} data-od-id="current-screen"
       className="min-h-screen px-5 py-16 min-[981px]:px-[4.5vw] min-[981px]:py-24">
