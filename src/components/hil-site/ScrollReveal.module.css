@@ -1,0 +1,3 @@
+.reveal { opacity: 1; transform: none; transition: opacity 600ms var(--ease), transform 600ms var(--ease); }
+.reveal[data-reveal="pending"] { opacity: 0; transform: translateY(24px); }
+@media (prefers-reduced-motion: reduce) { .reveal, .reveal[data-reveal="pending"] { opacity: 1; transform: none; transition: none; } }

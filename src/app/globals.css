@@ -1,62 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f7f8;
-  --foreground: #10233d;
-  --muted: #5c6b7e;
-  --accent: #39d2c0;
+  color-scheme: light;
+  --navy: #082956;
+  --navy-2: #0d3669;
+  --teal: #009d92;
+  --cyan: #28b4cc;
+  --green: #48a947;
+  --ink: #102b50;
+  --muted: #526b7c;
+  --muted-2: #8499a5;
+  --line: #dae8e6;
+  --ice: #f3f9f9;
+  --paper: #fbfdfd;
+  --soft-green: #f6fbf7;
+  --white: #fefefe;
+  --radius: 20px;
+  --ease: cubic-bezier(.16, 1, .3, 1);
 }
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  min-width: 320px;
-  background: var(--background);
-}
-
-body {
-  min-height: 100vh;
-  margin: 0;
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.site-placeholder {
-  display: grid;
-  min-height: 100vh;
-  max-width: 960px;
-  align-content: center;
-  gap: 1.25rem;
-  margin: 0 auto;
-  padding: 3rem 1.5rem;
-}
-
-.site-placeholder h1,
-.site-placeholder p {
-  max-width: 42rem;
-  margin: 0;
-}
-
-.site-placeholder h1 {
-  font-size: clamp(2.5rem, 7vw, 5.75rem);
-  font-weight: 400;
-  letter-spacing: -0.04em;
-  line-height: 0.98;
-}
-
-.site-placeholder p:last-child {
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.eyebrow {
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
+* { box-sizing: border-box; }
+html { min-width: 320px; background: var(--paper); scrollbar-color: var(--teal) var(--ice); }
+body { min-height: 100vh; margin: 0; color: var(--ink); background: var(--paper); font-family: Arial, Helvetica, sans-serif; }
+img, video { display: block; max-width: 100%; }
+button, input, select { font: inherit; }
+button, a { color: inherit; }
+:focus-visible { outline: 3px solid rgba(40, 180, 204, .72); outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
