@@ -8,7 +8,7 @@ User stories covered: US-001, US-005
 
 ### What to build
 
-用唯一官网壳层替换占位入口，建立固定 `ScreenId` 顺序、唯一画面映射和七项导航。应用 Figma 已确认的颜色、字体、间距、圆角和共享 Logo；画面内容在本票中只需提供可识别标题，以便完整页面能够独立并行实施。
+用唯一官网壳层替换占位入口，建立固定 `ScreenId` 顺序、唯一画面映射和七项导航。应用 Ticket 001 已确认的颜色、字体、间距、圆角和共享 Logo；画面内容在本票中只需提供可识别标题，以便完整页面能够独立并行实施。
 
 ### Acceptance criteria
 
@@ -26,5 +26,4 @@ Fulfills: VAL-006, VAL-007, VAL-008
 
 - `ScreenId` 固定为 `home | research | projects | advantages | partners | team | contact`。
 - 不引入七个路由、浏览器历史同步或全局状态库。
-- 现有通用 Button 只有在匹配 Figma 且被真实复用时才使用，不围绕它过度设计。
-
+- 现有通用 Button 只有在匹配设计交付且被真实复用时才使用，不围绕它过度设计。

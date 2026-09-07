@@ -1,0 +1,366 @@
+{
+  "contract_version": "1",
+  "authority": "machine contract for labWebsiteV1; spec.md Validation Plan is the human-readable view, this JSON is the machine grammar consumed by devflow.cjs validate",
+  "assertions": [
+    {
+      "id": "VAL-001",
+      "title": "Photoshop 七画面清单完整",
+      "behavior": "每个画面均有稳定名称、源文件或画板、最终画布尺寸、移动稿或推导规则、导航顺序、状态说明和全尺寸 sRGB PNG",
+      "surface": "data",
+      "tool": "data",
+      "evidence": "设计交付清单与逐画面对照图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-002",
+      "title": "设计内容可追溯",
+      "behavior": "每个可见内容区和媒体均映射到 Photoshop 画面或图层状态以及适用的 H/R/P/A/N/T/C 编号，正式素材已按用途落库，Figma 来源信息保留为 provenance",
+      "surface": "data",
+      "tool": "data",
+      "evidence": "映射表与素材索引。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-003",
+      "title": "健康响应",
+      "behavior": "GET `/healthz` 返回 200 与 `{\"status\":\"ok\"}`",
+      "surface": "api",
+      "tool": "api",
+      "evidence": "curl 响应与退出码。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-004",
+      "title": "浏览器基线可执行",
+      "behavior": "E2E 命令启动生产应用并确认 `/` 首屏可见",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright 日志与 trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-005",
+      "title": "CI 包含关键路径",
+      "behavior": "CI 在干净环境安装浏览器依赖并执行 E2E",
+      "surface": "cli",
+      "tool": "cli",
+      "evidence": "CI 配置与成功日志。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-006",
+      "title": "初始官网壳层",
+      "behavior": "`/` 显示英文 Home、七项导航和唯一可见画面",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright 断言与截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-007",
+      "title": "单 URL 画面切换",
+      "behavior": "选择任一导航项只显示对应画面且 URL 不变",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-008",
+      "title": "键盘导航",
+      "behavior": "左右方向键、Home 和 End 同步移动焦点、当前项和画面",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-009",
+      "title": "全站语言切换",
+      "behavior": "Locale 切换更新当前画面的全部可见文案和文档语言语义",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright 断言与截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-010",
+      "title": "语言状态边界",
+      "behavior": "Locale 跨画面保持且刷新恢复英文 Home",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-011",
+      "title": "双语内容完整",
+      "behavior": "七个画面不存在混合语言兜底或缺失内容编号",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "双语截图与内容断言。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-012",
+      "title": "有方向的整页过渡",
+      "behavior": "前后向切换方向正确并在设计交付时长或默认 600ms 内提交目标",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright 视频或 trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-013",
+      "title": "过渡输入锁",
+      "behavior": "过渡中重复输入不会产生第二个目标或多个可见画面",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-014",
+      "title": "减少动画",
+      "behavior": "reduce 模式不播放整页位移且在 100ms 内显示目标",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-015",
+      "title": "Home 上半部桌面视觉",
+      "behavior": "Hero、研究方向、技术能力和 CTA 在两种语言下匹配交付结构",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "桌面截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-016",
+      "title": "Home 上半部移动布局",
+      "behavior": "390px 与 320px 下内容有序、可读且无横向溢出",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "移动截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-017",
+      "title": "Home 主要 CTA",
+      "behavior": "Explore Research 和 Collaborate 到达对应画面且 URL 不变",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-018",
+      "title": "Home 下半部桌面视觉",
+      "behavior": "项目、伙伴、实验室、团队和页脚在两种语言下匹配交付结构",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "桌面截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-019",
+      "title": "Home 下半部移动布局",
+      "behavior": "390px 与 320px 下所有区块和媒体可达且无横向溢出",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "移动截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-020",
+      "title": "Home 完整内容顺序",
+      "behavior": "全页区块顺序、跨区 CTA 和页脚关系与设计交付一致",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "全页截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-021",
+      "title": "Research 桌面内容",
+      "behavior": "三大研究支柱、协同关系和项目映射在两种语言下完整显示",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "桌面截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-022",
+      "title": "Research 移动布局",
+      "behavior": "关系信息和项目映射在 390px 与 320px 下保持可读且无横向溢出",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "移动截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-023",
+      "title": "Research 交互状态",
+      "behavior": "设计交付指定的关系图或展开状态可由键盘和指针访问",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-024",
+      "title": "Projects 概览",
+      "behavior": "导语和四类能力在两种语言下完整显示",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "桌面截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-025",
+      "title": "Projects 筛选",
+      "behavior": "选择能力筛选仅显示匹配项目并标记当前筛选",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-026",
+      "title": "Projects 筛选移动布局",
+      "behavior": "筛选控制在 390px 与 320px 下可操作且不遮挡项目内容",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "移动截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-027",
+      "title": "Projects 目录完整",
+      "behavior": "设计交付要求的全部项目在两种语言下可浏览",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "全页截图与项目标题断言。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-028",
+      "title": "Projects 详情状态",
+      "behavior": "设计交付指定的卡片或折叠状态可操作且只暴露当前详情",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-029",
+      "title": "Projects 合作入口",
+      "behavior": "项目合作 CTA 切换到 Contact 并保持当前 Locale 与 URL",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-030",
+      "title": "Advantages 内容",
+      "behavior": "八项技术优势在两种语言下按设计交付顺序完整显示",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "桌面截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-031",
+      "title": "Advantages 响应与交互",
+      "behavior": "设计交付指定状态可操作且在 390px 与 320px 下无溢出",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "Playwright trace 与移动截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-032",
+      "title": "Partners 内容",
+      "behavior": "合作介绍和设计交付 Logo 墙在两种语言下完整显示",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "桌面截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-033",
+      "title": "Partners 媒体响应",
+      "behavior": "Logo 在 390px 与 320px 下清晰重排并具有正确替代文本",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "移动截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-034",
+      "title": "Team 内容",
+      "behavior": "PI、团队构成和核心成员在两种语言下完整显示",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "桌面截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-035",
+      "title": "Team 媒体响应",
+      "behavior": "成员媒体和信息在 390px 与 320px 下保持关联、可读和可访问",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "移动截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-036",
+      "title": "Contact 内容",
+      "behavior": "合作对象、合作形式、学生申请、联系方式和沟通说明在两种语言下完整显示",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "桌面截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-037",
+      "title": "Contact 操作",
+      "behavior": "邮件及设计交付指定外链使用正确目标并可由键盘激活",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "Playwright trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-038",
+      "title": "Contact 移动布局",
+      "behavior": "390px 与 320px 下联系操作可见、可聚焦且无横向溢出",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "移动截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-039",
+      "title": "发布门禁",
+      "behavior": "工程检查、护栏、健康响应和 E2E 全部退出 0",
+      "surface": "cli",
+      "tool": "cli",
+      "evidence": "命令日志。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-040",
+      "title": "工程状态准确",
+      "behavior": "rehabilitation 状态只在所需证据齐备后关闭且文档与约束一致",
+      "surface": "data",
+      "tool": "data",
+      "evidence": "状态文件与证据索引。",
+      "status": "pending"
+    }
+  ]
+}

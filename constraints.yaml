@@ -2,7 +2,7 @@ schema_version: "3.5.8"
 project:
   name: "Harmonizing Intelligence Lab website"
   type: "nextjs-frontend"
-  source_of_truth: "Figma delivery and current src/public implementation"
+  source_of_truth: "Ticket 001 Photoshop delivery manifest and current src/public implementation; Figma is provenance only"
 
 strictness_profile:
   level: "L3"

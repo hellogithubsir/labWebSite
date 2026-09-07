@@ -8,11 +8,11 @@ User stories covered: US-001, US-002, US-004
 
 ### What to build
 
-实现 Home 从顶部品牌区域到研究方向和技术能力结束的正式内容。使用真实标题、说明、HEALTH/EDGE-AI/AGENT 卡片、三项技术能力及 Explore Research、Collaborate CTA，并按 Figma 导出 Hero 媒体和共享图形。
+实现 Home 从顶部品牌区域到研究方向和技术能力结束的正式内容。使用真实标题、说明、HEALTH/EDGE-AI/AGENT 卡片、三项技术能力及 Explore Research、Collaborate CTA，并使用 Ticket 001 落库的 Hero 媒体和共享图形。
 
 ### Acceptance criteria
 
-- [ ] 英文和中文桌面状态完整呈现 Hero、三个研究方向、三项技术能力及 Figma 指定视觉层级。
+- [ ] 英文和中文桌面状态完整呈现 Hero、三个研究方向、三项技术能力及设计交付指定视觉层级。
 - [ ] 390px 与 320px 下标题、卡片、媒体和 CTA 按阅读顺序重排，无横向溢出或遮挡。
 - [ ] Explore Research 切换到 Research，Collaborate 切换到 Contact，Locale 与 URL 均保持。
 
@@ -24,7 +24,6 @@ Fulfills: VAL-015, VAL-016, VAL-017
 
 ### Notes
 
-- 已知 HOME 主视觉节点为 `63:2`；实现前仍需使用 001 的完整节点与素材映射。
-- Hero 插画必须使用 Figma 正式媒体或可编辑 SVG，不把整页截图作为背景。
+- 已知 Figma HOME 来源节点为 `63:2`；实现以 001 的 Photoshop 画面与素材映射为准。
+- Hero 插画必须使用 001 登记的正式媒体或可编辑 SVG，不把整页截图作为背景。
 - 本票只建立 Home 上半部；下半部由 021 接续。
-

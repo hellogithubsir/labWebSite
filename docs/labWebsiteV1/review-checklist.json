@@ -1,0 +1,22 @@
+[
+  {
+    "id": "scope",
+    "text": "改动是否严格落在当前 Ticket 的边界内，且未夹带后端、部署或大规模重构。"
+  },
+  {
+    "id": "assertions",
+    "text": "Ticket 声明的每条断言是否由实现满足，并且没有削弱或改写验收含义。"
+  },
+  {
+    "id": "evidence",
+    "text": "结论是否有可执行、可定位且与断言直接相关的证据，未把预计或远端未来结果写成已通过。"
+  },
+  {
+    "id": "design-authority",
+    "text": "视觉与素材是否以 Ticket 001 的 Photoshop 交付清单为权威，Figma 仅作 provenance，DOCX 仅补不可读或缺失文案。"
+  },
+  {
+    "id": "canonicality",
+    "text": "是否复用唯一正式实现，未引入平行页面、临时副本或未授权的归档与运行时依赖。"
+  }
+]

@@ -8,11 +8,11 @@ User stories covered: US-001, US-002, US-003, US-004
 
 ### What to build
 
-接续 Home 上半部，实现 Selected Projects、Partners、Inside the Lab、团队摘要和最终合作页脚。项目、伙伴和成员摘要按 H-04 至 H-07 内容编号与 Figma 对齐；页面内入口必须切换到对应画面。
+接续 Home 上半部，实现 Selected Projects、Partners、Inside the Lab、团队摘要和最终合作页脚。项目、伙伴和成员摘要按 H-04 至 H-07 内容编号与设计交付清单对齐；页面内入口必须切换到对应画面。
 
 ### Acceptance criteria
 
-- [ ] 两种语言下完整显示项目、伙伴、实验室照片、团队摘要和合作页脚，内容顺序与 Figma 一致。
+- [ ] 两种语言下完整显示项目、伙伴、实验室照片、团队摘要和合作页脚，内容顺序与设计交付一致。
 - [ ] 390px 与 320px 下卡片、照片、伙伴信息、成员行和页脚 CTA 可读可达，无页面级横向滚动。
 - [ ] Home 全页只有一套正式区块，所有跨区入口到达 Projects、Partners、Team 或 Contact 的正确画面并保持 Locale。
 
@@ -26,5 +26,4 @@ Fulfills: VAL-018, VAL-019, VAL-020
 
 - 复用 020 已建立的 Home 入口，不创建第二个 Home 组件。
 - 图片裁切、比例和替代文本必须来自 001 的正式媒体清单。
-- 若 Figma 没有某个 DOCX 摘要区块，不把该候选内容强行加入 Home。
-
+- 若设计交付没有某个 DOCX 摘要区块，不把该候选内容强行加入 Home。

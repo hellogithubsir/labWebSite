@@ -8,14 +8,14 @@
 
 ### Problem Statement
 
-当前应用只有一个可构建的占位入口，尚未把 Figma 中的正式设计、七画面导航、双语内容和整页切换交付为可访问网页。设计稿部分区域是扁平化视觉稿，不能直接充当最终页面；参考 DOCX 又包含比设计稿更完整的中英文内容，因此需要明确两者的优先关系并把内容重建为语义 HTML。
+当前应用只有一个可构建的占位入口，尚未把正式设计、七画面导航、双语内容和整页切换交付为可访问网页。Photoshop 设计稿不能直接充当最终页面；参考 DOCX 又包含补充中英文内容，因此需要明确两者的优先关系并把内容重建为语义 HTML。
 
 ### Goals
 
 - G-001：交付 Home、Research Directions、Projects、Technology Advantages、Partners、Team、Contact 七个完整画面状态。
 - G-002：在不改变 `/` URL 的前提下完成画面导航、CTA 跳转和整页过渡。
 - G-003：为七个画面提供内容对齐的英文和中文状态。
-- G-004：桌面端对照 Figma，移动端在缺少专用节点时按既有设计规则可靠重排。
+- G-004：桌面端对照 Photoshop 全尺寸 PNG，移动端在缺少专用画面时按既有设计规则可靠重排。
 - G-005：建立可执行的健康检查、浏览器关键路径和视觉证据。
 
 ### Non-goals
@@ -24,7 +24,7 @@
 - 不引入后端、数据库、CMS、账号体系、提交表单或全局状态管理。
 - 不引入 Framer Motion 等额外动画库。
 - 不从 `../labWebSite-archive/` 或 DOCX 直接建立运行时依赖。
-- 不实现 Figma 未交付且参考文档未要求的新页面、新品牌方向或额外业务功能。
+- 不实现设计交付包未定义且参考文档未要求的新页面、新品牌方向或额外业务功能。
 - 不在 V1 中增加语言偏好持久化、浏览器语言自动检测或多语言 SEO 路由。
 
 ### Users / Actors
@@ -53,13 +53,13 @@
 - FR-005：导航支持点击、左右方向键、Home、End、焦点移动和当前项语义。
 - FR-006：语言控制在 `en` 与 `zh-CN` 间切换当前画面的全部可见文案，并在后续画面切换中保持选择。
 - FR-007：刷新页面恢复英文 Home；语言和画面状态不写入 URL 或持久化存储。
-- FR-008：视觉、布局、交互状态和媒体首先以 Figma 为准；Figma 文本不可读或缺失时，按内容编号使用参考 DOCX。
+- FR-008：视觉、布局、交互状态、可见文案和媒体以 Ticket 001 登记的 Photoshop 交付包为准；设计稿文字不可读或缺失时，按内容编号使用参考 DOCX。
 - FR-009：英文内容使用 English Language-aligned 文档，中文内容使用中文版语言统一文档；同一内容编号在两种语言下表达同一信息。
-- FR-010：Figma 交付的图片和 Logo 视为 V1 可用素材，进入本地正式静态资源后再由运行时使用。
-- FR-011：前进和后退切换反映画面顺序；Figma 未指定动效时，过渡在 600ms 内完成。
+- FR-010：Photoshop 交付包随附并确认可用于官网的图片和 Logo 视为 V1 可用素材，进入本地正式静态资源后再由运行时使用。
+- FR-011：前进和后退切换反映画面顺序；设计交付包未指定动效时，过渡在 600ms 内完成。
 - FR-012：过渡期间忽略新的导航请求；完成后只保留目标画面。
 - FR-013：`prefers-reduced-motion: reduce` 下不播放整页位移动画，并在 100ms 内显示目标画面。
-- FR-014：桌面状态对照每个 Figma 节点的原始尺寸；缺少移动节点时以 390px 视口完成重排，并保证 320px 无横向溢出。
+- FR-014：桌面状态对照每个 Photoshop 画面的最终画布尺寸；缺少移动稿时以 390px 视口完成重排，并保证 320px 无横向溢出。
 - FR-015：`GET /healthz` 返回 HTTP 200 和 JSON `{"status":"ok"}`，不依赖外部服务。
 
 ### Acceptance Criteria
@@ -78,9 +78,9 @@
 - 点击当前画面不启动过渡，也不重置滚动或焦点状态。
 - 过渡进行时只接受当前已提交的目标，额外输入不会排队形成连续动画。
 - 中文长度增加时允许换行和纵向增长，不允许截断正文、缩小到不可读或隐藏信息。
-- Figma 未提供移动节点时只推导布局，不推导新内容或新交互。
-- Figma 与 DOCX 的可见英文文案冲突时采用 Figma；Figma 缺失的正文按内容编号采用英文 DOCX，中文采用对应中文编号。
-- 无法读取 Figma 节点或下载正式素材时，相关页面 Ticket 保持阻塞，不使用猜测素材或归档运行时路径替代。
+- Photoshop 交付包未提供移动稿时只推导布局，不推导新内容或新交互。
+- Photoshop 设计稿与 DOCX 的可见文案冲突时采用设计稿；设计稿不可读或缺失的正文按内容编号采用对应语言 DOCX。
+- 未收到 Photoshop 原始交付包或无法取得正式素材时，相关页面 Ticket 保持阻塞，不使用猜测素材或归档运行时路径替代。
 - 缺失图片替代文本时根据同编号内容描述媒体目的；装饰性媒体使用空替代文本。
 
 ### Constraints
@@ -95,38 +95,39 @@
 
 - 内容管理、项目搜索服务、联系表单发送、用户身份和服务端个性化。
 - 独立页面 URL、浏览器历史同步、深链接或语言路由。
-- 未在 Figma 中出现的媒体、动画、交互和页面。
+- 未在设计交付包中出现的媒体、动画、交互和页面。
 - 生产部署、分析埋点和第三方营销集成。
 
 ## Execution Spec
 
 ### Goal
 
-把七个 Figma 画面实现为一个可构建、可访问、双语、响应式且可验证的官网单页体验，并以浏览器行为和截图证明交付。
+把七个设计画面实现为一个可构建、可访问、双语、响应式且可验证的官网单页体验，并以浏览器行为和截图证明交付。
 
 ### Scope
 
 #### In scope
 
-- Figma 交付清单、正式媒体导出和内容编号映射。
+- Photoshop 设计交付清单、正式媒体落库和内容编号映射。
 - 七画面单 URL 壳层、导航、语言状态和整页过渡。
-- 七个画面的语义内容与 Figma 中实际使用的局部交互。
+- 七个画面的语义内容与设计交付包中实际使用的局部交互。
 - 健康端点、Playwright 关键路径、视觉截图和工程就绪状态。
 
 #### Out of scope
 
 - PRD 非目标与 Out of Scope 中列出的全部能力。
-- 参考 DOCX 中没有映射到七个 Figma 画面的候选内容。
-- 对 Figma 之外的品牌或内容进行再设计。
+- 参考 DOCX 中没有映射到七个设计画面的候选内容。
+- 对设计交付包之外的品牌或内容进行再设计。
 
 ### Relevant Context
 
 - 当前 `/` 是最小占位入口，没有历史页面包袱。
-- Figma 设计来源：https://www.figma.com/design/bsJuR04iJitg8NpxQjNw6U/Harmonizing-Intelligence-Lab---Website-UI--6-Pages-?node-id=0-1&p=f
+- 当前设计与素材权威：用户稍后提供的七画面分层 PSD/PSB、全尺寸 sRGB PNG 对照图及随附原始素材、字体和状态说明；该交付包尚未收到。
+- Figma 来源链：https://www.figma.com/design/bsJuR04iJitg8NpxQjNw6U/Harmonizing-Intelligence-Lab---Website-UI--6-Pages-?node-id=0-1&p=f
 - 2026-09-06 已实际验证 Node 26.0.0、依赖树、`make check` 和护栏自测可运行。
-- HOME 已知视觉节点为 `MASTER / HOME / Exact 1:1 Approved PNG`，节点 ID `63:2`；其余节点必须在 Ticket 001 中确认。
+- HOME 已知 Figma 来源节点为 `MASTER / HOME / Exact 1:1 Approved PNG`，节点 ID `63:2`；仅作来源链和恢复访问后的辅助核对。
 - 两份参考 DOCX 结构一致，各包含 109 个 H/R/P/A/N/T/C 内容编号。
-- 当前 Figma View 席位的 MCP 调用额度已耗尽，恢复访问是 Ticket 001 的外部门禁。
+- 当前 Figma View 席位的 MCP 调用额度已耗尽，但恢复访问不是 Ticket 001 的唯一开工条件。
 
 ### Terms / Assumptions
 
@@ -134,8 +135,8 @@
 - `Locale` 固定为 `en | zh-CN`。
 - 默认状态为 `home + en`；刷新恢复默认状态，画面切换不改变 Locale。
 - 七画面的稳定顺序与导航显示顺序一致。
-- Figma 中的媒体按用户决定视为可用于 V1；参考 DOCX 中仅出现但 Figma 未交付的媒体不自动进入页面。
-- 页面内容以英文 Figma、英文 DOCX、中文 DOCX的顺序解决；中文不是英文运行时机器翻译。
+- 只有 Photoshop 交付包随附且确认可用于官网的媒体自动进入 V1 候选；仅在 DOCX 或归档中出现的媒体不自动进入页面。
+- 页面可见文案以 Photoshop 设计稿为准；不可读或缺失时按编号使用对应语言 DOCX，中文不是英文运行时机器翻译。
 - 没有 prefactor Ticket：当前代码是最小壳层，新增正式边界比重构占位代码更直接。
 
 ### Affected Surfaces
@@ -144,7 +145,7 @@
 - Data / schema：按画面和 Locale 组织的本地只读内容；无数据库和远程数据源。
 - API / CLI / UI：`/`、`GET /healthz`、`make check`、Playwright E2E 命令。
 - Tests：健康响应、首屏、导航、语言、CTA、动效、减少动画、响应式和视觉截图。
-- Docs / ops：Figma 交付清单、截图证据索引、README 和 rehabilitation 状态。
+- Docs / ops：设计交付清单、截图证据索引、README 和 rehabilitation 状态。
 
 ### Technical Direction
 
@@ -152,70 +153,66 @@
 - 画面顺序与方向判断保持为无 UI 依赖的稳定契约；渲染层维护唯一的 `ScreenId` 到画面映射。
 - 七个画面分别拥有局部内容与布局；只有两个以上真实消费者或明确设计系统职责才提升为共享组件。
 - 双语内容按相同业务编号组织，页面只消费当前 Locale 的已解析内容，不读取 DOCX。
-- 媒体在实现对应页面时从 Figma 导出到本地；整页 PNG 只作视觉 oracle，不作为最终页面背景。
+- 媒体由 Ticket 001 从 Photoshop 随附素材中确认并落到本地正式资源；整页 PNG 只作视觉 oracle，不作为最终页面背景。
 - 过渡使用 React 状态和原生 CSS；完成事件提交目标状态，不使用散落定时器推测动画结束。
 - Playwright 使用生产构建和自动 Web Server 运行关键路径；视觉测试同时产出截图和 trace。
 
-### Validation Plan
+## Validation Plan
 
-- VAL-001：Figma 七画面清单完整，Behavior: 每个画面均有稳定名称、节点 ID、桌面尺寸、移动节点或推导规则、导航顺序和截图，Surface: data，Evidence: 交付清单与节点截图。
-- VAL-002：设计内容可追溯，Behavior: 每个可见内容区和媒体均映射到 Figma 节点以及适用的 H/R/P/A/N/T/C 编号，Surface: data，Evidence: 映射表。
-- VAL-003：健康响应，Behavior: GET `/healthz` 返回 200 与 `{"status":"ok"}`，Surface: api，Evidence: curl 响应与退出码。
-- VAL-004：浏览器基线可执行，Behavior: E2E 命令启动生产应用并确认 `/` 首屏可见，Surface: ui，Evidence: Playwright 日志与 trace。
-- VAL-005：CI 包含关键路径，Behavior: CI 在干净环境安装浏览器依赖并执行 E2E，Surface: cli，Evidence: CI 配置与成功日志。
-- VAL-006：初始官网壳层，Behavior: `/` 显示英文 Home、七项导航和唯一可见画面，Surface: ui，Evidence: Playwright 断言与截图。
-- VAL-007：单 URL 画面切换，Behavior: 选择任一导航项只显示对应画面且 URL 不变，Surface: ui，Evidence: Playwright trace。
-- VAL-008：键盘导航，Behavior: 左右方向键、Home 和 End 同步移动焦点、当前项和画面，Surface: ui，Evidence: Playwright trace。
-- VAL-009：全站语言切换，Behavior: Locale 切换更新当前画面的全部可见文案和文档语言语义，Surface: ui，Evidence: Playwright 断言与截图。
-- VAL-010：语言状态边界，Behavior: Locale 跨画面保持且刷新恢复英文 Home，Surface: business-flow，Evidence: Playwright trace。
-- VAL-011：双语内容完整，Behavior: 七个画面不存在混合语言兜底或缺失内容编号，Surface: ui，Evidence: 双语截图与内容断言。
-- VAL-012：有方向的整页过渡，Behavior: 前后向切换方向正确并在 Figma 时长或默认 600ms 内提交目标，Surface: ui，Evidence: Playwright 视频或 trace。
-- VAL-013：过渡输入锁，Behavior: 过渡中重复输入不会产生第二个目标或多个可见画面，Surface: ui，Evidence: Playwright trace。
-- VAL-014：减少动画，Behavior: reduce 模式不播放整页位移且在 100ms 内显示目标，Surface: ui，Evidence: Playwright trace。
-- VAL-015：Home 上半部桌面视觉，Behavior: Hero、研究方向、技术能力和 CTA 在两种语言下匹配交付结构，Surface: ui，Evidence: 桌面截图。
-- VAL-016：Home 上半部移动布局，Behavior: 390px 与 320px 下内容有序、可读且无横向溢出，Surface: ui，Evidence: 移动截图。
-- VAL-017：Home 主要 CTA，Behavior: Explore Research 和 Collaborate 到达对应画面且 URL 不变，Surface: business-flow，Evidence: Playwright trace。
-- VAL-018：Home 下半部桌面视觉，Behavior: 项目、伙伴、实验室、团队和页脚在两种语言下匹配交付结构，Surface: ui，Evidence: 桌面截图。
-- VAL-019：Home 下半部移动布局，Behavior: 390px 与 320px 下所有区块和媒体可达且无横向溢出，Surface: ui，Evidence: 移动截图。
-- VAL-020：Home 完整内容顺序，Behavior: 全页区块顺序、跨区 CTA 和页脚关系与 Figma 一致，Surface: ui，Evidence: 全页截图。
-- VAL-021：Research 桌面内容，Behavior: 三大研究支柱、协同关系和项目映射在两种语言下完整显示，Surface: ui，Evidence: 桌面截图。
-- VAL-022：Research 移动布局，Behavior: 关系信息和项目映射在 390px 与 320px 下保持可读且无横向溢出，Surface: ui，Evidence: 移动截图。
-- VAL-023：Research 交互状态，Behavior: Figma 指定的关系图或展开状态可由键盘和指针访问，Surface: ui，Evidence: Playwright trace。
-- VAL-024：Projects 概览，Behavior: 导语和四类能力在两种语言下完整显示，Surface: ui，Evidence: 桌面截图。
-- VAL-025：Projects 筛选，Behavior: 选择能力筛选仅显示匹配项目并标记当前筛选，Surface: ui，Evidence: Playwright trace。
-- VAL-026：Projects 筛选移动布局，Behavior: 筛选控制在 390px 与 320px 下可操作且不遮挡项目内容，Surface: ui，Evidence: 移动截图。
-- VAL-027：Projects 目录完整，Behavior: Figma 要求的全部项目在两种语言下可浏览，Surface: ui，Evidence: 全页截图与项目标题断言。
-- VAL-028：Projects 详情状态，Behavior: Figma 指定的卡片或折叠状态可操作且只暴露当前详情，Surface: ui，Evidence: Playwright trace。
-- VAL-029：Projects 合作入口，Behavior: 项目合作 CTA 切换到 Contact 并保持当前 Locale 与 URL，Surface: business-flow，Evidence: Playwright trace。
-- VAL-030：Advantages 内容，Behavior: 八项技术优势在两种语言下按 Figma 顺序完整显示，Surface: ui，Evidence: 桌面截图。
-- VAL-031：Advantages 响应与交互，Behavior: Figma 指定状态可操作且在 390px 与 320px 下无溢出，Surface: ui，Evidence: Playwright trace 与移动截图。
-- VAL-032：Partners 内容，Behavior: 合作介绍和 Figma Logo 墙在两种语言下完整显示，Surface: ui，Evidence: 桌面截图。
-- VAL-033：Partners 媒体响应，Behavior: Logo 在 390px 与 320px 下清晰重排并具有正确替代文本，Surface: ui，Evidence: 移动截图。
-- VAL-034：Team 内容，Behavior: PI、团队构成和核心成员在两种语言下完整显示，Surface: ui，Evidence: 桌面截图。
-- VAL-035：Team 媒体响应，Behavior: 成员媒体和信息在 390px 与 320px 下保持关联、可读和可访问，Surface: ui，Evidence: 移动截图。
-- VAL-036：Contact 内容，Behavior: 合作对象、合作形式、学生申请、联系方式和沟通说明在两种语言下完整显示，Surface: ui，Evidence: 桌面截图。
-- VAL-037：Contact 操作，Behavior: 邮件及 Figma 指定外链使用正确目标并可由键盘激活，Surface: business-flow，Evidence: Playwright trace。
-- VAL-038：Contact 移动布局，Behavior: 390px 与 320px 下联系操作可见、可聚焦且无横向溢出，Surface: ui，Evidence: 移动截图。
-- VAL-039：发布门禁，Behavior: 工程检查、护栏、健康响应和 E2E 全部退出 0，Surface: cli，Evidence: 命令日志。
-- VAL-040：工程状态准确，Behavior: rehabilitation 状态只在所需证据齐备后关闭且文档与约束一致，Surface: data，Evidence: 状态文件与证据索引。
+- VAL-001: Photoshop 七画面清单完整, Behavior: 每个画面均有稳定名称、源文件或画板、最终画布尺寸、移动稿或推导规则、导航顺序、状态说明和全尺寸 sRGB PNG, Surface: data, Evidence: 设计交付清单与逐画面对照图。
+- VAL-002: 设计内容可追溯, Behavior: 每个可见内容区和媒体均映射到 Photoshop 画面或图层状态以及适用的 H/R/P/A/N/T/C 编号，正式素材已按用途落库，Figma 来源信息保留为 provenance, Surface: data, Evidence: 映射表与素材索引。
+- VAL-003: 健康响应, Behavior: GET `/healthz` 返回 200 与 `{"status":"ok"}`, Surface: api, Evidence: curl 响应与退出码。
+- VAL-004: 浏览器基线可执行, Behavior: E2E 命令启动生产应用并确认 `/` 首屏可见, Surface: ui, Evidence: Playwright 日志与 trace。
+- VAL-005: CI 包含关键路径, Behavior: CI 在干净环境安装浏览器依赖并执行 E2E, Surface: cli, Evidence: CI 配置与成功日志。
+- VAL-006: 初始官网壳层, Behavior: `/` 显示英文 Home、七项导航和唯一可见画面, Surface: ui, Evidence: Playwright 断言与截图。
+- VAL-007: 单 URL 画面切换, Behavior: 选择任一导航项只显示对应画面且 URL 不变, Surface: ui, Evidence: Playwright trace。
+- VAL-008: 键盘导航, Behavior: 左右方向键、Home 和 End 同步移动焦点、当前项和画面, Surface: ui, Evidence: Playwright trace。
+- VAL-009: 全站语言切换, Behavior: Locale 切换更新当前画面的全部可见文案和文档语言语义, Surface: ui, Evidence: Playwright 断言与截图。
+- VAL-010: 语言状态边界, Behavior: Locale 跨画面保持且刷新恢复英文 Home, Surface: business-flow, Evidence: Playwright trace。
+- VAL-011: 双语内容完整, Behavior: 七个画面不存在混合语言兜底或缺失内容编号, Surface: ui, Evidence: 双语截图与内容断言。
+- VAL-012: 有方向的整页过渡, Behavior: 前后向切换方向正确并在设计交付时长或默认 600ms 内提交目标, Surface: ui, Evidence: Playwright 视频或 trace。
+- VAL-013: 过渡输入锁, Behavior: 过渡中重复输入不会产生第二个目标或多个可见画面, Surface: ui, Evidence: Playwright trace。
+- VAL-014: 减少动画, Behavior: reduce 模式不播放整页位移且在 100ms 内显示目标, Surface: ui, Evidence: Playwright trace。
+- VAL-015: Home 上半部桌面视觉, Behavior: Hero、研究方向、技术能力和 CTA 在两种语言下匹配交付结构, Surface: ui, Evidence: 桌面截图。
+- VAL-016: Home 上半部移动布局, Behavior: 390px 与 320px 下内容有序、可读且无横向溢出, Surface: ui, Evidence: 移动截图。
+- VAL-017: Home 主要 CTA, Behavior: Explore Research 和 Collaborate 到达对应画面且 URL 不变, Surface: business-flow, Evidence: Playwright trace。
+- VAL-018: Home 下半部桌面视觉, Behavior: 项目、伙伴、实验室、团队和页脚在两种语言下匹配交付结构, Surface: ui, Evidence: 桌面截图。
+- VAL-019: Home 下半部移动布局, Behavior: 390px 与 320px 下所有区块和媒体可达且无横向溢出, Surface: ui, Evidence: 移动截图。
+- VAL-020: Home 完整内容顺序, Behavior: 全页区块顺序、跨区 CTA 和页脚关系与设计交付一致, Surface: ui, Evidence: 全页截图。
+- VAL-021: Research 桌面内容, Behavior: 三大研究支柱、协同关系和项目映射在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
+- VAL-022: Research 移动布局, Behavior: 关系信息和项目映射在 390px 与 320px 下保持可读且无横向溢出, Surface: ui, Evidence: 移动截图。
+- VAL-023: Research 交互状态, Behavior: 设计交付指定的关系图或展开状态可由键盘和指针访问, Surface: ui, Evidence: Playwright trace。
+- VAL-024: Projects 概览, Behavior: 导语和四类能力在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
+- VAL-025: Projects 筛选, Behavior: 选择能力筛选仅显示匹配项目并标记当前筛选, Surface: ui, Evidence: Playwright trace。
+- VAL-026: Projects 筛选移动布局, Behavior: 筛选控制在 390px 与 320px 下可操作且不遮挡项目内容, Surface: ui, Evidence: 移动截图。
+- VAL-027: Projects 目录完整, Behavior: 设计交付要求的全部项目在两种语言下可浏览, Surface: ui, Evidence: 全页截图与项目标题断言。
+- VAL-028: Projects 详情状态, Behavior: 设计交付指定的卡片或折叠状态可操作且只暴露当前详情, Surface: ui, Evidence: Playwright trace。
+- VAL-029: Projects 合作入口, Behavior: 项目合作 CTA 切换到 Contact 并保持当前 Locale 与 URL, Surface: business-flow, Evidence: Playwright trace。
+- VAL-030: Advantages 内容, Behavior: 八项技术优势在两种语言下按设计交付顺序完整显示, Surface: ui, Evidence: 桌面截图。
+- VAL-031: Advantages 响应与交互, Behavior: 设计交付指定状态可操作且在 390px 与 320px 下无溢出, Surface: ui, Evidence: Playwright trace 与移动截图。
+- VAL-032: Partners 内容, Behavior: 合作介绍和设计交付 Logo 墙在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
+- VAL-033: Partners 媒体响应, Behavior: Logo 在 390px 与 320px 下清晰重排并具有正确替代文本, Surface: ui, Evidence: 移动截图。
+- VAL-034: Team 内容, Behavior: PI、团队构成和核心成员在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
+- VAL-035: Team 媒体响应, Behavior: 成员媒体和信息在 390px 与 320px 下保持关联、可读和可访问, Surface: ui, Evidence: 移动截图。
+- VAL-036: Contact 内容, Behavior: 合作对象、合作形式、学生申请、联系方式和沟通说明在两种语言下完整显示, Surface: ui, Evidence: 桌面截图。
+- VAL-037: Contact 操作, Behavior: 邮件及设计交付指定外链使用正确目标并可由键盘激活, Surface: business-flow, Evidence: Playwright trace。
+- VAL-038: Contact 移动布局, Behavior: 390px 与 320px 下联系操作可见、可聚焦且无横向溢出, Surface: ui, Evidence: 移动截图。
+- VAL-039: 发布门禁, Behavior: 工程检查、护栏、健康响应和 E2E 全部退出 0, Surface: cli, Evidence: 命令日志。
+- VAL-040: 工程状态准确, Behavior: rehabilitation 状态只在所需证据齐备后关闭且文档与约束一致, Surface: data, Evidence: 状态文件与证据索引。
 
 ### Risks / Open Questions
 
-- Figma MCP 调用额度恢复前无法确认剩余六个画面的节点、移动状态和动效参数；Ticket 001 必须先完成，后续视觉票不得猜测。
-- Figma 若没有中文视觉节点，中文以同编号内容完成版式适配，但不得改变英文 Figma 的信息层级。
-- 参考 DOCX 中项目图片与伙伴 Logo 的许可字段并非全部已确认；本项目按用户明确决定，仅使用实际出现在 Figma 交付中的媒体。
-- Figma 未使用的候选内容、图片和历史素材不进入 V1。
+- Photoshop 原始交付包尚未收到；Ticket 001 必须先完成，后续视觉票不得猜测。
+- Photoshop 交付包若没有中文画面，中文以同编号内容完成版式适配，但不得改变正式设计的信息层级。
+- 参考 DOCX 中项目图片与伙伴 Logo 的许可字段并非全部已确认；仅使用 Photoshop 交付包随附且确认可用于官网的媒体。
+- 设计交付包未使用的候选内容、图片和历史素材不进入 V1。
 
-### Mission Handoff
+## Mission Handoff
 
-- Suggested milestones:
-  - `m0-delivery-readiness`：Figma 清单、健康端点和 E2E 基线。
-  - `m1-shell-interaction`：单页壳层、双语状态和整页过渡。
-  - `m2-home`：Home 上下两段完整交付。
-  - `m3-content-screens`：Research、Projects、Advantages、Partners、Team、Contact。
-  - `m4-release-proof`：跨画面验收和工程就绪收口。
+- Suggested milestones: m0-delivery-readiness, m1-shell-interaction, m2-home, m3-content-screens, m4-release-proof
+- Milestone intent：m0 完成设计交付清单、健康端点和 E2E 基线；m1 完成单页壳层、双语状态和整页过渡；m2 完成 Home；m3 完成其余六个内容画面；m4 完成跨画面验收和工程就绪收口。
 - Required evidence：每个 Ticket 的退出码、Playwright trace、对应截图或数据映射；最终提供 28 组双语桌面/移动截图索引。
-- Human gates：Figma 访问必须可用；若实际交付节点与当前七画面架构冲突，停止页面实施并由用户确认设计范围。
+- Human gates：Photoshop 原始交付包必须可用；若实际交付画面与当前七画面架构冲突，停止页面实施并由用户确认设计范围。Figma 恢复访问后仅作辅助核对。
 
 ### Granularity
 
@@ -229,6 +226,6 @@ Adjustments: 不增加 setup-only 或形式化 prefactor Ticket；Playwright 配
 
 Readiness: Ready
 
-Reason: 产品范围、内容来源、公共状态、页面顺序、交互、响应式策略、验证接缝、依赖关系和人工门禁均已明确。
+Reason: 产品范围、来源优先级、公共状态、页面顺序、交互、响应式策略、验证接缝、依赖关系和人工门禁均已明确；素材是否到位由 Ticket 001 门禁判断。
 
-Next: 按数字顺序执行 `tickets/`；`001` 未完成前不得实施视觉页面，`030` 通过后才允许执行 `031`。
+Next: 按依赖波次执行 `tickets/`；`001` 未完成前不得实施视觉页面，`030` 通过后执行 `031`，最后由 `032` 独立核验发布状态。

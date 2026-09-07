@@ -8,7 +8,7 @@ User stories covered: US-004, US-005
 
 ### What to build
 
-建立 `en | zh-CN` 双语契约和语言控制。英文以 Figma 可见文案优先，并用 English Language-aligned DOCX 补齐；中文按同编号使用中文版 DOCX。语言切换更新可见内容和页面语言语义，在七画面切换中保持，但不写入 URL 或持久化存储。
+建立 `en | zh-CN` 双语契约和语言控制。两种语言均以 Photoshop 设计稿可见文案优先；设计稿不可读或缺失时，英文按编号使用 English Language-aligned DOCX，中文按同编号使用中文版 DOCX。语言切换更新可见内容和页面语言语义，在七画面切换中保持，但不写入 URL 或持久化存储。
 
 ### Acceptance criteria
 

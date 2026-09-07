@@ -8,7 +8,7 @@ User stories covered: US-002, US-004, US-005
 
 ### What to build
 
-实现 Projects 的项目导语、Key Projects & Tech Transfer 和 AI Solutions、Edge Intelligence、Custom Digital Products、Digital Transformation 四类能力。按 Figma 的 Filter Chip 状态提供项目分类筛选，并为 024 保留唯一项目目录容器。
+实现 Projects 的项目导语、Key Projects & Tech Transfer 和 AI Solutions、Edge Intelligence、Custom Digital Products、Digital Transformation 四类能力。按设计交付清单的 Filter Chip 状态提供项目分类筛选，并为 024 保留唯一项目目录容器。
 
 ### Acceptance criteria
 
@@ -26,4 +26,3 @@ Fulfills: VAL-024, VAL-025, VAL-026
 
 - 筛选只改变本地可见集合，不写入 URL，也不引入远程搜索或服务端查询。
 - 本票不填充完整项目详情；024 接续同一 Projects 实现。
-
