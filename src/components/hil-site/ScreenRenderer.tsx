@@ -1,14 +1,19 @@
 import Image from "next/image";
+import { HomeScreen } from "./screens/home/HomeScreen";
+import type { Locale } from "@/content/hil-site/types";
 import type { ScreenId } from "@/types/hil-site";
 
 interface ScreenRendererProps {
   screen: ScreenId;
+  locale: Locale;
+  onNavigate: (screen: ScreenId) => void;
   labels: Record<ScreenId, string>;
   titles: Record<ScreenId, string>;
   logoAlt: string;
 }
 
-export function ScreenRenderer({ screen, labels, titles, logoAlt }: ScreenRendererProps) {
+export function ScreenRenderer({ screen, labels, titles, logoAlt, locale, onNavigate }: ScreenRendererProps) {
+  if (screen === "home") return <main id="site-content" tabIndex={-1} data-screen={screen} data-od-id="current-screen"><HomeScreen locale={locale} onNavigate={onNavigate} /></main>;
   return (
     <main id="site-content" tabIndex={-1} data-screen={screen} data-od-id="current-screen"
       className="min-h-screen px-5 py-16 min-[981px]:px-[4.5vw] min-[981px]:py-24">
