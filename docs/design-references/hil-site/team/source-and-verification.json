@@ -1,0 +1,73 @@
+{
+  "feature": "027",
+  "assertions": [
+    "VAL-034",
+    "VAL-035"
+  ],
+  "visualAuthority": "/Users/qingsir/Project/labWebSite/Harmonizing-Intelligence-Lab-V1-Photoshop-Delivery/02_Reference_PNG_sRGB/06-TEAM-V1-FINAL-sRGB.png",
+  "semanticSource": "/Users/qingsir/Project/labWebSite/Harmonizing-Intelligence-Lab-V1-Photoshop-Delivery/05_Source_HTML/website-code-seven-pages/06-team/index.html",
+  "chineseSource": "docs/design-references/hil-site/bilingual-source.json: T-01/T-02/T-03/T-04",
+  "mapping": {
+    "team-hero": "T-01",
+    "team-introduction": "T-01",
+    "team-pi": "T-02 Dr. Chaw Jun Kit",
+    "team-leader-2": "T-02 Dr. Jeff Wang（中文名按交付表，不与 T-04-04 自动合并）",
+    "team-leader-3": "T-02 Wendy Leong Pooi Yan",
+    "team-composition": "T-03",
+    "team-members": "T-04-01 至 T-04-09"
+  },
+  "filters": {
+    "all": [
+      "T-04-01",
+      "T-04-02",
+      "T-04-03",
+      "T-04-04",
+      "T-04-05",
+      "T-04-06",
+      "T-04-07",
+      "T-04-08",
+      "T-04-09"
+    ],
+    "graduate": [
+      "T-04-01",
+      "T-04-02",
+      "T-04-03",
+      "T-04-07",
+      "T-04-08",
+      "T-04-09"
+    ],
+    "candidate": [
+      "T-04-04",
+      "T-04-05",
+      "T-04-06"
+    ],
+    "motion": "180ms ease-out；reduce 时无动画与过渡；按钮状态和成员集合在同次 React 更新中同步"
+  },
+  "media": {
+    "pi": "public/images/hil-site/team/principal-investigator.png，427×590，按原始比例显示；alt 明确负责人身份",
+    "others": "源包未交付成员照片，沿用正式文字卡，不补造照片或人员。"
+  },
+  "sourceLimitations": [
+    "Jeff Wang 的单位、研究兴趣、成果与个人链接未提供，页面沿用双语缺资料说明。",
+    "个人主页仅给出文字标签，源画面未提供有效 URL，因此不创建猜测链接；页脚保留已确认联系邮箱。"
+  ],
+  "visualAdaptation": [
+    "复用共享品牌、SiteFooter、ScrollReveal 和唯一 ScreenRenderer main。",
+    "最终 PNG 中成员卡为姓名、身份和一句话简介三个字段；筛选控件按已批准交互补充，保持卡片源顺序。",
+    "390/320 改为单列，负责人文字后紧接其肖像；移动成员正文 16px，原生筛选按钮高度至少 44px。",
+    "按照 PNG 调整概览分隔线、领导两列、肖像框、团队构成、三列成员卡和页脚，不沿用 HTML 中与 PNG 冲突的大字号与间距。"
+  ],
+  "evidenceRoot": "/Users/qingsir/Project/labWebSite/docs/labWebsiteV1/missions/labwebsitev1-ps-20260907/missions/evidence/027",
+  "tdd": {
+    "red": "red：占位 Team 无成员，断言获得空列表，exit 1",
+    "green": "green-slice：成员和毕业生筛选，1 passed，exit 0",
+    "mutation-filter": "候选筛选故意改为毕业生；候选集合断言 exit 1；随后恢复",
+    "mutation-motion": "成员动画故意改为900ms；180ms断言 exit 1；随后恢复"
+  },
+  "visualReview": "已核对1920英文与最终PNG的标题层级、PI照片、四项统计和九人卡；移动PI局部及320中文全页阅读顺序正确，无横向溢出。",
+  "verification": {
+    "final": "Team、navigation、locale、Partners 共21项通过，exit 0；final-team 是最终标题换行调整后的Team六组截图和筛选证据。",
+    "static": "npm run lint && npm run typecheck && make check-guardrails && make test-guardrails：全部 exit 0。",
+    "production": "Playwright 每次通过正式 Next build/start 服务执行；无跳过或零测试。"
+  }
+}
