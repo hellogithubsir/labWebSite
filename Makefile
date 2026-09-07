@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: check check-guardrails test-guardrails
+.PHONY: check check-ui check-guardrails test-guardrails
 
 check: check-guardrails
 	@missing=0; \
@@ -16,9 +16,11 @@ check: check-guardrails
 	fi
 	@npm run check
 
+check-ui:
+	@npm run test:e2e
+
 check-guardrails:
 	@bash .git-hooks/check-naming.sh --all
 
 test-guardrails:
 	@bash scripts/test-guardrails.sh
-

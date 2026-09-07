@@ -29,6 +29,18 @@ jobs:
           node-version-file: .nvmrc
       - run: make check
 
+  critical_ui:
+    name: Critical UI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: make check-ui
+
   secret-scan:
     runs-on: ubuntu-latest
     steps:
@@ -83,6 +95,7 @@ jobs:
     needs:
       - guardrails
       - frontend-quality
+      - critical_ui
       - secret-scan
       - sast
       - diff-size
@@ -91,7 +104,7 @@ jobs:
       - name: Fail if any blocking result failed or skipped
         shell: bash
         run: |
-          results=("${{ needs.guardrails.result }}" "${{ needs.frontend-quality.result }}" "${{ needs.secret-scan.result }}" "${{ needs.sast.result }}" "${{ needs.diff-size.result }}")
+          results=("${{ needs.guardrails.result }}" "${{ needs.frontend-quality.result }}" "${{ needs.critical_ui.result }}" "${{ needs.secret-scan.result }}" "${{ needs.sast.result }}" "${{ needs.diff-size.result }}")
           for result in "${results[@]}"; do
             if [[ "$result" =~ ^(failure|cancelled|skipped)$ ]]; then
               echo "all-checks-passed: blocking job result is $result" >&2

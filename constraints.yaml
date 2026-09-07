@@ -20,9 +20,6 @@ strictness_profile:
       severity: "block"
       status: "enforced by local guard and CI"
   downgraded_controls:
-    - control: "Playwright critical UI validation"
-      reason: "no installed browser test harness is present"
-      replacement: "recorded as a readiness gap"
     - control: "local pre-commit wiring"
       reason: "no hook manager is currently present"
       replacement: "CI and explicit make guard targets"
@@ -80,7 +77,7 @@ size_limits:
 verification:
   - surface: "repository"
     command: "make check"
-    status: "blocked until dependencies are installed and frontend checks pass"
+    status: "available after npm ci"
   - surface: "guardrails"
     command: "make check-guardrails"
     status: "available"
@@ -90,12 +87,16 @@ verification:
   - surface: "critical UI"
     route: "/"
     tool: "Playwright"
-    status: "readiness gap"
+    command: "npm run test:e2e"
+    status: "available; production web server starts automatically"
   - surface: "health"
     route: "/healthz"
     status: "available; production build and HTTP response verified"
 
-critical_paths: []
+critical_paths:
+  - route: "/"
+    command: "npm run test:e2e"
+    expectation: "navigation succeeds and the primary heading is visible"
 
 rehabilitation:
   active: true
@@ -108,7 +109,6 @@ rehabilitation:
   owner: "single owner"
   readiness_gaps:
     - "dependencies are not installed"
-    - "Playwright validation for / is not installed"
     - "no baseline has been frozen"
 
 refactor:

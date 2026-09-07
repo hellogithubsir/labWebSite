@@ -19,20 +19,21 @@ and are not part of the active build.
 
 The repository remains in rehabilitation mode. The tracked package and
 frontend configuration files were restored from `HEAD` after explicit
-authorization. `node_modules` is not present yet, so run `npm ci` before
-frontend checks.
+authorization. Run `npm ci` before frontend and browser checks.
 
 The following checks are available:
 
 - make test-guardrails — self-tests the naming and scratch-path guard
 - make check-guardrails — scans tracked and untracked project paths
 - make check — runs the frontend lint, typecheck and production build checks
+- make check-ui — builds and starts the production app, then runs Playwright
+  against the critical root route
 
 The health route `/healthz` is available and has been verified against the
 production server: `GET /healthz` returns HTTP 200, `application/json`, and the
 exact body `{"status":"ok"}`. The target critical UI route is /. Playwright
-verification for / remains a readiness gap until a UI test entry and browser
-harness are added.
+verification for / now checks a successful navigation response and the visible
+primary heading. Failed browser runs retain a Playwright trace under `.next/`.
 
 ## Commands
 
@@ -44,9 +45,13 @@ The intended project commands are:
 - npm run lint
 - npm run build
 - npm run check
+- npm run test:e2e
+- make check-ui
 
 The current repository claims passing production runtime evidence for
-`/healthz`; Playwright UI validation remains a readiness gap.
+`/healthz` and local Playwright evidence for `/`. CI installs Chromium and runs
+the same browser entry in an independent blocking job; remote CI success is not
+claimed until that workflow has run.
 
 The application currently exposes the root route / as a project shell so the
 approved design can be added without carrying historical routes forward.
