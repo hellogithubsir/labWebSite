@@ -37,7 +37,7 @@ Ticket 001，2026-09-07。七个 FINAL PSD、七个全尺寸 sRGB PNG 齐全；�
 | H-01 Header/Hero/Value Navigation | H-01；三价值标签为设计补充 |
 | H-02 Research Directions | H-02，H-02-01/02/03 → R-02/03/04 |
 | H-03 Capability Mapping | H-03-01/02/03 → A-01/02/03；核心优势名称采用 PNG 版本 |
-| H-04 Selected Projects | H-04；按标题匹配 Smart Grocer → P-07-08、Digital Concierge → P-07-05、NAS → P-07-06；DOCX H-04 子项顺序不覆盖 PNG |
+| H-04 Selected Projects | H-04；按设计标题匹配 Smart Grocer → P-05、Digital Concierge → P-03、NAS → P-04；DOCX H-04 子项引用另一组候选项目（P-07-06/08/05），不覆盖最终 PNG 设计；bilingual-source.json 保留原始参考内容 |
 | H-05 Partners + Inside the Lab | H-05-01 至 06 → N-02-01 至 06；实验室四图和说明为该组设计补充 |
 | H-06 Team Summary | H-06-01 → T-02；H-06-02/03/04 → T-04-01/02/03 |
 | H-07 Closing Footer | H-07及子项；邮箱按 C-05，版权为设计共享文案 |
