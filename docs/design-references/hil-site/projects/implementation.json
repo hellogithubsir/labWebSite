@@ -1,0 +1,19 @@
+{
+  "ticket": "023",
+  "designAuthority": "03-PROJECTS-V1-FINAL-sRGB.png：P-01 Header + Introduction 与 P-02 E-Linus。交付 HTML 仅补四帧说明，中文逐项对齐。",
+  "scope": "最终双系统简介取代旧 DOCX 四能力卡；本票实现概览与 E-Linus，PDM 完整目录由 024 接续。",
+  "layout": "桌面顶部标题与导语双列、右侧双系统小卡；轮播为四类进度、居中说明、三项证据、原比例媒体及底部按钮。移动端单列，分类 2×2、证据纵排。",
+  "media": "复用 001 已落库 elinus-overview/profile/alerts/validation.png，均 1200×760；中文保留原交付英文 UI 图，替代文本、说明和控件全部中文。",
+  "interaction": "按钮、ArrowLeft/Right、原生 Pointer Events 鼠标与 CDP 真实触摸事件；非循环，400ms transform，reduce 0s；仅当前 article 对辅助技术可见。",
+  "evidenceRoot": "/Users/qingsir/Project/labWebSite/docs/labWebsiteV1/missions/labwebsitev1-ps-20260907/missions/evidence/023",
+  "acceptedScreenshots": "accepted/**/projects-{en,zh-CN}-{1920,390,320}.png；默认第一帧，等待 transform 完全归零、reveal 完成后截图。",
+  "red": "red：旧 H1 不符合最终 PNG，1 failed，exit 1。",
+  "mutations": [
+    "mutation-keyboard：禁用键盘位移，exit 1，第二帧进度未更新。",
+    "mutation-mouse：忽略 mouse，exit 1，鼠标拖动未回退。",
+    "mutation-touch：忽略 touch，exit 1，触摸拖动未前进。",
+    "mutation-reduce：保留 400ms，exit 1，reduce 期望 0s。"
+  ],
+  "regression": "final：项目、site navigation、locale、page transition 与命中的 Home CTA 共 21 passed，exit 0；lint 与 typecheck exit 0。",
+  "limitations": "没有移动 PSD 或中文 PNG，按 001 规则推导；尚不声称 PDM 或完整 Projects 画面完成。"
+}
