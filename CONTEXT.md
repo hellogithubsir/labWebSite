@@ -58,7 +58,7 @@ Harmonizing Intelligence Lab 官网是一个以用户 Photoshop 交付包为当�
 
 ## Outstanding Facts
 
-- 031 独立审查和 032 最终核验仍待完成；本地工程就绪不等于最终审查或生产发布已完成。
+- 031 提交 `97bab98` 时点快照：031 独立审查和 032 最终核验待完成；当前结论以[031 审查与 032 报告](docs/design-references/hil-site/release/evidence-index.md#当前审查与核验依据)为准。本地工程就绪不等于生产发布已完成。
 - 远端 CI、gitleaks、CodeQL 未运行；VAL-005 是配置核对与干净本地等价执行。
 - npm ci 报告 18 项依赖公告，未在本票升级；见发布索引安装日志。
 - 自动重复代码/未使用导出检查与本地 hook manager 尚未配置，继续使用人工审查和 CI/显式护栏。

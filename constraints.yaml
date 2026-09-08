@@ -112,7 +112,7 @@ rehabilitation:
   owner: "single owner"
   readiness_gaps: []
   remaining_limits:
-    - "031 independent review and 032 final verification pending"
+    - "Snapshot at 031 commit 97bab98: 031 independent review and 032 final verification were pending; current conclusions: docs/design-references/hil-site/release/evidence-index.md#当前审查与核验依据"
     - "remote CI, gitleaks and CodeQL not executed in this local mission"
     - "npm ci reports 18 dependency advisories; no dependency upgrade in 031"
     - "public media rights confirmation remains pending; no deployment"

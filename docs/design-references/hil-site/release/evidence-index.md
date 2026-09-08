@@ -77,4 +77,8 @@ npm exec --yes --package=node@24 -- sh -c 'make check-release PLAYWRIGHT_ARGS="-
 
 ## 状态与尚存限制
 
-rehabilitation 在上述门禁与正式视觉证据齐备后关闭，broad_refactor_allowed 仍为 false。031 独立审查与 032 最终核验待完成。依赖安装报告 18 项公告（3 low、4 moderate、11 high）及 node-domexception 弃用提醒，未执行 audit fix 或升级。自动重复代码/未使用导出检测、本地 hook manager、素材公开发布权利确认仍未完成；本地实现不包含公开发布。
+rehabilitation 在上述门禁与正式视觉证据齐备后关闭，broad_refactor_allowed 仍为 false。031 提交 `97bab98` 时点快照：031 独立审查和 032 最终核验待完成；当前结论以[031 审查与 032 报告](#当前审查与核验依据)为准。依赖安装报告 18 项公告（3 low、4 moderate、11 high）及 node-domexception 弃用提醒，未执行 audit fix 或升级。自动重复代码/未使用导出检测、本地 hook manager、素材公开发布权利确认仍未完成；本地实现不包含公开发布。
+
+## 当前审查与核验依据
+
+031 独立审查结论见[031-r1.json](</Users/qingsir/Project/labWebSite/docs/labWebsiteV1/missions/labwebsitev1-ps-20260907/missions/reviews/031-r1.json>)；032 最终核验的最新结论及逐项结果见[032.json](</Users/qingsir/Project/labWebSite/docs/labWebsiteV1/missions/labwebsitev1-ps-20260907/missions/reports/032.json>)。读取报告中的实际通过、失败或阻塞结果判断当前状态；上述快照不代表当前待办，也不替代报告结论。

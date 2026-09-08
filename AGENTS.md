@@ -104,7 +104,7 @@
 
 ### Rehabilitation gate
 
-031 已在证据齐备后关闭 rehabilitation；完成时间与证据记录在 constraints.yaml。031 独立审查和 032 最终核验仍待完成。若后续 rehabilitation 重新 active：
+031 已在证据齐备后关闭 rehabilitation；完成时间与证据记录在 constraints.yaml。031 提交 `97bab98` 时点快照：031 独立审查和 032 最终核验待完成；判断当前状态时读取[031 审查与 032 报告](docs/design-references/hil-site/release/evidence-index.md#当前审查与核验依据)。若后续 rehabilitation 重新 active：
 
 - 不得开展大范围重构，broad_refactor_allowed 保持 false。
 - 必须先完成 npm ci、make check、/healthz 可访问且 / 的 Playwright 关键路径有证据后，才可以把 rehabilitation 标为 inactive，并记录完成时间和证据。
