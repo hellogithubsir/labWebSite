@@ -1,7 +1,7 @@
 [
   {"id":"motion-order","text":"核对现场采样与实现：轨道700ms提交后才动，500ms旧内容淡出，1200至1500ms新内容淡入，1500ms才解锁。"},
   {"id":"geometry","text":"核对44/58px与38/50px导航条几何、980px移动断点和移动菜单250ms保持，不引入原站72px。"},
-  {"id":"interaction","text":"核对七屏单URL、Locale、键盘/移动菜单、首目标锁、同屏无重置、至多一个可访问画面和完成标题焦点。"},
+  {"id":"interaction","text":"核对七屏单URL、Locale、键盘/移动菜单、首目标锁、同屏无重置、至多一个可访问画面和按来源恢复焦点：桌面目标rail、移动菜单按钮、正文CTA的site-content或等价主标题，同屏不移动，reduce同规则。"},
   {"id":"reduce","text":"核对reduce完整流程100ms内结束且无残留透明、inert或aria-hidden。"},
-  {"id":"evidence-scope","text":"核对真实失败到通过、完整release gate及独立逐条证据；只更新当前说明，不修改旧V1冻结产物或创建平行实现与测试。"}
+  {"id":"evidence-scope","text":"核对真实失败到通过、完整release gate及独立逐条证据；只更新当前说明，不修改旧V1冻结产物或创建平行实现与测试；tracked证据仅文本索引/JSON，实际trace截图及临时脚本在新mission忽略目录。"}
 ]

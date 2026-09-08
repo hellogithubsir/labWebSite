@@ -7,7 +7,9 @@ Blocked by: None
 
 ### What to build
 
-依照本目录 spec.md 的现场采样和完整时间轴修改现有正式实现：0ms 锁首个目标且旧内容 inert/aria-hidden、页脚300ms下移100vh；500ms旧内容开始300ms淡出；700ms提交目标与滚动重置并开始300ms轨道flex重排；新内容700–1200ms透明、1200–1500ms淡入；1500ms解锁并恢复目标画面可访问性及标题焦点。轨道不能在请求起点先动。
+依照本目录 spec.md 的现场采样和完整时间轴修改现有正式实现：0ms 锁首个目标且旧内容 inert/aria-hidden、页脚300ms下移100vh；500ms旧内容开始300ms淡出；700ms提交目标与滚动重置并开始300ms轨道flex重排；新内容700–1200ms透明、1200–1500ms淡入；1500ms解锁并恢复目标画面可访问性并按来源恢复焦点。轨道不能在请求起点先动。
+
+焦点遵循被接受请求来源：桌面鼠标/键盘导航完成后聚焦最终目标rail；移动菜单导航保留或恢复菜单按钮焦点；正文CTA到达后聚焦 `#site-content` 或唯一主标题等价可访问目标；同屏不移动焦点。reduce使用相同规则。
 
 保留普通/active导航条44/58px及981–1280px的38/50px，980px以下无桌面轨道；移动菜单自身250ms不改。reduce完整流程100ms内结束。首目标锁、同屏无动作、单URL、Locale及单可访问画面约束必须保持。
 
@@ -25,4 +27,4 @@ Blocked by: None
 Fulfills: VAL-MOTION-001, VAL-MOTION-002, VAL-MOTION-003, VAL-MOTION-004
 - Verification: npm run test:e2e -- --grep "page transition" (exit zero)
 - Command / scenario: 先运行更新后的时序断言确认旧实现失败；实现后通过目标测试并运行 make check-release，覆盖双语七屏、桌面与移动、普通与reduce路径。
-- Evidence expected: docs/design-references/hil-site/transition/ 内的新旧行为失败到通过记录、原站采样来源记录、本地时间轴采样、完整门禁退出码与持久trace索引。
+- Evidence expected: docs/design-references/hil-site/transition/ 内的新旧行为失败到通过记录、原站采样来源记录、本地时间轴采样、完整门禁退出码与持久证据索引；该 tracked 目录仅放文本索引/JSON，实际trace、截图、完整日志及临时采样脚本放新mission被Git忽略的 missions/evidence/，索引链接这些持久证据。
