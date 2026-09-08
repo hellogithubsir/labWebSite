@@ -1,41 +1,90 @@
 {
   "mission": "labwebsitev1-transition-followup",
+  "generatedBy": "devflow.cjs compile",
+  "generatedAt": "2026-09-08",
+  "statusNote": "This is the plan and holds no status. Live status is in <spec-dir>/missions/runtime.json (gitignored, written only by devflow). Read it with: devflow.cjs brief --mission-dir <spec-dir>/missions — that answers \"is it done\", read-only. Never edit this file by hand: append with 'devflow.cjs amend --add-feature', and drop work with 'devflow.cjs cancel'.",
   "features": [
     {
       "id": "040",
-      "description": "实现 mitibm 参考站点 rail 与主内容分区切换时序",
+      "description": "在既有七画面单URL模型中实现700ms提交与1500ms完成的参考动效并保留项目轨道几何和交互约束",
       "dependsOn": [],
-      "milestone": "transition",
+      "milestone": "reference-motion",
       "touches": [
-        "src/components/hil-site/ScreenNavigation.tsx",
-        "src/components/hil-site/ScreenNavigation.module.css",
         "src/components/hil-site/PageTurnTransition.tsx",
         "src/components/hil-site/PageTurnTransition.module.css",
+        "src/components/hil-site/ScreenNavigation.tsx",
+        "src/components/hil-site/ScreenNavigation.module.css",
         "src/components/hil-site/HilSiteShell.tsx",
-        "e2e/transition-reference.spec.ts"
+        "e2e/transition.spec.ts",
+        "e2e/locale.spec.ts",
+        "e2e/navigation.spec.ts",
+        "README.md",
+        "docs/adr/0002-native-css-page-transition.md",
+        "docs/research/hil-site-design-manifest.md",
+        "docs/design-references/hil-site/transition/**"
       ],
       "fulfills": [
-        "VAL-040"
+        "VAL-MOTION-001",
+        "VAL-MOTION-002",
+        "VAL-MOTION-003",
+        "VAL-MOTION-004"
       ],
-      "skillName": "implement"
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "npm run test:e2e -- --grep \"page transition\"",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "skillName": "tdd",
+      "expectedBehavior": [
+        "四条 VAL-MOTION 断言均有实现和真实测试覆盖，完整1500ms顺序可从多帧采样确认。",
+        "轨道宽度与响应式断点保持本项目七屏版式，移动菜单250ms保留。",
+        "单URL、Locale、同屏、连续输入、焦点和可访问性在普通及reduce模式正确。",
+        "完成针对性E2E与make check-release，保存退出码、独立日志及持久trace；失败如实报告并修复。",
+        "当前文档说明已更新并链接新证据，旧冻结产物与素材包保持只读。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
     },
     {
       "id": "041",
-      "description": "独立验证 040 的 rail、内容、输入锁、URL/Locale/焦点与 reduced-motion 行为",
+      "description": "对040最终实现独立只读验证四条动效断言并提交逐条verdict和真实UI证据",
       "dependsOn": [
         "040"
       ],
-      "milestone": "transition",
-      "touches": [
-        "e2e/**",
-        "docs/labWebsiteV1-transitionFollowup/**"
-      ],
+      "milestone": "reference-motion",
+      "touches": [],
+      "fulfills": [],
       "proves": [
-        "VAL-040"
+        "VAL-MOTION-001",
+        "VAL-MOTION-002",
+        "VAL-MOTION-003",
+        "VAL-MOTION-004"
       ],
       "reportOnly": true,
-      "skillName": "implement",
-      "fulfills": []
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "npm run test:e2e -- --grep \"page transition\"",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "skillName": "user-validate-flow",
+      "expectedBehavior": [
+        "每条指定断言有独立 verdict 及存在的具名证据文件，记录命令与退出码。",
+        "正常与reduce、桌面两组宽度与移动视口均有真实UI观察，时间轴覆盖离场/提交/等待/淡入/解锁。",
+        "全规格对照与单URL、双语七屏、焦点及输入行为检查完成，不遗漏700ms不是终点这一约束。",
+        "报告通过 validation-check --require-proven；存在失败或阻塞不得报完成，不修改产品代码或旧冻结产物。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
     }
   ]
 }

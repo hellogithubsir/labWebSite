@@ -1,0 +1,88 @@
+{
+  "source": "https://mitibm.mit.edu/",
+  "direction": "News → Research",
+  "method": "CUA CDP Runtime.evaluate read-only requestAnimationFrame sampling concurrent with UI click",
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "timingOrigin": "sampling start; click/body transition observed at t=22ms",
+  "computed": {
+    "rail": "flex 0.3s cubic-bezier(0.4, 0.14, 0.3, 1)",
+    "content": "opacity 0.3s 0.5s",
+    "footer": "transform 0.3s"
+  },
+  "samples": [
+    {
+      "t": 0,
+      "researchWidth": 73.625,
+      "newsWidth": 1700.75,
+      "opacity": 1,
+      "state": "news"
+    },
+    {
+      "t": 307,
+      "researchWidth": 73.625,
+      "newsWidth": 1700.75,
+      "opacity": 1,
+      "state": "news leaving"
+    },
+    {
+      "t": 505,
+      "researchWidth": 73.625,
+      "newsWidth": 1700.75,
+      "opacity": 1,
+      "state": "news leaving"
+    },
+    {
+      "t": 706,
+      "researchWidth": 73.625,
+      "newsWidth": 1700.75,
+      "opacity": 0.126514,
+      "state": "news leaving"
+    },
+    {
+      "t": 740,
+      "researchWidth": 73.625,
+      "newsWidth": 1700.75,
+      "opacity": 0,
+      "state": "research committed"
+    },
+    {
+      "t": 807,
+      "researchWidth": 420.1171875,
+      "newsWidth": 1354.2578125,
+      "opacity": 0,
+      "state": "research entering"
+    },
+    {
+      "t": 1007,
+      "researchWidth": 1688.546875,
+      "newsWidth": 85.828125,
+      "opacity": 0,
+      "state": "research entering"
+    },
+    {
+      "t": 1208,
+      "researchWidth": 1700.75,
+      "newsWidth": 73.625,
+      "opacity": 0,
+      "state": "research entering"
+    },
+    {
+      "t": 1407,
+      "researchWidth": 1700.75,
+      "newsWidth": 73.625,
+      "opacity": 0.854401,
+      "state": "research entering"
+    },
+    {
+      "t": 1556,
+      "researchWidth": 1700.75,
+      "newsWidth": 73.625,
+      "opacity": 1,
+      "state": "research visible"
+    }
+  ],
+  "interpretation": "~700ms leave then ~300ms rail movement; incoming content 500ms delay+300ms fade after commit. Do not label 700ms as overall completion."
+}
