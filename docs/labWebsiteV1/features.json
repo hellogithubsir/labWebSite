@@ -834,6 +834,47 @@
         "feature": "010"
       },
       "origin": "amend"
+    },
+    {
+      "dependsOn": [
+        "031"
+      ],
+      "touches": [
+        "README.md",
+        "CONTEXT.md",
+        "AGENTS.md",
+        "constraints.yaml",
+        "docs/design-references/hil-site/release/evidence-index.md"
+      ],
+      "fulfills": [],
+      "expectedBehavior": [
+        "README、CONTEXT、AGENTS、constraints.remaining_limits 和发布证据索引的 031/032 待办统一明确为 031 提交时点快照，当前状态引用编排提供的可定位 031 审查记录和 mission/reports/032.json。",
+        "以 032 报告实际落盘且可读取为实施前置条件，由主编排控制先后；如实表达报告结果，不提前宣布 032 通过，不用本修正待审之类文案制造新的过期循环。",
+        "仅修正五处状态说明和必要引用，保留 rehabilitation 关闭时间、产品基线及真实限制，不修改产品、任务 runtime、已有证据或已确认关闭事实；五处时点一致且引用实际存在。"
+      ],
+      "addressesItemId": [
+        "F-3"
+      ],
+      "id": "fx-004",
+      "description": "将五处收口待办明确为 031 提交时点快照，并以审查及 032 报告表达当前状态",
+      "milestone": "m4-release-proof",
+      "skillName": "tdd",
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "docs",
+            "command": "git diff --check",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "cause": {
+        "kind": "review",
+        "itemId": "F-3",
+        "feature": "031"
+      },
+      "origin": "amend"
     }
   ]
 }
