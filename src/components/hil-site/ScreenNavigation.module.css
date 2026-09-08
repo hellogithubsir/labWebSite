@@ -13,15 +13,18 @@
 .number { color: var(--teal); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
 .active .number { color: #5bd5ca; }
 .label { font-size: 10px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
-.mobileBar { display: none; }
+.mobileBar { display: contents; }
+.brand, .menuButton { display: none; }
+.languageControl { position: fixed; top: 20px; right: calc((6 - var(--screen-index)) * var(--rail) + 32px); z-index: 102; }
 .skip { position: fixed; z-index: 120; top: 12px; left: 12px; padding: 10px 14px; border: 0; border-radius: 10px; color: var(--white); background: var(--navy); transform: translateY(-160%); }
 .skip:focus { transform: none; }
 @media (max-width: 1280px) and (min-width: 981px) { .shell { --rail: 38px; --active-rail: 50px; } .label { font-size: 9px; } }
 @media (max-width: 980px) {
   .frame { width: 100%; margin-left: 0; padding-top: 64px; border: 0; }
-  .mobileBar { position: fixed; inset: 0 0 auto; height: 64px; z-index: 101; display: flex; align-items: center; justify-content: space-between; padding-inline: 20px; border-bottom: 1px solid var(--line); background: var(--paper); }
-  .brand { color: var(--navy); font-size: 13px; font-weight: 800; }
-  .menuButton { min-height: 44px; padding: 10px 4px; border: 0; color: var(--navy); background: transparent; cursor: pointer; font-size: 13px; font-weight: 800; transition: color 300ms var(--ease), transform 300ms var(--ease); }
+  .mobileBar { position: fixed; inset: 0 0 auto; height: 64px; z-index: 101; display: flex; align-items: center; gap: 12px; padding-inline: 20px; border-bottom: 1px solid var(--line); background: var(--paper); }
+  .languageControl { position: static; flex: none; }
+  .brand { display: block; margin-right: auto; color: var(--navy); font-size: 13px; font-weight: 800; }
+  .menuButton { display: block; flex: none; min-height: 44px; padding: 10px 4px; border: 0; color: var(--navy); background: transparent; cursor: pointer; font-size: 13px; font-weight: 800; transition: color 300ms var(--ease), transform 300ms var(--ease); }
   .menuButton:hover { color: var(--teal); transform: translateY(-2px); }
   .menuButton:active { transform: none; transition-duration: 120ms; }
   .menu { position: fixed; inset: 64px 0 0; display: grid; align-content: start; gap: 2px; padding: 28px 20px; overflow-y: auto; background: var(--paper); opacity: 0; visibility: hidden; transform: translateY(-12px); transition: opacity 250ms var(--ease), transform 250ms var(--ease), visibility 0s 250ms; }

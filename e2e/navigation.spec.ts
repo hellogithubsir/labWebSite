@@ -154,3 +154,108 @@ for (const width of [390, 320]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   });
 }
+
+for (const width of [390, 320]) {
+  test(`mobile topbar ${width} keeps full controls separate and independently operable`, async ({ page }, testInfo) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/");
+    const menu = page.locator('[data-od-id="menu-toggle"]');
+    const language = page.locator('[data-od-id="locale-toggle"]');
+    const navigation = page.locator("#screen-navigation");
+    for (const open of [false, true]) {
+      if (open) await menu.click();
+      for (const locale of ["en", "zh-CN"] as const) {
+        await expect(page.locator("html")).toHaveAttribute("lang", locale);
+        await expect(language).toHaveCount(1);
+        await expect(language).toHaveText(locale === "en" ? "中文" : "English");
+        await expect(menu).toHaveText(locale === "en" ? (open ? "Close menu" : "Menu") : (open ? "关闭菜单" : "菜单"));
+        await expect(menu).toHaveAttribute("aria-expanded", String(open));
+        const bounds = await page.locator('[data-od-id="menu-toggle"], [data-od-id="locale-toggle"]').evaluateAll((controls) => controls.map((control) => {
+          const box = control.getBoundingClientRect();
+          const text = document.createRange();
+          text.selectNodeContents(control);
+          const ink = text.getBoundingClientRect();
+          const style = getComputedStyle(control);
+          return { left: box.left, right: box.right, top: box.top, bottom: box.bottom,
+            textLeft: ink.left, textRight: ink.right, textTop: ink.top, textBottom: ink.bottom,
+            fontSize: parseFloat(style.fontSize), height: box.height };
+        }));
+        expect(bounds).toHaveLength(2);
+        for (const box of bounds) {
+          expect(box.left).toBeGreaterThanOrEqual(0);
+          expect(box.right).toBeLessThanOrEqual(width);
+          expect(box.top).toBeGreaterThanOrEqual(0);
+          expect(box.bottom).toBeLessThanOrEqual(844);
+          expect(box.textLeft).toBeGreaterThanOrEqual(box.left);
+          expect(box.textRight).toBeLessThanOrEqual(box.right);
+          expect(box.textTop).toBeGreaterThanOrEqual(box.top);
+          expect(box.textBottom).toBeLessThanOrEqual(box.bottom);
+          expect(box.fontSize).toBeGreaterThanOrEqual(13);
+          expect(box.height).toBeGreaterThanOrEqual(44);
+        }
+        expect(bounds[0].right <= bounds[1].left || bounds[1].right <= bounds[0].left).toBe(true);
+        await page.mouse.move(0, 100);
+        await page.screenshot({ path: testInfo.outputPath(`${locale}-${open ? "open" : "closed"}.png`), animations: "disabled" });
+        await menu.click();
+        await expect(menu).toHaveAttribute("aria-expanded", String(!open));
+        await menu.click();
+        await expect(menu).toHaveAttribute("aria-expanded", String(open));
+        await language.click();
+        await expect(page.locator("html")).toHaveAttribute("lang", locale === "en" ? "zh-CN" : "en");
+        await expect(menu).toHaveAttribute("aria-expanded", String(open));
+      }
+    }
+    await menu.click();
+    await expect(menu).toHaveAttribute("aria-expanded", "false");
+    await expect(navigation).toBeHidden();
+    await expect(menu).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(language).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
+    await page.keyboard.press("Shift+Tab");
+    await expect(menu).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(menu).toHaveAttribute("aria-expanded", "true");
+    await page.keyboard.press("Tab");
+    await expect(language).toBeFocused();
+    await page.keyboard.press("Space");
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await page.keyboard.press("Tab");
+    await expect(navigation.locator('[data-od-id="nav-home"]')).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeFocused();
+    await expect(menu).toHaveAttribute("aria-expanded", "false");
+    await expect(navigation).toBeHidden();
+    await page.keyboard.press("Space");
+    await expect(menu).toHaveAttribute("aria-expanded", "true");
+    await page.keyboard.press("Space");
+    await expect(menu).toHaveAttribute("aria-expanded", "false");
+    await expect(page).toHaveURL("http://127.0.0.1:3000/");
+  });
+}
+
+test("desktop topbar 1920 preserves language position and navigation tab order", async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto("/");
+  const language = page.locator('[data-od-id="locale-toggle"]');
+  await expect(language).toHaveCount(1);
+  await expect(page.locator('[data-od-id="menu-toggle"]')).toBeHidden();
+  for (const [screen, right] of [["home", 1624], ["contact", 1888]] as const) {
+    await page.locator(`[data-od-id="nav-${screen}"]`).click();
+    await expect(page.getByRole("main")).toHaveAttribute("data-screen", screen);
+    for (const locale of ["en", "zh-CN"] as const) {
+      await expect(page.locator("html")).toHaveAttribute("lang", locale);
+      const box = await language.boundingBox();
+      expect(box).not.toBeNull();
+      expect(box!.y).toBe(20);
+      expect(box!.x + box!.width).toBe(right);
+      await language.focus();
+      await page.keyboard.press("Tab");
+      await expect(page.locator('[data-od-id="nav-home"]')).toBeFocused();
+      await page.keyboard.press("Shift+Tab");
+      await expect(language).toBeFocused();
+      await page.keyboard.press("Enter");
+    }
+  }
+});

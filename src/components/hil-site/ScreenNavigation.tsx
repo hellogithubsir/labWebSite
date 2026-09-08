@@ -79,9 +79,7 @@ export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuO
         <button ref={menuButton} type="button" className={styles.menuButton}
           aria-expanded={menuOpen} aria-controls="screen-navigation" data-od-id="menu-toggle"
           onClick={() => onMenuOpenChange(!menuOpen)}>{menuOpen ? closeMenuLabel : menuLabel}</button>
-      </div>
-      <div className="fixed top-[10px] right-20 z-[102] min-[981px]:top-5 min-[981px]:right-[calc((6-var(--screen-index))*var(--rail)+32px)]">
-        {languageControl}
+        <div className={styles.languageControl}>{languageControl}</div>
       </div>
       <nav id="screen-navigation" aria-label={navigationLabel} inert={mobile && !menuOpen} aria-hidden={mobile && !menuOpen ? true : undefined}
         className={`${styles.menu} ${menuOpen ? styles.open : ""}`} data-od-id="screen-navigation">
