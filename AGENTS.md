@@ -16,7 +16,7 @@
 - React 19
 - TypeScript strict mode
 - Tailwind CSS v4、PostCSS、shadcn/ui
-- Node 版本由 .nvmrc 和 package.json 约束（当前要求 Node >=24）；package-lock.json 已恢复，npm 校验仍需先安装依赖。
+- Node 版本由 .nvmrc（24）和 package.json（>=24）约束；新环境先 npm ci，031 已验证干净安装。
 
 ## Directory Map
 
@@ -41,9 +41,10 @@
 
 | Surface | Command | Pass condition | Notes |
 | --- | --- | --- | --- |
-| Repository gate | make check | all blocking checks pass | package/config 已恢复；node_modules 缺失时先执行 npm ci |
+| Repository gate | make check | all blocking checks pass | 新环境先执行 npm ci；031 已有通过证据 |
 | Naming and scratch paths | make check-guardrails | no forbidden path or suffix is reported | 可独立运行 |
 | Guard self-test | make test-guardrails | accept/reject cases behave as specified | 可独立运行 |
+| Release gate | make check-release | 工程、自测、健康与完整 E2E 全部退出 0 | 串行；PLAYWRIGHT_ARGS 可指定持久 trace 输出 |
 
 ## Source of Truth & Refactor Contract
 
@@ -51,7 +52,7 @@
 - 代码 oracle：当前 src/ 和 public/ 中的正式实现；归档源码不算当前实现。
 - 当前没有批准的大规模重构；只做页面交付所需的最小改动。
 - 发生视觉变化时，必须说明对应的 Photoshop 画面、图层复合或状态；不能以“看起来差不多”替代验证。
-- 运行时行为验证在 /healthz 和关键 UI 路由可用后补齐；目前不声称已有通过证据。
+- /healthz 与七画面关键行为已有正式生产运行证据；变更或审查发布状态时读取 docs/design-references/hil-site/release/evidence-index.md。
 
 ## Important Development Notes
 
@@ -82,13 +83,13 @@
 
 ## Critical Paths
 
-当前尚未登记关键业务路径。等正式页面和交互状态落地后，再按可执行的用户任务登记。
+`/`：七画面中英导航与刷新、CTA、键盘/移动菜单、正常/减少动画、双轮播、独立折叠、团队筛选、联系链接；由 e2e/ 的完整 Playwright 套件验证。
 
 ## Observability
 
-- 健康检查：/healthz，已接收bootstrap端点；002维护正式回归证据。
-- 关键UI路由：/，当前仅有最小入口；已接收Playwright生产服务器基线，003记录干净本地等价验收。
-- 当前本地尚无 node_modules，因此尚未声明前端检查通过。
+- 健康检查：/healthz 返回 200 与精确 JSON；031 保存独立响应和 E2E trace。
+- 关键 UI 路由：/，七画面双语已实现；031 保存 Node 24 干净安装后的完整本地门禁证据。
+- 成功 trace 用 PLAYWRIGHT_ARGS 指向持久目录，日志放在 output 目录外；默认 .next 证据会被后续构建清理。
 - 错误必须通过命令退出码和明确日志暴露；不得用静默降级伪造通过。
 
 ## Agent Operating Rules
@@ -103,7 +104,7 @@
 
 ### Rehabilitation gate
 
-工程处于“先修复验证护栏、再恢复产品工具链”的阶段。constraints.yaml 中的 rehabilitation 状态为 active 时：
+031 已在证据齐备后关闭 rehabilitation；完成时间与证据记录在 constraints.yaml。031 独立审查和 032 最终核验仍待完成。若后续 rehabilitation 重新 active：
 
 - 不得开展大范围重构，broad_refactor_allowed 保持 false。
 - 必须先完成 npm ci、make check、/healthz 可访问且 / 的 Playwright 关键路径有证据后，才可以把 rehabilitation 标为 inactive，并记录完成时间和证据。
@@ -121,7 +122,7 @@
 | 阻塞任务汇总 | .github/workflows/ci.yml | CI all-checks-passed job | gate |
 | 重复实现审查 | src/ | review-only | review-only |
 | 未使用导出审查 | src/ | review-only | review-only |
-| 关键路径覆盖率 | e2e/ | review-only until Playwright is available | review-only |
+| 关键路径行为 | e2e/ | make check-ui and CI critical_ui | block |
 
 ## 本轮授权与编排
 

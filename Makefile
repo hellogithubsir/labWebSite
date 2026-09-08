@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: check check-ui check-guardrails test-guardrails
+.PHONY: check check-ui check-release check-guardrails test-guardrails
 
 check: check-guardrails
 	@missing=0; \
@@ -17,10 +17,16 @@ check: check-guardrails
 	@npm run check
 
 check-ui:
-	@npm run test:e2e
+	@npm run test:e2e -- $(PLAYWRIGHT_ARGS)
 
 check-guardrails:
 	@bash .git-hooks/check-naming.sh --all
 
 test-guardrails:
 	@bash scripts/test-guardrails.sh
+
+# Keep builds sequential: Playwright rebuilds and owns its production server.
+check-release:
+	@$(MAKE) check
+	@$(MAKE) test-guardrails
+	@$(MAKE) check-ui

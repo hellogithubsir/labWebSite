@@ -2,7 +2,7 @@
 
 ## Project Identity
 
-Harmonizing Intelligence Lab 官网是一个以用户 Photoshop 交付包为当前设计权威的 Next.js 前端。当前仓库处于最小入口阶段，先恢复可验证的工程护栏，再实现正式页面。
+Harmonizing Intelligence Lab 官网是一个以用户 Photoshop 交付包为当前设计权威的 Next.js 前端。七画面双语实现与本地发布门禁已落地；正式证据见 `docs/design-references/hil-site/release/evidence-index.md`。
 
 ## Canonical Sources
 
@@ -47,17 +47,19 @@ Harmonizing Intelligence Lab 官网是一个以用户 Photoshop 交付包为当�
 
 ## State Model
 
-公共状态固定为七个ScreenId和en|zh-CN，默认英文Home，单URL且刷新复位；整页250ms淡入淡出。rehabilitation保持active，031在证据齐备后收口。
+公共状态固定为七个ScreenId和en|zh-CN，默认英文Home，单URL且刷新复位；整页250ms淡入淡出。031 的干净安装、工程/护栏/健康/E2E 与视觉证据齐备后，rehabilitation 已关闭；大规模重构仍不允许。
 
 ## Implicit Dependencies
 
-- Node 和 npm 可执行文件存在；package/config 已从 Git 基线恢复，`node_modules` 当前不存在，`npm ci` 是本地验证前置。
-- Photoshop交付包已收到；路径与来源优先级见docs/labWebsiteV1/spec.md已批准执行补充。001完成清单后实施视觉页面。
+- Node 24 与锁文件是可复现基线；031 已从无 node_modules 的 worktree 完成 npm ci，新环境仍须安装。
+- Photoshop交付包已收到；路径与来源优先级见docs/labWebsiteV1/spec.md已批准执行补充。001 已完成逐页清单，正式实现从 src/public 消费内容和媒体。
 - Figma MCP 当前受 View 席位调用额度限制；该来源不作为运行时依赖或当前开工门禁。
 - CI 需要 GitHub Actions、秘密扫描和 CodeQL 服务；本地不执行远端 CI。
 
-## Open Questions
+## Outstanding Facts
 
-- 正式画面的尺寸、素材和交互状态待 Photoshop 原始交付包逐页确认。
-- 依赖安装完成后，`make check`、`/healthz` 和 Playwright 关键路径何时具备可执行证据。
-- Playwright与/healthz实现已接收，002/003仅维护正式验收，不重复实现。
+- 031 独立审查和 032 最终核验仍待完成；本地工程就绪不等于最终审查或生产发布已完成。
+- 远端 CI、gitleaks、CodeQL 未运行；VAL-005 是配置核对与干净本地等价执行。
+- npm ci 报告 18 项依赖公告，未在本票升级；见发布索引安装日志。
+- 自动重复代码/未使用导出检查与本地 hook manager 尚未配置，继续使用人工审查和 CI/显式护栏。
+- 媒体公开发布权利待确认；中文及移动布局采用已批准推导规则，不虚构缺失原稿或照片。

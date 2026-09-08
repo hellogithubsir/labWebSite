@@ -77,7 +77,7 @@ size_limits:
 verification:
   - surface: "repository"
     command: "make check"
-    status: "available after npm ci"
+    status: "passed in 031 after clean npm ci; see release evidence index"
   - surface: "guardrails"
     command: "make check-guardrails"
     status: "available"
@@ -96,20 +96,26 @@ verification:
 critical_paths:
   - route: "/"
     command: "npm run test:e2e"
-    expectation: "navigation succeeds and the primary heading is visible"
+    expectation: "seven bilingual screens, navigation, CTA, locale/reset, normal/reduced motion, mobile menu, carousels, disclosures, filters and contact actions pass"
 
 rehabilitation:
-  active: true
-  phase: "stabilize-harness"
-  baseline_frozen: false
-  command_entrypoint: "make check"
-  runtime_verifier: ""
+  active: false
+  phase: "verified-local-v1"
+  baseline_frozen: true
+  baseline_commit: "ffc8cf6e948aa30e65fe1b660d6ac50ad76d077f"
+  completed_at: "2026-09-08T02:48:08.754302+00:00"
+  completion_evidence: "docs/design-references/hil-site/release/evidence-index.md"
+  command_entrypoint: "make check-release"
+  runtime_verifier: "make check-ui (includes /healthz); 84 passed in 031"
   broad_refactor_allowed: false
   work_unit_protocol: "one focused change, then run the relevant make target and report evidence"
   owner: "single owner"
-  readiness_gaps:
-    - "dependencies are not installed"
-    - "no baseline has been frozen"
+  readiness_gaps: []
+  remaining_limits:
+    - "031 independent review and 032 final verification pending"
+    - "remote CI, gitleaks and CodeQL not executed in this local mission"
+    - "npm ci reports 18 dependency advisories; no dependency upgrade in 031"
+    - "public media rights confirmation remains pending; no deployment"
 
 refactor:
   active: false
