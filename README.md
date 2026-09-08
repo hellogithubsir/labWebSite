@@ -1,5 +1,7 @@
 # Harmonizing Intelligence Lab
 
+**项目状态：初版完成（2026-09-08）。**
+
 本仓库是 Harmonizing Intelligence Lab 官网的 Next.js 16 / React 19 前端。`/` 包含 Home、Research、Projects、Advantages、Partners、Team、Contact 七画面，中英双语；导航保持单 URL，刷新恢复英文 Home。
 
 ## 开发与验证
@@ -26,7 +28,7 @@ Playwright 独占 `127.0.0.1:3000`，`reuseExistingServer=false`；不要与其�
 
 已实现七画面导航、语言保持、参考动效（700ms 提交、1500ms 完成）与输入锁、reduce 状态、双轮播、独立折叠、成员筛选和联系操作。正式视觉以 [Ticket 001 清单](docs/research/hil-site-design-manifest.md)和 Photoshop 为准；Figma 保留来源链，DOCX 仅补缺失编号内容。[规格](docs/labWebsiteV1/spec.md)记录授权、交互及串行票据。
 
-030 与完整规格审查发现的 F1/F2 已修复并复验；031 提交 `97bab98` 时点快照：031 独立审查和 032 最终核验待完成；当前结论以[031 审查与 032 报告](docs/design-references/hil-site/release/evidence-index.md#当前审查与核验依据)为准。不 push、不部署。
+030 与完整规格审查发现的 F1/F2 已修复并复验；031 提交 `97bab98` 时点快照：031 独立审查和 032 最终核验待完成；当前结论以[031 审查与 032 报告](docs/design-references/hil-site/release/evidence-index.md#当前审查与核验依据)为准。站点尚未部署。
 
 ## 保留的限制
 
