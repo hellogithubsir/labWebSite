@@ -790,6 +790,50 @@
         "feature": "010"
       },
       "origin": "amend"
+    },
+    {
+      "dependsOn": [
+        "fx-002"
+      ],
+      "touches": [
+        "src/components/hil-site/ScreenNavigation.tsx",
+        "src/components/hil-site/ScreenNavigation.module.css",
+        "e2e/navigation.spec.ts"
+      ],
+      "fulfills": [],
+      "expectedBehavior": [
+        "唯一语言控件与移动菜单按钮在同一明确的 flex/grid 布局中分配空间；390px 和 320px、英文和中文、菜单打开与关闭时，两控件可见文字及点击边界均不重叠且位于视口内。",
+        "两控件均能分别通过指针和键盘激活，菜单开关及语言切换结果正确，焦点顺序清晰且关闭菜单焦点归还规则不退化；不复制控件，不隐藏、截断或缩小文案来规避重叠。",
+        "1920px 桌面语言控件定位、导航目标焦点和既有键盘顺序保持；保留 fx-002 四键关闭、双语、URL 稳定及 reduced-motion 导航回归。"
+      ],
+      "addressesItemId": [
+        "F-2"
+      ],
+      "id": "fx-003",
+      "description": "修复移动顶栏语言控件与展开菜单按钮重叠，保证双语开关状态下独立可达",
+      "milestone": "m4-release-proof",
+      "skillName": "tdd",
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "make check",
+            "expectedExit": "zero"
+          },
+          {
+            "id": "navigation",
+            "command": "npm run test:e2e -- e2e/navigation.spec.ts",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "cause": {
+        "kind": "review",
+        "itemId": "F-2",
+        "feature": "010"
+      },
+      "origin": "amend"
     }
   ]
 }
