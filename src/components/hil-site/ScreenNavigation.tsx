@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useSyncExternalStore, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
+import { useEffect, useRef, useSyncExternalStore, type KeyboardEvent, type ReactNode } from "react";
 import { screenSequence } from "@/lib/hil-site/screen-sequence";
 import type { ScreenId } from "@/types/hil-site";
+import type { NavigationSource } from "./PageTurnTransition";
 import styles from "./ScreenNavigation.module.css";
 
 function subscribeViewport(callback: () => void) {
@@ -13,7 +14,7 @@ function subscribeViewport(callback: () => void) {
 
 interface ScreenNavigationProps {
   screen: ScreenId;
-  onNavigate: (screen: ScreenId) => void;
+  onNavigate: (screen: ScreenId, source: NavigationSource) => void;
   labels: Record<ScreenId, string>;
   menuOpen: boolean;
   onMenuOpenChange: (open: boolean) => void;
@@ -29,7 +30,6 @@ export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuO
   const mobile = useSyncExternalStore(subscribeViewport, () => window.matchMedia("(max-width: 980px)").matches, () => false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
-  const activeIndex = screenSequence.indexOf(screen);
   useEffect(() => {
     if (!menuOpen) return;
     const previous = document.body.style.overflow;
@@ -48,7 +48,7 @@ export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuO
     menuButton.current?.focus();
   }
   function activate(target: ScreenId) {
-    onNavigate(target);
+    onNavigate(target, mobile ? "mobile" : "desktop");
     if (menuOpen) closeMenu();
   }
   function handleKeys(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -84,14 +84,15 @@ export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuO
       <nav id="screen-navigation" aria-label={navigationLabel} inert={mobile && !menuOpen} aria-hidden={mobile && !menuOpen ? true : undefined}
         className={`${styles.menu} ${menuOpen ? styles.open : ""}`} data-od-id="screen-navigation">
         {screenSequence.map((id, index) => (
-          <button type="button" key={id} ref={(node) => { buttons.current[index] = node; }}
+          <div key={id} className={`${styles.slot} ${screen === id ? styles.expanded : ""}`}>
+          <button type="button" ref={(node) => { buttons.current[index] = node; }}
             aria-current={screen === id ? "page" : undefined}
-            className={`${styles.rail} ${index <= activeIndex ? styles.left : styles.right} ${screen === id ? styles.active : ""}`}
-            style={{ "--offset": index <= activeIndex ? index : screenSequence.length - 1 - index } as CSSProperties}
+            className={`${styles.rail} ${screen === id ? styles.active : ""}`}
             onClick={() => activate(id)} onKeyDown={(event) => handleKeys(event, index)} data-od-id={`nav-${id}`}>
             <span className={styles.number} aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
             <span className={styles.label}>{labels[id]}</span>
           </button>
+          </div>
         ))}
       </nav>
     </header>

@@ -24,7 +24,7 @@ Playwright 独占 `127.0.0.1:3000`，`reuseExistingServer=false`；不要与其�
 
 031 在 Node 24 干净安装后完成本地发布门禁，rehabilitation 已关闭；大规模重构仍未授权。健康端点 `GET /healthz` 返回 HTTP 200 和精确 JSON `{"status":"ok"}`。完整命令、退出码、trace、七画面双语桌面/移动截图及 Photoshop 对照见[发布证据索引](docs/design-references/hil-site/release/evidence-index.md)。
 
-已实现七画面导航、语言保持、250ms 淡入淡出与输入锁、reduce 状态、双轮播、独立折叠、成员筛选和联系操作。正式视觉以 [Ticket 001 清单](docs/research/hil-site-design-manifest.md)和 Photoshop 为准；Figma 保留来源链，DOCX 仅补缺失编号内容。[规格](docs/labWebsiteV1/spec.md)记录授权、交互及串行票据。
+已实现七画面导航、语言保持、参考动效（700ms 提交、1500ms 完成）与输入锁、reduce 状态、双轮播、独立折叠、成员筛选和联系操作。正式视觉以 [Ticket 001 清单](docs/research/hil-site-design-manifest.md)和 Photoshop 为准；Figma 保留来源链，DOCX 仅补缺失编号内容。[规格](docs/labWebsiteV1/spec.md)记录授权、交互及串行票据。
 
 030 与完整规格审查发现的 F1/F2 已修复并复验；031 提交 `97bab98` 时点快照：031 独立审查和 032 最终核验待完成；当前结论以[031 审查与 032 报告](docs/design-references/hil-site/release/evidence-index.md#当前审查与核验依据)为准。不 push、不部署。
 
@@ -38,5 +38,6 @@ Playwright 独占 `127.0.0.1:3000`，`reuseExistingServer=false`；不要与其�
 ## 工程参考
 
 - [AGENTS.md](AGENTS.md)、[CONTEXT.md](CONTEXT.md)、[constraints.yaml](constraints.yaml)：边界、状态和工程约束。
+- [040 动效当前行为与证据](docs/design-references/hil-site/transition/040-reference-motion.md)：轨道在提交后用 300ms flex 重排；旧 250ms 与 030 记录保留为历史快照。
 - [单 URL 决策](docs/adr/0001-single-url-screen-sequence.md)、[原生过渡决策](docs/adr/0002-native-css-page-transition.md)。
 - [MIT–IBM 历史参考](docs/reference/mitibm-section-navigation/README.md)：仅保留研究来源，正式动效以 V1 交付和批准规格为准。

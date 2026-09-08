@@ -4,11 +4,16 @@ status: accepted
 
 # 使用 React 状态与原生 CSS 实现页面切换动效
 
-目标交互是同一 URL 下的250ms ease-out整页淡入淡出，当前没有多种动画系统或复杂时间轴需求，因此采用 React 状态编排当前/下一个画面，再由独立的 CSS transition/animation 模块控制视觉过渡，不引入 Framer Motion 等动画依赖。这样动画曲线、层叠关系和 Figma 对照都集中在一个 seam 内，依赖更少，后续替换动效也不需要改七个画面。
+当前按 [040 参考动效规格](../labWebsiteV1-transitionFollowup/spec.md)实现同一 URL 下的七屏切换。React 维护当前画面、阶段及首个接受请求；原生 CSS 实现透明度、页脚位移与轨道 flex，不引入路由或动画依赖。静态布局仍以 Photoshop 交付为准。
 
 ## Consequences
 
-- 切换器只维护 `currentScreen`、`nextScreen`和过渡锁定状态。
-- 动画完成由 `animationend`/`transitionend` 提交下一个画面，而不是用散落的定时器猜测结束时间。
-- `prefers-reduced-motion` 下跳过整页动画并直接提交状态。
-- 2026-09-07正式Photoshop状态文档指定250ms ease-out淡入淡出、无方向滑动；reduce立即显示。
+- 起点锁首目标及其焦点来源，旧内容 inert/aria-hidden，页脚 300ms 下移 100vh；旧内容等待 500ms 后用 300ms 淡出。
+- 唯一 700ms 计时器提交目标并重置滚动，截断旧淡出最后约 100ms；不是等旧 animationend 提交。
+- 提交后七个 flex 槽位用 300ms cubic-bezier(.4,.14,.3,1) 重排。只有窄条按钮接收指针，内容空隙穿透；边框与语言控件同段协调移动。
+- 新内容使用 500ms delay + 300ms fade-in，animationend 在约 1500ms 解锁并恢复可访问性与焦点。离场 animationend 不会完成入场。
+- 桌面导航完成后聚焦接受目标 rail；移动导航回菜单按钮；正文 CTA 聚焦 site-content。同屏不启动流程。
+- reduce 跳过计时、位移与透明度等待；运行中切为 reduce 也清理计时器并完成。组件卸载清理计时器。
+- 大于 1280px 的条带为 44/58px，981–1280px 为 38/50px；980px 以下使用原 250ms 移动菜单。
+
+2026-09-07 的 250ms ease-out 决策及 030 旧记录属于历史快照，当前时序由 040 续票更新。[本轮证据](../design-references/hil-site/transition/040-reference-motion.md)区分参考站采样与本地实测。

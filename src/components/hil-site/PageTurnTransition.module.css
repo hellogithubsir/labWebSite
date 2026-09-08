@@ -1,8 +1,11 @@
-/* 两段各 125ms，总过渡 250ms；只在完全透明时替换唯一正文。 */
-.out { animation: fade-out 125ms ease-out both; }
-.in { animation: fade-in 125ms ease-out both; }
+/* 700ms 提交截断旧内容淡出；入场的 500ms 等待与 300ms 淡入由同一动画结束事件解锁。 */
+.out { animation: fade-out 300ms ease 500ms both; }
+.in { animation: fade-in 300ms ease 500ms both; }
+.out footer { transform: translateY(100vh); transition: transform 300ms ease; }
+.in footer { transform: none; }
 @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
-  .out, .in { animation: none; }
+  .out, .in { animation: none; opacity: 1; }
+  .out footer, .in footer { transition: none; transform: none; }
 }

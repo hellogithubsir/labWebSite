@@ -63,7 +63,7 @@ Ticket 001，2026-09-07。七个 FINAL PSD、七个全尺寸 sRGB PNG 齐全；�
 
 ## 交互状态
 
-- 整页为 250ms ease-out 淡入淡出，无方向滑动；过渡期间忽略新导航，仅一个画面对辅助技术暴露。reduce 立即显示且不超过 100ms。
+- 当前整页动效采用 [040 续票](../design-references/hil-site/transition/040-reference-motion.md)：旧内容保持 500ms 后淡出，700ms 提交并启动 300ms 轨道 flex 重排，新内容再等待 500ms、淡入 300ms，约 1500ms 解锁。过渡中内容 inert/aria-hidden，首目标锁定；完成后按导航、移动菜单或 CTA 来源恢复焦点。reduce 100ms 内即时完成。原 250ms Photoshop 动效说明与 030 验证记录保留为历史快照；本次静态七屏布局及普通/active 条带尺寸不变。
 - 导航默认纸色、海军蓝字、青绿页码；当前深蓝栏、白字、青绿前导线。Hover 青绿字/浅冰底，当前栏 navy-2，350ms `cubic-bezier(.16,1,.3,1)`。左右键、Home、End 同步焦点与画面。
 - 按钮 hover 小幅上移和填色强调，300ms 同曲线；focus-visible 3px cyan、72% opacity、offset 4px；pressed 回原位，120ms ease-out。
 - E-Linus 四 slide 顺序：overview → profile → alerts → validation；默认 overview，与 PNG 一致。

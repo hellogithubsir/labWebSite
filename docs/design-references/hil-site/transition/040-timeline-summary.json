@@ -1,0 +1,722 @@
+[
+  {
+    "trace": "release-trace/transition-page-transition-2b2c1-d-backward-and-distant-1100/trace.zip",
+    "target": "research",
+    "commitMs": 713.8000000119209,
+    "completeMs": 1530.4000000059605,
+    "samples": [
+      {
+        "t": 47.099999994039536,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 872,
+        "footerY": 101.621,
+        "hidden": true
+      },
+      {
+        "t": 347.09999999403954,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 872,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 447,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 872,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 630.3000000119209,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 0.333519,
+        "x": 872,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 847.0999999940395,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0,
+        "x": 320.90625,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1096.4000000059605,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0,
+        "x": 38,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1347,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0.741072,
+        "x": 38,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1596.800000011921,
+        "phase": "idle",
+        "screen": "research",
+        "opacity": 1,
+        "x": 38,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "trace": "release-trace/transition-page-transition-2b2c1-d-backward-and-distant-1100/trace.zip",
+    "target": "home",
+    "commitMs": 711.2999999821186,
+    "completeMs": 1544.5999999940395,
+    "samples": [
+      {
+        "t": 44.79999998211861,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 38,
+        "footerY": 198.723,
+        "hidden": true
+      },
+      {
+        "t": 344.59999999403954,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 38,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 444.5,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 38,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 628.1999999880791,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 0.258904,
+        "x": 38,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 844.8999999761581,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0,
+        "x": 589.40625,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1094.7999999821186,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0,
+        "x": 872,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1344,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0.740942,
+        "x": 872,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1594.7999999821186,
+        "phase": "idle",
+        "screen": "home",
+        "opacity": 1,
+        "x": 872,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "trace": "release-trace/transition-page-transition-2b2c1-d-backward-and-distant-1100/trace.zip",
+    "target": "contact",
+    "commitMs": 704.0999999940395,
+    "completeMs": 1520.199999988079,
+    "samples": [
+      {
+        "t": 53.89999997615814,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 872,
+        "footerY": 311.332,
+        "hidden": true
+      },
+      {
+        "t": 354.19999998807907,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 872,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 453.59999999403954,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 872,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 637.3999999761581,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 0.197756,
+        "x": 872,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 854.1999999880791,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0,
+        "x": 248.78125,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1104.0999999940395,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0,
+        "x": 38,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1353.3999999761581,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0.802118,
+        "x": 38,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1603.199999988079,
+        "phase": "idle",
+        "screen": "contact",
+        "opacity": 1,
+        "x": 38,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "trace": "release-trace/transition-page-transition-60c3c-d-backward-and-distant-1440/trace.zip",
+    "target": "research",
+    "commitMs": 711.4000000059605,
+    "completeMs": 1560.5999999940395,
+    "samples": [
+      {
+        "t": 44,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 1176,
+        "footerY": 101.295,
+        "hidden": true
+      },
+      {
+        "t": 344.5,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 1176,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 444.40000000596046,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 1176,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 628,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 0.33384,
+        "x": 1176,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 844.7000000178814,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0,
+        "x": 683.390625,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1094.800000011921,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0,
+        "x": 44,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1344,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0.575951,
+        "x": 44,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1594.300000011921,
+        "phase": "idle",
+        "screen": "research",
+        "opacity": 1,
+        "x": 44,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "trace": "release-trace/transition-page-transition-60c3c-d-backward-and-distant-1440/trace.zip",
+    "target": "home",
+    "commitMs": 705.1999999880791,
+    "completeMs": 1521.699999988079,
+    "samples": [
+      {
+        "t": 55.099999994039536,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 44,
+        "footerY": 311.339,
+        "hidden": true
+      },
+      {
+        "t": 354.5,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 44,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 455.40000000596046,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 44,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 638.5,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 0.197752,
+        "x": 44,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 855.0999999940395,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0,
+        "x": 889.921875,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1105.199999988079,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0,
+        "x": 1176,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1354.4000000059605,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0.802453,
+        "x": 1176,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1604.9000000059605,
+        "phase": "idle",
+        "screen": "home",
+        "opacity": 1,
+        "x": 1176,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "trace": "release-trace/transition-page-transition-60c3c-d-backward-and-distant-1440/trace.zip",
+    "target": "contact",
+    "commitMs": 703.9000000059605,
+    "completeMs": 1536.5,
+    "samples": [
+      {
+        "t": 53.80000001192093,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 1176,
+        "footerY": 198.093,
+        "hidden": true
+      },
+      {
+        "t": 353.59999999403954,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 1176,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 453.30000001192093,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 1176,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 636.4000000059605,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 0.258892,
+        "x": 1176,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 853.7000000178814,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0,
+        "x": 330.421875,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1103.0999999940395,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0,
+        "x": 44,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1354,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0.802234,
+        "x": 44,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1603.300000011921,
+        "phase": "idle",
+        "screen": "contact",
+        "opacity": 1,
+        "x": 44,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "trace": "release-trace/transition-page-transition-d8433-rd-backward-and-distant-390/trace.zip",
+    "target": "research",
+    "commitMs": 705.6999999880791,
+    "completeMs": 1521.3999999761581,
+    "samples": [
+      {
+        "t": 54.79999998211861,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 198.457,
+        "hidden": true
+      },
+      {
+        "t": 354.69999998807907,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 454.7999999821186,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 622.1999999880791,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 0.333554,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 854.7999999821186,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1104.7999999821186,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1354.699999988079,
+        "phase": "in",
+        "screen": "research",
+        "opacity": 0.802088,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1604.699999988079,
+        "phase": "idle",
+        "screen": "research",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "trace": "release-trace/transition-page-transition-d8433-rd-backward-and-distant-390/trace.zip",
+    "target": "home",
+    "commitMs": 715.8000000119209,
+    "completeMs": 1549.1000000238419,
+    "samples": [
+      {
+        "t": 49.10000002384186,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 198.678,
+        "hidden": true
+      },
+      {
+        "t": 349.10000002384186,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 449.10000002384186,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 632.4000000059605,
+        "phase": "out",
+        "screen": "research",
+        "opacity": 0.258932,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 849.1000000238419,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1099.2000000178814,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1349.4000000059605,
+        "phase": "in",
+        "screen": "home",
+        "opacity": 0.740914,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1599.1000000238419,
+        "phase": "idle",
+        "screen": "home",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  },
+  {
+    "trace": "release-trace/transition-page-transition-d8433-rd-backward-and-distant-390/trace.zip",
+    "target": "contact",
+    "commitMs": 713.4000000059605,
+    "completeMs": 1530,
+    "samples": [
+      {
+        "t": 46.79999998211861,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 198.899,
+        "hidden": true
+      },
+      {
+        "t": 346.69999998807907,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 446.69999998807907,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 630.0999999940395,
+        "phase": "out",
+        "screen": "home",
+        "opacity": 0.258794,
+        "x": 20,
+        "footerY": 900,
+        "hidden": true
+      },
+      {
+        "t": 846.7999999821186,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1096.699999988079,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1346.699999988079,
+        "phase": "in",
+        "screen": "contact",
+        "opacity": 0.741052,
+        "x": 20,
+        "footerY": 0,
+        "hidden": true
+      },
+      {
+        "t": 1596.699999988079,
+        "phase": "idle",
+        "screen": "contact",
+        "opacity": 1,
+        "x": 20,
+        "footerY": 0,
+        "hidden": false
+      }
+    ]
+  }
+]

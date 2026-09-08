@@ -6,11 +6,14 @@ import styles from "./PageTurnTransition.module.css";
 
 type Phase = "idle" | "out" | "in";
 
+export type NavigationSource = "desktop" | "mobile" | "content";
+
 export function usePageTurnTransition() {
   const [screen, setScreen] = useState<ScreenId>("home");
   const [phase, setPhase] = useState<Phase>("idle");
   const current = useRef<ScreenId>("home");
-  const pending = useRef<ScreenId | null>(null);
+  const pending = useRef<{ screen: ScreenId; source: NavigationSource } | null>(null);
+  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function commit(next: ScreenId) {
     current.current = next;
@@ -18,48 +21,52 @@ export function usePageTurnTransition() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }
 
-  function navigate(next: ScreenId) {
-    // 同步锁覆盖同一事件轮次内的多次请求，也供正文 CTA 使用。
+  function navigate(next: ScreenId, source: NavigationSource = "content") {
+    // 同步锁也覆盖同一事件轮次的连续输入；焦点归属于首个接受的请求。
     if (pending.current || next === current.current) return;
+    pending.current = { screen: next, source };
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       commit(next);
       return;
     }
-    pending.current = next;
     setPhase("out");
+    // 参考站在离场淡出结束前提交；唯一计时器负责这个明确的 700ms 边界。
+    leaveTimer.current = setTimeout(() => {
+      leaveTimer.current = null;
+      commit(next);
+      setPhase("in");
+    }, 700);
   }
 
   function completePhase() {
-    if (!pending.current) return;
-    if (phase === "out") {
-      commit(pending.current);
-      setPhase("in");
-    } else {
-      pending.current = null;
-      setPhase("idle");
-    }
+    if (phase === "in" && pending.current) setPhase("idle");
   }
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finish = () => {
       if (!media.matches || !pending.current) return;
-      current.current = pending.current;
-      setScreen(pending.current);
-      pending.current = null;
+      if (leaveTimer.current) clearTimeout(leaveTimer.current);
+      leaveTimer.current = null;
+      current.current = pending.current.screen;
+      setScreen(pending.current.screen);
       window.scrollTo({ top: 0, behavior: "instant" });
       setPhase("idle");
     };
     media.addEventListener("change", finish);
-    return () => media.removeEventListener("change", finish);
+    return () => {
+      media.removeEventListener("change", finish);
+      if (leaveTimer.current) clearTimeout(leaveTimer.current);
+    };
   }, []);
 
   useEffect(() => {
-    if (phase !== "idle") return;
-    // 被锁忽略的方向键仍会移动导航焦点；结束时与真正提交的画面对齐。
-    if (document.activeElement?.closest("#screen-navigation")) {
-      document.querySelector<HTMLButtonElement>(`[data-od-id="nav-${screen}"]`)?.focus({ preventScroll: true });
-    }
+    if (phase !== "idle" || !pending.current) return;
+    const { source, screen: target } = pending.current;
+    pending.current = null;
+    const selector = source === "desktop" ? `[data-od-id="nav-${target}"]`
+      : source === "mobile" ? '[data-od-id="menu-toggle"]' : "#site-content";
+    document.querySelector<HTMLElement>(selector)?.focus({ preventScroll: true });
   }, [phase, screen]);
 
   return { screen, phase, navigate, completePhase };
