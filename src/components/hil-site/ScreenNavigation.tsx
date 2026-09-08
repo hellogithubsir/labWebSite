@@ -61,8 +61,8 @@ export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuO
       default: return;
     }
     event.preventDefault();
-    onNavigate(screenSequence[next]);
-    buttons.current[next]?.focus();
+    activate(screenSequence[next]);
+    if (!mobile) buttons.current[next]?.focus();
   }
   return (
     <header className={styles.navigation} onKeyDown={(event) => {
