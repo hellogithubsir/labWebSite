@@ -747,6 +747,49 @@
         "milestone": "m2-home"
       },
       "origin": "amend"
+    },
+    {
+      "dependsOn": [
+        "030"
+      ],
+      "touches": [
+        "src/components/hil-site/ScreenNavigation.tsx",
+        "e2e/navigation.spec.ts"
+      ],
+      "fulfills": [],
+      "expectedBehavior": [
+        "390px 与 320px 下，英文和中文移动菜单内使用 ArrowLeft、ArrowRight、Home、End 选择目标画面时，与点击一致关闭菜单、aria-expanded 恢复 false，焦点返回菜单按钮；正文恢复可访问且只有目标画面和唯一当前项。",
+        "桌面使用同样四个键后仍聚焦目标导航项；隐藏移动菜单不保留焦点，现有点击、Escape 与 Tab 行为不退化。",
+        "导航全程保持 Locale、URL 路径、查询及片段不变；正常动效与 prefers-reduced-motion: reduce 下均覆盖四键、两种语言和 390px/320px 状态，保留既有单画面、桌面导航与减少动画回归。"
+      ],
+      "addressesItemId": [
+        "F-1"
+      ],
+      "id": "fx-002",
+      "description": "修复移动菜单使用方向键、Home 和 End 选择画面后未关闭及焦点未归还的问题",
+      "milestone": "m4-release-proof",
+      "skillName": "tdd",
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "make check",
+            "expectedExit": "zero"
+          },
+          {
+            "id": "navigation",
+            "command": "npm run test:e2e -- e2e/navigation.spec.ts",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "cause": {
+        "kind": "review",
+        "itemId": "F-1",
+        "feature": "010"
+      },
+      "origin": "amend"
     }
   ]
 }
