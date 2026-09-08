@@ -1,0 +1,41 @@
+{
+  "mission": "labwebsitev1-transition-followup",
+  "features": [
+    {
+      "id": "040",
+      "description": "实现 mitibm 参考站点 rail 与主内容分区切换时序",
+      "dependsOn": [],
+      "milestone": "transition",
+      "touches": [
+        "src/components/hil-site/ScreenNavigation.tsx",
+        "src/components/hil-site/ScreenNavigation.module.css",
+        "src/components/hil-site/PageTurnTransition.tsx",
+        "src/components/hil-site/PageTurnTransition.module.css",
+        "src/components/hil-site/HilSiteShell.tsx",
+        "e2e/transition-reference.spec.ts"
+      ],
+      "fulfills": [
+        "VAL-040"
+      ],
+      "skillName": "implement"
+    },
+    {
+      "id": "041",
+      "description": "独立验证 040 的 rail、内容、输入锁、URL/Locale/焦点与 reduced-motion 行为",
+      "dependsOn": [
+        "040"
+      ],
+      "milestone": "transition",
+      "touches": [
+        "e2e/**",
+        "docs/labWebsiteV1-transitionFollowup/**"
+      ],
+      "proves": [
+        "VAL-040"
+      ],
+      "reportOnly": true,
+      "skillName": "implement",
+      "fulfills": []
+    }
+  ]
+}

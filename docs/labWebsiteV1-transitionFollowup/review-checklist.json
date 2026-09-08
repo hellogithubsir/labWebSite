@@ -1,0 +1,1 @@
+[{"id":"motion-order","text":"目标 rail 先 current，约300ms flex 重排与 cubic-bezier 时序正确"},{"id":"content-timing","text":"内容离场延迟/opacity 与约700ms提交窗口正确"},{"id":"accessibility","text":"单一可访问画面、输入锁、焦点和 Locale 保持，URL不变"},{"id":"reduced-motion","text":"reduced-motion 跳过等待并即时完成"}]
