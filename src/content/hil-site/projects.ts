@@ -6,9 +6,9 @@ interface ProjectsContent { lead: string; selected: string; overview: string; sy
 // P-01 至 P-04：最终 PNG 与交付 HTML；中文逐项对齐设计独有文案。
 export const projectsContent = {
   "en": {
-    "lead": "Two independent systems show how HI Lab turns sensing, prediction and explainability into operational intelligence for senior care and industrial maintenance.",
+    "lead": "Explore how HI Lab connects research with practical applications through artificial intelligence, edge intelligence, custom digital products and digital transformation.",
     "selected": "Selected projects",
-    "overview": "Two systems, two routes to deployment",
+    "overview": "Capabilities",
     "systems": [["Care Intelligence", "From ambient sensing to trusted care alerts."], ["Industrial AI", "From asset telemetry to maintenance action."]],
     "elinusTitle": "E-Linus Smart Elderly Care",
     "elinusIntro": "AI-powered early risk screening and care decision support for senior care facilities.",
@@ -103,12 +103,12 @@ export const projectsContent = {
     ],
     "pdmLabels": {"previous": "Previous PDM Robot screen", "next": "Next PDM Robot screen", "drag": "PDM Robot project screenshots. Drag or use arrow keys."},
     "footerTitle": "Projects that make intelligence operational.",
-    "footerBody": "Two independent systems, presented through clear interface evidence and deployment-centered narratives."
+    "footerBody": "Explore collaboration around your application needs, from research and development to digital products and operational workflows."
   },
   "zh-CN": {
-    "lead": "两个独立系统展示怡和实验室如何将感知、预测与可解释性转化为服务养老照护和工业维护的运营智能。",
+    "lead": "通过人工智能、边缘智能、定制数字产品与数字化升级，了解怡和实验室如何将研究能力连接到实际应用场景。",
     "selected": "精选项目",
-    "overview": "两个系统，两条部署路径",
+    "overview": "能力领域",
     "systems": [["照护智能", "从环境感知到可信的照护告警。"], ["工业人工智能", "从资产遥测到维护行动。"]],
     "elinusTitle": "E-Linus 智慧养老照护",
     "elinusIntro": "面向养老照护机构，提供人工智能驱动的早期风险筛查与照护决策支持。",
@@ -203,6 +203,6 @@ export const projectsContent = {
     ],
     "pdmLabels": {"previous": "上一张 PDM Robot 界面", "next": "下一张 PDM Robot 界面", "drag": "PDM Robot 项目截图，可拖动或使用左右方向键。"},
     "footerTitle": "让智能投入实际运营的项目。",
-    "footerBody": "两个独立系统，以清晰的界面证据和面向部署的叙述呈现。"
+    "footerBody": "从联合研发到数字产品与运营流程，围绕您的实际应用需求，探索适合的合作方式。"
   }
 } satisfies Localized<ProjectsContent>;

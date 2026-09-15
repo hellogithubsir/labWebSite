@@ -29,6 +29,10 @@ canonicality:
     - "src"
     - "public"
   archive_reference: "../labWebSite-archive/"
+  # 用户指定的只读内容来源；精确路径例外不适用于运行时代码。
+  allowed_reference_paths:
+    - "docs/reference/实验室官网线框预览V4（中文版·语言统一版）.html"
+    - "docs/reference/实验室官网线框预览V4（English·Language-aligned）.html"
   forbidden_path_patterns:
     - "_v[0-9]+"
     - "_new"
@@ -96,7 +100,7 @@ verification:
 critical_paths:
   - route: "/"
     command: "npm run test:e2e"
-    expectation: "seven bilingual screens, navigation, CTA, locale/reset, normal/reduced motion, mobile menu, carousels, disclosures, filters and contact actions pass"
+    expectation: "seven bilingual screens, navigation, CTA, locale/reset, normal/reduced motion, mobile menu, carousels, eight always-visible illustrated advantages, filters and contact actions pass"
 
 rehabilitation:
   active: false

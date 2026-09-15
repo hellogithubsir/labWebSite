@@ -26,6 +26,7 @@ read_constraint_list() {
 
 patterns="$(read_constraint_list "forbidden_path_patterns")"
 scratch_directories="$(read_constraint_list "forbidden_scratch_directories")"
+allowed_references="$(read_constraint_list "allowed_reference_paths")"
 if [[ -z "$patterns" || -z "$scratch_directories" ]]; then
 	echo "$script_name: constraints.yaml is missing naming or scratch-path rules" >&2
 	exit 1
@@ -38,6 +39,12 @@ check_path() {
 	local scratch
 	local segment
 	local violations=0
+	local reference
+	while IFS= read -r reference; do
+		if [[ -n "$reference" && "$path" == "$reference" ]]; then
+			return 0
+		fi
+	done <<< "$allowed_references"
 	name="$(basename "$path")"
 
 	while IFS= read -r pattern; do
@@ -63,23 +70,23 @@ check_path() {
 
 violations=0
 if [[ $# -ge 1 && "$1" == "--all" ]]; then
-	while IFS= read -r path; do
+	while IFS= read -r -d '' path; do
 		[[ -n "$path" ]] || continue
 		if ! check_path "$path"; then
 			violations=$((violations + 1))
 		fi
-	done < <(git ls-files --cached --others --exclude-standard)
+	done < <(git ls-files -z --cached --others --exclude-standard)
 elif [[ $# -eq 1 ]]; then
 	if ! check_path "$1"; then
 		violations=$((violations + 1))
 	fi
 else
-	while IFS= read -r path; do
+	while IFS= read -r -d '' path; do
 		[[ -n "$path" ]] || continue
 		if ! check_path "$path"; then
 			violations=$((violations + 1))
 		fi
-	done < <(git diff --cached --name-only --diff-filter=AR)
+	done < <(git diff -z --cached --name-only --diff-filter=AR)
 fi
 
 if [[ "$violations" -gt 0 ]]; then

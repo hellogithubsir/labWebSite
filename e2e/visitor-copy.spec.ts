@@ -17,7 +17,8 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) for (
       await reveal.evaluate(node => node.scrollIntoView({ block: "center", behavior: "instant" }));
       await expect(reveal).toHaveAttribute("data-reveal", "visible");
     }
-    for (const img of await page.locator("main").getByRole("img").all()) {
+    // 只检查当前可访问的图片文件，避免滚动隐藏轮播；示意图由专项测试验证。
+    for (const img of await page.locator("main").getByRole("img").and(page.locator("img")).all()) {
       await img.scrollIntoViewIfNeeded();
       await expect(img).toHaveJSProperty("complete", true);
       expect(await img.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
@@ -42,7 +43,7 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) for (
     if (screen === "research") await expect(page.locator("main")).toContainText("LLM");
     if (screen === "team") await expect(page.locator("main")).toContainText("50");
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
-    await page.locator("main").getByRole("img").first().evaluate(async (node: HTMLImageElement) => {
+    await page.locator("main").getByRole("img").and(page.locator("img")).first().evaluate(async (node: HTMLImageElement) => {
       await node.decode();
       await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
     });

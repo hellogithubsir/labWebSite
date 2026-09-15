@@ -9,15 +9,17 @@
 .heroGrid > p, .overview p, .lead { font-size: 16px; line-height: 1.5; color: var(--muted); margin: 24px 0 0; }
 .heroGrid > p { margin: 0; padding-right: 16px; }
 .overview { padding: 76px 0 84px; background: var(--ice); }
-.overviewGrid { display: grid; grid-template-columns: minmax(0,1fr) 410px; gap: 40px; }
 .overview .eyebrow { color: var(--teal); margin: 0 0 24px; }
-.systems { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; padding-top: 12px; }
-.systems article { border: 1px solid var(--line); border-top: 5px solid var(--teal); border-radius: 0 0 24px 24px; background: white; padding: 24px; }
-.systems article:last-child { border-top-color: var(--green); }
+.systems { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; margin-top: 36px; }
+.systems article { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line); border-top: 5px solid var(--teal); border-radius: 0 0 24px 24px; background: white; padding: 28px; }
+.systems article:nth-child(even) { border-top-color: var(--green); }
 .systems strong { font-size: 28px; color: var(--teal); }
-.systems article:last-child strong, .systems article:last-child h3 { color: var(--green); }
-.systems h3 { font-size: 10px; color: var(--teal); text-transform: uppercase; margin: 20px 0; }
-.systems p { font-size: 16px; font-weight: 700; color: var(--navy); margin: 0; line-height: 1.3; }
+.systems h3 { font-size: 20px; color: var(--navy); margin: 24px 0 16px; line-height: 1.35; }
+.systems p { font-size: 15px; color: var(--muted); margin: 0 0 24px; line-height: 1.6; }
+.systems button { margin-top: auto; align-self: flex-start; border: 0; background: transparent; color: var(--teal); padding: 8px 0; font-size: 14px; font-weight: 700; text-align: left; cursor: pointer; }
+.systems button:hover { text-decoration: underline; }
+.systems button:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+.selectedHeading { padding-top: 64px; }
 .project { padding: 56px 0 36px; --accent: var(--teal); }
 .pdm { --accent: var(--green); background: var(--paper); }
 .categories { padding: 0; margin: 56px 0 0; list-style: none; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); }
@@ -45,12 +47,14 @@
 
 .footer footer { min-height: 660px; padding-top: 76px; }
 .footer h2 { font-size: 42px; }
-@media (max-width: 1500px) and (min-width: 981px) { .container { width: calc(100% - 80px); } .overviewGrid { grid-template-columns: minmax(0,1fr) 330px; } .screen h2 { font-size: 36px; } .hero h1 { font-size: 32px; } }
+@media (max-width: 1500px) and (min-width: 981px) { .container { width: calc(100% - 80px); } .systems { grid-template-columns: repeat(2,minmax(0,1fr)); } .screen h2 { font-size: 36px; } .hero h1 { font-size: 32px; } }
 @media (max-width: 980px) {
   .container { width: calc(100% - 40px); } .hero { min-height: 0; padding: 28px 0 56px; } .logo { width: 210px; margin: 0 0 48px; }
-  .heroGrid, .overviewGrid { grid-template-columns: minmax(0,1fr); gap: 32px; } .hero h1 { font-size: 38px; } .screen h2 { font-size: 32px; } .overview, .project { padding-block: 56px; }
-  .systems { grid-template-columns: minmax(0,1fr); } .systems h3 { font-size: 14px; } .categories { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 36px; } .categories li { font-size: 11px; padding-inline: 8px; } .categories span { margin-right: 8px; }
+  .heroGrid { grid-template-columns: minmax(0,1fr); gap: 32px; } .hero h1 { font-size: 38px; } .screen h2 { font-size: 32px; } .overview, .project { padding-block: 56px; }
+  .systems { grid-template-columns: repeat(2,minmax(0,1fr)); } .systems h3 { font-size: 20px; } .categories { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 36px; } .categories li { font-size: 11px; padding-inline: 8px; } .categories span { margin-right: 8px; }
   .caption { text-align: left; margin-top: 28px; } .caption h3 { font-size: 26px; } .caption p { font-size: 16px; } .proofs { grid-template-columns: minmax(0,1fr); text-align: left; margin-bottom: 28px; } .proofs li { font-size: 13px; padding: 12px 0; } .proofs li + li { border-left: 0; border-top: 1px solid var(--line); }
   .slide img { width: 100%; border-radius: 8px; }  .footer footer { min-height: 0; } .footer h2 { font-size: 32px; }
 }
 @media (prefers-reduced-motion: reduce) { .track { transition: none; } }
+
+@media (max-width: 600px) { .systems { grid-template-columns: minmax(0,1fr); } }

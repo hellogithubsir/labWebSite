@@ -6,6 +6,8 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   globalIgnores([
+    // 只读素材来源项目，不属于本官网的运行时代码。
+    "docs/reference/company-website-main_1/**",
     ".next/**",
     "out/**",
     "build/**",

@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratory Website | English v3 Content Wireframe Preview</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f5f1;
+      --white: #fff;
+      --ink: #17252b;
+      --muted: #58686d;
+      --line: #9aa8aa;
+      --blue: #145b86;
+      --pale: #e6eef1;
+      --red: #963f32;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--paper);
+      background-image:
+        linear-gradient(rgb(20 91 134 / 4%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(20 91 134 / 4%) 1px, transparent 1px);
+      background-size: 24px 24px;
+      font: 16px/1.65 "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+      overflow-x: hidden;
+    }
+    button { font: inherit; letter-spacing: 0; }
+    .skip {
+      position: fixed;
+      z-index: 99;
+      top: 8px;
+      left: 8px;
+      padding: 8px 12px;
+      color: #fff;
+      background: #000;
+      transform: translateY(-150%);
+    }
+    .skip:focus { transform: none; }
+    :focus-visible { outline: 3px solid #efbd45; outline-offset: 3px; }
+    .mast {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      color: #fff;
+      background: var(--ink);
+      border-bottom: 3px solid var(--blue);
+    }
+    .mast-in,
+    main { width: min(calc(100% - 32px), var(--max)); margin: auto; }
+    .mast-in { padding-top: 17px; }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 13px;
+    }
+    .brand strong {
+      font: 700 clamp(1.05rem, 2vw, 1.4rem)/1.2 "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+    }
+    .brand span { color: #c8d3d6; font-size: .75rem; }
+    .nav-scroll { overflow-x: auto; }
+    .tabs { display: flex; min-width: max-content; gap: 2px; }
+    .tab {
+      position: relative;
+      min-height: 48px;
+      padding: 10px 15px;
+      border: 0;
+      color: #cbd6d8;
+      background: transparent;
+      cursor: pointer;
+    }
+    .tab:hover { color: #fff; background: #263a42; }
+    .tab[aria-selected="true"] { color: #fff; background: var(--blue); }
+    .tab[aria-selected="true"]::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: #fff;
+    }
+    main { padding: 30px 0 70px; scroll-margin-top: 112px; }
+    .legend {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 28px;
+      padding: 11px 0;
+      border-block: 1px solid #53676d;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    .legend i {
+      display: inline-block;
+      width: 28px;
+      height: 12px;
+      margin-right: 8px;
+      border: 1px dashed var(--blue);
+      background: var(--pale);
+      vertical-align: -2px;
+    }
+    .legend strong { color: var(--red); }
+    .panel[hidden] { display: none; }
+    .pagehead {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 28px;
+      padding-bottom: 17px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .pagehead small {
+      display: block;
+      color: var(--blue);
+      font: 700 .76rem ui-monospace, "Cascadia Mono", monospace;
+    }
+    .pagehead h1 {
+      margin: 0;
+      font: 700 clamp(2rem, 5vw, 4.2rem)/1.06 "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+      letter-spacing: 0;
+    }
+    .pagehead p { max-width: 38ch; margin: 0; color: var(--muted); font-size: .86rem; text-align: right; }
+    .flow { display: grid; gap: 21px; }
+    .block {
+      position: relative;
+      min-width: 0;
+      padding: 19px;
+      border: 1px solid #53676d;
+      border-left: 5px solid var(--blue);
+      background: rgb(255 255 255 / 76%);
+    }
+    .block.quiet { border-left-color: #53676d; }
+    .block.dark { color: #fff; border-color: var(--ink); background: var(--ink); }
+    .top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 13px;
+    }
+    .code,
+    .slot-code {
+      font: 800 .76rem ui-monospace, "Cascadia Mono", monospace;
+    }
+    .code {
+      display: inline-flex;
+      align-items: center;
+      min-height: 27px;
+      padding: 2px 8px;
+      color: #fff;
+      background: var(--blue);
+    }
+    .dark .code { color: var(--ink); background: #fff; }
+    .meta { margin: 0; color: var(--muted); font-size: .74rem; text-align: right; }
+    .dark .meta,
+    .dark .placeholder { color: #cbd5d7; }
+    .block h2,
+    .block h3 {
+      margin: 0;
+      font-family: "Noto Serif CJK SC", "Source Han Serif SC", SimSun, serif;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+    .block h2 { font-size: clamp(1.3rem, 2.5vw, 1.9rem); }
+    .block h3 { font-size: 1.04rem; }
+    .working-label { color: var(--red); font: 700 .72rem/1.4 ui-monospace, "Cascadia Mono", monospace; }
+    .dark .working-label { color: #ffd6cb; }
+    .placeholder { margin: 8px 0 0; color: var(--muted); }
+    .placeholder b { color: var(--ink); }
+    .dark .placeholder b { color: #fff; }
+    .home-summary {
+      margin: 14px 0 0;
+      padding: 12px 14px;
+      border-left: 2px solid var(--blue);
+      background: rgb(20 91 134 / 7%);
+      color: var(--muted);
+    }
+    .dark .home-summary {
+      border-left-color: #8fc9e6;
+      background: rgb(255 255 255 / 7%);
+      color: #d4dfe1;
+    }
+    .source-tag {
+      display: inline-block;
+      margin-right: 7px;
+      color: var(--red);
+      font: 800 .72rem ui-monospace, "Cascadia Mono", monospace;
+    }
+    .dark .source-tag { color: #ffd6cb; }
+    .grid { display: grid; gap: 12px; margin-top: 15px; }
+    .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .slot {
+      min-width: 0;
+      min-height: 124px;
+      padding: 13px;
+      border: 1px dashed #53676d;
+      background: #f6f9f9;
+    }
+    .dark .slot { color: var(--ink); }
+    .slot-code { display: block; margin-bottom: 12px; color: var(--blue); }
+    .slot h3 { margin-bottom: 7px; }
+    .slot p { margin: 0; color: var(--muted); font-size: .81rem; }
+    .hint {
+      display: block;
+      margin-top: 11px;
+      padding-top: 7px;
+      border-top: 1px solid var(--line);
+      color: var(--red);
+      font-size: .72rem;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .field-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 18px;
+      margin: 15px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .field-list.one { grid-template-columns: 1fr; }
+    .field-item {
+      min-width: 0;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .82rem;
+      overflow-wrap: anywhere;
+    }
+    .field-item b { display: block; color: var(--ink); font-size: .84rem; }
+    .slot .field-list,
+    .logo .field-list { margin-top: 10px; text-align: left; }
+    .slot .field-item,
+    .logo .field-item { padding: 7px 0; }
+    .logo .field-list { width: 100%; margin-top: 0; }
+    .dark .field-item { color: #cbd5d7; border-color: #52666d; }
+    .dark .field-item b { color: #fff; }
+    .media-box {
+      display: grid;
+      min-height: 180px;
+      place-items: center;
+      padding: 16px;
+      border: 1px dashed #53676d;
+      background: #e8edeb;
+      color: var(--muted);
+      text-align: center;
+      overflow-wrap: anywhere;
+    }
+    .dark .media-box { color: #17252b; background: #eef2f0; }
+    .rows {
+      margin: 15px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .rows li {
+      display: grid;
+      grid-template-columns: minmax(8rem, .45fr) 1fr;
+      gap: 13px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .rows b { font-size: .84rem; }
+    .rows span { color: var(--muted); font-size: .8rem; overflow-wrap: anywhere; }
+    .logos {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 15px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .logo {
+      display: grid;
+      min-width: 0;
+      min-height: 160px;
+      align-content: start;
+      gap: 8px;
+      padding: 10px;
+      border: 1px dashed #53676d;
+      background: #fff;
+      color: var(--muted);
+      text-align: center;
+      font-size: .74rem;
+    }
+    .logo .media-box { min-height: 72px; padding: 8px; }
+    .logo img { max-width: 100%; max-height: 56px; object-fit: contain; }
+    .logo b { display: block; color: var(--blue); font-family: ui-monospace, "Cascadia Mono", monospace; }
+    .logo-name { overflow-wrap: anywhere; }
+    .field-item a,
+    .slot a,
+    .placeholder a {
+      color: var(--blue);
+      text-underline-offset: 2px;
+    }
+    .dark .field-item a,
+    .dark .placeholder a { color: #8fc9e6; }
+    .profile-list { display: grid; gap: 18px; margin-top: 15px; }
+    .profile-entry { min-width: 0; padding-top: 18px; border-top: 1px solid var(--line); break-inside: avoid; }
+    .profile-entry:first-child { padding-top: 0; border-top: 0; }
+    .profile-entry h3 { margin-bottom: 10px; }
+    .missing { color: var(--muted); font-style: italic; }
+    .profile-figure { margin: 0; text-align: center; }
+    .profile-photo {
+      display: block;
+      width: min(100%, 260px);
+      height: auto;
+      margin: 0 auto 10px;
+      border: 1px solid #53676d;
+      background: #fff;
+    }
+    .profile-figure figcaption { color: var(--muted); font-size: .76rem; }
+    .detail-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 43px;
+      margin-top: 13px;
+      padding: 8px 17px;
+      border: 1px solid var(--ink);
+      color: #fff;
+      background: var(--ink);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .detail-button::after { content: "\2192"; margin-left: 10px; }
+    .detail-button:hover { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .dark .detail-button { color: var(--ink); border-color: #fff; background: #fff; }
+    .dark .detail-button:hover { color: #fff; border-color: var(--blue); background: var(--blue); }
+    .selection-note {
+      margin: 13px 0 0;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      color: var(--red);
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .blueprint-visual {
+      position: relative;
+      min-height: 230px;
+      background-color: #e8edeb;
+      background-image:
+        linear-gradient(rgb(20 91 134 / 14%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(20 91 134 / 14%) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .blueprint-visual::before,
+    .blueprint-visual::after {
+      content: "";
+      position: absolute;
+      border: 1px solid var(--blue);
+      border-radius: 50%;
+    }
+    .blueprint-visual::before {
+      top: 50%;
+      left: 50%;
+      width: 112px;
+      height: 112px;
+      transform: translate(-72%, -50%);
+    }
+    .blueprint-visual::after {
+      top: 50%;
+      left: 50%;
+      width: 54px;
+      height: 54px;
+      transform: translate(30%, -50%);
+    }
+    .blueprint-visual span { position: relative; z-index: 1; max-width: 22ch; }
+    .print-note { margin-top: 32px; color: var(--muted); font-size: .74rem; text-align: right; }
+
+    @media (max-width: 820px) {
+      .brand { align-items: flex-start; flex-direction: column; gap: 3px; }
+      .pagehead { grid-template-columns: 1fr; }
+      .pagehead p { text-align: left; }
+      .g3,
+      .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .split { grid-template-columns: 1fr; }
+      .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .mast-in,
+      main { width: calc(100% - 20px); }
+      .mast-in { padding-top: 11px; }
+      main { padding-top: 20px; scroll-margin-top: 146px; }
+      .legend { grid-template-columns: 1fr; gap: 4px; }
+      .tab { padding-inline: 12px; }
+      .block { padding: 14px; }
+      .top { align-items: flex-start; flex-direction: column; gap: 5px; }
+      .meta { text-align: left; }
+      .g2,
+      .g3,
+      .g4,
+      .field-list { grid-template-columns: 1fr; }
+      .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .rows li { grid-template-columns: 1fr; gap: 1px; }
+      .placeholder,
+      .field-item,
+      .logo-name { overflow-wrap: anywhere; }
+      .detail-button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      @page { margin: 14mm; }
+      body { color: #000; background: #fff; font-size: 10pt; }
+      .skip,
+      .nav-scroll { display: none !important; }
+      .mast { position: static; color: #000; background: #fff; border-bottom: 2px solid #000; }
+      .mast-in,
+      main { width: 100%; }
+      .mast-in { padding-top: 0; }
+      .brand span { color: #333; }
+      main { padding-top: 7mm; }
+      .legend { margin-bottom: 9mm; }
+      .panel[hidden] { display: block !important; }
+      .panel { margin-bottom: 13mm; }
+      .panel + .panel { padding-top: 7mm; border-top: 3px double #000; }
+      .pagehead h1 { font-size: 28pt; }
+      .block,
+      .slot,
+      .logo,
+      .media-box { break-inside: avoid; background: #fff; }
+      .block.dark,
+      .block.dark h2,
+      .block.dark .meta,
+      .block.dark .placeholder,
+      .block.dark .fake-button {
+        color: #000 !important;
+        background: #fff !important;
+      }
+      .block.dark .placeholder b { color: #000 !important; }
+      .block.dark .code,
+      .code { color: #000; background: #fff; border: 1px solid #000; }
+      .block.dark .field-item,
+      .block.dark .field-item b { color: #000; border-color: #777; }
+      .detail-button { color: #000; background: #fff; border-color: #000; }
+      .print-note { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Skip to main content</a>
+  <header class="mast">
+    <div class="mast-in">
+      <div class="brand">
+        <strong>Laboratory Website | English v3 Content Wireframe Preview</strong>
+        <span>v3-contract-2 · populated · single-file offline · 7 pages · print expands all</span>
+      </div>
+      <div class="nav-scroll">
+        <nav class="tabs" role="tablist" aria-label="Page preview navigation">
+          <button class="tab" id="tab-home" role="tab" aria-selected="true" aria-current="page" aria-controls="panel-home" tabindex="0">Home</button>
+          <button class="tab" id="tab-research" role="tab" aria-selected="false" aria-controls="panel-research" tabindex="-1">Research Directions</button>
+          <button class="tab" id="tab-projects" role="tab" aria-selected="false" aria-controls="panel-projects" tabindex="-1">Projects</button>
+          <button class="tab" id="tab-advantages" role="tab" aria-selected="false" aria-controls="panel-advantages" tabindex="-1">Technology Advantages</button>
+          <button class="tab" id="tab-partners" role="tab" aria-selected="false" aria-controls="panel-partners" tabindex="-1">Partners</button>
+          <button class="tab" id="tab-team" role="tab" aria-selected="false" aria-controls="panel-team" tabindex="-1">Team</button>
+          <button class="tab" id="tab-contact" role="tab" aria-selected="false" aria-controls="panel-contact" tabindex="-1">Contact</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" tabindex="-1">
+    <aside class="legend" aria-label="Wireframe legend">
+      <span><i></i>Dashed box: asset and repeated-entry boundary</span>
+      <span><strong>Red text</strong>: length guidance matching the content package</span>
+      <span>v3 field contract: page IDs, field names, and home-page references are fixed</span>
+    </aside>
+
+    <section class="panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="-1">
+      <header class="pagehead"><div><small>PAGE H</small><h1>Home</h1></div><p>Seven-part research blueprint: summaries, highlights, and linked subpages only.</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="H-01">
+          <div class="top"><span class="code">H-01</span><p class="meta">Vision title 8–20 characters; vision statement 60–120 characters</p></div>
+          <h2>Vision</h2>
+          <div class="split">
+            <ul class="field-list one"><li class="field-item"><b>Lab name in Chinese</b>Harmonizing Intelligence Lab (HI Lab)</li><li class="field-item"><b>Lab name in English</b><span lang="en">Harmonizing Intelligence Lab (HI Lab)</span></li><li class="field-item"><b>Vision title</b>Bridging Human Perception and Machine Intelligence at the Edge.</li><li class="field-item"><b>Vision statement</b>We are dedicated to transforming complex data into actionable intelligence through the fusion of Computer Vision, Multi-Agent Systems, and hardware-efficient Edge AI. Our goal is to address real-world challenges, providing highly adaptable AI solutions for digital health, industrial automation, and smart public services.</li></ul>
+            <div class="grid">
+              <div class="media-box blueprint-visual"><span><b>Primary visual concept</b><br>Nature-inspired design: Visually interweaving organic leaf structures with circuit board patterns, symbolizing the fusion of biological perception and synthetic intelligence, connecting natural growth with edge computing technology.<small class="hint">Asset file, copyright, and alt text: to be provided</small></span></div>
+              <div class="media-box"><span><b>Vision visual</b><br>Image or video corresponding to the vision statement<br>Asset ID, content description, copyright, and alt text: to be provided</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="block" data-code="H-02">
+          <div class="top"><span class="code">H-02</span></div>
+          <h2>Research Directions</h2>
+          <p class="home-summary"><span class="source-tag">R-01</span>Operating at the intersection of Medical AI, On-Device Vision, and Autonomous Orchestration, delivering high-impact solutions for healthcare, smart cities, and industry.</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-02-01 · R-02</span><h3>HEALTH (Digital Health &amp; Medical Image Analytics)</h3><p>Advanced AI and predictive analytics for diagnostic imaging and personalized health interventions.</p></div>
+            <div class="slot"><span class="slot-code">H-02-02 · R-03</span><h3>EDGE-AI (Edge Intelligence &amp; On-Device Vision)</h3><p>Deploying high-performance computer vision and machine learning models on resource-constrained industrial and IoT devices.</p></div>
+            <div class="slot"><span class="slot-code">H-02-03 · R-04</span><h3>AGENT (Multi-Agent Systems &amp; NLP)</h3><p>Large Language Model (LLM) driven autonomous system orchestration and multi-modal human-AI interaction.</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-research">View research directions</button>
+        </article>
+
+        <article class="block" data-code="H-03">
+          <div class="top"><span class="code">H-03</span></div>
+          <h2><span lang="en">Technology Advantages</span></h2>
+          <p class="home-summary">Fixed references A-01 to A-03; show names and advantages only.</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-03-01 · A-01</span><h3>Predictive Analytics &amp; Knowledge Distillation</h3><p>Maintains exceptionally high predictive accuracy even in noisy or resource-constrained industrial environments. This capability is validated by official SAS Predictive Modeler certifications and successful B2B deployments.</p></div>
+            <div class="slot"><span class="slot-code">H-03-02 · A-02</span><h3>LLM &amp; Multi-modal Emotional Orchestration</h3><p>Empowers AI systems with profound "context-awareness" and "empathy," entirely stripping away the mechanical feel of traditional bots. Perfect for high-touch environments like civic digital concierges and personalized health coaching.</p></div>
+            <div class="slot"><span class="slot-code">H-03-03 · A-03</span><h3>Hardware-Optimized Edge Vision Detection</h3><p>Achieves millisecond-level, real-time visual perception completely detached from cloud reliance, resolving network latency and privacy issues. Backed by NVIDIA DLI certification, ensuring seamless integration into mainstream AIoT hardware ecosystems.</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-advantages">View technology advantages</button>
+        </article>
+
+        <article class="block" data-code="H-04">
+          <div class="top"><span class="code">H-04</span></div>
+          <h2><span lang="en">Projects</span></h2>
+          <p class="home-summary"><span class="source-tag">P-01</span>Managing over RM 1.2M in research funding, our projects drive tangible B2B and enterprise value across smart manufacturing, digital health, and national civic infrastructure.</p>
+          <p class="selection-note">Three distinct project IDs are selected: P-07-06, P-07-08, and P-07-05; titles read the corresponding project names and summaries read the R results.</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-04-01 · P-07-06</span><h3>Integrated Digital Concierge with Real-Time Avatar Based on AI-RAG</h3><p>Successfully funded and actively deployed as a core civic empowerment tool (2026-2027).</p></div>
+            <div class="slot"><span class="slot-code">H-04-02 · P-07-08</span><h3>Technical and Operation Design for National Address Systems (NAS)</h3><p>Secured multiple industrial grants (RM 50k+ each) from Three-Opp (M) Sdn. Bhd., laying the foundation for Malaysia's digital transformation.</p></div>
+            <div class="slot"><span class="slot-code">H-04-03 · P-07-05</span><h3>Smart Grocer: Edge AI Produce Recognition System</h3><p>Eliminated manual entry and drastically improved checkout speeds; key findings published in IET Image Processing.</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-projects">View project details</button>
+        </article>
+
+        <article class="block quiet" data-code="H-05">
+          <div class="top"><span class="code">H-05</span></div>
+          <h2><span lang="en">Partners</span></h2>
+          <p class="home-summary"><span class="source-tag">N-01</span>The HI Lab maintains close, active collaborations with global tech leaders and top-tier academic institutions to drive the R&amp;D and deployment of Edge Computing and Medical AI.</p>
+          <div class="grid g3"><div class="slot"><span class="slot-code">H-05-01 · N-02-01</span><h3>Advantech</h3><p>Logo：TBD (Advantech Logo)；Approved for public use：Yes</p></div><div class="slot"><span class="slot-code">H-05-02 · N-02-02</span><h3>HILTI Asia IT Services</h3><p>Logo：TBD (HILTI Logo)；Approved for public use：No</p></div><div class="slot"><span class="slot-code">H-05-03 · N-02-03</span><h3>Tokio Marine &amp; Dynafront</h3><p>Logo：TBD (Tokio Marine Logo)；Approved for public use：No</p></div><div class="slot"><span class="slot-code">H-05-04 · N-02-04</span><h3>Xiamen University Malaysia</h3><p>Logo：TBD (Xiamen Univ Logo)；Approved for public use：No</p></div><div class="slot"><span class="slot-code">H-05-05 · N-02-05</span><h3>Leeds Beckett University</h3><p>Logo：TBD (Leeds Logo)；Approved for public use：No</p></div><div class="slot"><span class="slot-code">H-05-06 · N-02-06</span><h3>Three-Opp (M) Sdn. Bhd.</h3><p>Logo：TBD (Three-Opp Logo)；Approved for public use：No</p></div></div>
+          <button class="detail-button" type="button" data-target="tab-partners">View partners</button>
+        </article>
+
+        <article class="block" data-code="H-06">
+          <div class="top"><span class="code">H-06</span></div>
+          <h2><span lang="en">Team</span></h2>
+          <p class="home-summary"><span class="source-tag">T-01</span>Led by Dr. Chaw Jun Kit, our dynamic team of researchers bridges the gap between complex AI algorithms and commercial adaptability.</p>
+          <div class="grid g4">
+            <div class="slot"><span class="slot-code">H-06-01 · PI · T-02</span><h3>Dr. Chaw Jun Kit</h3><p>Principal Investigator (PI) / Senior Lecturer &amp; Research Fellow<br>Dr. Chaw holds a PhD in Electrical Engineering from UTM. He is a SAS-certified Predictive Modeler and an NVIDIA Deep Learning Institute (DLI) certified Computer Vision expert. His work uniquely bridges academia and industry, having managed over RM 1.2M in grants and served as an active tech collaborator for Advantech and HILTI, specializing in manufacturing optimization and digital health solutions.</p></div>
+            <div class="slot"><span class="slot-code">H-06-02 · T-04-01</span><h3>Zhao Yanfeng</h3><p>PhD Graduate / Core Member<br>Focuses on safe-enhanced fully closed-loop artificial pancreas controllers based on Deep Reinforcement Learning.</p></div>
+            <div class="slot"><span class="slot-code">H-06-03 · T-04-02</span><h3>Cheng Xiang</h3><p>PhD Graduate / Core Member<br>Specializes in adaptive dual distillation frameworks for efficient remaining useful life and predictive maintenance.</p></div>
+            <div class="slot"><span class="slot-code">H-06-04 · T-04-03</span><h3>Liu Jianbang</h3><p>PhD Graduate / Core Member<br>Researches multimodal conversational emotion reasoning and immersive technology behavioral analysis.</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-team">View team details</button>
+        </article>
+
+        <article class="block dark" data-code="H-07">
+          <div class="top"><span class="code">H-07</span></div>
+          <h2><span lang="en">Contact</span></h2>
+          <p class="home-summary"><span class="source-tag">C-01</span>We actively seek enterprise partnerships for Edge AI R&amp;D, cross-disciplinary medical data collaborations, and highly motivated postgraduate (Master/PhD) candidates.</p>
+          <div class="grid g3">
+            <div class="slot"><span class="slot-code">H-07-01 · C-03-01</span><h3>Industrial Tech Transfer (Joint R&amp;D)</h3><p>Enterprises facing specific challenges in automation, visual inspection, or energy efficiency.</p></div>
+            <div class="slot"><span class="slot-code">H-07-02 · C-03-02</span><h3>Joint Academic Research &amp; Grants</h3><p>Universities or Institutes aiming for Q1 publications and national/international grants.</p></div>
+            <div class="slot"><span class="slot-code">H-07-03 · C-03-03</span><h3>Postgraduate Talent Recruitment</h3><p>Exceptional students aiming for advanced AI degrees, top-tier publications, or careers in big tech.</p></div>
+          </div>
+          <button class="detail-button" type="button" data-target="tab-contact">View collaboration options</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-research" role="tabpanel" aria-labelledby="tab-research" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE R</small><h1>Research Directions</h1></div><p>What the lab studies, how directions relate, and how scenarios map to projects.</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="R-01">
+          <div class="top"><span class="code">R-01</span><p class="meta">Fill the homepage summary and inner-page introduction separately; the homepage uses the summary only.</p></div>
+          <h2>Core Research Pillars</h2>
+          <div class="split">
+            <ul class="field-list one"><li class="field-item"><b>Page Title | 6–14 characters</b>Core Research Pillars</li><li class="field-item"><b>Homepage Summary | 40–70 characters</b>Operating at the intersection of Medical AI, On-Device Vision, and Autonomous Orchestration, delivering high-impact solutions for healthcare, smart cities, and industry.</li><li class="field-item"><b>Inner-Page Introduction | 100–180 characters</b>HI Lab focuses on translating cutting-edge machine learning algorithms into enterprise-grade applications. Our research is structured into Digital Health (HEALTH), Edge Intelligence (EDGE-AI), and Multi-Agent Systems (AGENT). Through these pillars, we bridge the gap between low-level data perception (edge vision), domain-specific knowledge parsing (medical/industrial modeling), and top-level autonomous decision-making (LLM orchestration).</li></ul>
+            <div class="media-box">Asset area: research-direction overview image or video<br>Asset ID, composition focus, copyright, and alt text: to be provided</div>
+          </div>
+        </article>
+
+        <article class="block" data-code="R-02">
+          <div class="top"><span class="code">R-02</span><p class="meta">Fixed home-page entry H-02-01 | home-page order 1</p></div>
+          <h2>HEALTH (Digital Health &amp; Medical Image Analytics)</h2>
+          <div class="split">
+            <ul class="field-list one"><li class="field-item"><b>Name</b>HEALTH (Digital Health &amp; Medical Image Analytics)</li><li class="field-item"><b>One-Sentence Definition</b>Advanced AI and predictive analytics for diagnostic imaging and personalized health interventions.</li><li class="field-item"><b>Key Questions</b>1. Early prediction of Non-Communicable Diseases (NCDs) using complex sequence data. 2. High-precision cross-modal medical image segmentation. 3. Closed-loop control systems based on deep reinforcement learning (e.g., Artificial Pancreas).</li><li class="field-item"><b>Main Research Content</b>1. Constructing disease intervention models using reinforcement learning. 2. Developing Dual-Branch CNN architectures for Alzheimer's diagnosis. 3. Multi-modal sentiment and emotion analysis for personalized health coaching.</li><li class="field-item"><b>Application Scenarios</b>1. Automated medical image segmentation and clinical diagnostics. 2. Ageing-in-Place physiological and mental health monitoring. 3. Long-term dynamic risk prediction for diabetic patients.</li><li class="field-item"><b>Representative Projects</b>P-07-01, P-07-02, P-07-06</li><li class="field-item"><b>Additional Notes</b>Requires strict collaboration with clinical hospitals and public health agencies for data de-identification and validation.</li></ul>
+            <div class="media-box">Asset area: HEALTH direction image or video<br>Asset ID, content description, copyright, and alt text: to be provided</div>
+          </div>
+        </article>
+
+        <article class="block" data-code="R-03">
+          <div class="top"><span class="code">R-03</span><p class="meta">Fixed home-page entry H-02-02 | home-page order 2</p></div>
+          <h2>EDGE-AI (Edge Intelligence &amp; On-Device Vision)</h2>
+          <div class="split">
+            <ul class="field-list one"><li class="field-item"><b>Name</b>EDGE-AI (Edge Intelligence &amp; On-Device Vision)</li><li class="field-item"><b>One-Sentence Definition</b>Deploying high-performance computer vision and machine learning models on resource-constrained industrial and IoT devices.</li><li class="field-item"><b>Key Questions</b>1. Low-latency, real-time visual sensing independent of cloud infrastructure. 2. Real-time object and defect detection in complex manufacturing/traffic environments 3. Neural network compression and lightweighting for embedded hardware.</li><li class="field-item"><b>Main Research Content</b>1. Developing lightweight Mamba-transformer hybrid architectures for real-world detection. 2. Zero-shot learning on gesture movement for interactive dashboard control.</li><li class="field-item"><b>Application Scenarios</b>1. Smart retail checkout systems (e.g., AI weighing scales). 2. Autonomous drone mapping and image stitching for Agriculture 4.0. 3. Underwater sonar small target detection and traffic monitoring.</li><li class="field-item"><b>Representative Projects</b>P-05, P-07-03, P-07-08, P-07-09</li><li class="field-item"><b>Additional Notes</b>Supported by NVIDIA DLI Computer Vision certification, ensuring seamless integration with commercial AIoT hardware ecosystems.</li></ul>
+            <div class="media-box">Asset area: EDGE-AI direction image or video<br>Asset ID, content description, copyright, and alt text: to be provided</div>
+          </div>
+        </article>
+
+        <article class="block" data-code="R-04">
+          <div class="top"><span class="code">R-04</span><p class="meta">Fixed home-page entry H-02-03 | home-page order 3</p></div>
+          <h2>AGENT (Multi-Agent Systems &amp; NLP)</h2>
+          <div class="split">
+            <ul class="field-list one"><li class="field-item"><b>Name</b>AGENT (Multi-Agent Systems &amp; NLP)</li><li class="field-item"><b>One-Sentence Definition</b>Large Language Model (LLM) driven autonomous system orchestration and multi-modal human-AI interaction.</li><li class="field-item"><b>Key Questions</b>1. Automating civic and smart tourism services via AI-RAG technology. 2. Enhancing digital interactions with emotionally intelligent conversational avatars. 3. Large-scale patent mining and text analysis powered by foundational models.</li><li class="field-item"><b>Main Research Content</b>1. R&amp;D of Retrieval-Augmented Generation (RAG) pipelines for public services. 2. Exploring genetic hybridization technology and emotional state transition models in human-robot interfaces. 3. Sustainable product innovation using TRIZ methodology combined with BERT and LLMs.</li><li class="field-item"><b>Application Scenarios</b>1. National-level digital concierges and automated customer service systems. 2. Immersive multi-modal platforms for EdTech and psychological counseling. 3. Automated trend prediction and ideation for corporate R&amp;D departments.</li><li class="field-item"><b>Representative Projects</b>P-03, P-04, P-07-04, P-07-05, P-07-10</li><li class="field-item"><b>Additional Notes</b>Strong focus on Federated Learning privacy mechanisms and commercial adaptability of LLM deployments.</li></ul>
+            <div class="media-box">Asset area: AGENT direction image or video<br>Asset ID, content description, copyright, and alt text: to be provided</div>
+          </div>
+        </article>
+
+        <article class="block quiet" data-code="R-05">
+          <div class="top"><span class="code">R-05</span><p class="meta">Suggested length: shared problem 50–100 characters; each boundary 30–60; connection model 80–150</p></div>
+          <h2>Relationship Among the Three Directions</h2>
+          <div class="split">
+            <ul class="field-list one"><li class="field-item"><b>Shared Problem</b>All three pillars work together to bridge the gap between perceiving massive unstructured data in physical environments and executing real-time autonomous decisions in digital workflows.</li><li class="field-item"><b>Individual Boundaries</b>HEALTH: Strictly focuses on physiological data and clinical predictive modeling; does not handle general vision.<br>EDGE-AI: Focuses on hardware-constrained, high-frequency visual processing; does not handle deep NLP logic.<br>AGENT: Focuses on NLP, RAG knowledge bases, and conversational UI; does not handle raw sensor/hardware integration.</li><li class="field-item"><b>Connection Method</b>EDGE-AI serves as the perception layer, capturing environmental or physical data at high speeds on constrained hardware. For biomedical scenarios, this data is passed to HEALTH algorithms for deep pathological or risk analysis. Finally, AGENT acts as the orchestration layer, synthesizing quantitative outputs from Edge and Health models into natural language advice or automated workflows (e.g., Digital Concierge or AI Coaching) for human end-users.</li></ul>
+            <div class="media-box">Asset area: relationship diagram or video for the three directions<br>To be provided: A circular workflow diagram. Edge-AI (Data Capture) at the base, Health (Domain Analysis) on the left, looping up to Agent (Human-AI Interaction) at the top.<small class="hint">Asset ID, copyright, and alt text: to be provided</small></div>
+          </div>
+        </article>
+
+        <article class="block" data-code="R-06"><div class="top"><span class="code">R-06</span><p class="meta">Use “scenario name: P ID”; do not repeat project descriptions</p></div><h2>Scenarios &amp; Project Mapping</h2><ul class="field-list one"><li class="field-item"><b>HEALTH mapping</b>Early Prediction of NCDs: P-07-01; Elderly Mental Health Monitoring: P-07-02; Personalized Fitness Guidance: P-07-06.</li><li class="field-item"><b>EDGE-AI mapping</b>Smart Grocer Produce Recognition: P-05; Agriculture 4.0 Drone Mapping: P-07-03; Facial Recognition Access Control: P-07-08; Game Visual Guide: P-07-09.</li><li class="field-item"><b>AGENT mapping</b>AI-RAG Digital Concierge: P-03; National Address System: P-04; Scam Monitoring: P-07-04; DingTalk Office Assistant: P-07-05; TikTok Lead Generation &amp; Sales: P-07-10.</li><li class="field-item"><b>Additional Industry Applications</b>AI Art Image Generation Platform: P-07-07; Merace Metaverse Gaming Platform: P-07-11; Intelligent Insurance Services and Online Claims Platform: P-07-12; AI Social Commerce App: P-07-13; O2O Intelligent Matching and Activity-based Social Platform: P-07-14; RiceUp Local Food Delivery Platform: P-07-15; Mead Johnson Marketing Management System: P-07-16; Custom Warehouse Management System (WMS): P-07-17.</li></ul></article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE P</small><h1>Projects</h1></div><p>Four capability categories, all projects, and a collaboration entry.</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="P-01">
+          <div class="top"><span class="code">P-01</span><p class="meta">Fill the homepage summary and inner-page introduction separately; the homepage uses the summary only.</p></div>
+          <h2>Key Projects &amp; Tech Transfer</h2>
+          <div class="split">
+            <ul class="field-list one"><li class="field-item"><b>Page Title | 6–14 characters</b>Key Projects &amp; Tech Transfer</li><li class="field-item"><b>Homepage Summary | 40–70 characters</b>Managing over RM 1.2M in research funding, our projects drive tangible B2B and enterprise value across smart manufacturing, digital health, and national civic infrastructure.</li><li class="field-item"><b>Inner-Page Introduction | 100–180 characters</b>Our projects represent the successful leap from academic breakthroughs to industrial applications. Backed by national grants and corporate co-funding (e.g., Advantech, HILTI), the HI Lab delivers highly adaptable AI systems tailored for predictive maintenance, edge deployment, and LLM orchestration. These solutions directly serve manufacturing enterprises, healthcare providers, and government policymakers. The directory also includes 13 company/team industry cases presented on the original KOALA SYNC TECH website as capability signals; these cases are not evidence of individually owned contributions, client relationships, or verified commercial metrics, and the statistical basis of all percentage metrics remains to be verified.</li></ul>
+            <div class="media-box">Asset area: project-overview image or video<br>Asset ID, content description, copyright, and alt text: to be provided</div>
+          </div>
+        </article>
+
+        <article class="block quiet" data-code="P-02">
+          <div class="top"><span class="code">P-02</span><p class="meta">4 capability categories | synchronized with the full project directory</p></div>
+          <h2>Four Capability Categories</h2>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-02-01</span><h3>AI Solutions</h3><p>Core capabilities: predictive analytics, medical AI, generative AI, RAG, agents, multimodal analysis, and marketing automation.<br>Applicable scenarios: digital health, public services, manufacturing forecasting, and intelligent marketing.<br>Typical deliverables: forecasting models, medical AI models, domain knowledge bases, RAG pipelines, agents, digital humans, and generative applications.<br>Related projects: P-03, P-06, P-07-01, P-07-02, P-07-04, P-07-05, P-07-06, P-07-07, and P-07-10.</p></div>
+            <div class="slot"><span class="slot-code">P-02-02</span><h3>Edge Intelligence</h3><p>Core capabilities: computer vision, model compression, on-device inference, AIoT, and hardware-software integration.<br>Applicable scenarios: smart retail, agricultural mapping, access security, and game vision.<br>Typical deliverables: lightweight vision models, embedded inference solutions, real-time recognition systems, and IoT hardware integration.<br>Related projects: P-05, P-07-03, P-07-08, and P-07-09.</p></div>
+            <div class="slot"><span class="slot-code">P-02-03</span><h3>Custom Digital Products</h3><p>Core capabilities: Web, mobile apps, industry platforms, transaction workflows, recommendation, and user engagement.<br>Applicable scenarios: insurance, e-commerce, social networking, food delivery, and gaming platforms.<br>Typical deliverables: custom Web and mobile applications, industry service platforms, transaction and content workflows, and recommendation and engagement modules.<br>Related projects: P-07-11, P-07-12, P-07-13, P-07-14, and P-07-15.</p></div>
+            <div class="slot"><span class="slot-code">P-02-04</span><h3>Digital Transformation</h3><p>Core capabilities: enterprise systems, public digital infrastructure, process automation, data operations, and systems integration.<br>Applicable scenarios: public governance, marketing management, warehousing, inventory, orders, and logistics.<br>Typical deliverables: digital infrastructure design, enterprise management systems, automated workflows, data analytics and reporting, and platform integration.<br>Related projects: P-04, P-07-16, and P-07-17.</p></div>
+          </div>
+        </article>
+
+        <article class="block quiet" data-code="P-07">
+          <div class="top"><span class="code">P-07</span><p class="meta">21 project entries | grouped into 4 capability categories | original project IDs and content retained</p></div>
+          <h2>All Projects &amp; Industry Application Cases</h2>
+          <p class="selection-note">AI Solutions (9 projects)</p>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-03</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Integrated Digital Concierge with Real-Time Avatar Based on AI-RAG</li><li class="field-item"><b>S — Situation</b>Current smart city and tourism services lack scalable, low-latency, and highly interactive touchpoints, making it difficult for citizens to retrieve civic information efficiently.</li><li class="field-item"><b>T — Task</b>Develop and deploy a national-level conversational AI avatar using Retrieval-Augmented Generation (RAG) to provide accurate public services and civic empowerment.</li><li class="field-item"><b>A — Action</b>1. Built a domain-specific LLM knowledge base for civic policies.<br>2. Developed real-time 3D avatar rendering with multi-lingual support.<br>3. Optimized the RAG data pipeline for millisecond-level responsiveness.</li><li class="field-item"><b>R — Result</b>Successfully funded and actively deployed as a core civic empowerment tool (2026-2027).</li></ul></div>
+            <div class="slot"><span class="slot-code">P-06</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Forecasting Energy Consumption for Predictive Maintenance</li><li class="field-item"><b>S — Situation</b>Heavy manufacturing relies on reactive maintenance, causing sudden equipment failures, massive energy waste, and unpredictable downtime costs.</li><li class="field-item"><b>T — Task</b>Build a data-driven deep learning model to accurately predict energy spikes and identify potential equipment failure points in advance.</li><li class="field-item"><b>A — Action</b>1. Captured and cleansed high-frequency sensor data from the factory floor.<br>2. Applied adaptive dual distillation frameworks to optimize prediction accuracy.<br>3. Developed immersive Visual Analytics Dashboards for floor managers.</li><li class="field-item"><b>R — Result</b>Supported by the TS Leo Moggie Distinguished Chair Grant (RM 60,000), successfully optimizing maintenance schedules for roofing manufacturing plants.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-01</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Early Prediction of NCDs from Imbalanced Sequence Data</li><li class="field-item"><b>S — Situation</b>Non-Communicable Diseases (NCDs) have long incubation periods, and existing medical datasets are highly imbalanced, leading to low sensitivity in traditional early-warning models.</li><li class="field-item"><b>T — Task</b>Develop dynamic data augmentation algorithms suitable for highly imbalanced medical data to enhance early disease prediction capabilities.</li><li class="field-item"><b>A — Action</b>1. Extracted clinical datasets containing sequence structures.<br>2. Designed dynamic data augmentation algorithms specific to sequence features.<br>3. Validated early-warning accuracy via rigorous cross-validation.</li><li class="field-item"><b>R — Result</b>Funded by the Young Researcher Incentive Grant (RM 29,100), achieving breakthroughs published in Q1/Q4 SCIE journals.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-02</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Facial Expression Recognition for Elderly Mental Health Monitoring</li><li class="field-item"><b>S — Situation</b>The ageing-in-place population lacks objective monitoring tools for emotional and mental health, preventing timely psychological interventions.</li><li class="field-item"><b>T — Task</b>Develop a non-contact facial emotion recognition system integrated with an empathetic conversational agent for 24/7 mental state assessment.</li><li class="field-item"><b>A — Action</b>1. Built a specialized facial feature dataset for elderly expressions.<br>2. Trained fuzzy multi-modal transformer models to analyze emotional transitions.<br>3. Output real-time psychological alerts to caregivers via dialogue systems.</li><li class="field-item"><b>R — Result</b>Successfully constructed emotional state transition models, with core findings published in Expert Systems with Applications.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-04</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Scam Surveillance Model Integrating Web Scraping and LLMs</li><li class="field-item"><b>S — Situation</b>Online scams evolve rapidly, and traditional keyword-based filters fail to identify deep-level misinformation and fraudulent intent in multi-modal formats.</li><li class="field-item"><b>T — Task</b>Build a fully automated scam surveillance and early-warning system by merging image forensics with Large Language Models.</li><li class="field-item"><b>A — Action</b>1. Deployed web scrapers to continuously harvest multi-modal scam samples.<br>2. Fused ELA-ResNeXt image technology with BERT linguistic semantics.<br>3. Trained a joint classifier for detecting multi-modal fraudulent information.</li><li class="field-item"><b>R — Result</b>Backed by an Industrial Grant, significantly improving the detection rate of fraudulent information in complex online environments.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-05</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>DingTalk AI Office Assistant</li><li class="field-item"><b>S — Situation</b>According to the original website materials, omissions and delays in daily tasks, schedules, and meetings can reduce team collaboration efficiency.</li><li class="field-item"><b>T — Task</b>Build an AI office assistant integrated with DingTalk to centrally manage tasks, schedules, and meeting reminders.</li><li class="field-item"><b>A — Action</b>1. Integrated task and schedule management. 2. Configured reminders for meetings and action items. 3. Automated routine office tasks with AI and connected them to collaborative workflows.</li><li class="field-item"><b>R — Result</b>According to the original website materials, employee productivity increased by 30.33% and meeting attendance increased by 25.67%; the measurement methodology remains to be verified.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/solu_ban1.png<br>Use: Project card or case-detail hero image<br>Alt text: DingTalk AI Office Assistant showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.1; company/team showcase project, not evidence of individual sole authorship; no application source code, APIs, or acceptance materials were provided.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-06</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>AI Fitness Assistant</li><li class="field-item"><b>S — Situation</b>According to the original website materials, differences in users&#x27; health conditions and exercise habits make generic training plans insufficient for personalized needs.</li><li class="field-item"><b>T — Task</b>Generate personalized fitness recommendations from health data, physical condition, and exercise habits, and help users set and track goals.</li><li class="field-item"><b>A — Action</b>1. Consolidated user health information and exercise habits. 2. Built user profiles and recommended fitness plans. 3. Supported goal setting, execution, and feedback.</li><li class="field-item"><b>R — Result</b>According to the original website materials, user satisfaction increased by 40.13% and platform subscriptions grew by 20.68%; the measurement methodology remains to be verified.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/solu_ban2.png<br>Use: Featured-project card or case-detail hero image<br>Alt text: AI Fitness Assistant showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.1; company/team showcase project, not evidence of individual sole authorship; the data fields, recommendation algorithms, models, and privacy handling were not disclosed.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-07</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>AI Art Image Generation Platform</li><li class="field-item"><b>S — Situation</b>According to the original website materials, personalized art creation has a high tool barrier, and users need a more direct way to generate content.</li><li class="field-item"><b>T — Task</b>Build an art image generation platform that supports text descriptions and style selection across multiple painting styles and themes.</li><li class="field-item"><b>A — Action</b>1. Provided text-prompt and style-selection inputs. 2. Organized image-generation workflows across multiple styles and themes. 3. Supported the display of and interaction with user-generated content on the platform.</li><li class="field-item"><b>R — Result</b>According to the original website materials, user-generated content increased by 50.68% and platform engagement increased by 35.31%; the measurement methodology remains to be verified.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/solu_ban3.png<br>Use: Project card or case-detail hero image<br>Alt text: AI Art Image Generation Platform showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.1; company/team showcase project, not evidence of individual sole authorship; model selection, inference services, training methods, and content-safety mechanisms were not disclosed.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-10</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>TikTok AI Lead Generation and Sales Automation System</li><li class="field-item"><b>S — Situation</b>According to the original website materials, identifying, following up, and converting potential leads in short-video comments is inefficient.</li><li class="field-item"><b>T — Task</b>Build a lead-generation and sales workflow covering video and comment collection, AI lead analysis, and automated follow-up.</li><li class="field-item"><b>A — Action</b>1. Collected and downloaded video links and scraped comments. 2. Used AI to analyze comments and identify potential leads. 3. Automatically tracked leads and sent preset messages.</li><li class="field-item"><b>R — Result</b>According to the original website materials, customer conversion increased by approximately 30%; the measurement methodology, scraping authorization, privacy handling, and compliance with platform rules remain to be verified. TikTok is the target platform, not a verified client.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/solu_ban6.png<br>Use: Project card or case-detail hero image<br>Alt text: TikTok AI Lead Generation and Sales Automation System showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.1; company/team showcase project, not evidence of individual sole authorship; no business-system source code or independent acceptance materials were provided.</li></ul></div>
+          </div>
+          <p class="selection-note">Edge Intelligence (4 projects)</p>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-05</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Smart Grocer: Edge AI Produce Recognition System</li><li class="field-item"><b>S — Situation</b>Traditional supermarket checkouts rely heavily on cashiers manually identifying and entering codes for fresh produce, leading to bottlenecks and inventory errors.</li><li class="field-item"><b>T — Task</b>Integrate Edge AI vision models directly into retail weighing scales to achieve fully automated, real-time identification of fruits and vegetables.</li><li class="field-item"><b>A — Action</b>1. Curated high-quality image datasets validated by agricultural taxonomists.<br>2. Trained and compressed lightweight vision classifiers for edge chips.<br>3. Integrated the software seamlessly with IoT scale hardware.</li><li class="field-item"><b>R — Result</b>Eliminated manual entry and drastically improved checkout speeds; key findings published in IET Image Processing.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-03</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Autonomous Drone Mapping with Wireless Charging for Agriculture 4.0</li><li class="field-item"><b>S — Situation</b>Large plantations rely on manual labor or short-battery drones for inspection, resulting in low data frequency and poor image stitching for precision agriculture.</li><li class="field-item"><b>T — Task</b>Deploy an autonomous drone network equipped with wireless charging, processing automated field image stitching and photogrammetry mapping at the edge.</li><li class="field-item"><b>A — Action</b>1. Configured autonomous drone flight paths and wireless charging stations.<br>2. Applied computer vision algorithms for real-time agricultural image stitching.<br>3. Established a cloud analytics platform to generate precision farming indices.</li><li class="field-item"><b>R — Result</b>Secured RM 128,600 in internal funding, enabling fully automated aerial surveillance and high-precision mapping of large plantations.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-08</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>AI Facial Recognition Access Control System</li><li class="field-item"><b>S — Situation</b>According to the original website materials, identity verification, security monitoring, and access control face efficiency and cost challenges.</li><li class="field-item"><b>T — Task</b>Use facial recognition for identity verification and access control in security monitoring and facility access scenarios.</li><li class="field-item"><b>A — Action</b>1. Captured and matched facial identity information. 2. Connected recognition results to access control. 3. Linked security monitoring with facility access workflows.</li><li class="field-item"><b>R — Result</b>According to the original website materials, the system can improve security-management efficiency and reduce costs, but no quantitative metrics were provided; accuracy, false-match rate, liveness detection, response time, and hardware-integration evidence remain to be verified.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/solu_ban4.png<br>Use: Featured-project card or case-detail hero image<br>Alt text: AI Facial Recognition Access Control System showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.1; company/team showcase project, not evidence of individual sole authorship; no independent acceptance materials were provided.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-09</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>GTorque Game Guide Assistant</li><li class="field-item"><b>S — Situation</b>According to the original website materials, players may struggle to identify key scenes, missions, or progression paths.</li><li class="field-item"><b>T — Task</b>Use image recognition and computer vision to understand game screens and provide players with guides and contextual tips.</li><li class="field-item"><b>A — Action</b>1. Identified key scenes and missions in games. 2. Associated them with relevant guides and tips. 3. Delivered assistance as players progressed.</li><li class="field-item"><b>R — Result</b>According to the original website materials, the solution can improve player engagement, satisfaction, and product competitiveness, but no quantitative metrics were provided; supported games, recognition latency, and accuracy remain to be verified.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/solu_ban5.png<br>Use: Project card or case-detail hero image<br>Alt text: GTorque Game Guide Assistant showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.1; company/team showcase project, not evidence of individual sole authorship; the recognition model and business-system source code were not disclosed.</li></ul></div>
+          </div>
+          <p class="selection-note">Custom Digital Products (5 projects)</p>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-07-11</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Merace Metaverse Gaming Platform</li><li class="field-item"><b>S — Situation</b>According to the original website materials, the project addresses a gaming-platform and cross-game asset scenario involving blockchain, Binance Smart Chain, the metaverse, and DApps.</li><li class="field-item"><b>T — Task</b>Build a gaming platform that supports the purchase of platform currency, game characters, and items, as well as cross-game asset management and trading.</li><li class="field-item"><b>A — Action</b>1. Organized platform-currency purchase and usage flows. 2. Supported trading of game characters and items. 3. Integrated multiple blockchain games and managed cross-game assets.</li><li class="field-item"><b>R — Result</b>According to the original website materials, monthly active users increased by 200% and transaction volume increased by 34.48%; the measurement methodology remains to be verified, and the repository provides no smart contracts, on-chain addresses, wallet integration, or security-audit evidence.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/what_right1.jpg<br>Use: Project card or case-detail hero image<br>Alt text: Merace Metaverse Gaming Platform showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.2; company/team showcase project, not evidence of individual sole authorship; no independent acceptance materials were provided.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-12</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Intelligent Insurance Services and Online Claims Platform</li><li class="field-item"><b>S — Situation</b>According to the original website materials, the experience of insurance-product discovery, online enrollment, customer consultation, and online claims needed improvement.</li><li class="field-item"><b>T — Task</b>Build a Web platform covering insurance product information, online enrollment, intelligent customer service, online consultation, and claim submission.</li><li class="field-item"><b>A — Action</b>1. Integrated insurance-product and customer-service information. 2. Built online enrollment, consultation, and intelligent customer-service workflows. 3. Added online claim submission and status processing.</li><li class="field-item"><b>R — Result</b>According to the original website materials, online enrollment increased by 40.36%, customer satisfaction by 30.1%, customer-service response speed by 50%, issue-resolution rate by 45.43%, average daily visits by 60.37%, time on page by 20%, and successful online claim submissions by 35.64%; the measurement methodology remains to be verified.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/what_right2.jpg<br>Use: Project card or case-detail hero image<br>Alt text: Intelligent Insurance Services and Online Claims Platform showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.2; company/team showcase project, not evidence of individual sole authorship; the source-code title conflicts with the insurance-focused body copy, so the project is named according to the body content.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-13</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>AI Social Commerce App</li><li class="field-item"><b>S — Situation</b>According to the original website materials, social commerce needs stronger user engagement, product discovery, and customer-conversion efficiency.</li><li class="field-item"><b>T — Task</b>Integrate new retail, social interaction, and product recommendation into a mobile shopping experience.</li><li class="field-item"><b>A — Action</b>1. Supported product discovery and purchasing. 2. Enabled users to share shopping experiences and recommend products to friends. 3. Used interaction data for product recommendations and targeted marketing.</li><li class="field-item"><b>R — Result</b>According to the original website materials, platform engagement increased by 56.31% and sales increased by 27.2%; the measurement methodology and the AI model, data, and feature implementation remain to be verified.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/what_right3.jpg<br>Use: Project card or case-detail hero image<br>Alt text: AI Social Commerce App showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.2; company/team showcase project, not evidence of individual sole authorship; no business-system source code or independent acceptance materials were provided.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-14</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>O2O Intelligent Matching and Activity-based Social Platform</li><li class="field-item"><b>S — Situation</b>According to the original website materials, users need a more efficient way to match with people who share their interests and participate in activities.</li><li class="field-item"><b>T — Task</b>Use intelligent matching algorithms and an activity-management system to improve matching, interaction, and event participation.</li><li class="field-item"><b>A — Action</b>1. Established user-interest and matching mechanisms. 2. Provided flows for creating, managing, and joining activities. 3. Used interaction feedback to improve matching and activity experiences.</li><li class="field-item"><b>R — Result</b>According to the original website materials, successful matching increased by 45.4% and activity participation increased by 30.26%; the measurement methodology remains to be verified. The source expands O2O as Online-to-Online, which differs from the common interpretation.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/what_right4.jpg<br>Use: Project card or case-detail hero image<br>Alt text: O2O Intelligent Matching and Activity-based Social Platform showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.2; company/team showcase project, not evidence of individual sole authorship; no matching algorithm or independent acceptance materials were provided.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-15</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>RiceUp Local Food Delivery Platform</li><li class="field-item"><b>S — Situation</b>According to the original website materials, users need a convenient way to discover nearby restaurants and place delivery orders.</li><li class="field-item"><b>T — Task</b>Build a local dining platform that aggregates nearby food-delivery services, personalized recommendations, and user reviews.</li><li class="field-item"><b>A — Action</b>1. Aggregated nearby restaurants and delivery services. 2. Supported ordering, personalized recommendations, and reviews. 3. Used feedback to improve restaurant discovery and repeat ordering.</li><li class="field-item"><b>R — Result</b>According to the original website materials, order rate increased by 52.12%, satisfaction by 25.34%, active users by 35.46%, and new registrations by 40%; average weekly orders rose from two to three, and the positive-review rate reached 90%. The measurement methodology remains to be verified.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/what_right5.jpg<br>Use: Project card or case-detail hero image<br>Alt text: RiceUp Local Food Delivery Platform showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.2; company/team showcase project, not evidence of individual sole authorship; 90% is the positive-review rate, not a growth rate.</li></ul></div>
+          </div>
+          <p class="selection-note">Digital Transformation (3 projects)</p>
+          <div class="grid g2">
+            <div class="slot"><span class="slot-code">P-04</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Technical and Operation Design for National Address Systems (NAS)</li><li class="field-item"><b>S — Situation</b>To accelerate the digital economy, Malaysia urgently needed a unified, intelligent addressing infrastructure to support logistics, resource allocation, and policymaking.</li><li class="field-item"><b>T — Task</b>Design the overall architecture, visual-based AI use cases, and governance framework for the National Address System.</li><li class="field-item"><b>A — Action</b>1. Developed use cases for address data capture.<br>2. Formulated capacity building and training tools for the NAS system.<br>3. Established the technological and policy compliance framework (AI Enablers).</li><li class="field-item"><b>R — Result</b>Secured multiple industrial grants (RM 50k+ each) from Three-Opp (M) Sdn. Bhd., laying the foundation for Malaysia&#x27;s digital transformation.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-16</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Mead Johnson Marketing Management System</li><li class="field-item"><b>S — Situation</b>According to the original website materials, audience segmentation, targeted marketing, user engagement, and marketing decision-making needed improvement.</li><li class="field-item"><b>T — Task</b>Build a marketing management system combining audience segmentation, targeted outreach, engagement points, data analytics, and reporting.</li><li class="field-item"><b>A — Action</b>1. Performed personalized audience segmentation and targeting. 2. Configured engagement-point allocation. 3. Used integrated analytics and reporting to identify market demand and user preferences.</li><li class="field-item"><b>R — Result</b>According to the original website materials, the system can improve user engagement, brand loyalty, and sales, but no quantitative metrics were provided; the client relationship has not been independently verified through contracts or third-party materials.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/inf_banner.jpg<br>Use: Project card or case-detail hero image<br>Alt text: Mead Johnson Marketing Management System showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.3; project shown on a company/team website, not evidence of individual sole authorship; no independent acceptance materials were provided.</li></ul></div>
+            <div class="slot"><span class="slot-code">P-07-17</span><ul class="field-list one"><li class="field-item"><b>Project Name</b>Custom Warehouse Management System (WMS)</li><li class="field-item"><b>S — Situation</b>According to the original website materials, manual records and legacy SaaS systems made warehouse operations inefficient and prone to human error.</li><li class="field-item"><b>T — Task</b>Use a custom WMS to integrate inventory, orders, logistics tracking, real-time monitoring, and automated operations.</li><li class="field-item"><b>A — Action</b>1. Integrated inventory and order processing. 2. Connected logistics tracking and real-time data monitoring. 3. Used automation to reduce manual processes and errors.</li><li class="field-item"><b>R — Result</b>According to the original website materials, process efficiency improved by 100%; the statistical definition remains to be verified and is not interpreted as halving processing time or doubling efficiency. The second carousel image also does not show an independent client name.</li><li class="field-item"><b>Project Image</b>../docs/assets/company-website/source/src/images/inf_right.jpg<br>Use: Project card or case-detail hero image<br>Alt text: Custom Warehouse Management System showcase image<br>Copyright status: To be confirmed</li><li class="field-item"><b>Source / Evidence Metadata</b>Source: docs/项目与优势.md §4.3; company/team showcase project, not evidence of individual sole authorship; no business-system source code or independent acceptance materials were provided.</li></ul></div>
+          </div>
+        </article>
+
+        <article class="block dark" data-code="P-08">
+          <div class="top"><span class="code">P-08</span><p class="meta">Fixed collaboration invitation | button target: Contact</p></div>
+          <h2>Welcome Collaboration</h2>
+          <p class="placeholder">If you represent an enterprise seeking to deploy Edge AI, or an institution looking for joint R&amp;D in Medical AI or Agent systems, please explore our collaboration options.</p>
+          <button class="detail-button" type="button" data-target="tab-contact">View collaboration options</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-advantages" role="tabpanel" aria-labelledby="tab-advantages" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE A</small><h1>Technology Advantages</h1></div><p>Eight technology advantages in total; A-01 to A-03 are featured on the home page, while A-04 to A-08 are retained as frontier technology capabilities.</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="A-01">
+          <div class="top"><span class="code">A-01</span><p class="meta">Fixed entry H-03-01</p></div>
+          <h2>Predictive Analytics &amp; Knowledge Distillation</h2>
+          <ul class="field-list one"><li class="field-item"><b>Name</b>Predictive Analytics &amp; Knowledge Distillation</li><li class="field-item"><b>Method</b>To combat the data scarcity and severe imbalance often found in industrial and medical datasets, we utilize adaptive dual distillation frameworks and dynamic data augmentation, transferring the complex reasoning of deep neural networks into highly robust, lightweight models.</li><li class="field-item"><b>Advantage</b>Maintains exceptionally high predictive accuracy even in noisy or resource-constrained industrial environments. This capability is validated by official SAS Predictive Modeler certifications and successful B2B deployments.</li></ul>
+        </article>
+
+        <article class="block" data-code="A-02">
+          <div class="top"><span class="code">A-02</span><p class="meta">Fixed entry H-03-02</p></div>
+          <h2>LLM &amp; Multi-modal Emotional Orchestration</h2>
+          <ul class="field-list one"><li class="field-item"><b>Name</b>LLM &amp; Multi-modal Emotional Orchestration</li><li class="field-item"><b>Method</b>By deeply coupling Retrieval-Augmented Generation (RAG) with localized industry knowledge bases, and innovatively integrating Fuzzy Multi-modal Transformers with genetic hybridization, our AI not only generates text but performs emotional reasoning and state transitions.</li><li class="field-item"><b>Advantage</b>Empowers AI systems with profound "context-awareness" and "empathy," entirely stripping away the mechanical feel of traditional bots. Perfect for high-touch environments like civic digital concierges and personalized health coaching.</li></ul>
+        </article>
+
+        <article class="block" data-code="A-03">
+          <div class="top"><span class="code">A-03</span><p class="meta">Fixed entry H-03-03</p></div>
+          <h2>Hardware-Optimized Edge Vision Detection</h2>
+          <ul class="field-list one"><li class="field-item"><b>Name</b>Hardware-Optimized Edge Vision Detection</li><li class="field-item"><b>Method</b>Employing lightweight Mamba-transformer hybrids and generalized Gaussian distribution algorithms, we extreme-compress massive computer vision models (like YOLO), allowing them to run inference directly on embedded chips in scales, drones, or underwater sonar.</li><li class="field-item"><b>Advantage</b>Achieves millisecond-level, real-time visual perception completely detached from cloud reliance, resolving network latency and privacy issues. Backed by NVIDIA DLI certification, ensuring seamless integration into mainstream AIoT hardware ecosystems.</li></ul>
+        </article>
+
+        <article class="block" data-code="A-04">
+          <div class="top"><span class="code">A-04</span><p class="meta">Frontier technology reserve | not shown on home-page H-03</p></div>
+          <h2>Cross-Model Skill Compilation &amp; Runtime Governance</h2>
+          <ul class="field-list one"><li class="field-item"><b>Name</b>Cross-Model Skill Compilation &amp; Runtime Governance</li><li class="field-item"><b>Method</b>We treat Skills as compilable natural-language programs. Based on the capability profiles of models, Agent frameworks, and host environments, we perform ahead-of-time (AOT) adaptation, dependency binding, concurrent workflow orchestration, and runtime feedback optimization, while retaining version rollback capability.</li><li class="field-item"><b>Advantage</b>Reduces repetitive rewrites, blind retries, and environment failures when migrating Skills across models and frameworks, making task success rates, latency, token consumption, and failure causes easier to track and optimize.</li></ul>
+        </article>
+
+        <article class="block" data-code="A-05">
+          <div class="top"><span class="code">A-05</span><p class="meta">Frontier technology reserve | not shown on home-page H-03</p></div>
+          <h2>User-Controlled Layered AI Memory</h2>
+          <ul class="field-list one"><li class="field-item"><b>Name</b>User-Controlled Layered AI Memory</li><li class="field-item"><b>Method</b>We separate conversational working memory, structured long-term memory, and the proactive suggestion layer. Rule-based routing, explicit associations, source records, expiry reviews, and deletion mechanisms are combined to manage the lifecycle of memory storage, retrieval, and removal.</li><li class="field-item"><b>Advantage</b>Reduces the need for users to repeat information while keeping sources traceable, content editable, permissions controllable, and expired memories removable. If long-term memory is unavailable, the system can still fall back to a standard single-session conversation.</li></ul>
+        </article>
+
+        <article class="block" data-code="A-06">
+          <div class="top"><span class="code">A-06</span><p class="meta">Frontier technology reserve | not shown on home-page H-03</p></div>
+          <h2>Utility–Diversity Training Data Selection</h2>
+          <ul class="field-list one"><li class="field-item"><b>Name</b>Utility–Diversity Training Data Selection</li><li class="field-item"><b>Method</b>We reuse logits produced by the supervised fine-tuning forward pass and apply the nuclear norm to estimate sample utility and within-sample diversity. Low-dimensional representations and a historical buffer then identify redundancy across samples, enabling online selection of data that is more valuable for parameter updates.</li><li class="field-item"><b>Advantage</b>Prioritizes backpropagation for high-value, non-redundant samples, increasing the density of effective updates within a fixed training budget and reducing the compute and time wasted on repeatedly training with homogeneous data.</li></ul>
+        </article>
+
+        <article class="block" data-code="A-07">
+          <div class="top"><span class="code">A-07</span><p class="meta">Frontier technology reserve | not shown on home-page H-03</p></div>
+          <h2>On-Device Agents &amp; Hardware Co-Design</h2>
+          <ul class="field-list one"><li class="field-item"><b>Name</b>On-Device Agents &amp; Hardware Co-Design</li><li class="field-item"><b>Method</b>On resource-constrained devices such as the ESP32-S3, an event-driven Agent Loop connects sensors, local structured memory, and actuators, while MCP Client / Server interfaces provide access to authorized services and hardware endpoints.</li><li class="field-item"><b>Advantage</b>Allows low-risk events to be handled closer to the device, reduces dependence on cloud-only connections, and lowers the cost of building one-off interfaces among sensors, actuators, and agent platforms.</li></ul>
+        </article>
+
+        <article class="block" data-code="A-08">
+          <div class="top"><span class="code">A-08</span><p class="meta">Frontier technology reserve | not shown on home-page H-03</p></div>
+          <h2>Verifiable Feedback-Driven Continual Learning</h2>
+          <ul class="field-list one"><li class="field-item"><b>Name</b>Verifiable Feedback-Driven Continual Learning</li><li class="field-item"><b>Method</b>We anchor training direction with verifiable rewards, combine RLSD fine-grained self-distillation, NPO near-future policy guidance, and CoPD multi-expertise collaborative training, and record validators, rewards, model versions, and per-dimension evaluation results.</li><li class="field-item"><b>Advantage</b>Provides denser learning signals that the current model can absorb more readily, reduces ineffective updates and conflicts when merging expertise, and makes continual model iteration more interpretable, measurable, and reversible.</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-partners" role="tabpanel" aria-labelledby="tab-partners" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE N</small><h1>Partners</h1></div><p>Show only one introduction and the approved partner-logo wall.</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="N-01">
+          <div class="top"><span class="code">N-01</span><p class="meta">The home and partner pages use the same 30–60-character introduction</p></div>
+          <h2>Shared introduction</h2>
+          <ul class="field-list one"><li class="field-item"><b>Shared introduction for both pages | 30–60 characters</b>The HI Lab maintains close, active collaborations with global tech leaders and top-tier academic institutions to drive the R&amp;D and deployment of Edge Computing and Medical AI.</li></ul>
+        </article>
+
+        <article class="block" data-code="N-02">
+          <div class="top"><span class="code">N-02</span><p class="meta">Fixed 12 logo slots | fill unused slots with “Not provided” | four fields per slot</p></div>
+          <h2>Logo wall list</h2>
+          <ul class="logos" aria-label="Partner-logo field list"><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-01</li><li class="field-item"><b>Organization Name</b>Advantech</li><li class="field-item"><b>Logo File or Location</b>TBD (Advantech Logo)</li><li class="field-item"><b>Logo Public-Use Permission</b>Yes</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-02</li><li class="field-item"><b>Organization Name</b>HILTI Asia IT Services</li><li class="field-item"><b>Logo File or Location</b>TBD (HILTI Logo)</li><li class="field-item"><b>Logo Public-Use Permission</b>No</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-03</li><li class="field-item"><b>Organization Name</b>Tokio Marine &amp; Dynafront</li><li class="field-item"><b>Logo File or Location</b>TBD (Tokio Marine Logo)</li><li class="field-item"><b>Logo Public-Use Permission</b>No</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-04</li><li class="field-item"><b>Organization Name</b>Xiamen University Malaysia</li><li class="field-item"><b>Logo File or Location</b>TBD (Xiamen Univ Logo)</li><li class="field-item"><b>Logo Public-Use Permission</b>No</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-05</li><li class="field-item"><b>Organization Name</b>Leeds Beckett University</li><li class="field-item"><b>Logo File or Location</b>TBD (Leeds Logo)</li><li class="field-item"><b>Logo Public-Use Permission</b>No</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-06</li><li class="field-item"><b>Organization Name</b>Three-Opp (M) Sdn. Bhd.</li><li class="field-item"><b>Logo File or Location</b>TBD (Three-Opp Logo)</li><li class="field-item"><b>Logo Public-Use Permission</b>No</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-07</li><li class="field-item"><b>Organization Name</b>Universiti Tenaga Nasional (UNITEN)</li><li class="field-item"><b>Logo File or Location</b>TBD (UNITEN Logo)</li><li class="field-item"><b>Logo Public-Use Permission</b>Yes</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-08</li><li class="field-item"><b>Organization Name</b>Asia Roofing Industry</li><li class="field-item"><b>Logo File or Location</b>TBD (Asia Roofing Logo)</li><li class="field-item"><b>Logo Public-Use Permission</b>No</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-09</li><li class="field-item"><b>Organization Name</b>Mobiva</li><li class="field-item"><b>Logo File or Location</b>TBD (Mobiva)</li><li class="field-item"><b>Logo Public-Use Permission</b>Yes</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-10</li><li class="field-item"><b>Organization Name</b>Not provided</li><li class="field-item"><b>Logo File or Location</b>Not provided</li><li class="field-item"><b>Logo Public-Use Permission</b>Not provided</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-11</li><li class="field-item"><b>Organization Name</b>Not provided</li><li class="field-item"><b>Logo File or Location</b>Not provided</li><li class="field-item"><b>Logo Public-Use Permission</b>Not provided</li></ul></li><li class="logo"><ul class="field-list one"><li class="field-item"><b>Read-only ID</b>N-02-12</li><li class="field-item"><b>Organization Name</b>Not provided</li><li class="field-item"><b>Logo File or Location</b>Not provided</li><li class="field-item"><b>Logo Public-Use Permission</b>Not provided</li></ul></li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-team" role="tabpanel" aria-labelledby="tab-team" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE T</small><h1>Team</h1></div><p>Team introduction, PI, team composition, and nine member templates/slots.</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="T-01">
+          <div class="top"><span class="code">T-01</span><p class="meta">Fill the homepage summary and inner-page introduction separately; the homepage uses the summary only.</p></div>
+          <h2>Research Team &amp; Academic Network</h2>
+          <ul class="field-list one"><li class="field-item"><b>Page Title | 4–12 characters</b>Research Team &amp; Academic Network</li><li class="field-item"><b>Homepage Summary | 40–70 characters</b>Led by Dr. Chaw Jun Kit, our dynamic team of researchers bridges the gap between complex AI algorithms and commercial adaptability.</li><li class="field-item"><b>Inner-Page Introduction | 100–180 characters</b>The HI Lab brings together brilliant minds specializing in Computer Vision, Applied Machine Learning, and AI System Design. Our members focus intensively on Digital Health, On-device Intelligence, and LLM Orchestration. Through rigorous, hands-on R&amp;D training, our alumni not only publish in top-tier international journals but also secure key positions in leading tech firms and prominent academic institutions.</li></ul>
+        </article>
+
+        <article class="block" data-code="T-02">
+          <div class="top"><span class="code">T-02</span><p class="meta">Enter 3–6 research-interest keywords; suggested short biography 100–180 characters; 3–6 representative projects/outputs</p></div>
+          <h2>Leadership Profiles</h2>
+          <div class="profile-list">
+            <section class="profile-entry" aria-labelledby="profile-chaw"><h3 id="profile-chaw"><span lang="zh-CN">Dr. Chaw Jun Kit</span><br><span lang="en">Dr. Chaw Jun Kit · Principal Investigator (PI) / Senior Lecturer &amp; Research Fellow</span></h3><div class="split"><ul class="field-list one"><li class="field-item"><b>Name / Title or Role / Affiliation</b>Dr. Chaw Jun Kit<br>Principal Investigator (PI) / Senior Lecturer &amp; Research Fellow<br>Institute of Visual Informatics (IVI), Universiti Kebangsaan Malaysia (UKM)</li><li class="field-item"><b>Research Interests / Short Bio</b>Machine Learning, Intelligent Data Analytics, Edge AI, Computer Vision.<br>Dr. Chaw holds a PhD in Electrical Engineering from UTM. He is a SAS-certified Predictive Modeler and an NVIDIA Deep Learning Institute (DLI) certified Computer Vision expert. His work uniquely bridges academia and industry, having managed over RM 1.2M in grants and served as an active tech collaborator for Advantech and HILTI, specializing in manufacturing optimization and digital health solutions.</li><li class="field-item"><b>Research Areas</b>R-02 HEALTH, R-03 EDGE-AI, R-04 AGENT</li><li class="field-item"><b>Representative Projects / Outputs</b>P-03 (Digital Concierge, Project Leader); P-05 (Smart Grocer); Published 50+ SCIE (Q1/Q2) &amp; Scopus papers.</li><li class="field-item"><b>Personal Link</b><a href="https://ukmsarjana.ukm.my/main/lihat_profil/SzAyNDQ3OA==" target="_blank" rel="noopener noreferrer">UKMsarjana Academic Profile</a></li><li class="field-item"><b>Additional Notes</b>Professional Member of the Board of Engineers Malaysia (77508A) and an HRDCorp Accredited Trainer.</li></ul><div class="media-box"><figure class="profile-figure"><img class="profile-photo" src="data:image/jpeg;base64,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" width="405" height="465" alt="Portrait of Dr. Chaw Jun Kit"><figcaption>DOCX embedded photo · 405 × 465 pixels<br>Copyright status: To be confirmed</figcaption></figure></div></div></section>
+            <section class="profile-entry" aria-labelledby="profile-jeff"><h3 id="profile-jeff"><span lang="zh-CN">Dr. Jeff Wang</span><br><span lang="en">Dr. Jeff Wang · Chief Technology Officer (CTO)</span></h3><div class="split"><ul class="field-list one"><li class="field-item"><b>Name / Title or Role / Affiliation</b>Dr. Jeff Wang<br>Chief Technology Officer (CTO)<br>Not provided</li><li class="field-item"><b>Research Interests / Short Bio</b>Not provided<br>Not provided</li><li class="field-item"><b>Research Areas</b>Not provided</li><li class="field-item"><b>Representative Projects / Outputs</b>Not provided</li><li class="field-item"><b>Personal Link</b>Not provided</li><li class="field-item"><b>Additional Notes</b>Not provided</li></ul><div class="media-box missing"><span><b>Photo</b><br>Not provided</span></div></div></section>
+            <section class="profile-entry" aria-labelledby="profile-wendy"><h3 id="profile-wendy">Wendy Leong Pooi Yan · CEO of Mobiva</h3><div class="split"><ul class="field-list one"><li class="field-item"><b>Name / Title or Role / Affiliation</b>Wendy Leong Pooi Yan<br>CEO of Mobiva<br>Mobiva</li><li class="field-item"><b>Research Interests / Short Bio</b>AI in Crisis Management, Pandemic Prediction, Enterprise Mobility, Cloud-based Decision Support.<br>Wendy Leong is the Chief Executive Officer of Mobiva, an industry-leading enterprise mobility and emergency management platform. Concurrently pursuing her PhD at IVI-Edge Lab, she uniquely bridges commercial tech leadership with advanced AI research. Her academic focus explores AI synergy in pandemic prediction and real-time, inclusive AI for disaster response, translating academic frameworks into scalable, enterprise-grade B2B solutions.</li><li class="field-item"><b>Research Areas</b>R-02 HEALTH, R-04 AGENT</li><li class="field-item"><b>Representative Projects / Outputs</b>Quantum Leaps in Pandemic Prediction (Book Chapter, 2025); Enterprise integration via Mobiva.</li><li class="field-item"><b>Personal Link</b><a href="https://www.linkedin.com/in/wendyleong99/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a><br><a href="https://mobiva.net/" target="_blank" rel="noopener noreferrer">Mobiva Official Website</a></li><li class="field-item"><b>Additional Notes</b>Brings extensive C-level B2B industry experience, driving the lab's commercial tech transfer and real-world disaster management implementations.</li></ul><div class="media-box missing"><span><b>Photo</b><br>To be provided</span></div></div></section>
+          </div>
+        </article>
+
+        <article class="block quiet" data-code="T-03">
+          <div class="top"><span class="code">T-03</span><p class="meta">Keep only member types that actually exist</p></div>
+          <h2>Team composition</h2>
+          <ul class="rows"><li><b>PhD Graduates</b><span>Count / publication status: 3 / Public<br>Notes: 2 completed as Main Supervisor</span></li><li><b>PhD Candidates</b><span>Count / publication status: 7 / Public<br>Notes: Focusing on Deep Learning &amp; Multimodal Analysis</span></li><li><b>MSc Graduates</b><span>Count / publication status: 3 / Public<br>Notes: 3 completed as Main Supervisor</span></li><li><b>MSc Candidates</b><span>Count / publication status: 2 / Public<br>Notes: Focusing on Applied Algorithms</span></li></ul>
+        </article>
+
+        <article class="block" data-code="T-04">
+          <div class="top"><span class="code">T-04</span><p class="meta">Fixed nine member templates/slots | three fields per slot</p></div>
+          <h2>Members</h2>
+          <div class="grid g3"><div class="slot"><span class="slot-code">T-04-01</span><ul class="field-list one"><li class="field-item"><b>Name</b>Zhao Yanfeng</li><li class="field-item"><b>Status</b>PhD Graduate / Core Member</li><li class="field-item"><b>One-Sentence Bio</b>Focuses on safe-enhanced fully closed-loop artificial pancreas controllers based on Deep Reinforcement Learning.</li></ul></div><div class="slot"><span class="slot-code">T-04-02</span><ul class="field-list one"><li class="field-item"><b>Name</b>Cheng Xiang</li><li class="field-item"><b>Status</b>PhD Graduate / Core Member</li><li class="field-item"><b>One-Sentence Bio</b>Specializes in adaptive dual distillation frameworks for efficient remaining useful life and predictive maintenance.</li></ul></div><div class="slot"><span class="slot-code">T-04-03</span><ul class="field-list one"><li class="field-item"><b>Name</b>Liu Jianbang</li><li class="field-item"><b>Status</b>PhD Graduate / Core Member</li><li class="field-item"><b>One-Sentence Bio</b>Researches multimodal conversational emotion reasoning and immersive technology behavioral analysis.</li></ul></div><div class="slot"><span class="slot-code">T-04-04</span><ul class="field-list one"><li class="field-item"><b>Name</b>Wang Hongqing</li><li class="field-item"><b>Status</b>PhD Candidate</li><li class="field-item"><b>One-Sentence Bio</b>Developer of Hybrid-YOLO architectures, focusing on complex traffic detection and medical image segmentation.</li></ul></div><div class="slot"><span class="slot-code">T-04-05</span><ul class="field-list one"><li class="field-item"><b>Name</b>Muhammad Aiman Md Zuki</li><li class="field-item"><b>Status</b>PhD Candidate</li><li class="field-item"><b>One-Sentence Bio</b>Researches multi-modal sentiment and emotion analysis frameworks for personalized, persuasive health coaching.</li></ul></div><div class="slot"><span class="slot-code">T-04-06</span><ul class="field-list one"><li class="field-item"><b>Name</b>Leong Pooi Yan</li><li class="field-item"><b>Status</b>PhD Candidate</li><li class="field-item"><b>One-Sentence Bio</b>Explores AI synergy in the prediction of future pandemics and automated crisis management tools.</li></ul></div><div class="slot"><span class="slot-code">T-04-07</span><ul class="field-list one"><li class="field-item"><b>Name</b>Zheng Kun</li><li class="field-item"><b>Status</b>MSc Graduate</li><li class="field-item"><b>One-Sentence Bio</b>Primary researcher on generalized Gaussian distribution improvements and underwater sonar small target detection.</li></ul></div><div class="slot"><span class="slot-code">T-04-08</span><ul class="field-list one"><li class="field-item"><b>Name</b>Ooi Tze Yaang</li><li class="field-item"><b>Status</b>MSc Graduate</li><li class="field-item"><b>One-Sentence Bio</b>Developed dynamic data augmentation methodologies with sequence structures for the early prediction of NCDs.</li></ul></div><div class="slot"><span class="slot-code">T-04-09</span><ul class="field-list one"><li class="field-item"><b>Name</b>Teo Shi Han</li><li class="field-item"><b>Status</b>MSc Graduate</li><li class="field-item"><b>One-Sentence Bio</b>Developed Edge AI applications for real-time fresh produce identification in retail weighing systems.</li></ul></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" tabindex="-1" hidden>
+      <header class="pagehead"><div><small>PAGE C</small><h1>Contact</h1></div><p>Collaboration targets, formats, student applications, contact details, and response scope.</p></header>
+      <div class="flow">
+        <article class="block dark" data-code="C-01">
+          <div class="top"><span class="code">C-01</span><p class="meta">Fill the homepage summary and inner-page introduction separately; the homepage uses the summary only.</p></div>
+          <h2>Partner With Us</h2>
+          <ul class="field-list one"><li class="field-item"><b>Page Title | 4–12 characters</b>Partner With Us</li><li class="field-item"><b>Homepage Summary | 40–70 characters</b>We actively seek enterprise partnerships for Edge AI R&amp;D, cross-disciplinary medical data collaborations, and highly motivated postgraduate (Master/PhD) candidates.</li><li class="field-item"><b>Inner-Page Introduction | 100–180 characters</b>The HI Lab balances rigorous academic research with strong commercial viability. Whether you are a manufacturing enterprise seeking predictive maintenance solutions, a clinical institution looking to leverage AI for diagnostics, or a prospective scholar passionate about Edge Computing and LLMs, we look forward to exploring collaborative opportunities with you.</li></ul>
+        </article>
+
+        <article class="block" data-code="C-02">
+          <div class="top"><span class="code">C-02</span><p class="meta">List only targets, direction names, and boundaries; confirmed R/P/A IDs may be cited</p></div>
+          <h2>Collaboration targets and directions</h2>
+          <div class="grid g2"><div class="slot"><span class="slot-code">C-02-01</span><p>Collaboration Target：Tech / Manufacturing Enterprises<br>Collaboration Direction & Related IDs：Predictive Maintenance &amp; Edge Vision (R-03 / A-03)<br>Scope & Prerequisites：Provision of B2B industrial grants and real-world hardware testing environments.<br>Notes: Proven track record of successful deployments.</p></div><div class="slot"><span class="slot-code">C-02-02</span><p>Collaboration Target：Hospitals &amp; Public Health Agencies<br>Collaboration Direction & Related IDs：Digital Health &amp; Disease Modeling (R-02 / A-01)<br>Scope & Prerequisites：Strict adherence to data privacy and federated learning protocols.<br>Notes: We provide algorithmic R&amp;D, not direct clinical advice.</p></div><div class="slot"><span class="slot-code">C-02-03</span><p>Collaboration Target：Government &amp; Civic Agencies<br>Collaboration Direction & Related IDs：AI-RAG Agents &amp; Digital Concierges (R-04 / P-03)<br>Scope & Prerequisites：Access to internal civic knowledge bases or policy APIs.<br>Notes: Multi-lingual support capabilities available.</p></div><div class="slot"><span class="slot-code">C-02-04</span><p>Collaboration Target：Prospective Students (PhD/MSc)<br>Collaboration Direction & Related IDs：Machine Learning, Computer Vision Agentic AI, Large Language Model (LLM) Research (T-01)<br>Scope & Prerequisites：Solid foundation in Python, Mathematics, and hands-on Machine Learning.<br>Notes: Inquiries accepted year-round.</p></div></div>
+        </article>
+
+        <article class="block quiet" data-code="C-03">
+          <div class="top"><span class="code">C-03</span><p class="meta">Fixed three collaboration formats | one-to-one mapping to H-07-01 through H-07-03</p></div>
+          <h2>Collaboration formats</h2>
+          <div class="grid g2"><div class="slot"><span class="slot-code">C-03-01</span><p>Collaboration formatsName：Industrial Tech Transfer (Joint R&amp;D)<br>Suitable Target / Scenario：Enterprises facing specific challenges in automation, visual inspection, or energy efficiency.<br>Mutual investment: Enterprise provides funding (e.g., Industrial Grants) and raw data; Lab delivers algorithms.<br>Confirmation process: Needs Assessment -&gt; NDA -&gt; Tech Validation -&gt; Project Kick-off.<br>Notes: PI directly assesses project feasibility.</p></div><div class="slot"><span class="slot-code">C-03-02</span><p>Collaboration formatsName：Joint Academic Research &amp; Grants<br>Suitable Target / Scenario：Universities or Institutes aiming for Q1 publications and national/international grants.<br>Mutual investment: Sharing of core data, research personnel, and computing clusters.<br>Confirmation process: Academic Alignment -&gt; Proposal Drafting -&gt; Joint Submission.<br>Notes: Cross-border and cross-disciplinary collaborations are highly welcomed.</p></div><div class="slot"><span class="slot-code">C-03-03</span><p>Collaboration formatsName：Postgraduate Talent Recruitment<br>Suitable Target / Scenario：Exceptional students aiming for advanced AI degrees, top-tier publications, or careers in big tech.<br>Mutual investment: Full-time commitment to research; Lab provides supervision, hardware, and publishing support.<br>Confirmation process: CV/Proposal Submission -&gt; Interview -&gt; Official Faculty Admission.<br>Notes: Comprehensive training from theory to engineering deployment provided.</p></div></div>
+        </article>
+
+        <article class="block" data-code="C-04">
+          <div class="top"><span class="code">C-04</span><p class="meta">Recruitment information has four fixed fields</p></div>
+          <h2>Student applications</h2>
+          <ul class="field-list one"><li class="field-item"><b>Recruitment Target</b>Highly self-motivated applicants for PhD and Master by Research with a background in CS, EE, or Data Science.</li><li class="field-item"><b>Direction</b>Edge AI Vision Deployment, LLM-Agent Orchestration, and Medical Image Analytics.</li><li class="field-item"><b>Application Method</b>Please send a detailed CV, academic transcripts, and a 1-page preliminary research proposal to <a href="mailto:chawjk@ukm.edu.my">chawjk@ukm.edu.my</a>. Subject Line: [PhD/MSc Application - Your Name].</li><li class="field-item"><b>Current Status</b>Long-term Open Recruitment (Official intakes follow the UKM academic calendar).</li></ul>
+        </article>
+
+        <article class="block" data-code="C-05">
+          <div class="top"><span class="code">C-05</span><p class="meta">Show only approved and confirmed public contact information</p></div>
+          <h2>Contact Information</h2>
+          <ul class="field-list"><li class="field-item"><b>Contact Person</b>Dr. Chaw Jun Kit (Principal Investigator)</li><li class="field-item"><b>Email</b><a href="mailto:chawjk@ukm.edu.my">chawjk@ukm.edu.my</a></li><li class="field-item"><b>Location</b>Institute of Visual Informatics (IVI), Universiti Kebangsaan Malaysia (UKM), 43600 Bangi, Selangor, Malaysia.</li><li class="field-item"><b>Social / Booking</b><a href="https://ukmsarjana.ukm.my/main/lihat_profil/SzAyNDQ3OA==" target="_blank" rel="noopener noreferrer">Visit UKMsarjana Profile</a></li></ul>
+        </article>
+
+        <article class="block" data-code="C-06">
+          <div class="top"><span class="code">C-06</span><p class="meta">Do not create an unconfirmed contact form</p></div>
+          <h2>Contact preparation and response scope</h2>
+          <ul class="field-list one"><li class="field-item"><b>What to Provide When Contacting</b>Enterprise Inquiries: Briefly describe your business context, the specific technical pain point, data volume, and hardware constraints. Academic/Student Inquiries: Provide comprehensive educational background, past project outcomes, and a list of your core technical stack.</li><li class="field-item"><b>Matters We Respond To</b>We Respond To: Industrial grant alignments, joint academic research proposals, R&amp;D consulting, and postgraduate admissions. We Do Not Respond To: Vague commercial proofs-of-concept without data backing, or general non-academic/non-industrial administrative queries.</li><li class="field-item"><b>Expected Response</b>We conduct initial feasibility screenings for all collaboration and admission requests. Highly aligned inquiries will typically receive a response within 3-5 business days. If you do not hear back within two weeks, it indicates no current capacity for the proposed collaboration.</li></ul>
+        </article>
+
+        <article class="block quiet" data-code="C-07">
+          <div class="top"><span class="code">C-07</span><p class="meta">Assets must include an ID, use, copyright status, and alt text</p></div>
+          <h2>Visuals</h2>
+          <div class="grid g2"><div class="media-box">Asset area: contact/collaboration-page image or video<br>Contact-page primary visual<br>Asset ID, use, copyright, and alt text: To be provided</div><div class="media-box">Asset area: supplementary visual<br>Asset ID, use, copyright, and alt text: To be provided</div></div>
+        </article>
+      </div>
+    </section>
+
+    <p class="print-note">Print preview expands all seven pages continuously in document flow.</p>
+  </main>
+
+  <script>
+    (() => {
+      const tabs = [...document.querySelectorAll('[role="tab"]')];
+      const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+      const detailButtons = [...document.querySelectorAll('.detail-button[data-target]')];
+      const main = document.querySelector('main');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const horizontalKeys = new Set(['ArrowLeft', 'ArrowRight', 'Home', 'End']);
+
+      const motionBehavior = () => reducedMotion.matches ? 'auto' : 'smooth';
+
+      function activate(nextTab, focusTab = true) {
+        let activePanel;
+
+        tabs.forEach((tab) => {
+          const selected = tab === nextTab;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+          if (selected) tab.setAttribute('aria-current', 'page');
+          else tab.removeAttribute('aria-current');
+        });
+
+        panels.forEach((panel) => {
+          const selected = panel.id === nextTab.getAttribute('aria-controls');
+          panel.hidden = !selected;
+          if (selected) activePanel = panel;
+        });
+
+        if (focusTab) nextTab.focus();
+        main.scrollIntoView({ behavior: motionBehavior(), block: 'start' });
+        return activePanel;
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => activate(tab, false));
+        tab.addEventListener('keydown', (event) => {
+          if (!horizontalKeys.has(event.key)) return;
+
+          let nextIndex = index;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = tabs.length - 1;
+
+          event.preventDefault();
+          activate(tabs[nextIndex]);
+          tabs[nextIndex].scrollIntoView({ behavior: motionBehavior(), block: 'nearest', inline: 'center' });
+        });
+      });
+
+      detailButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const targetTab = document.getElementById(button.dataset.target);
+          if (!targetTab || targetTab.getAttribute('role') !== 'tab') return;
+          const targetPanel = activate(targetTab, false);
+          targetPanel?.focus({ preventScroll: true });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+.diagram {
+  color: var(--diagram-ink, #082956);
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(20px, 3vw, 40px) 0;
+  container-type: inline-size;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 0;
+  text-align: center;
+  padding: 14px 6px;
+}
+
+.node span {
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.node[data-accent="true"] {
+  color: var(--diagram-accent-text, #007f77);
+}
+
+.glyph { width: 84px; height: 84px; flex-shrink: 0; color: var(--diagram-accent, #009d92); }
+.arrow { width: 28px; height: 20px; flex-shrink: 0; color: var(--diagram-accent, #009d92); }
+.arrow[data-reverse="true"] { transform: rotate(180deg); }
+.flow { display: grid; grid-template-columns: 1fr 28px 1fr 28px 1fr; align-items: center; }
+.step { display: contents; }
+.step .node { align-self: stretch; }
+.layers { display: grid; grid-template-columns: minmax(0, 1fr) 80px; align-items: stretch; }
+.planes { width: 100%; height: auto; overflow: visible; color: var(--diagram-ink, #082956); }
+.planeLabels { display: grid; grid-template-rows: repeat(3, 1fr); padding: 10% 0 2%; }
+.planeLabels span { display: flex; align-items: center; font-size: clamp(15px, 4cqi, 20px); line-height: 1.4; font-weight: 500; color: var(--diagram-accent-text, #007f77); overflow-wrap: anywhere; }
+.planeLabels span::before { content: ""; width: 14px; flex-shrink: 0; margin-right: 8px; border-top: 1px solid currentColor; }
+.diagram[data-diagram="distillation"] .glyph { width: min(100%, 126px); height: 126px; }
+.diagram[data-diagram="distillation"] .step:nth-child(2) .glyph { width: 58px; }
+.diagram[data-diagram="distillation"] .step:nth-child(3) .glyph { width: min(100%, 92px); }
+.diagram[data-diagram="selection"] .glyph { width: min(100%, 108px); height: 116px; }
+.converge { display: grid; grid-template-columns: 1fr 24px 1fr 24px 1fr; align-items: center; }
+.inputs { display: grid; gap: 12px; }
+.junction { display: flex; align-items: center; border-left: 1px solid var(--diagram-line, #dae8e6); height: 55%; }
+.converge > .arrow, .junction .arrow { width: 24px; }
+.runtime { display: grid; grid-template-columns: 1fr 32px 1fr; align-items: center; }
+.environments { display: grid; gap: 10px; border-left: 1px solid var(--diagram-line, #dae8e6); padding-left: 16px; }
+.environments .node { flex-direction: row; gap: 10px; padding: 10px; border: 1px solid var(--diagram-line, #dae8e6); background: var(--diagram-fill, #f3f9f9); }
+.environments .glyph { width: 30px; height: 30px; }
+.feedback { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px dashed var(--diagram-line, #dae8e6); border-top: 0; margin: 0 14% 0; padding: 16px 6px 10px; font-size: 15px; text-align: center; }
+.memoryLayers { display: grid; gap: 12px; }
+.memoryLayers .node { flex-direction: row; justify-content: flex-start; gap: 24px; padding: 8px 24px; border: 1px solid var(--diagram-line, #dae8e6); background: var(--diagram-fill, #f3f9f9); }
+.memoryLayers .glyph { width: 44px; height: 44px; }
+.controls { display: flex; justify-content: space-around; gap: 10px; border-top: 1px solid var(--diagram-line, #dae8e6); margin-top: 24px; padding-top: 18px; }
+.controls span { font-size: 15px; text-align: center; }
+.localMemory { width: 44%; margin: 0 auto; padding-top: 28px; position: relative; }
+.localMemory::before { content: ""; position: absolute; top: 0; left: 50%; height: 28px; border-left: 1px solid var(--diagram-accent, #009d92); }
+.localMemory .node { padding: 8px; }
+.localMemory .glyph { width: 36px; height: 36px; }
+.learning { position: relative; padding: 0 16px; }
+.cycleTop, .cycleBottom { display: grid; grid-template-columns: 1fr 36px 1fr; align-items: center; }
+.version { height: 70px; display: flex; align-items: center; justify-content: center; margin: 0 15%; border-left: 1px solid var(--diagram-accent, #009d92); border-right: 1px solid var(--diagram-accent, #009d92); position: relative; }
+.version span { font-size: 15px; text-align: center; padding: 4px 16px; }
+.version::before, .version::after { position: absolute; content: ""; width: 6px; height: 6px; border-right: 1px solid var(--diagram-accent, #009d92); border-bottom: 1px solid var(--diagram-accent, #009d92); }
+.version::before { left: -4px; top: 18px; transform: rotate(225deg); }
+.version::after { right: -4px; bottom: 18px; transform: rotate(45deg); }
+
+@container (max-width: 360px) {
+  .glyph { width: 64px; height: 64px; }
+  .node { padding: 12px 6px; gap: 8px; }
+  .flow { grid-template-columns: 1fr; gap: 0; }
+  .step .node { flex: auto; flex-direction: row; gap: 16px; padding: 10px 16px; text-align: left; }
+  .step .node span { text-wrap: pretty; }
+  .step .arrow { transform: rotate(90deg); margin: 5px 0; justify-self: center; }
+  .diagram[data-diagram="distillation"] .glyph { width: 100px; height: 96px; }
+  .diagram[data-diagram="distillation"] .step:nth-child(3) .glyph { width: 80px; }
+  .diagram[data-diagram="selection"] .glyph { width: 88px; height: 88px; }
+  .converge { grid-template-columns: 1fr; gap: 0; justify-items: stretch; }
+  .inputs { grid-template-columns: 1fr 1fr; }
+  .junction { height: 26px; width: 50%; border-left: 0; border-top: 1px solid var(--diagram-line, #dae8e6); justify-content: center; justify-self: center; margin-top: 10px; }
+  .junction .arrow, .converge > .arrow { transform: rotate(90deg); justify-self: center; }
+  .converge > .arrow { margin: 5px 0; }
+  .converge > .node { flex-direction: row; gap: 16px; }
+  .runtime { grid-template-columns: 1fr 24px 1.2fr; }
+  .environments { padding-left: 8px; }
+  .environments .node { flex-direction: column; }
+  .device .flow { grid-template-columns: 1fr 20px 1fr 20px 1fr; }
+  .device .step .node { flex: 1; flex-direction: column; padding: 10px 4px; gap: 8px; text-align: center; }
+  .device .step .arrow { width: 20px; transform: none; margin: 0; }
+  .device .glyph { width: 56px; height: 56px; }
+  .localMemory { width: 62%; }
+  .localMemory::before { left: 50%; }
+  .memoryLayers .node { gap: 18px; padding: 8px 14px; }
+  .learning { padding: 0; }
+}

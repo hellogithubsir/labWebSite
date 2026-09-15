@@ -24,9 +24,29 @@ Playwright 独占 `127.0.0.1:3000`，`reuseExistingServer=false`；不要与其�
 
 ## V1 交付状态
 
+### 技术优势页改版（2026-09-16）
+
+技术优势页按 V4 内容展示八项默认展开的独立图文区块，01—03 为核心技术、04—08 为前沿储备。配图为可缩放 SVG 与双语文字；手机重排流程，页脚提供项目和联系入口。原表格、照片带与折叠交互由此布局替代，首页摘要及其他画面保持。设计依据与验收见[技术优势改版记录](docs/design-references/hil-site/advantages-refresh-evidence.md)。
+
+### 项目页扩充（2026-09-15）
+
+2026-09-16 最新状态：03 四类项目统一为纵向展示，标题与用途、配图、切换控件、两段正文依次排列；全部四类支持原生停靠画廊、跟手拖动、连续选择及响应式对齐。18张图片更新为写实概念配图，3张清晰原图保留，核心文案和01/02保持。见[配图记录](docs/design-references/hil-site/projects-photo-assets.md)与[最终验证](docs/design-references/hil-site/projects-vertical-evidence.md)。以下为前期迭代记录。
+
+项目页按本轮确认布局组织为四类能力、两个精选系统、21 个项目与产业应用案例及联系入口。03 阅读优化后，AI 使用深蓝图文融合与短名称选择，边缘智能和数字产品使用左文右图，数字化升级使用功能清单与系统界面。用途与两段介绍默认可见，结果与验证限制进入补充信息；语言切换保留选择，离页重新进入恢复默认。
+
+复用 13 张来源图片，补入 8 张标明“应用场景示意”的生成图片。双语文案与媒体来源见[项目目录素材说明](docs/design-references/hil-site/project-directory-assets.md)，验证与截图见[改版证据](docs/design-references/hil-site/projects-refresh-evidence.md)。
+
+后续图文阅读优化的范围与最终验证见[阅读优化证据](docs/design-references/hil-site/projects-reading-evidence.md)；页面导语、01、02、联系入口及全部图片保持上一轮实现。
+
+最新调整：项目页移除全部补充信息与可见图片说明；对六张原本带深蓝压暗的横幅和一张保险图做确定性调色。仅这七张图片使用固定请求版本避开旧优化缓存，其他图片与核心介绍保持。原因、前后对照及验收见[图片与提示清理记录](docs/design-references/hil-site/projects-brightness-evidence.md)。
+
+两份用户指定的 V4 HTML 作为只读来源，其精确路径登记在 `constraints.yaml` 的 `allowed_reference_paths`；命名护栏使用 NUL 分隔读取中文文件名。其他版本文件和运行时目录不在例外内，护栏自测覆盖这两个拒绝场景。原 DOCX 及其他既有删除状态保持不变。
+
+ESLint 仅额外排除只读素材来源项目 `docs/reference/company-website-main_1/**`，避免用当前 Next.js 规则检查其旧 Vue/Bootstrap/jQuery；正式源码、测试与配置继续受检。
+
 031 在 Node 24 干净安装后完成本地发布门禁，rehabilitation 已关闭；大规模重构仍未授权。健康端点 `GET /healthz` 返回 HTTP 200 和精确 JSON `{"status":"ok"}`。完整命令、退出码、trace、七画面双语桌面/移动截图及 Photoshop 对照见[发布证据索引](docs/design-references/hil-site/release/evidence-index.md)。
 
-已实现七画面导航、语言保持、参考动效（700ms 提交、1500ms 完成）与输入锁、reduce 状态、双轮播、独立折叠、成员筛选和联系操作。正式视觉以 [Ticket 001 清单](docs/research/hil-site-design-manifest.md)和 Photoshop 为准；Figma 保留来源链，DOCX 仅补缺失编号内容。[规格](docs/labWebsiteV1/spec.md)记录授权、交互及串行票据。
+已实现七画面导航、语言保持、参考动效（700ms 提交、1500ms 完成）与输入锁、reduce 状态、双轮播、八项技术图文展示、成员筛选和联系操作。正式视觉以 [Ticket 001 清单](docs/research/hil-site-design-manifest.md)和 Photoshop 为准；Figma 保留来源链，DOCX 仅补缺失编号内容。[规格](docs/labWebsiteV1/spec.md)记录授权、交互及串行票据。
 
 030 与完整规格审查发现的 F1/F2 已修复并复验；031 提交 `97bab98` 时点快照：031 独立审查和 032 最终核验待完成；当前结论以[031 审查与 032 报告](docs/design-references/hil-site/release/evidence-index.md#当前审查与核验依据)为准。站点尚未部署。
 

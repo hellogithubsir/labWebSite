@@ -29,7 +29,7 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
     await page.getByRole("navigation").getByRole("button", { name: chinese ? "项目展示" : "Projects", exact: true }).click();
     if (width < 981) await expect(page.locator("#screen-navigation")).toHaveCSS("visibility", "hidden");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(chinese ? "应用研究项目" : "Applied Research Projects");
-    for (const title of chinese ? ["两个系统，两条部署路径", "照护智能", "工业人工智能"] : ["Two systems, two routes to deployment", "Care Intelligence", "Industrial AI"]) await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
+    for (const title of chinese ? ["能力领域", "精选项目"] : ["Capabilities", "Selected projects"]) await expect(page.getByRole("heading", { name: title, exact: true })).toBeVisible();
     const carousel = page.getByRole("region", { name: chinese ? "E-Linus 智慧养老照护" : "E-Linus Smart Elderly Care", exact: true });
     const drag = carousel.getByRole("group");
     const status = carousel.getByRole("status");
