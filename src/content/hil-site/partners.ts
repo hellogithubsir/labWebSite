@@ -1,6 +1,6 @@
 import type { Locale } from "./types";
 
-// N-01/N-02：PNG 英文正文与同编号中文内容；未交付机构图片，以正式名称呈现字标。
+// 机构名称沿用交付名录；官方品牌来源见 content-refresh/partners-sources.md。
 export const partnersContent = {
   en: {
     intro: "The HI Lab maintains close, active collaborations with global tech leaders and top-tier academic institutions to drive the R&D and deployment of Edge Computing and Medical AI.",
@@ -9,7 +9,6 @@ export const partnersContent = {
     introduction: "Industry partners contribute deployment constraints and field data. Academic partners contribute shared methods, evaluation and publication pathways. The lab connects both through Edge Computing and Medical AI.",
 
     directoryTitle: "Our Partners",
-    names: ["Advantech", "HILTI Asia IT Services", "Tokio Marine & Dynafront", "Xiamen University Malaysia", "Leeds Beckett University", "Three-Opp (M) Sdn. Bhd.", "Universiti Tenaga Nasional (UNITEN)", "Asia Roofing Industry", "Mobiva"],
     footerTitle: "Better intelligence is built together.",
     footerBody: "For industry, academic and cross-disciplinary collaboration in Edge AI, Medical AI and autonomous systems.",
   },
@@ -20,8 +19,38 @@ export const partnersContent = {
     introduction: "产业伙伴提供部署约束与现场数据。学术伙伴提供共享方法、评估与发表渠道。实验室通过边缘计算与医学人工智能连接双方。",
 
     directoryTitle: "合作伙伴",
-    names: ["Advantech（研华科技）", "HILTI 亚洲 IT 服务", "Tokio Marine & Dynafront", "厦门大学马来西亚分校", "利兹贝克特大学", "Three-Opp (M) Sdn. Bhd.", "马来西亚国能大学（UNITEN）", "Asia Roofing Industry（亚洲屋面工业）", "Mobiva"],
     footerTitle: "更好的智能，源于共同构建。",
     footerBody: "欢迎围绕边缘人工智能、医学人工智能与自主系统开展产业、学术和跨学科合作。",
   },
-} satisfies Record<Locale, { intro: string; introductionLabel: string; introductionTitle: string; introduction: string; directoryTitle: string; names: string[]; footerTitle: string; footerBody: string }>;
+} satisfies Record<Locale, { intro: string; introductionLabel: string; introductionTitle: string; introduction: string; directoryTitle: string; footerTitle: string; footerBody: string }>;
+
+export const partners = [
+  { id: "advantech", name: { en: "Advantech", "zh-CN": "Advantech（研华科技）" }, logos: [
+    { src: "/images/hil-site/partners/advantech.svg", alt: "Advantech", width: 220, height: 52, dark: false },
+  ] },
+  { id: "hilti", name: { en: "HILTI Asia IT Services", "zh-CN": "HILTI 亚洲 IT 服务" }, logos: [
+    { src: "/images/hil-site/partners/hilti.svg", alt: "HILTI", width: 180, height: 52, dark: false },
+  ] },
+  { id: "tokio-dynafront", name: { en: "Tokio Marine & Dynafront", "zh-CN": "Tokio Marine & Dynafront" }, logos: [
+    { src: "/images/hil-site/partners/tokio-marine.png", alt: "Tokio Marine Group", width: 160, height: 90, dark: false },
+    { src: "/images/hil-site/partners/dynafront.jpg", alt: "Dynafront", width: 190, height: 47, dark: false },
+  ] },
+  { id: "xmum", name: { en: "Xiamen University Malaysia", "zh-CN": "厦门大学马来西亚分校" }, logos: [
+    { src: "/images/hil-site/partners/xmum.png", alt: "Xiamen University Malaysia", width: 230, height: 48, dark: true },
+  ] },
+  { id: "leeds-beckett", name: { en: "Leeds Beckett University", "zh-CN": "利兹贝克特大学" }, logos: [
+    { src: "/images/hil-site/partners/leeds-beckett.svg", alt: "Leeds Beckett University", width: 210, height: 85, dark: false },
+  ] },
+  { id: "three-opp", name: { en: "Three-Opp (M) Sdn. Bhd.", "zh-CN": "Three-Opp (M) Sdn. Bhd." }, logos: [
+    { src: "/images/hil-site/partners/three-opp.jpg", alt: "Three-Opp", width: 170, height: 79, dark: false },
+  ] },
+  { id: "uniten", name: { en: "Universiti Tenaga Nasional (UNITEN)", "zh-CN": "马来西亚国能大学（UNITEN）" }, logos: [
+    { src: "/images/hil-site/partners/uniten.png", alt: "UNITEN", width: 170, height: 120, dark: false },
+  ] },
+  { id: "asia-roofing", name: { en: "Asia Roofing Industry", "zh-CN": "Asia Roofing Industry（亚洲屋面工业）" }, logos: [
+    { src: "/images/hil-site/partners/ajiya.png", alt: "AJIYA", width: 220, height: 65, dark: false },
+  ] },
+  { id: "mobiva", name: { en: "Mobiva", "zh-CN": "Mobiva" }, logos: [
+    { src: "/images/hil-site/partners/mobiva.png", alt: "Mobiva", width: 132, height: 35, dark: false },
+  ] },
+];
