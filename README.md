@@ -40,6 +40,10 @@ Playwright 独占 `127.0.0.1:3000`，`reuseExistingServer=false`；不要与其�
 
 首页双语团队摘要统一为 Chaw、Jeff、Wendy 三位负责人，与团队页共享姓名和职位；研究人员卡片保留具体身份及简介，移除字段标签。Jeff 负责人卡片补入研究方向、简介与联系邮箱。用户确认、研究依据及验证审查记录见[人物信息统一索引](docs/design-references/hil-site/team-alignment/evidence-index.md)。
 
+## 中文文案与姓名修正
+
+中文负责人及研究人员姓名按用户纠正统一为王泓清；七页分类、正文和职位标签使用自然中文，保留专业术语与专名。英文版和原图保持，首页仍复用三位负责人信息。逐项依据、英文基线比较及验证审查记录见[中文文案索引](docs/design-references/hil-site/chinese-copy/evidence-index.md)。
+
 ## 保留的限制
 
 - CI 安装依赖和 Chromium、运行工程及 E2E 的配置已经核对，本次是干净本地等价执行；远端 GitHub Actions、gitleaks、CodeQL 未运行，不声明其成功。

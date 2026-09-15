@@ -168,7 +168,7 @@ export const teamContent = {
       },
       {
         "id": "T-04-04",
-        "name": "Wang Hongqing",
+        "name": "王泓清（Wang Hongqing）",
         "status": "博士研究生",
         "bio": "开发适用于复杂交通场景的轻量化目标检测模型。",
         "type": "candidate"
@@ -237,23 +237,23 @@ export const teamContent = {
     "statement": "团队结合博士与硕士层次的科研训练、课题负责人指导、应用研究领导力和面向部署的项目实践，贯通三大相互关联的研究方向。",
     "leadershipLabel": "团队负责人",
     "leadershipTitle": "以研究方向引领真实部署",
-    "piName": "周俊杰 Dr. Chaw Jun Kit",
+    "piName": "周俊杰博士（Chaw Jun Kit）",
     "piRole": [
-      "课题负责人（PI）",
+      "课题负责人",
       "高级讲师兼研究员"
     ],
     "affiliation": "马来西亚国民大学（UKM）视觉信息学研究所（IVI）",
     "interests": "机器学习 / 智能数据分析 / 边缘人工智能 / 计算机视觉",
     "bio": "周俊杰博士是 SAS 认证预测建模师和 NVIDIA 深度学习学院（DLI）认证计算机视觉专家。他的工作连接学术界与产业界，专注于制造优化、数字健康解决方案与产业部署。",
     "areasLabel": "研究方向",
-    "areas": "HEALTH / EDGE-AI / AGENT",
+    "areas": "数字健康 / 边缘智能 / 智能体",
     "outputsLabel": "代表成果",
     "outputs": "数字礼宾 / 智慧零售生鲜识别 / SCIE 及 Scopus 论文 50 余篇",
     "piAlt": "课题负责人周俊杰博士的肖像",
     "profiles": [
       {
-        "name": "王鸿清 Dr. Jeff Wang",
-        "role": "首席技术官（CTO）",
+        "name": "王泓清博士（Jeff Wang）",
+        "role": "首席技术官",
         "interests": "计算机视觉 / 轻量化目标检测",
         "bio": "开发适用于复杂交通场景的轻量化目标检测模型。",
         "email": "hongqing.wang812@gmail.com",

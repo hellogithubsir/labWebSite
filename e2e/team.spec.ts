@@ -46,7 +46,7 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
   await expect(page.getByRole("main")).toHaveCount(1);
   await expect(page.getByRole("heading", {level:1})).toHaveText(chinese ? "团队" : "Team");
   const cards = page.locator('[data-od-id="team-members"] article');
-  await expect(cards.locator("h3")).toHaveText(names);
+  await expect(cards.locator("h3")).toHaveText(chinese ? ["Zhao Yanfeng", "Cheng Xiang", "Liu Jianbang", "王泓清（Wang Hongqing）", "Muhammad Aiman Md Zuki", "Leong Pooi Yan", "Zheng Kun", "Ooi Tze Yaang", "Teo Shi Han"] : names);
   const roles = chinese ? ["博士毕业生 / 核心成员","博士研究生","硕士毕业生"] : ["PhD Graduate / Core Member","PhD Candidate","MSc Graduate"];
   for (let index=0; index<9; index++) {
     await expect(cards.nth(index).locator("p").nth(0)).toHaveText(roles[Math.floor(index/3)]);
@@ -55,9 +55,9 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
   await expect(page.locator('[data-od-id="team-composition"] dd:nth-child(1)')).toHaveText(["03","07","03","02"]);
   await expect(page.locator('[data-od-id="team-composition"] dt')).toHaveText(chinese ? ["博士毕业生","博士研究生","硕士毕业生","硕士研究生"] : ["PhD graduates","PhD candidates","MSc graduates","MSc candidates"]);
   const pi = page.locator('[data-od-id="team-pi"]');
-  await expect(pi).toContainText(chinese ? "周俊杰 Dr. Chaw Jun Kit" : "Dr. Chaw Jun Kit");
+  await expect(pi).toContainText(chinese ? "周俊杰博士（Chaw Jun Kit）" : "Dr. Chaw Jun Kit");
   await expect(pi).toContainText(chinese ? "马来西亚国民大学（UKM）视觉信息学研究所（IVI）" : "Institute of Visual Informatics / Universiti Kebangsaan Malaysia");
-  await expect(pi).toContainText("HEALTH / EDGE-AI / AGENT");
+  await expect(pi).toContainText(chinese ? "数字健康 / 边缘智能 / 智能体" : "HEALTH / EDGE-AI / AGENT");
   await expect(pi).toContainText(chinese ? "SCIE 及 Scopus 论文 50 余篇" : "50+ SCIE and Scopus papers");
   await expect(page.locator('[data-od-id="team-leader-2"] p')).toHaveCount(3);
   await expect(page.locator('[data-od-id="team-leader-3"]')).toContainText("Wendy Leong Pooi Yan");
@@ -80,7 +80,7 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
   const buttons = page.getByRole("group",{name:chinese?"筛选团队成员":"Filter team members"}).getByRole("button");
   for (const [filterIndex, expected] of [[1,["Zhao Yanfeng","Cheng Xiang","Liu Jianbang","Zheng Kun","Ooi Tze Yaang","Teo Shi Han"]],[2,["Wang Hongqing","Muhammad Aiman Md Zuki","Leong Pooi Yan"]],[0,names]] as const) {
    await buttons.nth(filterIndex).scrollIntoViewIfNeeded(); await buttons.nth(filterIndex).focus(); await page.keyboard.press("Enter");
-   await expect(cards.locator("h3")).toHaveText([...expected]);
+   await expect(cards.locator("h3")).toHaveText(expected.map(name => chinese && name === "Wang Hongqing" ? "王泓清（Wang Hongqing）" : name));
    for(let i=0;i<3;i++) await expect(buttons.nth(i)).toHaveAttribute("aria-pressed",String(i===filterIndex));
    await expect(cards.first().locator("..")).toHaveCSS("animation-duration","0.18s");
    await expect(buttons.nth(filterIndex)).toBeFocused();
@@ -89,7 +89,7 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
   }
   await page.emulateMedia({reducedMotion:"reduce"});
   await buttons.nth(2).click();
-  await expect(cards.locator("h3")).toHaveText(["Wang Hongqing","Muhammad Aiman Md Zuki","Leong Pooi Yan"]);
+  await expect(cards.locator("h3")).toHaveText(chinese ? ["王泓清（Wang Hongqing）","Muhammad Aiman Md Zuki","Leong Pooi Yan"] : ["Wang Hongqing","Muhammad Aiman Md Zuki","Leong Pooi Yan"]);
   await expect(cards.first().locator("..")).toHaveCSS("animation-name","none");
   await expect(buttons.nth(2)).toHaveCSS("transition-duration","0s");
   await expect(page.getByRole("link",{name:"chawjk@ukm.edu.my"})).toHaveAttribute("href","mailto:chawjk@ukm.edu.my");

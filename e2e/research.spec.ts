@@ -15,13 +15,13 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
     await expect(page.locator("#research-pillars")).toBeFocused();
     await expect(page.getByRole("main")).toHaveAttribute("data-screen", "research");
     await expect(page).toHaveURL("http://127.0.0.1:3000/");
-    for (const heading of chinese ? ["HEALTH（数字健康与医学影像分析）", "EDGE-AI（边缘智能与端侧视觉）", "AGENT（多智能体系统与自然语言处理）", "三大研究方向的协同关系", "从研究问题走向真实场景"] : ["HEALTH (Digital Health & Medical Image Analytics)", "EDGE-AI (Edge Intelligence & On-Device Vision)", "AGENT (Multi-Agent Systems & NLP)", "Relationship Among the Three Directions", "From research questions to real scenarios"]) {
+    for (const heading of chinese ? ["数字健康与医学影像分析", "边缘智能与端侧视觉", "多智能体系统与自然语言处理", "三大研究方向的协同关系", "从研究问题走向真实场景"] : ["HEALTH (Digital Health & Medical Image Analytics)", "EDGE-AI (Edge Intelligence & On-Device Vision)", "AGENT (Multi-Agent Systems & NLP)", "Relationship Among the Three Directions", "From research questions to real scenarios"]) {
       const item = page.getByRole("heading", { name: heading, exact: true });
       await item.scrollIntoViewIfNeeded();
       await expect(item).toBeVisible();
     }
     const mapping = page.locator('[data-od-id="research-mapping"]');
-    for (const name of (chinese ? ["非传染性疾病早期预测", "智慧零售生鲜识别", "AI-RAG 数字礼宾"] : ["Early Prediction of NCDs", "Smart Grocer Produce Recognition", "AI-RAG Digital Concierge"])) await expect(mapping).toContainText(name);
+    for (const name of (chinese ? ["非传染性疾病早期预测", "智慧零售生鲜识别", "基于检索增强生成（RAG）的数字礼宾"] : ["Early Prediction of NCDs", "Smart Grocer Produce Recognition", "AI-RAG Digital Concierge"])) await expect(mapping).toContainText(name);
     await expect(page.locator('[data-od-id="research-relationships"] article')).toHaveCount(3);
     for (const img of await page.locator("main img").all()) { await img.scrollIntoViewIfNeeded(); await expect(img).toHaveJSProperty("complete", true); expect(await img.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0); }
     for (const reveal of await page.locator("main [data-reveal]").all()) { await reveal.scrollIntoViewIfNeeded(); await expect(reveal).toHaveAttribute("data-reveal", "visible"); }

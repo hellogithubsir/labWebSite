@@ -21,8 +21,8 @@ for (const chinese of [false, true]) {
     if (chinese) await page.getByRole("button", { name: "切换为中文", exact: true }).click();
     await page.getByRole("navigation").getByRole("button", { name: chinese ? "团队" : "Team", exact: true }).click();
     const jeff = page.locator('[data-od-id="team-leader-2"]');
-    await expect(jeff.locator("h3")).toHaveText(chinese ? "王鸿清 Dr. Jeff Wang" : "Dr. Jeff Wang");
-    await expect(jeff.locator("strong")).toHaveText(chinese ? "首席技术官（CTO）" : "Chief Technology Officer");
+    await expect(jeff.locator("h3")).toHaveText(chinese ? "王泓清博士（Jeff Wang）" : "Dr. Jeff Wang");
+    await expect(jeff.locator("strong")).toHaveText(chinese ? "首席技术官" : "Chief Technology Officer");
     await expect(jeff.locator("p").nth(0)).toHaveText(chinese ? "计算机视觉 / 轻量化目标检测" : "Computer Vision / Lightweight Object Detection");
     await expect(jeff.locator("p").nth(1)).toHaveText(chinese ? "开发适用于复杂交通场景的轻量化目标检测模型。" : "Develops lightweight object detection models for complex traffic scenes.");
     const email = jeff.getByRole("link", { name: "hongqing.wang812@gmail.com", exact: true });
@@ -39,8 +39,8 @@ for (const chinese of [false, true]) {
     await page.goto("/");
     if (chinese) await page.getByRole("button", { name: "切换为中文", exact: true }).click();
     const entries = page.locator('[data-od-id="home-team"] li');
-    const expectedNames = chinese ? ["周俊杰 Dr. Chaw Jun Kit", "王鸿清 Dr. Jeff Wang", "Wendy Leong Pooi Yan"] : ["Dr. Chaw Jun Kit", "Dr. Jeff Wang", "Wendy Leong Pooi Yan"];
-    const expectedRoles = chinese ? ["课题负责人（PI） / 高级讲师兼研究员", "首席技术官（CTO）", "Mobiva 首席执行官 / 博士研究生"] : ["Principal Investigator / Senior Lecturer & Research Fellow", "Chief Technology Officer", "CEO of Mobiva / PhD Candidate"];
+    const expectedNames = chinese ? ["周俊杰博士（Chaw Jun Kit）", "王泓清博士（Jeff Wang）", "Wendy Leong Pooi Yan"] : ["Dr. Chaw Jun Kit", "Dr. Jeff Wang", "Wendy Leong Pooi Yan"];
+    const expectedRoles = chinese ? ["课题负责人 / 高级讲师兼研究员", "首席技术官", "Mobiva 首席执行官 / 博士研究生"] : ["Principal Investigator / Senior Lecturer & Research Fellow", "Chief Technology Officer", "CEO of Mobiva / PhD Candidate"];
     await expect(entries.locator("strong")).toHaveText(expectedNames);
     await expect(entries.locator("span")).toHaveText(expectedRoles);
     await page.getByRole("navigation").getByRole("button", { name: chinese ? "团队" : "Team", exact: true }).click();
