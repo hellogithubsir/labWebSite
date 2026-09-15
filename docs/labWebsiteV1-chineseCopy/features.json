@@ -1,0 +1,71 @@
+{
+  "mission": "labwebsitev1-chinese-copy",
+  "generatedBy": "devflow.cjs compile",
+  "generatedAt": "2026-09-15",
+  "statusNote": "This is the plan and holds no status. Live status is in <spec-dir>/missions/runtime.json (gitignored, written only by devflow). Read it with: devflow.cjs brief --mission-dir <spec-dir>/missions — that answers \"is it done\", read-only. Never edit this file by hand: append with 'devflow.cjs amend --add-feature', and drop work with 'devflow.cjs cancel'.",
+  "features": [
+    {
+      "id": "070",
+      "description": "落实用户中文化清单保留英文版与专业专名并记录验证证据",
+      "dependsOn": [],
+      "milestone": "chinese-copy",
+      "touches": [
+        "src/**",
+        "e2e/**",
+        "README.md",
+        "docs/design-references/hil-site/chinese-copy/**"
+      ],
+      "fulfills": [
+        "VAL-301",
+        "VAL-302",
+        "VAL-303",
+        "VAL-304",
+        "VAL-305"
+      ],
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "make check-release",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "skillName": "tdd",
+      "expectedBehavior": [
+        "五断言实现及原始证据完整；确认清单逐项映射，保留清单不误删。",
+        "21截图完整并人工查看布局；目标redgreen及完整发布检查通过。",
+        "英文内容基线对比无变化且关键行为通过，来源依据与README准确。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    },
+    {
+      "id": "071",
+      "description": "只读独立证明姓名中文化英文不变响应式及交付边界",
+      "dependsOn": [
+        "070"
+      ],
+      "milestone": "chinese-copy",
+      "touches": [],
+      "fulfills": [],
+      "proves": [
+        "VAL-301",
+        "VAL-302",
+        "VAL-303",
+        "VAL-304",
+        "VAL-305"
+      ],
+      "reportOnly": true,
+      "skillName": "user-validate-flow",
+      "expectedBehavior": [
+        "五断言分别有真实观察和存在的证据，缺失不pass。",
+        "确认清单全覆盖并检查允许保留项及英文内容不变。",
+        "审查21截图与完整门禁，不以窄测试证明广泛行为。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    }
+  ]
+}

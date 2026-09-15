@@ -1,0 +1,51 @@
+{
+  "contract_version": "1",
+  "authority": "machine contract for labwebsitev1-chinese-copy; spec.md Validation Plan is the human-readable view, this JSON is the machine grammar consumed by devflow.cjs validate",
+  "assertions": [
+    {
+      "id": "VAL-301",
+      "title": "姓名与负责人一致",
+      "behavior": "中文王泓清博士Jeff及研究卡王泓清WangHongqing正确Chaw中文博士格式首页三人共享数据姓名职位邮箱事实保持",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "双语负责人和研究名单浏览器断言及共享源码差异。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-302",
+      "title": "七页中文自然化",
+      "behavior": "全部确认清单逐项中文化没有遗漏非必要英文保留专名专业术语品牌图片与English入口",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "七页中文完整可见文本审计和清单映射截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-303",
+      "title": "英文与交互不变",
+      "behavior": "七英文页面文案相对基线不变语言切换分类锚点轮播筛选折叠导航等关键行为保持",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "英文基线内容对比和完整E2E回归trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-304",
+      "title": "响应式与验证",
+      "behavior": "七中文页三个宽度21组完整截图无截断溢出目标redgreen和完整makecheckrelease退出零",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "21截图清单原始日志退出码及trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-305",
+      "title": "交付边界与依据",
+      "behavior": "README与用户纠名依据正确无新增接口依赖重复实现无原图片PIC用户文件历史mission变更不push部署",
+      "surface": "data",
+      "tool": "data",
+      "evidence": "Git差异及依据证据记录。",
+      "status": "pending"
+    }
+  ]
+}
