@@ -1,0 +1,51 @@
+{
+  "contract_version": "1",
+  "authority": "machine contract for labwebsitev1-content-refresh; spec.md Validation Plan is the human-readable view, this JSON is the machine grammar consumed by devflow.cjs validate",
+  "assertions": [
+    {
+      "id": "VAL-101",
+      "title": "访客文案清理",
+      "behavior": "七画面en和zh-CN均不显示内部编号文件路径截取时间制作标签且有效内容术语页码保留",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "双语可见文本断言与截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-102",
+      "title": "合作伙伴展示",
+      "behavior": "九卡顺序保留且确认官方Logo本地可加载原比例展示联合卡含两机构未确认留文字三列和单列适配",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "来源映射与加载检查及响应式截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-103",
+      "title": "团队身份与简介",
+      "behavior": "九成员逐人有确认依据或未确认记录已确认双语一句事实简介未确认保留原文无虚构身份",
+      "surface": "data",
+      "tool": "data",
+      "evidence": "逐人来源记录与页面内容对照。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-104",
+      "title": "交互与布局回归",
+      "behavior": "全部正式发布门禁成功七画面双语1920和390及320不溢出导航动效轮播团队筛选技术折叠正常",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "make check-release退出码日志trace及响应式截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-105",
+      "title": "交付边界与文档",
+      "behavior": "README和资料证据索引准确无新增接口依赖无第二实现不覆盖PIC不修改原素材包或用户删除不push部署",
+      "surface": "data",
+      "tool": "data",
+      "evidence": "git差异与文件范围检查及文档索引。",
+      "status": "pending"
+    }
+  ]
+}

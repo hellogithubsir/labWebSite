@@ -1,0 +1,162 @@
+{
+  "mission": "labwebsitev1-content-refresh",
+  "generatedBy": "devflow.cjs compile",
+  "generatedAt": "2026-09-15",
+  "statusNote": "This is the plan and holds no status. Live status is in <spec-dir>/missions/runtime.json (gitignored, written only by devflow). Read it with: devflow.cjs brief --mission-dir <spec-dir>/missions — that answers \"is it done\", read-only. Never edit this file by hand: append with 'devflow.cjs amend --add-feature', and drop work with 'devflow.cjs cancel'.",
+  "features": [
+    {
+      "id": "050",
+      "description": "七画面访客文案清理",
+      "dependsOn": [],
+      "milestone": "content-refresh",
+      "touches": [
+        "src/**",
+        "e2e/**"
+      ],
+      "fulfills": [
+        "VAL-101"
+      ],
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "make check",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "skillName": "tdd",
+      "expectedBehavior": [
+        "对应spec全部要求完成，有可定位证据；本票文本diff不超过400行。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    },
+    {
+      "id": "051",
+      "description": "合作伙伴官方Logo展示",
+      "dependsOn": [
+        "050"
+      ],
+      "milestone": "content-refresh",
+      "touches": [
+        "src/**",
+        "public/**",
+        "e2e/partners.spec.ts",
+        "docs/design-references/hil-site/content-refresh/partners*"
+      ],
+      "fulfills": [
+        "VAL-102"
+      ],
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "make check",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "skillName": "tdd",
+      "expectedBehavior": [
+        "对应spec全部要求完成，有可定位证据；本票文本diff不超过400行。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    },
+    {
+      "id": "052",
+      "description": "团队成员事实简介",
+      "dependsOn": [
+        "051"
+      ],
+      "milestone": "content-refresh",
+      "touches": [
+        "src/content/hil-site/team.ts",
+        "src/components/hil-site/screens/team/**",
+        "e2e/team.spec.ts",
+        "docs/design-references/hil-site/content-refresh/team*"
+      ],
+      "fulfills": [
+        "VAL-103"
+      ],
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "make check",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "skillName": "tdd",
+      "expectedBehavior": [
+        "对应spec全部要求完成，有可定位证据；本票文本diff不超过400行。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    },
+    {
+      "id": "053",
+      "description": "响应式回归与交付证据",
+      "dependsOn": [
+        "052"
+      ],
+      "milestone": "content-refresh",
+      "touches": [
+        "e2e/**",
+        "README.md",
+        "docs/design-references/hil-site/content-refresh/**"
+      ],
+      "fulfills": [
+        "VAL-104",
+        "VAL-105"
+      ],
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "make check-release",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "skillName": "tdd",
+      "expectedBehavior": [
+        "对应spec全部要求完成，有可定位证据；本票文本diff不超过400行。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    },
+    {
+      "id": "054",
+      "description": "独立证明文案清理资料真实性响应式布局与发布门禁",
+      "dependsOn": [
+        "053"
+      ],
+      "milestone": "content-refresh",
+      "touches": [],
+      "fulfills": [],
+      "proves": [
+        "VAL-101",
+        "VAL-102",
+        "VAL-103",
+        "VAL-104",
+        "VAL-105"
+      ],
+      "reportOnly": true,
+      "skillName": "user-validate-flow",
+      "expectedBehavior": [
+        "所有五断言各有独立verdict与存在的证据文件。",
+        "未确认资料按spec正确保留才允许通过；无依据补身份或Logo不通过。",
+        "完整门禁日志退出码和截图可定位；缺失如实未证明。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    }
+  ]
+}
