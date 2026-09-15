@@ -40,11 +40,7 @@
   .introduction, .directory { padding: 64px 0; }
   .screen .statement { margin-top: 36px; padding-top: 28px; font-size: 22px; line-height: 1.4; }
   .wall { grid-template-columns: minmax(0,1fr); margin-top: 40px; }
-  .card { min-height: 180px; } .marks { min-height: 130px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-bottom: 20px; }
-.mark, .darkMark { display: flex; justify-content: center; align-items: center; max-width: 100%; }
-.darkMark { padding: 16px; background: var(--navy); }
-.partnerLogo { display: block; max-width: 100%; height: auto; object-fit: contain; }
-.card h3 { text-align: center; font-size: 22px; }
+  .card { min-height: 180px; } .card h3 { font-size: 22px; }
   .footer footer { min-height: 0; padding: 64px 0 32px; } .footer h2 { font-size: 32px; }
   .footer footer > div > div:last-child { margin-top: 64px; }
 }
