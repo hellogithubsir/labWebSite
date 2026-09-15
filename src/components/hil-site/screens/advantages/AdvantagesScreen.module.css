@@ -32,8 +32,8 @@
 .frontierItem { --accent: var(--cyan); border-top: 3px solid var(--accent); min-width: 0; }
 .frontierItem:nth-child(odd) { --accent: var(--green); }
 .frontierItem:first-child { display: grid; grid-template-columns: 1fr 1fr; min-height: 154px; --accent: var(--teal); grid-column: 1 / -1; background: var(--ice); padding-inline: 24px; }
-.frontierItem button { display: grid; grid-template-columns: 60px minmax(0,1fr) 24px; gap: 16px; align-items: start; width: 100%; min-height: 92px; padding: 26px 0; border: 0; background: transparent; color: var(--navy); text-align: left; cursor: pointer; }
-.frontierItem button > span { color: var(--accent); font-size: 12px; line-height: 1.7; font-weight: 700; }
+.frontierItem button { display: grid; grid-template-columns: minmax(0,1fr) 24px; gap: 16px; align-items: start; width: 100%; min-height: 92px; padding: 26px 0; border: 0; background: transparent; color: var(--navy); text-align: left; cursor: pointer; }
+
 .frontierItem button strong { font-size: 20px; line-height: 1.2; }
 .frontierItem button b { font-size: 22px; font-weight: 400; line-height: 1; transition: transform 300ms var(--ease); }
 .frontierItem button:hover strong { color: var(--teal); }
@@ -42,7 +42,7 @@
 .panel[data-expanded="true"] { grid-template-rows: 1fr; visibility: visible; }
 .frontierItem:first-child .panel p { padding: 28px 16px 32px 0; }
 .panel > div { overflow: hidden; min-height: 0; }
-.panel p { padding: 0 36px 32px 76px; color: var(--muted); font-size: 14px; line-height: 1.4; }
+.panel p { padding: 0 36px 32px 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
 .footer footer { min-height: 534px; padding: 76px 0 44px; }
 .footer footer > div { width: calc(100% - 140px); }
 .footer h2 { font-size: 42px; }
@@ -66,7 +66,7 @@
   .cell p, .cell strong { margin-top: 14px; font-size: 16px; line-height: 1.5; }
   .photos, .frontierGrid { grid-template-columns: minmax(0,1fr); gap: 32px; }
   .photos img { height: auto; aspect-ratio: 4 / 3; } .photos figcaption p { font-size: 14px; }
-  .frontierItem button { grid-template-columns: 42px minmax(0,1fr) 20px; gap: 10px; }
+  .frontierItem button { grid-template-columns: minmax(0,1fr) 20px; gap: 10px; }
   .frontierItem button strong { font-size: 18px; overflow-wrap: break-word; } .frontierItem:first-child { display: block; min-height: 0; padding-inline: 12px; }
   .frontierItem:first-child .panel p { padding: 0 8px 28px; }
   .panel p { padding: 0 8px 28px; font-size: 16px; line-height: 1.55; }

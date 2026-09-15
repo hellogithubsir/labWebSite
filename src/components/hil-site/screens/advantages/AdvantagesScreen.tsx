@@ -16,7 +16,7 @@ function FrontierItem({ index, title, body }: { index: number; title: string; bo
   const id = `advantage-panel-${index}`;
   return <article className={styles.frontierItem} data-od-id={`advantage-a0${index}`}>
     <h3><button id={`advantage-toggle-${index}`} type="button" aria-expanded={expanded} aria-controls={id} onClick={() => setExpanded(!expanded)}>
-      <span>A-0{index}</span><strong>{title}</strong><b aria-hidden="true">+</b>
+      <strong>{title}</strong><b aria-hidden="true">+</b>
     </button></h3>
     <div id={id} role="region" aria-labelledby={`advantage-toggle-${index}`} aria-hidden={!expanded} inert={!expanded} className={styles.panel} data-expanded={expanded}>
       <div><p>{body}</p></div>
@@ -40,14 +40,14 @@ export function AdvantagesScreen({ locale, onNavigate }: { locale: Locale; onNav
       </article>)}</div>
     </ScrollReveal></div></section>
     <section className={styles.evidence} aria-labelledby="advantages-evidence-title" data-od-id="advantages-evidence"><div className={styles.container}><ScrollReveal>
-      <p className={styles.eyebrow}>{copy.evidence[0]}</p><h2 id="advantages-evidence-title">{copy.evidence[1]}</h2><p className={styles.lead}>{copy.evidence[2]}</p>
+      <p className={styles.eyebrow}>{copy.evidence[0]}</p><h2 id="advantages-evidence-title">{copy.evidence[1]}</h2>
       <div className={styles.photos}>{copy.photos.map(([caption, body, alt], index) => <figure key={caption}>
         <Image src={`/images/hil-site/shared/lab-${["vision", "hardware", "prototype"][index]}.png`} alt={alt} width={[467, 478, 472][index]} height={305} sizes="(max-width: 980px) 90vw, 25vw" />
         <figcaption><strong>{caption}</strong><p>{body}</p></figcaption>
       </figure>)}</div>
     </ScrollReveal></div></section>
     <section className={styles.frontier} aria-labelledby="advantages-frontier-title" data-od-id="advantages-frontier"><div className={styles.container}><ScrollReveal>
-      <p className={styles.eyebrow}>{copy.frontier[0]}</p><h2 id="advantages-frontier-title">{copy.frontier[1]}</h2><p className={styles.lead}>{copy.frontier[2]}</p>
+      <p className={styles.eyebrow}>{copy.frontier[0]}</p><h2 id="advantages-frontier-title">{copy.frontier[1]}</h2>
       <div className={styles.frontierGrid}>{copy.capabilities.map(([title, body], index) => <FrontierItem key={index} index={index + 4} title={title} body={body} />)}</div>
     </ScrollReveal></div></section>
     <div className={styles.footer}><SiteFooter title={copy.footerTitle} body={copy.footerBody} onContact={() => onNavigate("contact")} /></div>

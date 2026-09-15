@@ -42,7 +42,7 @@
 .controls button:disabled { background: white; color: var(--muted); cursor: default; }
 .controls button:not(:disabled):hover { background: var(--navy-2); }
 .status { position: absolute; right: 0; font-size: 12px; color: var(--muted); }
-.source { font-size: 10px; text-transform: uppercase; color: var(--muted); margin: 48px 0 0; }
+
 .footer footer { min-height: 660px; padding-top: 76px; }
 .footer h2 { font-size: 42px; }
 @media (max-width: 1500px) and (min-width: 981px) { .container { width: calc(100% - 80px); } .overviewGrid { grid-template-columns: minmax(0,1fr) 330px; } .screen h2 { font-size: 36px; } .hero h1 { font-size: 32px; } }
@@ -51,6 +51,6 @@
   .heroGrid, .overviewGrid { grid-template-columns: minmax(0,1fr); gap: 32px; } .hero h1 { font-size: 38px; } .screen h2 { font-size: 32px; } .overview, .project { padding-block: 56px; }
   .systems { grid-template-columns: minmax(0,1fr); } .systems h3 { font-size: 14px; } .categories { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 36px; } .categories li { font-size: 11px; padding-inline: 8px; } .categories span { margin-right: 8px; }
   .caption { text-align: left; margin-top: 28px; } .caption h3 { font-size: 26px; } .caption p { font-size: 16px; } .proofs { grid-template-columns: minmax(0,1fr); text-align: left; margin-bottom: 28px; } .proofs li { font-size: 13px; padding: 12px 0; } .proofs li + li { border-left: 0; border-top: 1px solid var(--line); }
-  .slide img { width: 100%; border-radius: 8px; } .source { font-size: 10px; line-height: 1.6; } .footer footer { min-height: 0; } .footer h2 { font-size: 32px; }
+  .slide img { width: 100%; border-radius: 8px; }  .footer footer { min-height: 0; } .footer h2 { font-size: 32px; }
 }
 @media (prefers-reduced-motion: reduce) { .track { transition: none; } }

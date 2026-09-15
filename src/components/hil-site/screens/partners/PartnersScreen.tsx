@@ -18,8 +18,8 @@ export function PartnersScreen({ locale, onNavigate }: { locale: Locale; onNavig
       <p className={styles.eyebrow}>{copy.introductionLabel}</p><h2 id="partners-introduction-title">{copy.introductionTitle}</h2><p className={styles.statement}>{copy.introduction}</p>
     </ScrollReveal></div></section>
     <section className={styles.directory} aria-labelledby="partners-directory-title" data-od-id="partners-directory"><div className={styles.container}><ScrollReveal>
-      <p className={styles.eyebrow}>{copy.directoryLabel}</p><h2 id="partners-directory-title">{copy.directoryTitle}</h2>
-      <div className={styles.wall}>{copy.names.map((name, index) => <article className={styles.card} key={index} data-od-id={`partner-n02-0${index + 1}`}><span>N-02-0{index + 1}</span><h3>{name}</h3></article>)}</div>
+      <h2 id="partners-directory-title">{copy.directoryTitle}</h2>
+      <div className={styles.wall}>{copy.names.map((name, index) => <article className={styles.card} key={index} data-od-id={`partner-n02-0${index + 1}`}><h3>{name}</h3></article>)}</div>
     </ScrollReveal></div></section>
     <div className={styles.footer}><SiteFooter title={copy.footerTitle} body={copy.footerBody} onContact={() => onNavigate("contact")} /></div>
   </div>;

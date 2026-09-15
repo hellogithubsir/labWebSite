@@ -13,7 +13,7 @@ export const homeContent = {
       ["Multi-Agent Systems &\nNLP", "LLM-driven autonomous orchestration and multi-modal human-AI interaction for real-world workflows."],
     ],
     capabilityTitle: ["From models to the field,", "capability stays in motion."],
-    capabilityLede: "Fixed references A-01 to A-03; names and core advantages are shown here.",
+
     capabilities: [
       ["Predictive Analytics & Knowledge Distillation", "Maintains exceptionally high predictive accuracy even in noisy or resource-constrained industrial environments."],
       ["LLM & Multi-modal Emotional Orchestration", "Empowers AI systems with profound context-awareness and empathy."],
@@ -32,7 +32,7 @@ export const homeContent = {
       ["多智能体系统与\n自然语言处理", "由大语言模型驱动的自主系统编排与多模态人机交互，服务真实工作流程。"],
     ],
     capabilityTitle: ["从模型到现场，", "让能力持续落地。"],
-    capabilityLede: "对应 A-01 至 A-03，展示技术名称与核心优势。",
+
     capabilities: [
       ["预测分析与知识蒸馏", "即使在噪声较多或资源受限的工业环境中，也能保持极高的预测准确率。"],
       ["大语言模型与多模态情绪编排", "赋予人工智能系统深层的情境感知和同理心。"],
@@ -42,7 +42,7 @@ export const homeContent = {
   },
 } satisfies Record<Locale, {
   body: string; principles: string[][]; researchTitle: string[]; researchLede: string;
-  directions: string[][]; capabilityTitle: string[]; capabilityLede: string; capabilities: string[][]; types: string[];
+  directions: string[][]; capabilityTitle: string[]; capabilities: string[][]; types: string[];
 }>;
 
 // H-04–H-07：最终 PNG 文案优先于源 HTML，中文保留编号对应的专名。

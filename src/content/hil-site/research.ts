@@ -23,7 +23,7 @@ const content = {
         "Models, prototype systems, scenario validation and representative projects"
       ]
     ],
-    "fieldLabels": ["KEY QUESTIONS", "MAIN RESEARCH CONTENT", "APPLICATION SCENARIOS", "REPRESENTATIVE PROJECTS"],
+    "fieldLabels": ["KEY QUESTIONS", "MAIN RESEARCH CONTENT", "APPLICATION SCENARIOS"],
     "pillars": [
       {
         "key": "health",
@@ -32,8 +32,7 @@ const content = {
         "definition": "Advanced AI and predictive analytics for diagnostic imaging and personalized health interventions.",
         "questions": "1. Early prediction of Non-Communicable Diseases using complex sequence data. 2. High-precision cross-modal medical image segmentation. 3. Closed-loop control based on deep reinforcement learning.",
         "research": "Disease intervention models using reinforcement learning. Dual-Branch CNN architectures for Alzheimer’s diagnosis, multi-modal sentiment and emotion analysis for personalized health coaching.",
-        "applications": "Automated medical image segmentation and clinical diagnostics; Ageing-in-Place monitoring; long-term diabetic risk prediction.",
-        "projects": "P-07-01, P-07-02, P-07-06"
+        "applications": "Automated medical image segmentation and clinical diagnostics; Ageing-in-Place monitoring; long-term diabetic risk prediction."
       },
       {
         "key": "edge",
@@ -42,8 +41,7 @@ const content = {
         "definition": "Deploying high-performance computer vision and machine learning models on resource-constrained industrial and IoT devices.",
         "questions": "1. Low-latency visual sensing independent of cloud infrastructure. 2. Real-time object and defect detection. 3. Neural-network compression for embedded hardware.",
         "research": "Lightweight Mamba-transformer hybrid architectures, zero-shot gesture learning for interactive dashboard control.",
-        "applications": "Smart retail checkout; Agriculture 4.0 drone mapping; underwater sonar target detection; traffic monitoring.",
-        "projects": "P-05, P-07-03, P-07-08, P-07-09"
+        "applications": "Smart retail checkout; Agriculture 4.0 drone mapping; underwater sonar target detection; traffic monitoring."
       },
       {
         "key": "agent",
@@ -52,8 +50,7 @@ const content = {
         "definition": "Large Language Model (LLM) driven autonomous system orchestration and multi-modal human-AI interaction.",
         "questions": "1. AI-RAG civic and tourism services. 2. Emotionally intelligent conversational avatars. 3. Foundation-model patent mining and text analysis.",
         "research": "RAG pipelines for public services, emotional state-transition models in human-robot interfaces, TRIZ, BERT and LLM-based sustainable product innovation.",
-        "applications": "National digital concierges; multi-modal EdTech and counselling; automated trend prediction for enterprise R&D.",
-        "projects": "P-03, P-04, P-07-04, P-07-05, P-07-10"
+        "applications": "National digital concierges; multi-modal EdTech and counselling; automated trend prediction for enterprise R&D."
       }
     ],
     "edgeCaption": "Reliable. Real-time. Deployable.",
@@ -76,11 +73,11 @@ const content = {
     ],
     "mappingLabel": "SCENARIOS & PROJECT MAPPING",
     "mappingTitle": "From research questions to real scenarios",
-    "mappingIntro": "Use scenario names and project IDs without repeating project descriptions.",
+
     "mapping": [
-      "Early Prediction of NCDs: P-07-01; Elderly Mental Health Monitoring: P-07-02; Personalized Fitness Guidance: P-07-06.",
-      "Smart Grocer Produce Recognition: P-05; Agriculture 4.0 Drone Mapping: P-07-03; Facial Recognition Access Control: P-07-08; Game Visual Guide: P-07-09.",
-      "AI-RAG Digital Concierge: P-03; National Address System: P-04; Scam Monitoring: P-07-04; DingTalk Office Assistant: P-07-05; TikTok Lead Generation & Sales: P-07-10."
+      "Early Prediction of NCDs; Elderly Mental Health Monitoring; Personalized Fitness Guidance.",
+      "Smart Grocer Produce Recognition; Agriculture 4.0 Drone Mapping; Facial Recognition Access Control; Game Visual Guide.",
+      "AI-RAG Digital Concierge; National Address System; Scam Monitoring; DingTalk Office Assistant; TikTok Lead Generation & Sales."
     ],
     "footerTitle": "Research that continues in the real world.",
     "footerBody": "Research partnerships, enterprise collaboration and postgraduate opportunities."
@@ -106,7 +103,7 @@ const content = {
         "模型、原型系统、场景验证与代表项目"
       ]
     ],
-    "fieldLabels": ["关注问题", "主要研究内容", "应用场景", "代表项目"],
+    "fieldLabels": ["关注问题", "主要研究内容", "应用场景"],
     "pillars": [
       {
         "key": "health",
@@ -115,8 +112,7 @@ const content = {
         "definition": "面向诊断影像和个性化健康干预的先进人工智能与预测分析。",
         "questions": "1. 利用复杂序列数据开展非传染性疾病（NCD）早期预测。2. 高精度跨模态医学影像分割。3. 基于深度强化学习的闭环控制系统（如人工胰腺）。",
         "research": "1. 利用强化学习构建疾病干预模型。2. 开发用于阿尔茨海默病诊断的双分支卷积神经网络架构。3. 面向个性化健康指导的多模态情感与情绪分析。",
-        "applications": "1. 医学影像自动分割与临床辅助诊断。2. 居家养老场景下的生理与心理健康监测。3. 糖尿病患者的长期动态风险预测。",
-        "projects": "P-07-01, P-07-02, P-07-06"
+        "applications": "1. 医学影像自动分割与临床辅助诊断。2. 居家养老场景下的生理与心理健康监测。3. 糖尿病患者的长期动态风险预测。"
       },
       {
         "key": "edge",
@@ -125,8 +121,7 @@ const content = {
         "definition": "在资源受限的工业与物联网设备上部署高性能计算机视觉和机器学习模型。",
         "questions": "1. 不依赖云基础设施的低延迟实时视觉感知。2. 复杂制造与交通环境中的实时目标及缺陷检测。3. 面向嵌入式硬件的神经网络压缩与轻量化。",
         "research": "1. 开发面向真实场景检测的轻量级 Mamba–Transformer 混合架构。2. 研究用于交互式仪表板控制的手势动作零样本学习。",
-        "applications": "1. 智慧零售结账系统（如人工智能称重秤）。2. 面向农业 4.0 的自主无人机测绘与图像拼接。3. 水下声呐小目标检测与交通监测。",
-        "projects": "P-05, P-07-03, P-07-08, P-07-09"
+        "applications": "1. 智慧零售结账系统（如人工智能称重秤）。2. 面向农业 4.0 的自主无人机测绘与图像拼接。3. 水下声呐小目标检测与交通监测。"
       },
       {
         "key": "agent",
@@ -135,8 +130,7 @@ const content = {
         "definition": "由大语言模型（LLM）驱动的自主系统编排与多模态人机交互。",
         "questions": "1. 通过 AI-RAG 技术实现市政与智慧旅游服务自动化。2. 利用具备情绪智能的对话式数字人增强数字交互。3. 基于基础模型的大规模专利挖掘与文本分析。",
         "research": "1. 研发面向公共服务的检索增强生成（RAG）流程。2. 探索人机界面中的遗传杂交技术与情绪状态转移模型。3. 将 TRIZ 方法论与 BERT、大语言模型结合，推动可持续产品创新。",
-        "applications": "1. 国家级数字礼宾与自动化客户服务系统。2. 面向教育科技与心理咨询的沉浸式多模态平台。3. 面向企业研发部门的趋势自动预测与创意生成。",
-        "projects": "P-03, P-04, P-07-04, P-07-05, P-07-10"
+        "applications": "1. 国家级数字礼宾与自动化客户服务系统。2. 面向教育科技与心理咨询的沉浸式多模态平台。3. 面向企业研发部门的趋势自动预测与创意生成。"
       }
     ],
     "edgeCaption": "可靠。实时。可部署。",
@@ -159,11 +153,11 @@ const content = {
     ],
     "mappingLabel": "应用场景与项目对应",
     "mappingTitle": "从研究问题走向真实场景",
-    "mappingIntro": "使用场景名称与项目编号对应，不重复项目说明。",
+
     "mapping": [
-      "非传染性疾病早期预测：P-07-01；老年心理健康监测：P-07-02；个性化健身指导：P-07-06。",
-      "智慧零售生鲜识别：P-05；农业 4.0 无人机测绘：P-07-03；人脸识别门禁：P-07-08；游戏视觉攻略：P-07-09。",
-      "AI-RAG 数字礼宾：P-03；国家地址系统：P-04；诈骗监测：P-07-04；钉钉办公助手：P-07-05；TikTok 获客与销售：P-07-10。"
+      "非传染性疾病早期预测；老年心理健康监测；个性化健身指导。",
+      "智慧零售生鲜识别；农业 4.0 无人机测绘；人脸识别门禁；游戏视觉攻略。",
+      "AI-RAG 数字礼宾；国家地址系统；诈骗监测；钉钉办公助手；TikTok 获客与销售。"
     ],
     "footerTitle": "让研究在真实世界中持续发展。",
     "footerBody": "研究合作、企业协作与研究生机会。"

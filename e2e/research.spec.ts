@@ -21,7 +21,7 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
       await expect(item).toBeVisible();
     }
     const mapping = page.locator('[data-od-id="research-mapping"]');
-    for (const id of ["P-07-01", "P-07-02", "P-07-06", "P-05", "P-07-03", "P-07-08", "P-07-09", "P-03", "P-04", "P-07-04", "P-07-05", "P-07-10"]) await expect(mapping).toContainText(id);
+    for (const name of (chinese ? ["非传染性疾病早期预测", "智慧零售生鲜识别", "AI-RAG 数字礼宾"] : ["Early Prediction of NCDs", "Smart Grocer Produce Recognition", "AI-RAG Digital Concierge"])) await expect(mapping).toContainText(name);
     await expect(page.locator('[data-od-id="research-relationships"] article')).toHaveCount(3);
     for (const img of await page.locator("main img").all()) { await img.scrollIntoViewIfNeeded(); await expect(img).toHaveJSProperty("complete", true); expect(await img.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0); }
     for (const reveal of await page.locator("main [data-reveal]").all()) { await reveal.scrollIntoViewIfNeeded(); await expect(reveal).toHaveAttribute("data-reveal", "visible"); }

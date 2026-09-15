@@ -30,16 +30,16 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
   const roles = chinese ? ["博士毕业生 / 核心成员","博士研究生","硕士毕业生"] : ["PhD Graduate / Core Member","PhD Candidate","MSc Graduate"];
   for (let index=0; index<9; index++) {
     await expect(cards.nth(index).locator("dd").nth(0)).toHaveText(roles[Math.floor(index/3)]);
-    await expect(cards.nth(index).locator("dd").nth(1)).toHaveText((chinese ? bios.zh : bios.en)[index]);
+    await expect(cards.nth(index).locator("p")).toHaveText((chinese ? bios.zh : bios.en)[index]);
   }
   await expect(page.locator('[data-od-id="team-composition"] dd:nth-child(1)')).toHaveText(["03","07","03","02"]);
   await expect(page.locator('[data-od-id="team-composition"] dt')).toHaveText(chinese ? ["博士毕业生","博士研究生","硕士毕业生","硕士研究生"] : ["PhD graduates","PhD candidates","MSc graduates","MSc candidates"]);
   const pi = page.locator('[data-od-id="team-pi"]');
   await expect(pi).toContainText(chinese ? "周俊杰 Dr. Chaw Jun Kit" : "Dr. Chaw Jun Kit");
   await expect(pi).toContainText(chinese ? "马来西亚国民大学（UKM）视觉信息学研究所（IVI）" : "Institute of Visual Informatics / Universiti Kebangsaan Malaysia");
-  await expect(pi).toContainText("R-02 HEALTH / R-03 EDGE-AI / R-04 AGENT");
+  await expect(pi).toContainText("HEALTH / EDGE-AI / AGENT");
   await expect(pi).toContainText(chinese ? "SCIE 及 Scopus 论文 50 余篇" : "50+ SCIE and Scopus papers");
-  await expect(page.locator('[data-od-id="team-leader-2"]')).toContainText(chinese ? "内容资料尚未提供单位、研究兴趣、成果与个人主页链接。" : "Affiliation, research interests, outputs and profile links have not yet been provided in the content package.");
+  await expect(page.locator('[data-od-id="team-leader-2"] p')).toHaveCount(0);
   await expect(page.locator('[data-od-id="team-leader-3"]')).toContainText("Wendy Leong Pooi Yan");
   await expect(page.locator("main img")).toHaveCount(2);
   await expect(pi.locator("img")).toHaveAttribute("alt",chinese ? "课题负责人周俊杰博士的肖像" : "Portrait of Dr. Chaw Jun Kit, Principal Investigator");

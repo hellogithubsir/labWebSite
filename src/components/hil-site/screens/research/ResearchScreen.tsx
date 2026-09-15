@@ -39,7 +39,6 @@ export function ResearchScreen({ locale, onNavigate }: { locale: Locale; onNavig
         <div className={`${styles.container} ${styles.pillarGrid}`}>
           <ScrollReveal><p className={styles.eyebrow}>{pillar.code}</p><h2>{pillar.title}</h2><p className={styles.definition}>{pillar.definition}</p>
             <dl className={styles.fields}>{[pillar.questions, pillar.research, pillar.applications].map((value, index) => <div key={copy.fieldLabels[index]}><dt>{copy.fieldLabels[index]}</dt><dd>{value}</dd></div>)}</dl>
-            <p className={styles.projects}>{copy.fieldLabels[3]}: {pillar.projects}</p>
           </ScrollReveal>
           <ScrollReveal className={styles.visual}><Image src={`/images/hil-site/research/${media[i].key}-visual.png`} alt="" width={media[i].width} height={media[i].height} sizes="(max-width: 980px) 100vw, 45vw" />{pillar.key === "edge" && <p className={styles.edgeCaption}>{copy.edgeCaption}</p>}</ScrollReveal>
         </div>
@@ -53,7 +52,7 @@ export function ResearchScreen({ locale, onNavigate }: { locale: Locale; onNavig
       </article></ScrollReveal>)}</div>
     </div></section>
     <section className={styles.mapping} data-od-id="research-mapping"><div className={styles.container}>
-      <ScrollReveal><p className={styles.eyebrow}>{copy.mappingLabel}</p><h2>{copy.mappingTitle}</h2><p className={styles.sectionIntro}>{copy.mappingIntro}</p></ScrollReveal>
+      <ScrollReveal><p className={styles.eyebrow}>{copy.mappingLabel}</p><h2>{copy.mappingTitle}</h2></ScrollReveal>
       <dl>{copy.mapping.map((text, i) => <ScrollReveal key={media[i].key}><div className={styles[media[i].key]}><dt>{copy.pillars[i].code}</dt><dd>{text}</dd></div></ScrollReveal>)}</dl>
     </div></section>
     <div className={styles.footer}><SiteFooter title={copy.footerTitle} body={copy.footerBody} onContact={() => onNavigate("contact")} /></div>

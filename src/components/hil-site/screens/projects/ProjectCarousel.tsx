@@ -27,6 +27,5 @@ export function ProjectCarousel({ slides, labels, categories, locale, initialInd
       </div>
     </div>
     <div className={styles.controls}><button onClick={() => move(-1)} disabled={index === 0} aria-label={labels.previous}>‹</button><button onClick={() => move(1)} disabled={index === slides.length - 1} aria-label={labels.next}>›</button><span role="status" aria-label={locale === "en" ? "Current screen" : "当前界面"} className={styles.status}>{index + 1} / {slides.length}</span></div>
-    <p className={styles.source}>{labels.source}</p>
   </div>;
 }

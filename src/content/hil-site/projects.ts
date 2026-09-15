@@ -1,7 +1,7 @@
 import type { Localized } from "./types";
 
 export interface ProjectSlide { category: string; title: string; body: string; file: string; width: number; height: number; alt: string; proofs: string[]; }
-export interface CarouselLabels { previous: string; next: string; drag: string; source: string; }
+export interface CarouselLabels { previous: string; next: string; drag: string; }
 interface ProjectsContent { lead: string; selected: string; overview: string; intro: string; systems: string[][]; elinusTitle: string; elinusIntro: string; categories: string[]; slides: ProjectSlide[]; labels: CarouselLabels; pdmTitle: string; pdmIntro: string; pdmCategories: string[]; pdmSlides: ProjectSlide[]; pdmLabels: CarouselLabels; footerTitle: string; footerBody: string; }
 // P-01 至 P-04：最终 PNG 与交付 HTML；中文逐项对齐设计独有文案。
 export const projectsContent = {
@@ -56,7 +56,7 @@ export const projectsContent = {
         "height": 760
       }
     ],
-    "labels": {"previous": "Previous E-Linus screen", "next": "Next E-Linus screen", "drag": "E-Linus project screenshots. Drag or use arrow keys.", "source": "Source / supplied preview.html / English interface"},
+    "labels": {"previous": "Previous E-Linus screen", "next": "Next E-Linus screen", "drag": "E-Linus project screenshots. Drag or use arrow keys."},
     "pdmTitle": "PDM Robot Asset RUL Monitor",
     "pdmIntro": "A predictive maintenance workflow that turns live asset telemetry into remaining-life estimates, critical alerts and maintenance guidance.",
     "pdmCategories": ["Fleet overview", "Degradation tracking", "Critical alert", "Maintenance decision"],
@@ -102,7 +102,7 @@ export const projectsContent = {
         "height": 600
       }
     ],
-    "pdmLabels": {"previous": "Previous PDM Robot screen", "next": "Next PDM Robot screen", "drag": "PDM Robot project screenshots. Drag or use arrow keys.", "source": "Source / PdmRobot_full_demo_v2.mp4 / frame extracted at 20 seconds"},
+    "pdmLabels": {"previous": "Previous PDM Robot screen", "next": "Next PDM Robot screen", "drag": "PDM Robot project screenshots. Drag or use arrow keys."},
     "footerTitle": "Projects that make intelligence operational.",
     "footerBody": "Two independent systems, presented through clear interface evidence and deployment-centered narratives."
   },
@@ -157,7 +157,7 @@ export const projectsContent = {
         "height": 760
       }
     ],
-    "labels": {"previous": "上一张 E-Linus 界面", "next": "下一张 E-Linus 界面", "drag": "E-Linus 项目截图，可拖动或使用左右方向键。", "source": "来源 / 随附 preview.html / 英文界面"},
+    "labels": {"previous": "上一张 E-Linus 界面", "next": "下一张 E-Linus 界面", "drag": "E-Linus 项目截图，可拖动或使用左右方向键。"},
     "pdmTitle": "PDM Robot 资产剩余寿命监测",
     "pdmIntro": "预测性维护工作流程，将实时资产遥测转化为剩余寿命估计、关键告警和维护指导。",
     "pdmCategories": ["资产群概览", "退化追踪", "关键告警", "维护决策"],
@@ -203,7 +203,7 @@ export const projectsContent = {
         "height": 600
       }
     ],
-    "pdmLabels": {"previous": "上一张 PDM Robot 界面", "next": "下一张 PDM Robot 界面", "drag": "PDM Robot 项目截图，可拖动或使用左右方向键。", "source": "来源 / PdmRobot_full_demo_v2.mp4 / 第 20 秒提取画面"},
+    "pdmLabels": {"previous": "上一张 PDM Robot 界面", "next": "下一张 PDM Robot 界面", "drag": "PDM Robot 项目截图，可拖动或使用左右方向键。"},
     "footerTitle": "让智能投入实际运营的项目。",
     "footerBody": "两个独立系统，以清晰的界面证据和面向部署的叙述呈现。"
   }

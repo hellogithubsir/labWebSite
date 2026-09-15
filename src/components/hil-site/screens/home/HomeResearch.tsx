@@ -26,9 +26,9 @@ export function HomeResearch({ locale }: { locale: Locale }) {
     <section className={styles.section} aria-labelledby="home-capabilities-title" data-od-id="home-capabilities">
       <div className={styles.container}>
         <ScrollReveal><h2 id="home-capabilities-title" className={styles.sectionTitle}>{content.capabilityTitle.map((line) => <span key={line}>{line}</span>)}</h2>
-          <p className={styles.lede}>{content.capabilityLede}</p></ScrollReveal>
+          </ScrollReveal>
         <div className={styles.capabilities}>{content.capabilities.map(([title, text], index) => <ScrollReveal key={index}>
-          <article className={styles.capability} data-od-id={`home-capability-${index + 1}`}><span className={styles.code}>A-0{index + 1}</span><span className={styles.type}>{content.types[index]}</span><h3>{title}</h3><p>{text}</p></article>
+          <article className={styles.capability} data-od-id={`home-capability-${index + 1}`}><span className={styles.type}>{content.types[index]}</span><h3>{title}</h3><p>{text}</p></article>
         </ScrollReveal>)}</div>
       </div>
     </section>

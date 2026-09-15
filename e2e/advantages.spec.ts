@@ -9,7 +9,7 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
     await page.getByRole("navigation").getByRole("button", { name: chinese ? "技术优势" : "Technology Advantages", exact: true }).click();
     if (width < 981) await expect(page.locator("#screen-navigation")).toHaveCSS("visibility", "hidden");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(chinese ? "技术优势" : "Technology Advantages");
-    await expect(page.locator("main h3")).toHaveText(chinese ? ["预测分析与知识蒸馏", "大语言模型与多模态情绪编排", "面向硬件优化的边缘视觉检测", "A-04跨模型 Skill 编译与运行治理+", "A-05用户可控的分层 AI 记忆+", "A-06效用—多样性训练数据选择+", "A-07设备端 Agent 与硬件协同+", "A-08可验证反馈驱动的持续学习+"] : ["Predictive Analytics & Knowledge Distillation", "LLM & Multi-modal Emotional Orchestration", "Hardware-Optimized Edge Vision Detection", "A-04Cross-Model Skill Compilation & Runtime Governance+", "A-05User-Controlled Layered AI Memory+", "A-06Utility-Diversity Training Data Selection+", "A-07On-Device Agents & Hardware Co-Design+", "A-08Verifiable Feedback-Driven Continual Learning+"]);
+    await expect(page.locator("main h3")).toHaveText(chinese ? ["预测分析与知识蒸馏", "大语言模型与多模态情绪编排", "面向硬件优化的边缘视觉检测", "跨模型 Skill 编译与运行治理+", "用户可控的分层 AI 记忆+", "效用—多样性训练数据选择+", "设备端 Agent 与硬件协同+", "可验证反馈驱动的持续学习+"] : ["Predictive Analytics & Knowledge Distillation", "LLM & Multi-modal Emotional Orchestration", "Hardware-Optimized Edge Vision Detection", "Cross-Model Skill Compilation & Runtime Governance+", "User-Controlled Layered AI Memory+", "Utility-Diversity Training Data Selection+", "On-Device Agents & Hardware Co-Design+", "Verifiable Feedback-Driven Continual Learning+"]);
     for (const reveal of await page.locator("main [data-reveal]").all()) { await reveal.scrollIntoViewIfNeeded(); await expect(reveal).toHaveAttribute("data-reveal", "visible"); }
     for (const img of await page.locator("main img").all()) { await img.scrollIntoViewIfNeeded(); await expect(img).toHaveJSProperty("complete", true); expect(await img.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0); }
     const buttons = page.locator("main button[aria-expanded]");
@@ -21,19 +21,19 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
     for (let i = 0; i < 5; i++) {
       const button = buttons.nth(i), panel = page.locator(`#advantage-panel-${i + 4}`);
       await expect(panel).toHaveAttribute("aria-hidden", "true");
-      await expect(page.getByRole("region", { name: new RegExp(`A-0${i + 4}`) })).toHaveCount(0);
+      await expect(page.getByRole("region", { name: await button.locator("strong").innerText() })).toHaveCount(0);
       await expect(panel).toHaveCSS("transition-duration", "0.3s");
       await button.click();
       await expect(button).toHaveAttribute("aria-expanded", "true");
       await expect(panel).toHaveAttribute("aria-hidden", "false");
-      await expect(page.getByRole("region", { name: new RegExp(`A-0${i + 4}`) })).toHaveCount(1);
+      await expect(page.getByRole("region", { name: await button.locator("strong").innerText() })).toHaveCount(1);
       await expect(panel).toHaveCSS("visibility", "visible");
       await expect(panel).toHaveCSS("grid-template-rows", /[1-9]/);
       if (i === 0 && width === 1920) { await expect.poll(() => panel.evaluate(node => node.getAnimations().length)).toBe(0); await page.evaluate(() => window.scrollTo(0, 0)); await page.mouse.move(0, 0); await page.screenshot({ path: testInfo.outputPath(`advantages-${chinese ? "zh-CN" : "en"}-1920-A04.png`), fullPage: true }); }
       await button.focus(); await page.keyboard.press("Enter");
       await expect(button).toHaveAttribute("aria-expanded", "false");
       await expect(panel).toHaveAttribute("aria-hidden", "true");
-      await expect(page.getByRole("region", { name: new RegExp(`A-0${i + 4}`) })).toHaveCount(0);
+      await expect(page.getByRole("region", { name: await button.locator("strong").innerText() })).toHaveCount(0);
       await expect(panel).toHaveCSS("visibility", "hidden");
       await page.keyboard.press("Space");
       await expect(button).toHaveAttribute("aria-expanded", "true");

@@ -2,7 +2,7 @@ import type { Locale } from "./types";
 
 export type MemberFilter = "all" | "graduate" | "candidate";
 interface TeamMember { id: string; name: string; status: string; bio: string; type: Exclude<MemberFilter, "all"> }
-interface TeamCopy { members: TeamMember[]; metrics: { label: string; count: string; note: string }[]; intro: string; introLabel: string; introTitle: string; statement: string; leadershipLabel: string; leadershipTitle: string; piName: string; piRole: string[]; affiliation: string; interests: string; bio: string; areasLabel: string; areas: string; outputsLabel: string; outputs: string; piAlt: string; profiles: { name: string; role: string; interests: string; bio: string }[]; compositionLabel: string; compositionTitle: string; membersLabel: string; membersTitle: string; membersIntro: string; filterLabel: string; filters: string[]; statusLabel: string; bioLabel: string; footerTitle: string; footerBody: string }
+interface TeamCopy { members: TeamMember[]; metrics: { label: string; count: string; note: string }[]; intro: string; introLabel: string; introTitle: string; statement: string; leadershipLabel: string; leadershipTitle: string; piName: string; piRole: string[]; affiliation: string; interests: string; bio: string; areasLabel: string; areas: string; outputsLabel: string; outputs: string; piAlt: string; profiles: { name: string; role: string; interests: string; bio?: string }[]; compositionLabel: string; compositionTitle: string; membersLabel: string; membersTitle: string; filterLabel: string; filters: string[]; statusLabel: string; footerTitle: string; footerBody: string }
 
 // T-01–T-04：英文依最终 PNG 与随附 HTML，中文按同编号已交付文案适配。
 export const teamContent = {
@@ -109,16 +109,15 @@ export const teamContent = {
     "interests": "Machine Learning / Intelligent Data Analytics / Edge AI / Computer Vision",
     "bio": "Dr. Chaw is a SAS-certified Predictive Modeler and NVIDIA DLI certified Computer Vision expert. His work connects academic research with manufacturing optimization, digital health and industrial deployment.",
     "areasLabel": "Research areas",
-    "areas": "R-02 HEALTH / R-03 EDGE-AI / R-04 AGENT",
+    "areas": "HEALTH / EDGE-AI / AGENT",
     "outputsLabel": "Outputs",
-    "outputs": "P-03 Digital Concierge / P-05 Smart Grocer / 50+ SCIE and Scopus papers",
+    "outputs": "Digital Concierge / Smart Grocer / 50+ SCIE and Scopus papers",
     "piAlt": "Portrait of Dr. Chaw Jun Kit, Principal Investigator",
     "profiles": [
       {
         "name": "Dr. Jeff Wang",
         "role": "Chief Technology Officer",
         "interests": "",
-        "bio": "Affiliation, research interests, outputs and profile links have not yet been provided in the content package."
       },
       {
         "name": "Wendy Leong Pooi Yan",
@@ -130,8 +129,8 @@ export const teamContent = {
     "compositionLabel": "Team composition",
     "compositionTitle": "Research training across doctoral and master levels",
     "membersLabel": "Members",
-    "membersTitle": "Nine researchers, three fields each",
-    "membersIntro": "Names, current status and one-sentence biographies follow the fixed T-04 order.",
+    "membersTitle": "Meet our researchers",
+
     "filterLabel": "Filter team members",
     "filters": [
       "All members",
@@ -139,7 +138,7 @@ export const teamContent = {
       "Candidates"
     ],
     "statusLabel": "Status",
-    "bioLabel": "One-sentence bio",
+
     "footerTitle": "A team spanning research and real-world practice.",
     "footerBody": "Researchers connect machine learning, vision, devices and domain knowledge through rigorous training and applied collaboration."
   },
@@ -246,16 +245,15 @@ export const teamContent = {
     "interests": "机器学习 / 智能数据分析 / 边缘人工智能 / 计算机视觉",
     "bio": "周俊杰博士是 SAS 认证预测建模师和 NVIDIA 深度学习学院（DLI）认证计算机视觉专家。他的工作连接学术界与产业界，专注于制造优化、数字健康解决方案与产业部署。",
     "areasLabel": "研究方向",
-    "areas": "R-02 HEALTH / R-03 EDGE-AI / R-04 AGENT",
+    "areas": "HEALTH / EDGE-AI / AGENT",
     "outputsLabel": "代表成果",
-    "outputs": "P-03 数字礼宾 / P-05 智慧零售生鲜识别 / SCIE 及 Scopus 论文 50 余篇",
+    "outputs": "数字礼宾 / 智慧零售生鲜识别 / SCIE 及 Scopus 论文 50 余篇",
     "piAlt": "课题负责人周俊杰博士的肖像",
     "profiles": [
       {
         "name": "王鸿清 Dr. Jeff Wang",
         "role": "首席技术官（CTO）",
         "interests": "",
-        "bio": "内容资料尚未提供单位、研究兴趣、成果与个人主页链接。"
       },
       {
         "name": "Wendy Leong Pooi Yan",
@@ -267,8 +265,8 @@ export const teamContent = {
     "compositionLabel": "团队构成",
     "compositionTitle": "覆盖博士与硕士层次的科研训练",
     "membersLabel": "核心成员",
-    "membersTitle": "九位研究人员，三项信息",
-    "membersIntro": "姓名、当前身份和一句话简介按 T-04 固定顺序呈现。",
+    "membersTitle": "认识我们的研究人员",
+
     "filterLabel": "筛选团队成员",
     "filters": [
       "全部成员",
@@ -276,7 +274,7 @@ export const teamContent = {
       "在读研究生"
     ],
     "statusLabel": "身份",
-    "bioLabel": "一句话简介",
+
     "footerTitle": "连接科研与真实实践的团队。",
     "footerBody": "研究人员通过严谨训练与应用合作，将机器学习、视觉、设备和领域知识紧密结合。"
   }

@@ -34,10 +34,10 @@
 .definition { font-size: 16px; line-height: 1.5; margin: 40px 0 0; max-width: 640px; }
 .fields { margin: 60px 0 0; }
 .fields > div { min-height: 180px; }
-.fields dt, .projects { font-size: 12px; font-weight: 700; color: var(--accent); }
+.fields dt { font-size: 12px; font-weight: 700; color: var(--accent); }
 .fields dd { margin: 20px 0 0; max-width: 680px; font-size: 16px; line-height: 1.5; color: var(--muted); }
 .fields > div:last-child dd { color: var(--navy); font-weight: 700; }
-.projects { margin: 20px 0 8px; line-height: 1.6; }
+
 .visual { position: relative; }
 .visual img { display: block; width: 100%; height: auto; }
 .edge .visual { width: 500px; max-width: 90%; margin-inline: auto; }
@@ -68,7 +68,7 @@
   .hero { min-height: 0; } .heroCopy { width: auto; padding: 28px 20px 0; } .logo { width: 210px; margin-bottom: 64px; } .hero h1 { font-size: 42px; } .eyebrow { font-size: 12px; } .lead { font-size: 24px; margin-top: 40px; } .intro { margin-top: 24px; } .button { min-height: 48px; margin-top: 32px; padding-inline: 24px; }
   .heroArt { position: static; display: block; width: 100%; height: auto; margin: 24px 0 0; } .sections { grid-template-columns: 1fr; padding: 0; } .sections li { min-height: 64px; padding: 20px; } .sections li + li { border-left: 0; border-top: 1px solid var(--line); }
   .overview, .pillar, .relationships, .mapping { padding-block: 64px; } .overviewGrid, .pillarGrid, .relationGrid { grid-template-columns: minmax(0,1fr); gap: 40px; } .overview dl > div { grid-template-columns: 1fr; gap: 12px; margin: 0 0 28px; } .overview dd { font-size: 16px; }
-  .definition { margin-top: 28px; } .fields { margin-top: 36px; } .fields > div { min-height: 0; margin-bottom: 36px; } .fields dd { margin-top: 14px; } .projects { font-size: 13px; } .edge .visual { width: 100%; max-width: 500px; } .edgeCaption { font-size: 18px; }
+  .definition { margin-top: 28px; } .fields { margin-top: 36px; } .fields > div { min-height: 0; margin-bottom: 36px; } .fields dd { margin-top: 14px; } .edge .visual { width: 100%; max-width: 500px; } .edgeCaption { font-size: 18px; }
   .sectionIntro { margin-top: 28px; } .relationGrid { margin-top: 32px; padding-bottom: 0; border: 0; } .relationGrid article > p:last-child { font-size: 16px; } .mapping dl { margin-top: 36px; } .mapping dl > div > div { grid-template-columns: 1fr; gap: 14px; min-height: 0; padding-block: 20px; } .mapping dd { font-size: 16px; }
   .footer footer { min-height: 0; padding: 64px 0 32px; } .footer footer > div { width: calc(100% - 40px); } .footer h2 { font-size: 32px; } .footer footer p { font-size: 16px; } .footer footer > div > div:last-child { margin-top: 64px; }
 }

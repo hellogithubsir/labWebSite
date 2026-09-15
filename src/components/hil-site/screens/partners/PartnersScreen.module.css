@@ -17,8 +17,7 @@
 .card:nth-child(3n + 2) { --accent: var(--cyan); }
 .card:nth-child(3n) { --accent: var(--green); }
 .card:nth-child(n + 4):nth-child(-n + 6) { background: var(--paper); }
-.card > span { font-size: 11px; font-weight: 700; color: var(--accent); }
-.card h3 { margin-top: 26px; font-size: 20px; line-height: 1.3; font-weight: 700; overflow-wrap: break-word; }
+.card h3 { font-size: 20px; line-height: 1.3; font-weight: 700; overflow-wrap: break-word; }
 .footer footer { min-height: 534px; padding: 76px 0 44px; }
 .footer footer > div { width: calc(100% - 140px); }
 .footer h2 { font-size: 42px; }
