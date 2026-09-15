@@ -36,6 +36,10 @@ Playwright 独占 `127.0.0.1:3000`，`reuseExistingServer=false`；不要与其�
 
 来源及响应式、发布门禁证据见[内容更新证据索引](docs/design-references/hil-site/content-refresh/evidence-index.md)。050–053 已完成独立审查，054 的 VAL-101–VAL-105 五项独立断言及最终产品全规格审查均通过，无未处置发现；文档闭环依据见索引中的审查任务与 mission 记录。未覆盖 PIC，未推送或部署。
 
+## 首页与团队信息统一
+
+首页双语团队摘要统一为 Chaw、Jeff、Wendy 三位负责人，与团队页共享姓名和职位；研究人员卡片保留具体身份及简介，移除字段标签。Jeff 负责人卡片补入研究方向、简介与联系邮箱。用户确认、研究依据及验证审查记录见[人物信息统一索引](docs/design-references/hil-site/team-alignment/evidence-index.md)。
+
 ## 保留的限制
 
 - CI 安装依赖和 Chromium、运行工程及 E2E 的配置已经核对，本次是干净本地等价执行；远端 GitHub Actions、gitleaks、CodeQL 未运行，不声明其成功。

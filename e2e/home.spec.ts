@@ -66,7 +66,7 @@ for (const width of [1920, 390, 320]) {
       await expect(page.locator('[data-od-id="home-projects"] article')).toHaveCount(3);
       await expect(page.locator('[data-od-id="home-partners"] li')).toHaveCount(6);
       await expect(page.locator('[data-od-id="home-lab"] figure')).toHaveCount(4);
-      await expect(page.locator('[data-od-id="home-team"] li')).toHaveCount(4);
+      await expect(page.locator('[data-od-id="home-team"] li')).toHaveCount(3);
       for (const node of await page.locator("[data-reveal]").all()) {
         await node.scrollIntoViewIfNeeded();
         await expect(node).toHaveAttribute("data-reveal", "visible");

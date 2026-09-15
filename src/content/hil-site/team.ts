@@ -2,7 +2,7 @@ import type { Locale } from "./types";
 
 export type MemberFilter = "all" | "graduate" | "candidate";
 interface TeamMember { id: string; name: string; status: string; bio: string; type: Exclude<MemberFilter, "all"> }
-interface TeamCopy { members: TeamMember[]; metrics: { label: string; count: string; note: string }[]; intro: string; introLabel: string; introTitle: string; statement: string; leadershipLabel: string; leadershipTitle: string; piName: string; piRole: string[]; affiliation: string; interests: string; bio: string; areasLabel: string; areas: string; outputsLabel: string; outputs: string; piAlt: string; profiles: { name: string; role: string; interests: string; bio?: string }[]; compositionLabel: string; compositionTitle: string; membersLabel: string; membersTitle: string; filterLabel: string; filters: string[]; statusLabel: string; footerTitle: string; footerBody: string }
+interface TeamCopy { members: TeamMember[]; metrics: { label: string; count: string; note: string }[]; intro: string; introLabel: string; introTitle: string; statement: string; leadershipLabel: string; leadershipTitle: string; piName: string; piRole: string[]; affiliation: string; interests: string; bio: string; areasLabel: string; areas: string; outputsLabel: string; outputs: string; piAlt: string; profiles: { name: string; role: string; interests: string; bio?: string; email?: string }[]; compositionLabel: string; compositionTitle: string; membersLabel: string; membersTitle: string; filterLabel: string; filters: string[]; footerTitle: string; footerBody: string }
 
 // T-01–T-04：英文依最终 PNG 与随附 HTML，中文按同编号已交付文案适配。
 export const teamContent = {
@@ -117,7 +117,9 @@ export const teamContent = {
       {
         "name": "Dr. Jeff Wang",
         "role": "Chief Technology Officer",
-        "interests": "",
+        "interests": "Computer Vision / Lightweight Object Detection",
+        "bio": "Develops lightweight object detection models for complex traffic scenes.",
+        "email": "hongqing.wang812@gmail.com",
       },
       {
         "name": "Wendy Leong Pooi Yan",
@@ -137,7 +139,6 @@ export const teamContent = {
       "Graduates",
       "Candidates"
     ],
-    "statusLabel": "Status",
 
     "footerTitle": "A team spanning research and real-world practice.",
     "footerBody": "Researchers connect machine learning, vision, devices and domain knowledge through rigorous training and applied collaboration."
@@ -253,7 +254,9 @@ export const teamContent = {
       {
         "name": "王鸿清 Dr. Jeff Wang",
         "role": "首席技术官（CTO）",
-        "interests": "",
+        "interests": "计算机视觉 / 轻量化目标检测",
+        "bio": "开发适用于复杂交通场景的轻量化目标检测模型。",
+        "email": "hongqing.wang812@gmail.com",
       },
       {
         "name": "Wendy Leong Pooi Yan",
@@ -273,7 +276,6 @@ export const teamContent = {
       "毕业生",
       "在读研究生"
     ],
-    "statusLabel": "身份",
 
     "footerTitle": "连接科研与真实实践的团队。",
     "footerBody": "研究人员通过严谨训练与应用合作，将机器学习、视觉、设备和领域知识紧密结合。"

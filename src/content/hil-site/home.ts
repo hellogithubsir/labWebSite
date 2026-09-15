@@ -70,7 +70,6 @@ export const homeOverviewContent = {
     ],
     teamTitle: "A team spanning research and real-world practice.",
     teamLede: "Led by Dr. Chaw Jun Kit, our dynamic team of researchers bridges the gap between complex AI algorithms and commercial adaptability.",
-    members: [["Dr. Chaw Jun Kit", "Principal Investigator / Senior Lecturer & Research Fellow"], ["Zhao Yanfeng", "PhD Graduate / Core Member"], ["Cheng Xiang", "PhD Graduate / Core Member"], ["Liu Jianbang", "PhD Graduate / Core Member"]],
     footerTitle: "Together, intelligence grows better.",
     footerBody: "We actively seek enterprise partnerships for Edge AI R&D, cross-disciplinary medical data collaborations, and highly motivated postgraduate (Master/PhD) candidates.",
   },
@@ -97,12 +96,11 @@ export const homeOverviewContent = {
     ],
     teamTitle: "连接前沿研究与现实实践的团队。",
     teamLede: "在周俊杰博士的带领下，我们充满活力的研究团队连接复杂人工智能算法与商业适应性。",
-    members: [["周俊杰 Dr. Chaw Jun Kit", "课题负责人 / 高级讲师兼研究员"], ["Zhao Yanfeng", "博士毕业生 / 核心成员"], ["Cheng Xiang", "博士毕业生 / 核心成员"], ["Liu Jianbang", "博士毕业生 / 核心成员"]],
     footerTitle: "携手同行，让智能更好成长。",
     footerBody: "我们积极寻求边缘人工智能研发领域的企业合作、跨学科医学数据合作，并招募高度自驱的研究生（硕士 / 博士）。",
   },
 } satisfies Record<Locale, {
   projectsTitle: string; projectsLede: string; featured: string; projects: string[][]; projectAlt: string;
   partnersTitle: string; partnersLede: string; partners: string[]; labTitle: string; labLede: string; photos: string[][];
-  teamTitle: string; teamLede: string; members: string[][]; footerTitle: string; footerBody: string;
+  teamTitle: string; teamLede: string; footerTitle: string; footerBody: string;
 }>;

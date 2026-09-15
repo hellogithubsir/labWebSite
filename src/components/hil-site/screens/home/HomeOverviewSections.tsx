@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { teamContent } from "@/content/hil-site/team";
 import { homeOverviewContent } from "@/content/hil-site/home";
 import type { Locale } from "@/content/hil-site/types";
 import type { ScreenId } from "@/types/hil-site";
@@ -9,7 +10,8 @@ import styles from "./HomeScreen.module.css";
 const photos = [["vision", 467, 305], ["hardware", 478, 305], ["prototype", 472, 305], ["environment", 1457, 278]] as const;
 
 export function HomeOverviewSections({ locale, onNavigate }: { locale: Locale; onNavigate: (screen: ScreenId) => void }) {
-  const c = homeOverviewContent[locale];
+  const c = homeOverviewContent[locale], team = teamContent[locale];
+  const leaders = [{ name: team.piName, role: team.piRole.join(" / ") }, ...team.profiles];
   return <>
     <section className={styles.projectsSection} aria-labelledby="home-projects-title" data-od-id="home-projects">
       <div className={styles.container}>
@@ -40,7 +42,7 @@ export function HomeOverviewSections({ locale, onNavigate }: { locale: Locale; o
     <section className={styles.teamSection} aria-labelledby="home-team-title" data-od-id="home-team">
       <div className={`${styles.container} ${styles.teamGrid}`}>
         <ScrollReveal><h2 id="home-team-title" className={styles.teamTitle}><button className={styles.headingLink} onClick={() => onNavigate("team")}>{c.teamTitle}</button></h2><p className={styles.overviewLede}>{c.teamLede}</p></ScrollReveal>
-        <ul className={styles.members}>{c.members.map(([name, role]) => <li key={name}><ScrollReveal><strong>{name}</strong><span>{role}</span></ScrollReveal></li>)}</ul>
+        <ul className={styles.members}>{leaders.map(({name, role}) => <li key={name}><ScrollReveal><strong>{name}</strong><span>{role}</span></ScrollReveal></li>)}</ul>
       </div>
     </section>
     <div data-od-id="home-footer"><SiteFooter title={c.footerTitle} body={c.footerBody} onContact={() => onNavigate("contact")} /></div>
