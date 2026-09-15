@@ -12,8 +12,28 @@ test("team screen member directory and filtering", async ({ page }) => {
 
 const names = ["Zhao Yanfeng", "Cheng Xiang", "Liu Jianbang", "Wang Hongqing", "Muhammad Aiman Md Zuki", "Leong Pooi Yan", "Zheng Kun", "Ooi Tze Yaang", "Teo Shi Han"];
 const bios = {
- en: ["Safe-enhanced fully closed-loop artificial pancreas control based on Deep Reinforcement Learning.", "Adaptive dual distillation for efficient remaining useful life and predictive maintenance.", "Multimodal conversational emotion reasoning and immersive technology behavioral analysis.", "Hybrid-YOLO architectures for complex traffic detection and medical image segmentation.", "Multimodal sentiment and emotion analysis for personalized, persuasive health coaching.", "AI synergy in future pandemic prediction and automated crisis management tools.", "Generalized Gaussian distribution improvements and underwater sonar small-target detection.", "Dynamic sequence augmentation for the early prediction of non-communicable diseases.", "Edge AI applications for real-time fresh produce identification in retail weighing systems."],
- zh: ["专注于基于深度强化学习的安全增强型全闭环人工胰腺控制器。", "专注用于高效剩余使用寿命预测与预测性维护的自适应双蒸馏框架。", "研究多模态对话情绪推理与沉浸式技术行为分析。", "Hybrid-YOLO 架构开发者，专注复杂交通检测与医学影像分割。", "研究面向个性化、说服式健康指导的多模态情感与情绪分析框架。", "探索人工智能在未来疫情预测与自动化危机管理工具中的协同作用。", "广义高斯分布改进与水下声呐小目标检测的主要研究人员。", "开发具有序列结构的动态数据增强方法，用于非传染性疾病早期预测。", "开发用于零售称重系统实时生鲜识别的边缘人工智能应用。"],
+  "en": [
+    "Develops deep reinforcement learning methods for safer automated insulin delivery.",
+    "Researches knowledge distillation to make remaining useful life prediction more efficient.",
+    "Studies multimodal emotion analysis for personalized human–computer interaction.",
+    "Develops lightweight object detection models for complex traffic scenes.",
+    "Studies sentiment and emotion analysis for personalized health coaching messages.",
+    "Explores artificial intelligence for predicting future pandemics.",
+    "Studies entropy-based time series analysis for underwater acoustic target recognition.",
+    "Develops sequence-preserving data augmentation for early prediction of non-communicable diseases.",
+    "Develops edge AI for real-time fresh produce recognition in retail weighing systems."
+  ],
+  "zh": [
+    "研究深度强化学习方法，让自动胰岛素输注控制更安全。",
+    "研究知识蒸馏，提高设备剩余使用寿命预测的效率。",
+    "研究多模态情绪分析，支持个性化人机交互。",
+    "开发适用于复杂交通场景的轻量化目标检测模型。",
+    "研究情感与情绪分析，支持个性化健康指导信息。",
+    "探索人工智能在未来疫情预测中的应用。",
+    "研究基于熵的时间序列分析，用于水声目标识别。",
+    "开发保留序列结构的数据增强方法，用于非传染性疾病早期预测。",
+    "开发边缘人工智能，实现零售称重系统中的实时生鲜识别。"
+  ]
 };
 for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
  test(`team screen ${width} ${chinese ? "Chinese" : "English"} content media filters`, async ({ page }, testInfo) => {

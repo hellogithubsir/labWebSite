@@ -12,63 +12,63 @@ export const teamContent = {
         "id": "T-04-01",
         "name": "Zhao Yanfeng",
         "status": "PhD Graduate / Core Member",
-        "bio": "Safe-enhanced fully closed-loop artificial pancreas control based on Deep Reinforcement Learning.",
+        "bio": "Develops deep reinforcement learning methods for safer automated insulin delivery.",
         "type": "graduate"
       },
       {
         "id": "T-04-02",
         "name": "Cheng Xiang",
         "status": "PhD Graduate / Core Member",
-        "bio": "Adaptive dual distillation for efficient remaining useful life and predictive maintenance.",
+        "bio": "Researches knowledge distillation to make remaining useful life prediction more efficient.",
         "type": "graduate"
       },
       {
         "id": "T-04-03",
         "name": "Liu Jianbang",
         "status": "PhD Graduate / Core Member",
-        "bio": "Multimodal conversational emotion reasoning and immersive technology behavioral analysis.",
+        "bio": "Studies multimodal emotion analysis for personalized human–computer interaction.",
         "type": "graduate"
       },
       {
         "id": "T-04-04",
         "name": "Wang Hongqing",
         "status": "PhD Candidate",
-        "bio": "Hybrid-YOLO architectures for complex traffic detection and medical image segmentation.",
+        "bio": "Develops lightweight object detection models for complex traffic scenes.",
         "type": "candidate"
       },
       {
         "id": "T-04-05",
         "name": "Muhammad Aiman Md Zuki",
         "status": "PhD Candidate",
-        "bio": "Multimodal sentiment and emotion analysis for personalized, persuasive health coaching.",
+        "bio": "Studies sentiment and emotion analysis for personalized health coaching messages.",
         "type": "candidate"
       },
       {
         "id": "T-04-06",
         "name": "Leong Pooi Yan",
         "status": "PhD Candidate",
-        "bio": "AI synergy in future pandemic prediction and automated crisis management tools.",
+        "bio": "Explores artificial intelligence for predicting future pandemics.",
         "type": "candidate"
       },
       {
         "id": "T-04-07",
         "name": "Zheng Kun",
         "status": "MSc Graduate",
-        "bio": "Generalized Gaussian distribution improvements and underwater sonar small-target detection.",
+        "bio": "Studies entropy-based time series analysis for underwater acoustic target recognition.",
         "type": "graduate"
       },
       {
         "id": "T-04-08",
         "name": "Ooi Tze Yaang",
         "status": "MSc Graduate",
-        "bio": "Dynamic sequence augmentation for the early prediction of non-communicable diseases.",
+        "bio": "Develops sequence-preserving data augmentation for early prediction of non-communicable diseases.",
         "type": "graduate"
       },
       {
         "id": "T-04-09",
         "name": "Teo Shi Han",
         "status": "MSc Graduate",
-        "bio": "Edge AI applications for real-time fresh produce identification in retail weighing systems.",
+        "bio": "Develops edge AI for real-time fresh produce recognition in retail weighing systems.",
         "type": "graduate"
       }
     ],
@@ -148,63 +148,63 @@ export const teamContent = {
         "id": "T-04-01",
         "name": "Zhao Yanfeng",
         "status": "博士毕业生 / 核心成员",
-        "bio": "专注于基于深度强化学习的安全增强型全闭环人工胰腺控制器。",
+        "bio": "研究深度强化学习方法，让自动胰岛素输注控制更安全。",
         "type": "graduate"
       },
       {
         "id": "T-04-02",
         "name": "Cheng Xiang",
         "status": "博士毕业生 / 核心成员",
-        "bio": "专注用于高效剩余使用寿命预测与预测性维护的自适应双蒸馏框架。",
+        "bio": "研究知识蒸馏，提高设备剩余使用寿命预测的效率。",
         "type": "graduate"
       },
       {
         "id": "T-04-03",
         "name": "Liu Jianbang",
         "status": "博士毕业生 / 核心成员",
-        "bio": "研究多模态对话情绪推理与沉浸式技术行为分析。",
+        "bio": "研究多模态情绪分析，支持个性化人机交互。",
         "type": "graduate"
       },
       {
         "id": "T-04-04",
         "name": "Wang Hongqing",
         "status": "博士研究生",
-        "bio": "Hybrid-YOLO 架构开发者，专注复杂交通检测与医学影像分割。",
+        "bio": "开发适用于复杂交通场景的轻量化目标检测模型。",
         "type": "candidate"
       },
       {
         "id": "T-04-05",
         "name": "Muhammad Aiman Md Zuki",
         "status": "博士研究生",
-        "bio": "研究面向个性化、说服式健康指导的多模态情感与情绪分析框架。",
+        "bio": "研究情感与情绪分析，支持个性化健康指导信息。",
         "type": "candidate"
       },
       {
         "id": "T-04-06",
         "name": "Leong Pooi Yan",
         "status": "博士研究生",
-        "bio": "探索人工智能在未来疫情预测与自动化危机管理工具中的协同作用。",
+        "bio": "探索人工智能在未来疫情预测中的应用。",
         "type": "candidate"
       },
       {
         "id": "T-04-07",
         "name": "Zheng Kun",
         "status": "硕士毕业生",
-        "bio": "广义高斯分布改进与水下声呐小目标检测的主要研究人员。",
+        "bio": "研究基于熵的时间序列分析，用于水声目标识别。",
         "type": "graduate"
       },
       {
         "id": "T-04-08",
         "name": "Ooi Tze Yaang",
         "status": "硕士毕业生",
-        "bio": "开发具有序列结构的动态数据增强方法，用于非传染性疾病早期预测。",
+        "bio": "开发保留序列结构的数据增强方法，用于非传染性疾病早期预测。",
         "type": "graduate"
       },
       {
         "id": "T-04-09",
         "name": "Teo Shi Han",
         "status": "硕士毕业生",
-        "bio": "开发用于零售称重系统实时生鲜识别的边缘人工智能应用。",
+        "bio": "开发边缘人工智能，实现零售称重系统中的实时生鲜识别。",
         "type": "graduate"
       }
     ],
