@@ -1,0 +1,71 @@
+{
+  "mission": "labwebsitev1-team-alignment",
+  "generatedBy": "devflow.cjs compile",
+  "generatedAt": "2026-09-15",
+  "statusNote": "This is the plan and holds no status. Live status is in <spec-dir>/missions/runtime.json (gitignored, written only by devflow). Read it with: devflow.cjs brief --mission-dir <spec-dir>/missions — that answers \"is it done\", read-only. Never edit this file by hand: append with 'devflow.cjs amend --add-feature', and drop work with 'devflow.cjs cancel'.",
+  "features": [
+    {
+      "id": "060",
+      "description": "双语研究人员标签清理、Jeff资料补全、首页三负责人共享数据与回归证据",
+      "dependsOn": [],
+      "milestone": "team-alignment",
+      "touches": [
+        "src/**",
+        "e2e/**",
+        "README.md",
+        "docs/design-references/hil-site/team-alignment/**"
+      ],
+      "fulfills": [
+        "VAL-201",
+        "VAL-202",
+        "VAL-203",
+        "VAL-204",
+        "VAL-205"
+      ],
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "check",
+            "command": "make check-release",
+            "expectedExit": "zero"
+          }
+        ]
+      },
+      "skillName": "tdd",
+      "expectedBehavior": [
+        "五断言所需实现与独立可复核原始证据完整。",
+        "两页两语言三宽度12组截图、目标redgreen及完整发布门禁日志退出码trace存在。",
+        "README资料依据准确，未提交PIC原素材或用户文件，无越界行为。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    },
+    {
+      "id": "061",
+      "description": "独立证明双语人物卡片首页一致性响应式与交付边界",
+      "dependsOn": [
+        "060"
+      ],
+      "milestone": "team-alignment",
+      "touches": [],
+      "fulfills": [],
+      "proves": [
+        "VAL-201",
+        "VAL-202",
+        "VAL-203",
+        "VAL-204",
+        "VAL-205"
+      ],
+      "reportOnly": true,
+      "skillName": "user-validate-flow",
+      "expectedBehavior": [
+        "五断言各独立verdict有存在的证据文件与明确观察，缺失不能pass。",
+        "测试验收预期来自spec，不从产品数组复制预期掩盖错误。",
+        "完整门禁与12图可定位，不将窄测试冒充全行为证明。"
+      ],
+      "origin": "plan",
+      "addressesItemId": []
+    }
+  ]
+}

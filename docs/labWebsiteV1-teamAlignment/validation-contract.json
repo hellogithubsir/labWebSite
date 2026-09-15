@@ -1,0 +1,51 @@
+{
+  "contract_version": "1",
+  "authority": "machine contract for labwebsitev1-team-alignment; spec.md Validation Plan is the human-readable view, this JSON is the machine grammar consumed by devflow.cjs validate",
+  "assertions": [
+    {
+      "id": "VAL-201",
+      "title": "九研究人员标签清理",
+      "behavior": "中英九卡不显示身份Status标签具体身份简介名单筛选保持且语义正确不误删其他dt",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "双语卡片断言筛选结果与截图。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-202",
+      "title": "Jeff负责人完整资料",
+      "behavior": "中英Jeff负责人有CTO研究方向事实简介和准确邮件链接其他人员信息保持且来源确认可追踪",
+      "surface": "ui",
+      "tool": "ui",
+      "evidence": "双语负责人断言与来源记录。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-203",
+      "title": "首页团队统一",
+      "behavior": "中英首页恰好ChawJeffWendy三人按序且名字职位与团队共享数据一致三位被移除摘要人员仍在团队名单",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "精确名单顺序与跨页双语断言及数据差异。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-204",
+      "title": "响应式与回归",
+      "behavior": "两页双语三宽度12组截图无截断溢出针对性redgreen和完整发布检查退出零导航筛选等既有行为保持",
+      "surface": "business-flow",
+      "tool": "business-flow",
+      "evidence": "12图与原始日志退出码trace。",
+      "status": "pending"
+    },
+    {
+      "id": "VAL-205",
+      "title": "交付边界与记录",
+      "behavior": "无新增接口依赖头像或重复实现README与来源记录准确用户文件PIC原素材未改不push部署",
+      "surface": "data",
+      "tool": "data",
+      "evidence": "Git差异与记录范围检查。",
+      "status": "pending"
+    }
+  ]
+}
