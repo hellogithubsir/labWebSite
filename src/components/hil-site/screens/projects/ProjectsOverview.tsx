@@ -14,7 +14,7 @@ export function ProjectsOverview({ locale }: { locale: Locale }) {
       <div className={styles.heroGrid}><div><p className={styles.eyebrow}>{shared.labels.projects}</p><h1>{shared.titles.projects}</h1></div><p>{copy.lead}</p></div>
     </div></header>
     <section className={styles.overview} data-od-id="projects-overview"><ScrollReveal className={`${styles.container} ${styles.overviewGrid}`}>
-      <div><p className={styles.eyebrow}>{copy.selected}</p><h2>{copy.overview}</h2><p>{copy.intro}</p></div>
+      <div><p className={styles.eyebrow}>{copy.selected}</p><h2>{copy.overview}</h2></div>
       <div className={styles.systems}>{copy.systems.map(([title, body], i) => <article key={title}><strong>0{i + 1}</strong><h3>{title}</h3><p>{body}</p></article>)}</div>
     </ScrollReveal></section>
   </>;

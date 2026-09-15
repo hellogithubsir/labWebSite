@@ -76,7 +76,7 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
     await pdmPrevious.click();
     await expect(pdmPrevious).toBeDisabled();
     const pdmTitles = chinese ? ["维护团队掌握整个资产群的状态。", "让剩余使用寿命的变化清晰可见。", "系统从预警进一步追溯证据。", "让指导与运营情境保持关联。"] : ["A maintenance team sees the whole asset fleet.", "Remaining useful life becomes visible as it changes.", "The system moves from warning to evidence.", "Guidance stays beside the operational context."];
-    const pdmProofs = chinese ? ["虚拟资产状态", "55 秒操作演示", "传感器证据", "工单处理路径"] : ["Virtual asset status", "55-second operational demonstration", "Sensor evidence", "Work order pathway"];
+    const pdmProofs = chinese ? ["虚拟资产状态", "实时剩余寿命趋势与关键部件健康", "传感器证据", "工单处理路径"] : ["Virtual asset status", "Live RUL trend and critical component health", "Sensor evidence", "Work order pathway"];
     for (let i = 0; i < 4; i++) {
       if (i) await pdmNext.click();
       await expect(pdmStatus).toHaveText(`${i + 1} / 4`);

@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 const screens = ["home", "research", "projects", "advantages", "partners", "team", "contact"];
-const internalCopy = /\b[ACPRNTH]-\d{2}(?:-\d{2})?\b|preview\.html|\.mp4|frame extracted|第\s*\d+\s*秒提取|Fixed references|对应 A-|project IDs|项目编号|image rhythm|图片节奏|logo wall|标识墙|supplied partner directory|合作伙伴名录中的机构|one-sentence bio|一句话简介|fixed .*order|固定顺序|content package|内容资料尚未提供/i;
+const internalCopy = /\b[ACPRNTH]-\d{2}(?:-\d{2})?\b|preview\.html|\.mp4|frame extracted|第\s*\d+\s*秒提取|Fixed references|对应 A-|project IDs|项目编号|image rhythm|图片节奏|logo wall|标识墙|supplied partner directory|合作伙伴名录中的机构|one-sentence bio|一句话简介|fixed .*order|固定顺序|content package|内容资料尚未提供|guided horizontal story|引导式横向故事|55-second operational demonstration|55\s*秒操作演示/i;
 for (const chinese of [false, true]) for (const screen of screens) {
   test(`visitor copy ${screen} ${chinese ? "Chinese" : "English"}`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
@@ -15,10 +15,23 @@ for (const chinese of [false, true]) for (const screen of screens) {
       await reveal.evaluate(node => node.scrollIntoView({ block: "center", behavior: "instant" }));
       await expect(reveal).toHaveAttribute("data-reveal", "visible");
     }
-    for (const img of await page.locator("main img").all()) {
+    for (const img of await page.locator("main").getByRole("img").all()) {
       await img.scrollIntoViewIfNeeded();
       await expect(img).toHaveJSProperty("complete", true);
       expect(await img.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
+    }
+    if (screen === "projects") {
+      const carousels = page.locator('main [data-od-id^="project-carousel-"]');
+      for (const [index, carousel] of (await carousels.all()).entries()) {
+        await expect(carousel.getByRole("status")).toHaveText(index === 0 ? "1 / 4" : "2 / 4");
+        const viewport = carousel.getByRole("group");
+        await expect.poll(() => viewport.evaluate(node => node.scrollLeft)).toBe(0);
+        await expect.poll(async () => {
+          const active = await carousel.locator('article[aria-hidden="false"]').boundingBox();
+          const frame = await viewport.boundingBox();
+          return active && frame ? Math.round(active.x - frame.x) : null;
+        }).toBe(0);
+      }
     }
     await page.evaluate(() => document.fonts.ready);
     expect(await page.locator("main").innerText()).not.toMatch(internalCopy);

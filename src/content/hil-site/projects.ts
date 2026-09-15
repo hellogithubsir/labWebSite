@@ -2,14 +2,13 @@ import type { Localized } from "./types";
 
 export interface ProjectSlide { category: string; title: string; body: string; file: string; width: number; height: number; alt: string; proofs: string[]; }
 export interface CarouselLabels { previous: string; next: string; drag: string; }
-interface ProjectsContent { lead: string; selected: string; overview: string; intro: string; systems: string[][]; elinusTitle: string; elinusIntro: string; categories: string[]; slides: ProjectSlide[]; labels: CarouselLabels; pdmTitle: string; pdmIntro: string; pdmCategories: string[]; pdmSlides: ProjectSlide[]; pdmLabels: CarouselLabels; footerTitle: string; footerBody: string; }
+interface ProjectsContent { lead: string; selected: string; overview: string; systems: string[][]; elinusTitle: string; elinusIntro: string; categories: string[]; slides: ProjectSlide[]; labels: CarouselLabels; pdmTitle: string; pdmIntro: string; pdmCategories: string[]; pdmSlides: ProjectSlide[]; pdmLabels: CarouselLabels; footerTitle: string; footerBody: string; }
 // P-01 至 P-04：最终 PNG 与交付 HTML；中文逐项对齐设计独有文案。
 export const projectsContent = {
   "en": {
     "lead": "Two independent systems show how HI Lab turns sensing, prediction and explainability into operational intelligence for senior care and industrial maintenance.",
     "selected": "Selected projects",
     "overview": "Two systems, two routes to deployment",
-    "intro": "Each case is organized as a guided horizontal story: one large interface capture, one concise explanation and four evidence-led categories.",
     "systems": [["Care Intelligence", "From ambient sensing to trusted care alerts."], ["Industrial AI", "From asset telemetry to maintenance action."]],
     "elinusTitle": "E-Linus Smart Elderly Care",
     "elinusIntro": "AI-powered early risk screening and care decision support for senior care facilities.",
@@ -76,7 +75,7 @@ export const projectsContent = {
         "title": "Remaining useful life becomes visible as it changes.",
         "body": "The interface combines component health, virtual assets, telemetry and an assistant so maintenance teams can follow deterioration without switching tools.",
         "alt": "PDM Robot remaining useful life tracking interface",
-        "proofs": ["55-second operational demonstration", "Live RUL trend and critical component health", "Assistant guidance remains beside the evidence"],
+        "proofs": ["Live RUL trend and critical component health", "Assistant guidance remains beside the evidence"],
         "file": "frame-05.png",
         "width": 900,
         "height": 600
@@ -110,7 +109,6 @@ export const projectsContent = {
     "lead": "两个独立系统展示怡和实验室如何将感知、预测与可解释性转化为服务养老照护和工业维护的运营智能。",
     "selected": "精选项目",
     "overview": "两个系统，两条部署路径",
-    "intro": "每个案例以引导式横向故事呈现：一张大型界面截图、一段简明说明，以及四类以证据为基础的信息。",
     "systems": [["照护智能", "从环境感知到可信的照护告警。"], ["工业人工智能", "从资产遥测到维护行动。"]],
     "elinusTitle": "E-Linus 智慧养老照护",
     "elinusIntro": "面向养老照护机构，提供人工智能驱动的早期风险筛查与照护决策支持。",
@@ -177,7 +175,7 @@ export const projectsContent = {
         "title": "让剩余使用寿命的变化清晰可见。",
         "body": "界面结合部件健康、虚拟资产、遥测和助手，让维护团队无需切换工具即可追踪退化过程。",
         "alt": "PDM Robot 剩余使用寿命追踪界面",
-        "proofs": ["55 秒操作演示", "实时剩余寿命趋势与关键部件健康", "助手指导与证据并列呈现"],
+        "proofs": ["实时剩余寿命趋势与关键部件健康", "助手指导与证据并列呈现"],
         "file": "frame-05.png",
         "width": 900,
         "height": 600
