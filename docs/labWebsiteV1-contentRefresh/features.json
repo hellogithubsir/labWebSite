@@ -157,6 +157,43 @@
       ],
       "origin": "plan",
       "addressesItemId": []
+    },
+    {
+      "dependsOn": [
+        "054"
+      ],
+      "touches": [
+        "README.md",
+        "docs/design-references/hil-site/content-refresh/**"
+      ],
+      "fulfills": [],
+      "expectedBehavior": [
+        "只修改README与content-refresh证据索引的待验收状态和真实证据链接，不修改产品测试或合同。",
+        "仅在054五断言均pass且053独立审查确已通过的证据基础上记录已完成项；缺失或未通过则保持待完成并报告。",
+        "最终全spec审查未完成前保持明确待审查状态，不提前关闭；保留资料未确认项和已知限制。",
+        "文档变更使用git diff --check验证，不重复运行产品门禁，不修改PIC、原素材包或用户删除状态，不push部署。"
+      ],
+      "addressesItemId": [],
+      "id": "055",
+      "description": "依据独立验证完成文档状态闭环",
+      "milestone": "content-refresh",
+      "skillName": "docs-generator",
+      "origin": "amend",
+      "cause": {
+        "kind": "receipt",
+        "featureId": "053",
+        "reason": "053收据保留待054状态需最终闭环"
+      },
+      "verification": {
+        "mode": "steps",
+        "steps": [
+          {
+            "id": "docs-diff-check",
+            "command": "git diff --check",
+            "expectedExit": "zero"
+          }
+        ]
+      }
     }
   ]
 }
