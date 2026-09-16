@@ -1,6 +1,6 @@
-.hero { position: relative; min-height: 1080px; overflow: hidden; background: #f1f9f9; }
+.hero { position: relative; min-height: 908px; overflow: hidden; background: #f1f9f9; }
 .heroCopy { position: relative; z-index: 1; padding: 20px 50px 100px; }
-.logo { display: block; width: 270px; height: auto; margin-bottom: 96px; }
+.logo { display: block; width: 270px; height: auto; margin-bottom: 64px; }
 .eyebrow { margin: 0 0 32px; color: var(--teal); font-size: 18px; font-weight: 700; text-transform: uppercase; }
 .title { margin: 0; max-width: 790px; color: var(--navy); font-size: 56px; font-weight: 700; line-height: 1.05; letter-spacing: -.01em; text-wrap: balance; }
 .titleLine { display: block; }
@@ -8,8 +8,8 @@
 html[lang="zh-CN"] .title, html[lang="zh-CN"] .sectionTitle { letter-spacing: 0; }
 /* 中文 eyebrow 无 uppercase 效果，以字距补偿视觉重量（P2-1）。 */
 html[lang="zh-CN"] .eyebrow { letter-spacing: .08em; }
-.body { max-width: 600px; margin: 100px 0 0; color: var(--muted); font-size: 18px; line-height: 1.5; }
-.actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 110px; }
+.body { max-width: 600px; margin: 48px 0 0; color: var(--muted); font-size: 18px; line-height: 1.5; }
+.actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 48px; }
 .button { min-height: 72px; padding: 0 35px; border: 0; border-radius: 999px; background: var(--navy); color: white; font-size: 16px; font-weight: 700; cursor: pointer; transition: transform 300ms var(--ease), background 300ms var(--ease); }
 .button:hover { transform: translateY(-1px); background: var(--navy-2); }
 .button:active { transform: none; transition-duration: 120ms; }
@@ -22,7 +22,7 @@ html[lang="zh-CN"] .eyebrow { letter-spacing: .08em; }
 .number { color: var(--teal); font-size: 24px; font-weight: 700; }
 .principle strong { font-size: 20px; color: var(--navy); }
 .principle p { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
-.section { padding: 80px 0 64px; }
+.section { padding: 72px 0; }
 .container { width: calc(100% - 164px); margin-inline: auto; }
 .sectionTitle { margin: 0; font-size: 46px; font-weight: 700; color: var(--navy); line-height: 1; letter-spacing: -.01em; }
 .sectionTitle span { display: block; }
@@ -45,7 +45,7 @@ html[lang="zh-CN"] .eyebrow { letter-spacing: .08em; }
 .capability h3 { margin: 0; font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1.25; }
 .capability p { max-width: 440px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
 @media (min-width: 981px) and (max-width: 1500px) {
-  .heroCopy { padding-inline: 40px; } .title { max-width: 70%; font-size: 48px; } .body { max-width: 55%; } .art { width: 100%; top: 240px; } .container { width: calc(100% - 80px); } .principle { padding-inline: 24px; gap: 14px; } .direction { padding-inline: 22px; } .capability { grid-template-columns: 65px 1fr 1fr; gap: 16px; }
+  .heroCopy { padding-inline: 40px; } .hero { min-height: 920px; } .title { max-width: 70%; font-size: 48px; } .body { max-width: 55%; } .art { width: 100%; top: 160px; } .container { width: calc(100% - 80px); } .principle { padding-inline: 24px; gap: 14px; } .direction { padding-inline: 22px; } .capability { grid-template-columns: 65px 1fr 1fr; gap: 16px; }
 }
 @media (max-width: 980px) {
   .titleLine { display: inline; } .hero { min-height: 0; } .heroCopy { padding: 28px 20px 0; } .logo { display: none; }
@@ -63,22 +63,22 @@ html[lang="zh-CN"] .eyebrow { letter-spacing: .08em; }
 /* H-04 精选复用项目页的两套系统；其余区块沿用已确认设计。 */
 .headingLink { display: block; padding: 0; border: 0; color: inherit; font: inherit; line-height: inherit; text-align: left; background: transparent; cursor: pointer; transition: color 300ms var(--ease); }
 .headingLink:hover { color: var(--teal); }
-.projectsSection { padding: 52px 0 152px; background: var(--paper); }
+.projectsSection { padding: 72px 0; background: var(--paper); }
 .projectsTitle { margin: 0; font-size: 56px; font-weight: 700; color: var(--navy); line-height: 1.1; }
-.overviewLede { max-width: 1120px; margin: 58px 0 0; font-size: 18px; line-height: 1.65; color: var(--muted); }
-.projectGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 34px; margin-top: 64px; }
+.overviewLede { max-width: 1120px; margin: 40px 0 0; font-size: 18px; line-height: 1.65; color: var(--muted); }
+.projectGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 34px; margin-top: 48px; }
 .projectGrid > div { min-width: 0; }
 .projectCard { padding: 32px; border: 1px solid var(--line); border-radius: 20px; background: white; }
 .projectCard h3 { margin: 0; color: var(--navy); font-size: 30px; font-weight: 700; line-height: 1.25; overflow-wrap: break-word; }
 .projectCard p { margin: 20px 0 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
 .projectImage { display: block; width: 100%; height: auto; margin-top: 32px; object-fit: contain; }
-.partnersLab { padding: 44px 0 86px; background: var(--ice); }
+.partnersLab { padding: 72px 0; background: var(--ice); }
 .partnersLab .overviewLede { margin-top: 38px; }
 .partnerNames { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); list-style: none; padding: 0; margin: 26px 0 0; border-block: 1px solid #a7ceca; }
 .partnerNames li { display: flex; align-items: center; justify-content: center; min-height: 76px; padding: 14px 12px; color: var(--muted); font-size: 12px; font-weight: 700; text-align: center; }
 .labTitle { margin: 18px 0 0; padding-top: 24px; border-top: 1px solid var(--line); color: var(--navy); font-size: 36px; font-weight: 700; line-height: 1.2; }
 .labLede { margin: 12px 0 0; color: var(--muted); font-size: 18px; line-height: 1.5; }
-.labGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 80px 34px; margin-top: 38px; }
+.labGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 56px 34px; margin-top: 38px; }
 .labPhoto { margin: 0; }
 .labPhoto img { display: block; width: 100%; height: auto; aspect-ratio: 1.51; object-fit: cover; border-radius: 12px; }
 .labPhoto figcaption { margin-top: 16px; }
@@ -88,7 +88,7 @@ html[lang="zh-CN"] .eyebrow { letter-spacing: .08em; }
 .labPanorama img { aspect-ratio: 5.6; }
 .labPanorama figcaption { display: grid; grid-template-columns: .4fr 1fr; align-items: baseline; }
 .labPanorama p { margin: 0; }
-.teamSection { padding: 44px 0 150px; min-height: 644px; }
+.teamSection { padding: 72px 0; }
 .teamGrid { display: grid; grid-template-columns: .9fr 1fr; gap: 66px; margin-right: 0; width: calc(100% - 82px); }
 .teamTitle { margin: 0; font-size: 50px; line-height: 1.22; font-weight: 700; color: var(--navy); }
 .teamSection .overviewLede { margin-top: 58px; }
