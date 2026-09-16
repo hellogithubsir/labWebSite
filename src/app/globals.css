@@ -24,5 +24,5 @@ body { min-height: 100vh; margin: 0; color: var(--ink); background: var(--paper)
 img, video { display: block; max-width: 100%; }
 button, input, select { font: inherit; }
 button, a { color: inherit; }
-:focus-visible { outline: 3px solid rgba(40, 180, 204, .72); outline-offset: 4px; }
+:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

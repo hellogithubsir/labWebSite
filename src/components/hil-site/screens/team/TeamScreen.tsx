@@ -19,7 +19,7 @@ export function TeamScreen({ locale, onNavigate }: { locale: Locale; onNavigate:
 
   return <div className={styles.screen}>
     <header className={styles.hero} data-od-id="team-hero"><div className={styles.container}>
-      <Image className={styles.logo} src="/images/hil-site/shared/logo.png" alt={shared.logoAlt} width={1486} height={642} priority />
+      <Image className={styles.logo} src="/images/hil-site/shared/logo-compact.png" alt={shared.logoAlt} width={540} height={233} priority />
       <div className={styles.heroGrid}><div><p className={styles.eyebrow}>{shared.labels.team}</p><h1>{shared.titles.team}</h1></div><p className={styles.lead}>{copy.intro}</p></div>
     </div></header>
     <section className={styles.introduction} aria-labelledby="team-introduction-title" data-od-id="team-introduction"><div className={styles.container}><ScrollReveal>
@@ -38,7 +38,7 @@ export function TeamScreen({ locale, onNavigate }: { locale: Locale; onNavigate:
       <p className={styles.eyebrow}>{copy.compositionLabel}</p><h2 id="team-composition-title">{copy.compositionTitle}</h2><dl className={styles.metrics}>{copy.metrics.map(metric => <div key={metric.label}><dd>{metric.count}</dd><dt>{metric.label}</dt><dd>{metric.note}</dd></div>)}</dl>
     </ScrollReveal></div></section>
     <section className={styles.directory} aria-labelledby="team-members-title" data-od-id="team-members"><div className={styles.container}>
-      <ScrollReveal><p className={styles.eyebrow}>{copy.membersLabel}</p><h2 id="team-members-title">{copy.membersTitle}</h2>
+      <ScrollReveal><p className={styles.eyebrow}>{copy.membersLabel}</p><h2 id="team-members-title">{copy.membersTitle}</h2><p className={styles.membersNote} data-od-id="team-members-note">{copy.membersNote}</p>
         <div className={styles.filters} role="group" aria-label={copy.filterLabel}>{filters.map((value, index) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)} data-od-id={`team-filter-${value}`}>{copy.filters[index]}</button>)}</div>
       </ScrollReveal>
       <div className={styles.members} key={filter}>{members.map(member => <article className={styles.member} key={member.id} data-od-id={`team-${member.id.toLowerCase()}`} data-member-type={member.type}>

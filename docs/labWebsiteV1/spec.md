@@ -1,5 +1,9 @@
 # Harmonizing Intelligence Lab Website V1
 
+## 2026-09-16 首页与子页内容一致性（用户批准）
+
+当前首页精选改为E-Linus与PDM Robot，直接读取项目页正式介绍和截图；技术摘要与伙伴名称读取子页正式数据。Jeff按用户确认改为博士毕业生，博士毕业/在读统计04/06，公开名单毕业7人、在读2人。覆盖旧首页三项精选及旧Jeff在读角色要求，其余原设计保持。详情、排除范围与验收见[一致性规格](../labWebsiteV1-contentConsistency/spec.md)，运行证据见[一致性修正记录](../design-references/hil-site/content-consistency-evidence.md)。
+
 ## 2026-09-16 技术优势页改版（用户批准）
 
 本补充替代原技术优势页的三项表格、现场照片带及五项折叠交互；其他画面、导航和语言状态保持当前实现。

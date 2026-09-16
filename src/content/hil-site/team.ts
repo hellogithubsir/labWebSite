@@ -1,8 +1,10 @@
 import type { Locale } from "./types";
 
+const jeffName = { en: "Dr. Jeff Wang", "zh-CN": "王泓清博士（Jeff Wang）" };
+
 export type MemberFilter = "all" | "graduate" | "candidate";
 interface TeamMember { id: string; name: string; status: string; bio: string; type: Exclude<MemberFilter, "all"> }
-interface TeamCopy { members: TeamMember[]; metrics: { label: string; count: string; note: string }[]; intro: string; introLabel: string; introTitle: string; statement: string; leadershipLabel: string; leadershipTitle: string; piName: string; piRole: string[]; affiliation: string; interests: string; bio: string; areasLabel: string; areas: string; outputsLabel: string; outputs: string; piAlt: string; profiles: { name: string; role: string; interests: string; bio?: string; email?: string }[]; compositionLabel: string; compositionTitle: string; membersLabel: string; membersTitle: string; filterLabel: string; filters: string[]; footerTitle: string; footerBody: string }
+interface TeamCopy { members: TeamMember[]; metrics: { label: string; count: string; note: string }[]; intro: string; introLabel: string; introTitle: string; statement: string; leadershipLabel: string; leadershipTitle: string; piName: string; piRole: string[]; affiliation: string; interests: string; bio: string; areasLabel: string; areas: string; outputsLabel: string; outputs: string; piAlt: string; profiles: { name: string; role: string; interests: string; bio?: string; email?: string }[]; compositionLabel: string; compositionTitle: string; membersLabel: string; membersTitle: string; membersNote: string; filterLabel: string; filters: string[]; footerTitle: string; footerBody: string }
 
 // T-01–T-04：英文依最终 PNG 与随附 HTML，中文按同编号已交付文案适配。
 export const teamContent = {
@@ -31,10 +33,10 @@ export const teamContent = {
       },
       {
         "id": "T-04-04",
-        "name": "Wang Hongqing",
-        "status": "PhD Candidate",
-        "bio": "Develops lightweight object detection models for complex traffic scenes.",
-        "type": "candidate"
+        "name": jeffName.en,
+        "status": "PhD Graduate",
+        "bio": "Academic publishing name: Wang Hongqing. Develops lightweight object detection models for complex traffic scenes.",
+        "type": "graduate"
       },
       {
         "id": "T-04-05",
@@ -75,12 +77,12 @@ export const teamContent = {
     "metrics": [
       {
         "label": "PhD graduates",
-        "count": "03",
+        "count": "04",
         "note": "2 completed as Main Supervisor"
       },
       {
         "label": "PhD candidates",
-        "count": "07",
+        "count": "06",
         "note": "Deep Learning & Multimodal Analysis"
       },
       {
@@ -115,7 +117,7 @@ export const teamContent = {
     "piAlt": "Portrait of Dr. Chaw Jun Kit, Principal Investigator",
     "profiles": [
       {
-        "name": "Dr. Jeff Wang",
+        "name": jeffName.en,
         "role": "Chief Technology Officer",
         "interests": "Computer Vision / Lightweight Object Detection",
         "bio": "Develops lightweight object detection models for complex traffic scenes.",
@@ -132,10 +134,11 @@ export const teamContent = {
     "compositionTitle": "Research training across doctoral and master levels",
     "membersLabel": "Members",
     "membersTitle": "Meet our researchers",
+    "membersNote": "The list below shows selected researchers; its size differs from the team composition totals above.",
 
     "filterLabel": "Filter team members",
     "filters": [
-      "All members",
+      "All listed members",
       "Graduates",
       "Candidates"
     ],
@@ -168,10 +171,10 @@ export const teamContent = {
       },
       {
         "id": "T-04-04",
-        "name": "王泓清（Wang Hongqing）",
-        "status": "博士研究生",
-        "bio": "开发适用于复杂交通场景的轻量化目标检测模型。",
-        "type": "candidate"
+        "name": jeffName["zh-CN"],
+        "status": "博士毕业生",
+        "bio": "学术署名：Wang Hongqing。开发适用于复杂交通场景的轻量化目标检测模型。",
+        "type": "graduate"
       },
       {
         "id": "T-04-05",
@@ -212,12 +215,12 @@ export const teamContent = {
     "metrics": [
       {
         "label": "博士毕业生",
-        "count": "03",
+        "count": "04",
         "note": "作为主要导师已培养 2 名毕业生"
       },
       {
         "label": "博士研究生",
-        "count": "07",
+        "count": "06",
         "note": "研究重点：深度学习与多模态分析"
       },
       {
@@ -231,7 +234,7 @@ export const teamContent = {
         "note": "研究重点：应用算法"
       }
     ],
-    "intro": "怡和实验室汇聚计算机视觉、应用机器学习与人工智能系统设计领域的优秀人才。团队成员重点深耕数字健康、端侧智能和大语言模型编排。",
+    "intro": "怡合智能汇聚计算机视觉、应用机器学习与人工智能系统设计领域的优秀人才。团队成员重点深耕数字健康、端侧智能和大语言模型编排。",
     "introLabel": "研究团队与学术网络",
     "introTitle": "连接理论、系统与实践的团队",
     "statement": "团队结合博士与硕士层次的科研训练、课题负责人指导、应用研究领导力和面向部署的项目实践，贯通三大相互关联的研究方向。",
@@ -252,7 +255,7 @@ export const teamContent = {
     "piAlt": "课题负责人周俊杰博士的肖像",
     "profiles": [
       {
-        "name": "王泓清博士（Jeff Wang）",
+        "name": jeffName["zh-CN"],
         "role": "首席技术官",
         "interests": "计算机视觉 / 轻量化目标检测",
         "bio": "开发适用于复杂交通场景的轻量化目标检测模型。",
@@ -269,10 +272,11 @@ export const teamContent = {
     "compositionTitle": "覆盖博士与硕士层次的科研训练",
     "membersLabel": "核心成员",
     "membersTitle": "认识我们的研究人员",
+    "membersNote": "以下展示部分研究人员，名单数量不等同于上方团队构成统计。",
 
     "filterLabel": "筛选团队成员",
     "filters": [
-      "全部成员",
+      "全部展示成员",
       "毕业生",
       "在读研究生"
     ],

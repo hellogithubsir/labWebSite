@@ -24,6 +24,10 @@ Playwright 独占 `127.0.0.1:3000`，`reuseExistingServer=false`；不要与其�
 
 ## V1 交付状态
 
+### 首页与子页一致性（2026-09-16）
+
+首页精选统一为E-Linus与PDM Robot，标题、简介和截图直接复用项目页；技术摘要与伙伴名称同样读取子页正式数据。Jeff按用户确认改为博士毕业生，博士毕业/在读统计04/06，九人展示名单毕业7人、在读2人，并增加部分名单说明。研究方向页及项目成果回填不在本轮范围。见[一致性规格](docs/labWebsiteV1-contentConsistency/spec.md)与[执行证据](docs/design-references/hil-site/content-consistency-evidence.md)。
+
 ### 技术优势页改版（2026-09-16）
 
 技术优势页按 V4 内容展示八项默认展开的独立图文区块，01—03 为核心技术、04—08 为前沿储备。配图为可缩放 SVG 与双语文字；手机重排流程，页脚提供项目和联系入口。原表格、照片带与折叠交互由此布局替代，首页摘要及其他画面保持。设计依据与验收见[技术优势改版记录](docs/design-references/hil-site/advantages-refresh-evidence.md)。

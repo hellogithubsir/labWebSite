@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { getSelectedProjects } from "@/content/hil-site/projects";
+import { partners } from "@/content/hil-site/partners";
 import { teamContent } from "@/content/hil-site/team";
 import { homeOverviewContent } from "@/content/hil-site/home";
 import type { Locale } from "@/content/hil-site/types";
@@ -6,6 +8,9 @@ import type { ScreenId } from "@/types/hil-site";
 import { ScrollReveal } from "../../ScrollReveal";
 import { SiteFooter } from "../../SiteFooter";
 import styles from "./HomeScreen.module.css";
+
+const partnerIds = ["advantech", "hilti", "tokio-dynafront", "xmum", "leeds-beckett", "three-opp"];
+const selectedPartners = partnerIds.map(id => partners.find(partner => partner.id === id)!);
 
 const photos = [["vision", 467, 305], ["hardware", 478, 305], ["prototype", 472, 305], ["environment", 1457, 278]] as const;
 
@@ -17,19 +22,19 @@ export function HomeOverviewSections({ locale, onNavigate }: { locale: Locale; o
       <div className={styles.container}>
         <ScrollReveal><h2 id="home-projects-title" className={styles.projectsTitle}><button className={styles.headingLink} onClick={() => onNavigate("projects")}>{c.projectsTitle}</button></h2><p className={styles.overviewLede}>{c.projectsLede}</p></ScrollReveal>
         <div className={styles.projectGrid}>
-          <ScrollReveal className={styles.projectFeature}><article>
-            <p className={styles.featuredLabel}>{c.featured}</p>
-            <div className={styles.featureCopy}><h3>{c.projects[0][0]}</h3><p>{c.projects[0][1]}</p></div>
-            <Image className={styles.projectArt} src="/images/hil-site/home/selected-project-art.png" width={504} height={550} alt={c.projectAlt} />
-          </article></ScrollReveal>
-          <div className={styles.projectStack}>{c.projects.slice(1).map(([title, body]) => <ScrollReveal key={title}><article><h3>{title}</h3><p>{body}</p></article></ScrollReveal>)}</div>
+          {getSelectedProjects(locale).map(project => <ScrollReveal key={project.id}>
+            <article className={styles.projectCard} data-od-id={`home-project-${project.id}`}>
+              <h3>{project.title}</h3><p>{project.description}</p>
+              <Image className={styles.projectImage} src={`/images/hil-site/projects/${project.image.file}`} width={project.image.width} height={project.image.height} alt={project.image.alt} sizes="(max-width: 980px) 90vw, 45vw" />
+            </article>
+          </ScrollReveal>)}
         </div>
       </div>
     </section>
     <div className={styles.partnersLab}>
       <section className={styles.container} aria-labelledby="home-partners-title" data-od-id="home-partners">
         <ScrollReveal><h2 id="home-partners-title" className={styles.sectionTitle}><button className={styles.headingLink} onClick={() => onNavigate("partners")}>{c.partnersTitle}</button></h2><p className={styles.overviewLede}>{c.partnersLede}</p></ScrollReveal>
-        <ScrollReveal><ul className={styles.partnerNames}>{c.partners.map(name => <li key={name}>{name}</li>)}</ul></ScrollReveal>
+        <ScrollReveal><ul className={styles.partnerNames}>{selectedPartners.map(partner => <li key={partner.id}>{partner.name[locale]}</li>)}</ul></ScrollReveal>
       </section>
       <section className={styles.container} aria-labelledby="home-lab-title" data-od-id="home-lab">
         <ScrollReveal><h2 id="home-lab-title" className={styles.labTitle}>{c.labTitle}</h2><p className={styles.labLede}>{c.labLede}</p></ScrollReveal>

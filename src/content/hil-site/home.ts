@@ -14,11 +14,6 @@ export const homeContent = {
     ],
     capabilityTitle: ["From models to the field,", "capability stays in motion."],
 
-    capabilities: [
-      ["Predictive Analytics & Knowledge Distillation", "Maintains exceptionally high predictive accuracy even in noisy or resource-constrained industrial environments."],
-      ["LLM & Multi-modal Emotional Orchestration", "Empowers AI systems with profound context-awareness and empathy."],
-      ["Hardware-Optimized Edge Vision Detection", "Achieves millisecond-level real-time visual perception without cloud reliance."],
-    ],
     types: ["AI", "DATA", "EDGE"],
   },
   "zh-CN": {
@@ -33,16 +28,11 @@ export const homeContent = {
     ],
     capabilityTitle: ["从模型到现场，", "让能力持续落地。"],
 
-    capabilities: [
-      ["预测分析与知识蒸馏", "即使在噪声较多或资源受限的工业环境中，也能保持极高的预测准确率。"],
-      ["大语言模型与多模态情绪编排", "赋予人工智能系统深层的情境感知和同理心。"],
-      ["面向硬件优化的边缘视觉检测", "在完全不依赖云端的情况下实现毫秒级实时视觉感知。"],
-    ],
     types: ["人工智能", "数据", "边缘"],
   },
 } satisfies Record<Locale, {
   body: string; principles: string[][]; researchTitle: string[]; researchLede: string;
-  directions: string[][]; capabilityTitle: string[]; capabilities: string[][]; types: string[];
+  directions: string[][]; capabilityTitle: string[]; types: string[];
 }>;
 
 // H-04–H-07：最终 PNG 文案优先于源 HTML，中文保留编号对应的专名。
@@ -50,16 +40,8 @@ export const homeOverviewContent = {
   en: {
     projectsTitle: "Selected projects",
     projectsLede: "Managing over RM 1.2M in research funding, our projects drive tangible B2B and enterprise value across smart manufacturing, digital health, and national civic infrastructure.",
-    featured: "FEATURED PROJECT",
-    projects: [
-      ["Smart Grocer: Edge AI Produce Recognition System", "Eliminated manual entry and drastically improved checkout speeds; key findings published in IET Image Processing."],
-      ["Integrated Digital Concierge with Real-Time Avatar Based on AI-RAG", "Successfully funded and actively deployed as a core civic empowerment tool (2026–2027)."],
-      ["Technical and Operational Design for National Address Systems (NAS)", "Secured multiple industrial grants (RM 50k+ each), laying the foundation for Malaysia's digital transformation."],
-    ],
-    projectAlt: "Organic intelligence artwork representing the Smart Grocer project",
     partnersTitle: "Partners",
     partnersLede: "The HI Lab maintains close, active collaborations with global tech leaders and top-tier academic institutions to drive the R&D and deployment of Edge Computing and Medical AI.",
-    partners: ["Advantech", "HILTI Asia IT Services", "Tokio Marine & Dynafront", "Xiamen University Malaysia", "Leeds Beckett University", "Three-Opp (M) Sdn. Bhd."],
     labTitle: "Inside the Lab",
     labLede: "Shared spaces connect model review, hardware validation and prototype testing.",
     photos: [
@@ -76,16 +58,8 @@ export const homeOverviewContent = {
   "zh-CN": {
     projectsTitle: "精选项目",
     projectsLede: "我们管理超过 120 万令吉的科研经费，通过项目为智慧制造、数字健康和国家民生基础设施创造切实的企业应用价值。",
-    featured: "重点项目",
-    projects: [
-      ["Smart Grocer：边缘人工智能生鲜识别系统", "消除人工录入，大幅提升结账速度；关键研究成果发表于 IET Image Processing。"],
-      ["基于检索增强生成（RAG）的实时虚拟形象一体化数字礼宾", "已成功获得资助，并作为核心民生赋能工具积极部署（2026–2027）。"],
-      ["国家地址系统（NAS）的技术与运营设计", "获得多项产业基金（每项超过 5 万令吉），为马来西亚的数字化转型奠定基础。"],
-    ],
-    projectAlt: "代表 Smart Grocer 项目的有机智能艺术图",
     partnersTitle: "合作伙伴",
-    partnersLede: "怡和实验室与全球科技领军企业及一流学术机构保持紧密、活跃的合作，推动边缘计算与医学人工智能的研发和部署。",
-    partners: ["研华科技", "HILTI 亚洲 IT 服务", "东京海上与 Dynafront", "厦门大学马来西亚分校", "利兹贝克特大学", "Three-Opp (M) Sdn. Bhd."],
+    partnersLede: "怡合智能与全球科技领军企业及一流学术机构保持紧密、活跃的合作，推动边缘计算与医学人工智能的研发和部署。",
     labTitle: "走进实验室",
     labLede: "共享空间连接模型评审、硬件验证与原型测试。",
     photos: [
@@ -100,7 +74,7 @@ export const homeOverviewContent = {
     footerBody: "我们积极寻求边缘人工智能研发领域的企业合作、跨学科医学数据合作，并招募高度自驱的研究生（硕士 / 博士）。",
   },
 } satisfies Record<Locale, {
-  projectsTitle: string; projectsLede: string; featured: string; projects: string[][]; projectAlt: string;
-  partnersTitle: string; partnersLede: string; partners: string[]; labTitle: string; labLede: string; photos: string[][];
+  projectsTitle: string; projectsLede: string;
+  partnersTitle: string; partnersLede: string; labTitle: string; labLede: string; photos: string[][];
   teamTitle: string; teamLede: string; footerTitle: string; footerBody: string;
 }>;

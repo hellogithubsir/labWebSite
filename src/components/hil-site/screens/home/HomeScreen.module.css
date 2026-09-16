@@ -1,13 +1,17 @@
 .hero { position: relative; min-height: 1080px; overflow: hidden; background: #f1f9f9; }
 .heroCopy { position: relative; z-index: 1; padding: 20px 50px 100px; }
-.logo { display: block; width: 270px; height: auto; margin-bottom: 130px; }
+.logo { display: block; width: 270px; height: auto; margin-bottom: 96px; }
 .eyebrow { margin: 0 0 32px; color: var(--teal); font-size: 18px; font-weight: 700; text-transform: uppercase; }
-.title { margin: 0; max-width: 790px; color: var(--navy); font-size: 56px; font-weight: 700; line-height: 1.05; letter-spacing: -.01em; }
+.title { margin: 0; max-width: 790px; color: var(--navy); font-size: 56px; font-weight: 700; line-height: 1.05; letter-spacing: -.01em; text-wrap: balance; }
 .titleLine { display: block; }
+/* 中文方块字负字距无收益且有粘连风险（P2-1）；zh 归零。 */
+html[lang="zh-CN"] .title, html[lang="zh-CN"] .sectionTitle { letter-spacing: 0; }
+/* 中文 eyebrow 无 uppercase 效果，以字距补偿视觉重量（P2-1）。 */
+html[lang="zh-CN"] .eyebrow { letter-spacing: .08em; }
 .body { max-width: 600px; margin: 100px 0 0; color: var(--muted); font-size: 18px; line-height: 1.5; }
 .actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 110px; }
 .button { min-height: 72px; padding: 0 35px; border: 0; border-radius: 999px; background: var(--navy); color: white; font-size: 16px; font-weight: 700; cursor: pointer; transition: transform 300ms var(--ease), background 300ms var(--ease); }
-.button:hover { transform: translateY(-2px); background: var(--navy-2); }
+.button:hover { transform: translateY(-1px); background: var(--navy-2); }
 .button:active { transform: none; transition-duration: 120ms; }
 .secondary { color: var(--navy); background: #e4f3f2; }
 .secondary:hover { background: #d7ecea; }
@@ -44,10 +48,10 @@
   .heroCopy { padding-inline: 40px; } .title { max-width: 70%; font-size: 48px; } .body { max-width: 55%; } .art { width: 100%; top: 240px; } .container { width: calc(100% - 80px); } .principle { padding-inline: 24px; gap: 14px; } .direction { padding-inline: 22px; } .capability { grid-template-columns: 65px 1fr 1fr; gap: 16px; }
 }
 @media (max-width: 980px) {
-  .titleLine { display: inline; } .hero { min-height: 0; } .heroCopy { padding: 28px 20px 0; } .logo { width: 210px; margin-bottom: 64px; }
+  .titleLine { display: inline; } .hero { min-height: 0; } .heroCopy { padding: 28px 20px 0; } .logo { display: none; }
   .eyebrow { font-size: 12px; margin-bottom: 24px; } .title { font-size: clamp(36px,8vw,56px); line-height: 1.08; }
   .body { max-width: none; margin-top: 32px; font-size: 16px; line-height: 1.6; } .actions { margin-top: 32px; gap: 12px; }
-  .button { min-height: 48px; padding: 0 24px; font-size: 14px; flex: 1 1 150px; } .art { position: relative; top: auto; display: block; width: 100%; height: auto; margin-top: 32px; mix-blend-mode: normal; }
+  .button { min-height: 48px; padding: 0 24px; font-size: 14px; flex: 1 1 150px; } .art { position: relative; top: auto; display: block; width: 100%; height: auto; margin-top: 32px; max-height: 42vh; object-fit: cover; object-position: 65% 45%; mix-blend-mode: normal; }
   .principles { grid-template-columns: 1fr; padding: 0; } .principle { padding: 24px 20px; gap: 24px; } .principle + .principle { border-left: 0; border-top: 1px solid var(--line); }
   .principle p { font-size: 14px; } .section, .research { padding-block: 64px; } .container { width: calc(100% - 40px); }
   .sectionTitle { font-size: clamp(32px,8vw,46px); line-height: 1.08; } .band { grid-template-columns: 1fr; margin-top: 40px; }
@@ -56,24 +60,18 @@
 }
 @media (prefers-reduced-motion: reduce) { .button { transition: none; } }
 
-/* H-04–H-06：尺寸以最终 PNG 下半部为准，不继承源 HTML 的旧版卡片布局。 */
+/* H-04 精选复用项目页的两套系统；其余区块沿用已确认设计。 */
 .headingLink { display: block; padding: 0; border: 0; color: inherit; font: inherit; line-height: inherit; text-align: left; background: transparent; cursor: pointer; transition: color 300ms var(--ease); }
 .headingLink:hover { color: var(--teal); }
 .projectsSection { padding: 52px 0 152px; background: var(--paper); }
 .projectsTitle { margin: 0; font-size: 56px; font-weight: 700; color: var(--navy); line-height: 1.1; }
 .overviewLede { max-width: 1120px; margin: 58px 0 0; font-size: 18px; line-height: 1.65; color: var(--muted); }
-.projectGrid { display: grid; grid-template-columns: 1.75fr 1fr; gap: 34px; margin-top: 94px; margin-right: -82px; }
-.projectFeature { position: relative; min-height: 672px; overflow: hidden; border-radius: 20px; background: #ebf8f6; }
-.featuredLabel { margin: 30px 46px 0; color: var(--teal); font-size: 16px; font-weight: 700; }
-.featureCopy { position: relative; z-index: 1; width: 52%; padding-left: 46px; margin-top: 180px; }
-.featureCopy h3 { margin: 0; font-size: 36px; font-weight: 700; color: var(--navy); line-height: 1.25; }
-.featureCopy p { margin: 16px 0 0; font-size: 18px; line-height: 1.55; color: var(--muted); }
-.projectArt { position: absolute; right: 0; bottom: 22px; width: 53.4%; height: auto; object-fit: contain; }
-.projectStack { display: grid; gap: 20px; }
-.projectStack > div { min-width: 0; }
-.projectStack article { height: 100%; min-height: 324px; padding: 30px 46px; border: 1px solid var(--line); border-radius: 20px; background: white; }
-.projectStack h3 { margin: 0; font-size: 25px; line-height: 1.3; color: var(--navy); font-weight: 700; }
-.projectStack p { margin: 48px 0 0; font-size: 16px; line-height: 1.65; color: var(--muted); }
+.projectGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 34px; margin-top: 64px; }
+.projectGrid > div { min-width: 0; }
+.projectCard { padding: 32px; border: 1px solid var(--line); border-radius: 20px; background: white; }
+.projectCard h3 { margin: 0; color: var(--navy); font-size: 30px; font-weight: 700; line-height: 1.25; overflow-wrap: break-word; }
+.projectCard p { margin: 20px 0 0; color: var(--muted); font-size: 18px; line-height: 1.6; }
+.projectImage { display: block; width: 100%; height: auto; margin-top: 32px; object-fit: contain; }
 .partnersLab { padding: 44px 0 86px; background: var(--ice); }
 .partnersLab .overviewLede { margin-top: 38px; }
 .partnerNames { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); list-style: none; padding: 0; margin: 26px 0 0; border-block: 1px solid #a7ceca; }
@@ -100,17 +98,14 @@
 .members strong { font-size: 22px; color: var(--navy); }
 .members span { padding-top: 6px; color: var(--muted); font-size: 16px; line-height: 1.5; }
 @media (min-width: 981px) and (max-width: 1500px) {
-  .projectGrid { margin-right: 0; grid-template-columns: 1.3fr 1fr; gap: 24px; } .featureCopy { width: 65%; padding-left: 24px; } .featureCopy h3 { font-size: 30px; } .projectStack article { padding-inline: 24px; }
+  .projectGrid { gap: 24px; } .projectCard { padding: 24px; }
   .teamGrid { width: calc(100% - 80px); margin-inline: auto; gap: 32px; } .teamTitle { font-size: 40px; } .members li > div { grid-template-columns: 1fr; gap: 6px; }
 }
 @media (max-width: 980px) {
   .projectsSection, .partnersLab, .teamSection { padding-block: 64px; min-height: 0; } .projectsTitle { font-size: 36px; }
   .overviewLede, .partnersLab .overviewLede, .teamSection .overviewLede { margin-top: 24px; font-size: 16px; line-height: 1.6; }
-  .projectGrid { grid-template-columns: 1fr; gap: 24px; margin: 32px 0 0; } .projectFeature { min-height: 0; }
-  .featuredLabel { margin: 24px 24px 0; font-size: 12px; } .featureCopy { width: auto; margin-top: 36px; padding-inline: 24px; }
-  .featureCopy h3 { font-size: 28px; line-height: 1.2; } .featureCopy p { font-size: 16px; }
-  .projectArt { position: static; display: block; width: 100%; height: auto; margin-top: 12px; object-fit: contain; }
-  .projectStack article { min-height: 0; padding: 28px 24px; } .projectStack h3 { font-size: 25px; } .projectStack p { margin-top: 24px; font-size: 16px; }
+  .projectGrid { grid-template-columns: 1fr; gap: 24px; margin-top: 32px; }
+  .projectCard { padding: 24px; } .projectCard h3 { font-size: 28px; } .projectCard p { font-size: 16px; }
   .partnerNames { grid-template-columns: 1fr; } .partnerNames li { min-height: 64px; font-size: 14px; } .partnerNames li + li { border-top: 1px solid var(--line); }
   .labTitle { margin-top: 40px; font-size: 32px; } .labLede { font-size: 16px; }
   .labGrid { grid-template-columns: 1fr; gap: 32px; margin-top: 28px; } .labPanorama { grid-column: auto; }

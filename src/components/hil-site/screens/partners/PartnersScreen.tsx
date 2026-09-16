@@ -11,7 +11,7 @@ export function PartnersScreen({ locale, onNavigate }: { locale: Locale; onNavig
   const copy = partnersContent[locale], shared = sharedContent[locale];
   return <div className={styles.screen}>
     <header className={styles.hero} data-od-id="partners-hero"><div className={styles.container}>
-      <Image className={styles.logo} src="/images/hil-site/shared/logo.png" alt={shared.logoAlt} width={1486} height={642} priority />
+      <Image className={styles.logo} src="/images/hil-site/shared/logo-compact.png" alt={shared.logoAlt} width={540} height={233} priority />
       <div className={styles.heroGrid}><div><p className={styles.eyebrow}>{shared.labels.partners}</p><h1>{shared.titles.partners}</h1></div><p className={styles.lead}>{copy.intro}</p></div>
     </div></header>
     <section className={styles.introduction} aria-labelledby="partners-introduction-title" data-od-id="partners-introduction"><div className={styles.container}><ScrollReveal>

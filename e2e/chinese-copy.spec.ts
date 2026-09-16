@@ -5,12 +5,12 @@ test("Chinese copy uses corrected names and natural labels across seven screens"
   await page.goto("/");
   await page.getByRole("button", { name: "切换为中文", exact: true }).click();
   const checks = [
-    ["home", ["数字健康", "边缘智能", "智能体", "企业应用价值", "基于检索增强生成（RAG）的实时虚拟形象一体化数字礼宾", "怡和实验室与", "王泓清博士（Jeff Wang）", "周俊杰博士（Chaw Jun Kit）"]],
+    ["home", ["数字健康", "边缘智能", "智能体", "企业应用价值", "E-Linus 智慧养老照护", "PDM Robot 资产剩余寿命监测", "怡合智能与", "王泓清博士（Jeff Wang）", "周俊杰博士（Chaw Jun Kit）"]],
     ["research", ["数字健康与医学影像分析", "边缘智能与端侧视觉", "多智能体系统与自然语言处理", "通过检索增强生成（RAG）技术", "基于检索增强生成（RAG）的数字礼宾"]],
     ["projects", ["PDM Robot"]],
     ["advantages", ["跨模型技能编译与运行治理", "用户可控的分层人工智能记忆", "设备端智能体与硬件协同", "前沿技术储备"]],
     ["partners", ["Mobiva"]],
-    ["team", ["王泓清博士（Jeff Wang）", "王泓清（Wang Hongqing）", "周俊杰博士（Chaw Jun Kit）", "数字健康 / 边缘智能 / 智能体", "hongqing.wang812@gmail.com", "Wendy Leong Pooi Yan"]],
+    ["team", ["王泓清博士（Jeff Wang）", "学术署名：Wang Hongqing", "周俊杰博士（Chaw Jun Kit）", "数字健康 / 边缘智能 / 智能体", "hongqing.wang812@gmail.com", "Wendy Leong Pooi Yan"]],
     ["contact", ["企业合作基金", "检索增强生成（RAG）智能体与数字礼宾", "一区期刊论文", "马来西亚国民大学校历", "访问学术主页"]],
   ] as const;
   for (const [screen, phrases] of checks) {

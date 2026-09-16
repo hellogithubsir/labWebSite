@@ -14,19 +14,20 @@ export function HilSiteShell() {
   const [locale, setLocale] = useState<Locale>("en");
   const content = sharedContent[locale];
   useEffect(() => { document.documentElement.lang = locale; }, [locale]);
-  const { screen, phase, navigate, completePhase } = usePageTurnTransition();
+  const { screen, phase, navigate, onTransitionAnimationEnd, pendingTarget } = usePageTurnTransition();
   const [menuOpen, setMenuOpen] = useState(false);
   const index = screenSequence.indexOf(screen);
+  const activeScreen = pendingTarget ?? screen;
   const screenProps = { screen, labels: content.labels, titles: content.titles, logoAlt: content.logoAlt, locale, onNavigate: navigate };
   return (
     <div className={styles.shell} style={{ "--screen-index": index } as CSSProperties}>
       <button className={styles.skip} onClick={() => document.getElementById("site-content")?.focus()}>{content.skip}</button>
-      <ScreenNavigation screen={screen} onNavigate={navigate} labels={content.labels}
+      <ScreenNavigation screen={activeScreen} onNavigate={navigate} labels={content.labels}
         menuOpen={menuOpen} onMenuOpenChange={setMenuOpen}
         navigationLabel={content.navigation} menuLabel={content.menu} closeMenuLabel={content.closeMenu} brandLabel={content.brand}
         languageControl={<LocaleControl locale={locale} onLocaleChange={setLocale} />} />
       <div className={styles.frame} inert={menuOpen}>
-        <PageTurnTransition phase={phase} onComplete={completePhase}>
+        <PageTurnTransition phase={phase} onAnimationEnd={onTransitionAnimationEnd}>
           <ScreenRenderer {...screenProps} />
         </PageTurnTransition>
       </div>

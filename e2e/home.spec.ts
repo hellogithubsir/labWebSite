@@ -63,7 +63,7 @@ for (const width of [1920, 390, 320]) {
         await page.getByRole("button", { name: "切换为中文", exact: true }).click();
         if (width < 981) { await page.keyboard.press("Escape"); await expect(page.locator("#screen-navigation")).toHaveCSS("visibility", "hidden"); }
       }
-      await expect(page.locator('[data-od-id="home-projects"] article')).toHaveCount(3);
+      await expect(page.locator('[data-od-id="home-projects"] article')).toHaveCount(2);
       await expect(page.locator('[data-od-id="home-partners"] li')).toHaveCount(6);
       await expect(page.locator('[data-od-id="home-lab"] figure')).toHaveCount(4);
       await expect(page.locator('[data-od-id="home-team"] li')).toHaveCount(3);

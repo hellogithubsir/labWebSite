@@ -13,7 +13,7 @@ export const partnersContent = {
     footerBody: "For industry, academic and cross-disciplinary collaboration in Edge AI, Medical AI and autonomous systems.",
   },
   "zh-CN": {
-    intro: "怡和实验室与全球科技领军企业和一流学术机构保持紧密、活跃的合作，共同推动边缘计算与医学人工智能的研发和部署。",
+    intro: "怡合智能与全球科技领军企业和一流学术机构保持紧密、活跃的合作，共同推动边缘计算与医学人工智能的研发和部署。",
     introductionLabel: "合作概览",
     introductionTitle: "以应用研究连接合作伙伴",
     introduction: "产业伙伴提供部署约束与现场数据。学术伙伴提供共享方法、评估与发表渠道。实验室通过边缘计算与医学人工智能连接双方。",

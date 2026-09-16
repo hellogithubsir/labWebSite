@@ -22,7 +22,7 @@ export function ResearchScreen({ locale, onNavigate }: { locale: Locale; onNavig
   return <div className={styles.screen}>
     <header className={styles.hero} data-od-id="research-hero">
       <div className={styles.heroCopy}>
-        <Image className={styles.logo} src="/images/hil-site/shared/logo.png" alt={shared.logoAlt} width={1486} height={642} priority />
+        <Image className={styles.logo} src="/images/hil-site/shared/logo-compact.png" alt={shared.logoAlt} width={540} height={233} priority />
         <p className={styles.eyebrow}>{shared.labels.research}</p><h1>{shared.titles.research}</h1>
         <p className={styles.lead}>{copy.lead}</p><p className={styles.intro}>{copy.intro}</p>
         <button className={styles.button} onClick={explore} data-od-id="research-explore">{copy.explore}</button>

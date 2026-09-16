@@ -1,11 +1,9 @@
-/* 700ms 提交截断旧内容淡出；入场的 500ms 等待与 300ms 淡入由同一动画结束事件解锁。 */
-.out { animation: fade-out 300ms ease 500ms both; }
-.in { animation: fade-in 300ms ease 500ms both; }
-.out footer { transform: translateY(100vh); transition: transform 300ms ease; }
-.in footer { transform: none; }
+/* FR-011 整页过场：250ms ease-out 淡入淡出，无方向滑动。
+   事件驱动（onAnimationEnd 提交），无散落定时器；out 结束即 commit + in。 */
+.out { animation: fade-out 250ms ease-out both; }
+.in { animation: fade-in 250ms ease-out both; }
 @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
   .out, .in { animation: none; opacity: 1; }
-  .out footer, .in footer { transition: none; transform: none; }
 }

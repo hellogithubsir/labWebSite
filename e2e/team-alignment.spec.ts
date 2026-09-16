@@ -9,7 +9,7 @@ for (const chinese of [false, true]) {
     await expect(cards).toHaveCount(9);
     await expect(cards.locator("dt, dd, dl")).toHaveCount(0);
     await expect(cards.getByText(chinese ? "身份" : "Status", { exact: true })).toHaveCount(0);
-    await expect(cards.nth(3).locator("p").first()).toHaveText(chinese ? "博士研究生" : "PhD Candidate");
+    await expect(cards.nth(3).locator("p").first()).toHaveText(chinese ? "博士毕业生" : "PhD Graduate");
     await expect(page.locator('[data-od-id="team-composition"] dt')).toHaveCount(4);
     await expect(page.locator('[data-od-id="team-pi"] dt')).toHaveCount(2);
   });

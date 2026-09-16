@@ -14,11 +14,11 @@ for (const width of [1920, 390, 320]) for (const chinese of [false, true]) {
     if (width < 981) await expect(page.locator("#screen-navigation")).toHaveCSS("visibility", "hidden");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(chinese ? "合作伙伴" : "Partners");
     await expect(page.locator("main h3")).toHaveText(chinese ? names.zh : names.en);
-    await expect(page.locator('[data-od-id="partners-hero"]')).toContainText(chinese ? "怡和实验室与全球科技领军企业和一流学术机构保持紧密、活跃的合作，共同推动边缘计算与医学人工智能的研发和部署。" : "The HI Lab maintains close, active collaborations with global tech leaders and top-tier academic institutions to drive the R&D and deployment of Edge Computing and Medical AI.");
+    await expect(page.locator('[data-od-id="partners-hero"]')).toContainText(chinese ? "怡合智能与全球科技领军企业和一流学术机构保持紧密、活跃的合作，共同推动边缘计算与医学人工智能的研发和部署。" : "The HI Lab maintains close, active collaborations with global tech leaders and top-tier academic institutions to drive the R&D and deployment of Edge Computing and Medical AI.");
     await expect(page.locator('[data-od-id="partners-introduction"]')).toContainText(chinese ? "产业伙伴提供部署约束与现场数据。学术伙伴提供共享方法、评估与发表渠道。实验室通过边缘计算与医学人工智能连接双方。" : "Industry partners contribute deployment constraints and field data. Academic partners contribute shared methods, evaluation and publication pathways. The lab connects both through Edge Computing and Medical AI.");
     await expect(page.locator('[data-od-id="partners-directory"] img')).toHaveCount(10);
     const logo = page.locator('[data-od-id="partners-hero"] img');
-    await expect(logo).toHaveAttribute("alt", chinese ? "怡和实验室" : "Harmonizing Intelligence Lab");
+    await expect(logo).toHaveAttribute("alt", chinese ? "怡合智能" : "Harmonizing Intelligence Lab");
     await expect(logo).toHaveJSProperty("complete", true);
     expect(await logo.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
     for (const reveal of await page.locator("main [data-reveal]").all()) { await reveal.scrollIntoViewIfNeeded(); await expect(reveal).toHaveAttribute("data-reveal", "visible"); }

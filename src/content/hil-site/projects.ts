@@ -1,4 +1,4 @@
-import type { Localized } from "./types";
+import type { Locale, Localized } from "./types";
 
 export interface ProjectSlide { category: string; title: string; body: string; file: string; width: number; height: number; alt: string; proofs: string[]; }
 export interface CarouselLabels { previous: string; next: string; drag: string; }
@@ -106,7 +106,7 @@ export const projectsContent = {
     "footerBody": "Explore collaboration around your application needs, from research and development to digital products and operational workflows."
   },
   "zh-CN": {
-    "lead": "通过人工智能、边缘智能、定制数字产品与数字化升级，了解怡和实验室如何将研究能力连接到实际应用场景。",
+    "lead": "通过人工智能、边缘智能、定制数字产品与数字化升级，了解怡合智能如何将研究能力连接到实际应用场景。",
     "selected": "精选项目",
     "overview": "能力领域",
     "systems": [["照护智能", "从环境感知到可信的照护告警。"], ["工业人工智能", "从资产遥测到维护行动。"]],
@@ -206,3 +206,13 @@ export const projectsContent = {
     "footerBody": "从联合研发到数字产品与运营流程，围绕您的实际应用需求，探索适合的合作方式。"
   }
 } satisfies Localized<ProjectsContent>;
+
+
+// 首页精选从项目页正式内容读取，保持名称、介绍与截图一致。
+export function getSelectedProjects(locale: Locale) {
+  const content = projectsContent[locale];
+  return [
+    { id: "elinus", title: content.elinusTitle, description: content.elinusIntro, image: content.slides[0] },
+    { id: "pdm", title: content.pdmTitle, description: content.pdmIntro, image: content.pdmSlides[1] },
+  ];
+}

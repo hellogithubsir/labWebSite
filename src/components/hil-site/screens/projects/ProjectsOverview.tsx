@@ -11,7 +11,7 @@ export function ProjectsOverview({ locale }: { locale: Locale }) {
   const shared = sharedContent[locale];
   return <>
     <header className={styles.hero} data-od-id="projects-hero"><div className={styles.container}>
-      <Image className={styles.logo} src="/images/hil-site/shared/logo.png" alt={shared.logoAlt} width={1486} height={642} priority />
+      <Image className={styles.logo} src="/images/hil-site/shared/logo-compact.png" alt={shared.logoAlt} width={540} height={233} priority />
       <div className={styles.heroGrid}><div><p className={styles.eyebrow}>{shared.labels.projects}</p><h1>{shared.titles.projects}</h1></div><p>{copy.lead}</p></div>
     </div></header>
     <section className={styles.overview} data-od-id="projects-overview" aria-labelledby="capabilities-title"><ScrollReveal className={styles.container}>

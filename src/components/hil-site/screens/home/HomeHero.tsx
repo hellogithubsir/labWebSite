@@ -12,7 +12,7 @@ export function HomeHero({ locale, onNavigate }: { locale: Locale; onNavigate: (
   return <>
     <header className={styles.hero} data-od-id="home-hero">
       <div className={styles.heroCopy}>
-        <Image src="/images/hil-site/shared/logo.png" alt={shared.logoAlt} width={1486} height={642} className={styles.logo} priority />
+        <Image src="/images/hil-site/shared/logo-compact.png" alt={shared.logoAlt} width={540} height={233} className={styles.logo} priority />
         <ScrollReveal>
           <p className={styles.eyebrow}>{shared.logoAlt}</p>
           <h1 className={styles.title}>{locale === "en" ? shared.titles.home.split(/ (?=and Machine|at the Edge)/).map((line, index) => <span className={styles.titleLine} key={line}>{index > 0 ? " " : ""}{line}</span>) : shared.titles.home}</h1>

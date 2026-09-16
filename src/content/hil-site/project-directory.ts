@@ -476,13 +476,13 @@ export const projectDirectory: Localized<DirectoryCategory[]> = {
       projects: [
         {
           id: "P-04",
-          title: "Technical and Operation Design for National Address Systems (NAS)",
+          title: "Technical and Operational Design for National Address Systems (NAS)",
           shortTitle: "National address system",
           purpose: "Design shared address infrastructure and governance for public and logistics services.",
           paragraphs: ["Logistics, resource allocation, and public governance depend on usable address information. The project designs the national address system architecture and explores address-data collection with visual AI applications.", "Capacity building, training tools, and technical compliance frameworks support operations and connect system design with governance. The aim is a shared address foundation for public services, logistics planning, and policymaking."],
           highlights: ["address-data collection", "Capacity building"],
           features: ["Address collection", "System architecture", "Training tools", "Governance framework"],
-          image: {"src": "/images/hil-site/projects/catalog/address-mapping-photo.webp", "width": 1536, "height": 1024, "alt": "Technical and Operation Design for National Address Systems (NAS) — photorealistic concept image", "illustrative": true},
+          image: {"src": "/images/hil-site/projects/catalog/address-mapping-photo.webp", "width": 1536, "height": 1024, "alt": "Technical and Operational Design for National Address Systems (NAS) — photorealistic concept image", "illustrative": true},
         },
         {
           id: "P-07-16",
