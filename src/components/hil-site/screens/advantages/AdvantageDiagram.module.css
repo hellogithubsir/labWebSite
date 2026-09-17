@@ -36,10 +36,10 @@
 .flow { display: grid; grid-template-columns: 1fr 28px 1fr 28px 1fr; align-items: center; }
 .step { display: contents; }
 .step .node { align-self: stretch; }
-.layers { display: grid; grid-template-columns: minmax(0, 1fr) 80px; align-items: stretch; }
+.layers { display: grid; grid-template-columns: minmax(0, 1fr) minmax(80px, max-content); align-items: stretch; }
 .planes { width: 100%; height: auto; overflow: visible; color: var(--diagram-ink, #082956); }
 .planeLabels { display: grid; grid-template-rows: repeat(3, 1fr); padding: 10% 0 2%; }
-.planeLabels span { display: flex; align-items: center; font-size: clamp(15px, 4cqi, 20px); line-height: 1.4; font-weight: 500; color: var(--diagram-accent-text, #007f77); overflow-wrap: anywhere; }
+.planeLabels span { display: flex; align-items: center; font-size: clamp(15px, 4cqi, 20px); line-height: 1.4; font-weight: 500; color: var(--diagram-accent-text, #007f77); overflow-wrap: normal; white-space: nowrap; }
 .planeLabels span::before { content: ""; width: 14px; flex-shrink: 0; margin-right: 8px; border-top: 1px solid currentColor; }
 .diagram[data-diagram="distillation"] .glyph { width: min(100%, 126px); height: 126px; }
 .diagram[data-diagram="distillation"] .step:nth-child(2) .glyph { width: 58px; }

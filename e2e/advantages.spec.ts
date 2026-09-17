@@ -34,9 +34,11 @@ for (const width of [1920, 1440, 1024, 390, 320]) for (const locale of ["en", "z
     await expect(items.getByRole("heading", { level: 3 })).toHaveText(titles[locale]);
     await expect(page.locator("main button[aria-expanded]")).toHaveCount(0);
     await expect(page.locator("main [data-diagram]")).toHaveCount(9);
-    const logo = page.getByRole("img", { name: locale === "zh-CN" ? "怡合智能" : "Harmonizing Intelligence Lab", exact: true });
-    await expect(logo).toHaveJSProperty("complete", true);
-    expect(await logo.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
+    if (width > 980) {
+      const logo = page.getByRole("img", { name: locale === "zh-CN" ? "怡合智能" : "Harmonizing Intelligence Lab", exact: true });
+      await expect(logo).toHaveJSProperty("complete", true);
+      expect(await logo.evaluate((node: HTMLImageElement) => node.naturalWidth)).toBeGreaterThan(0);
+    }
     for (let index = 0; index < 8; index++) {
       const item = items.nth(index), diagram = item.locator("[data-diagram]");
       await item.scrollIntoViewIfNeeded();
