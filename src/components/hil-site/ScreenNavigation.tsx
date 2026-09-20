@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useSyncExternalStore, type KeyboardEvent, type ReactNode } from "react";
 import { screenSequence } from "@/lib/hil-site/screen-sequence";
 import type { ScreenId } from "@/types/hil-site";
@@ -21,12 +22,12 @@ interface ScreenNavigationProps {
   navigationLabel: string;
   menuLabel: string;
   closeMenuLabel: string;
-  brandLabel: string;
+  logoAlt: string;
   languageControl: ReactNode;
 }
 
 export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuOpenChange,
-  navigationLabel, menuLabel, closeMenuLabel, brandLabel, languageControl }: ScreenNavigationProps) {
+  navigationLabel, menuLabel, closeMenuLabel, logoAlt, languageControl }: ScreenNavigationProps) {
   const mobile = useSyncExternalStore(subscribeViewport, () => window.matchMedia("(max-width: 980px)").matches, () => false);
   const menuButton = useRef<HTMLButtonElement>(null);
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
@@ -75,7 +76,7 @@ export function ScreenNavigation({ screen, onNavigate, labels, menuOpen, onMenuO
       }
     }}>
       <div className={styles.mobileBar}>
-        <span className={styles.brand}>{brandLabel}</span>
+        <span className={styles.brand}><Image src="/images/hil-site/shared/logo-compact.png" alt={logoAlt} width={130} height={56} priority /></span>
         <button ref={menuButton} type="button" className={styles.menuButton}
           aria-expanded={menuOpen} aria-controls="screen-navigation" data-od-id="menu-toggle"
           onClick={() => onMenuOpenChange(!menuOpen)}>{menuOpen ? closeMenuLabel : menuLabel}</button>

@@ -1,5 +1,7 @@
 # Ticket 024 — Projects 完整目录
 
+> **归档说明（2026-09-17）**：下方引用的 `evidence/024/` 已在项目收尾清理中删除；描述保留为历史记录。
+
 设计权威为原 Photoshop 交付包 `02_Reference_PNG_sRGB/03-PROJECTS-V1-FINAL-sRGB.png`，状态来自 04_Documentation 与 Ticket 001 manifest，非默认帧语义来自 `05_Source_HTML/website-code-seven-pages/03-projects/index.html`。
 
 - P-02：沿用 023 的 E-Linus 四帧；P-03：复用同一 ProjectCarousel 呈现 PDM Robot 的 frame-02、05、08、10，默认第二帧。四帧沿用 assets.json 已登记的 900×600 正式媒体，保持完整比例。

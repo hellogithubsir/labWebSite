@@ -24,7 +24,7 @@ export function HilSiteShell() {
       <button className={styles.skip} onClick={() => document.getElementById("site-content")?.focus()}>{content.skip}</button>
       <ScreenNavigation screen={activeScreen} onNavigate={navigate} labels={content.labels}
         menuOpen={menuOpen} onMenuOpenChange={setMenuOpen}
-        navigationLabel={content.navigation} menuLabel={content.menu} closeMenuLabel={content.closeMenu} brandLabel={content.brand}
+        navigationLabel={content.navigation} menuLabel={content.menu} closeMenuLabel={content.closeMenu} logoAlt={content.logoAlt}
         languageControl={<LocaleControl locale={locale} onLocaleChange={setLocale} />} />
       <div className={styles.frame} inert={menuOpen}>
         <PageTurnTransition phase={phase} onAnimationEnd={onTransitionAnimationEnd}>

@@ -26,7 +26,8 @@ html[lang="zh-CN"] .label { letter-spacing: 0; }
   .frame { width: 100%; margin-left: 0; padding-top: 64px; border: 0; }
   .mobileBar { position: fixed; inset: 0 0 auto; height: 64px; z-index: 101; display: flex; align-items: center; gap: 12px; padding-inline: 20px; border-bottom: 1px solid var(--line); background: var(--paper); }
   .languageControl { position: static; flex: none; }
-  .brand { display: block; margin-right: auto; color: var(--navy); font-size: 13px; font-weight: 800; }
+  .brand { display: flex; align-items: center; margin-right: auto; }
+  .brand img { width: auto; height: 28px; }
   .menuButton { display: block; flex: none; min-height: 44px; padding: 10px 4px; border: 0; color: var(--navy); background: transparent; cursor: pointer; font-size: 13px; font-weight: 800; transition: color 300ms var(--ease), transform 300ms var(--ease); }
   .menuButton:hover { color: var(--teal); transform: translateY(-1px); }
   .menuButton:active { transform: none; transition-duration: 120ms; }

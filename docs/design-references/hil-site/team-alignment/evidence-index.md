@@ -1,5 +1,7 @@
 # 首页与团队人物信息统一
 
+> **归档说明（2026-09-17）**：下方引用的 `evidence/060/` 目录已在项目收尾清理中删除；mission 文本记录（reports、reviews、progress_log）仍保留。
+
 ## 本次行为
 
 - 首页中英文摘要仅按 Chaw、Jeff、Wendy 顺序展示三位负责人，姓名与职位直接读取团队 PI 与 profiles；九名研究人员仍保留在团队页。

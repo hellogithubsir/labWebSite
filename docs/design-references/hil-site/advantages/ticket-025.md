@@ -1,5 +1,7 @@
 # Ticket 025 — Technology Advantages
 
+> **归档说明（2026-09-17）**：下方"证据目录"引用的 `evidence/025/` 已在项目收尾清理中删除；描述保留为历史记录。
+
 设计权威：Photoshop 交付包 `02_Reference_PNG_sRGB/04-TECHNOLOGY-ADVANTAGES-V1-FINAL-sRGB.png`（1920 × 3466）。`05_Source_HTML/website-code-seven-pages/04-technology` 仅作交互语义参考；中文按 `bilingual-source.json` 的 A-01–A-08 编号压缩为同等设计摘要。
 
 - 页首保留 Technology Advantages／技术优势，八项简介明确区分核心技术与前沿储备。

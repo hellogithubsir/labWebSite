@@ -1,5 +1,7 @@
 # V1 发布证据索引
 
+> **归档说明（2026-09-17）**：本文引用的 `missions/*/evidence/` 二进制证据（截图 PNG、trace.zip、日志）已在项目收尾清理中删除以释放本地空间；下方所有指向 evidence 路径的链接均已失效。文本记录（spec、tickets、reports、reviews、progress_log）仍保留于各 mission 目录，结论性内容以本文及对应报告为准。
+
 ## 2026-09-16 首页与团队内容当前依据
 
 首页精选与子页数据统一、Jeff毕业身份和人数调整，以[一致性修正记录](../content-consistency-evidence.md)为当前依据。此前首页三项精选截图及Jeff在读角色断言保留为历史证据，不用于评判本轮已获批行为；研究页与项目成果承接未纳入本轮修改。

@@ -15,7 +15,7 @@
 - Next.js 16 App Router
 - React 19
 - TypeScript strict mode
-- Tailwind CSS v4、PostCSS、shadcn/ui
+- Tailwind CSS v4、PostCSS
 - Node 版本由 .nvmrc（24）和 package.json（>=24）约束；新环境先 npm ci，031 已验证干净安装。
 
 ## Directory Map
@@ -98,7 +98,7 @@
 - 开始工作先列待办；执行检查前先说明它要检测的具体失败和失败后如何处理。
 - 路径使用双引号；文本搜索优先 rg。
 - 删除、批量修改、移动文件、安装或升级全局依赖、Git 写操作和生产变更前必须获得明确确认。
-- 如果本次改动改变了工程约束或验证方式，更新 README.md 和相关约束文件。
+- 如果本次改动改变了工程约束或验证方式，更新相关约束文件。
 
 ## Runtime Lifecycle
 

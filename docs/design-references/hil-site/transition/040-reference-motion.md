@@ -1,5 +1,7 @@
 # 040 当前参考动效与证据
 
+> **归档说明（2026-09-17）**：下方引用的 `labWebsiteV1-transitionFollowup` mission 目录及其 evidence 已不存在（更早清理中删除）；描述保留为历史记录。
+
 2026-09-08。当前实现为 700ms 提交、1500ms 完成的七屏单 URL 动效；静态素材与版式仍以 Ticket 001 Photoshop 为准。本记录替代 README、ADR 与 manifest 的当前动效说明，不重写旧 V1、030 或原 250ms 历史快照。
 
 ## 来源与实现

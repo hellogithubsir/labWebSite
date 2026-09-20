@@ -1,5 +1,7 @@
 # Ticket 026 — Partners
 
+> **归档说明（2026-09-17）**：下方"证据目录"引用的 `evidence/026/` 已在项目收尾清理中删除；描述保留为历史记录。
+
 设计权威：Photoshop 交付包 `02_Reference_PNG_sRGB/05-PARTNERS-V1-FINAL-sRGB.png`（1920 × 2531）。N-01 页首与合作介绍、N-02 机构墙、N-03 页尾对应 `pages.json` 的同名分组。`05_Source_HTML/website-code-seven-pages/05-partners` 仅补语义；N-01 导语和 N-02 中英机构名称来自 `bilingual-source.json` 同编号内容。设计中新增小标题、合作介绍与页尾的中文按英文语义本地化。
 
 - 保留 Partners／合作伙伴标题；N-02-01 至 N-02-09 顺序固定，英文和中文均展示九家正式机构名称。

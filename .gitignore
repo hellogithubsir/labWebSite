@@ -40,3 +40,4 @@ next-env.d.ts
 
 # Temporary files and QA output
 temp/
+.export-tmp/

@@ -10,7 +10,6 @@ export interface SharedContent {
   navigation: string;
   menu: string;
   closeMenu: string;
-  brand: string;
   logoAlt: string;
   exploreResearch: string;
   collaborate: string;
